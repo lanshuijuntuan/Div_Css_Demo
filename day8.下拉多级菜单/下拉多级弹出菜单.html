@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body,ul,li{
+            font-family: "Microsoft YaHei UI";
+            font-size: 10pt;
+            line-height: 1.5;
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+        .menu{
+            margin:0px auto;
+            width: 720px;
+            height: 28px;
+            border-bottom: solid #e10001 3px;
+        }
+        .menu a{
+            text-decoration: none;
+        }
+        .menu ul{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        .menu ul li{
+            float: left;
+            height: 28px;
+            line-height: 28px;
+        }
+        .menu ul li a{
+            text-align: center;
+            display: block;
+            width: 86px;
+            padding: 0px 2px;
+           color: black;
+            background: url("sprites.png") 0 -28px no-repeat;
+        }
+        .menu ul li a#current{
+
+            font-weight: bold;
+            color:#fff;
+            background: url("sprites.png") 0 -0px no-repeat;
+        }
+        .menu ul li a:hover{
+            background: url("sprites.png") 0 -56px no-repeat;
+        }
+        .menu ul li ul{
+            list-style: none;
+            display: none;
+            background: #ccc;
+            position:relative;
+
+
+        }
+        .menu ul li ul a{
+            background: #ccc;
+
+        }
+        .menu ul li ul a:hover{
+            background: #802d29;
+            color: #ffffff;
+        }
+        .menu ul li ul li{
+            float: none;
+        }
+        .menu ul li:hover ul{
+            display: block;
+        }
+        .content{
+            margin:0px auto;
+            width: 720px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li><a href="http://" id="current">一级菜单</a>
+            <ul>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+            </ul>
+        </li>
+        <li><a href="http://">一级菜单</a>
+            <ul>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+            </ul>
+        </li>
+        <li><a href="http://">一级菜单</a>
+            <ul>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+            </ul>
+        </li>
+        <li><a href="http://">一级菜单</a>
+            <ul>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+            </ul>
+        </li>
+        <li><a href="http://">一级菜单</a>
+            <ul>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+                <li><a href="http://">二级菜单</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="content"><img src="哈士奇.jpg" alt=""></div>
+</body>
+</html>

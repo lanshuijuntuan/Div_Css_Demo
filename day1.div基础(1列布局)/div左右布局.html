@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>div左右布局</title>
+    <style type="text/css">
+        body{
+            margin: 0px;
+        }
+        .main{
+            margin: 0px auto;
+            width: 80%;
+            height: 800px;
+        }
+        .leftpart{
+            position: relative;
+            float: left;
+
+            height: 800px;
+            width: 30%;
+            background: grey;
+        }
+        .rightpart{
+            position: relative;
+            float: left;
+
+            height: 800px;
+            width: 70%;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+<div class="leftpart">这是左边部分</div>
+<div class="rightpart">这是右边部分</div>
+</div>
+</body>
+</html>
