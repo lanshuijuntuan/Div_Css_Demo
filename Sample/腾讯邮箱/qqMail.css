@@ -1,0 +1,347 @@
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+td,input,button,select,body {
+    font-family: lucida Grande,Verdana,Microsoft YaHei;
+    font-size: 12px;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+ul,li{
+    list-style: none;
+}
+
+
+select,body,textarea {
+    background-color: #fff;
+    font-size: 12px;
+}
+
+#topDataId {
+    height: 66px;
+    overflow: hidden;
+
+}
+
+.topdata {
+    background: #354b66 url("https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/skin_210/top_bg_list1e9c5d.gif");
+    height: 66px;
+}
+
+.topbg {
+    float: right;
+    width: 586px;
+}
+
+.addrtitle {
+    color: #A8ADB8;
+}
+
+.right, .qm_right {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+}
+
+
+
+.setinfo a, .setinfo a:visited,
+.setinfo a:hover, .switch a,
+.switch a:visited, .switch a,
+.switch a:hover, .switch,
+#allattch a, #allattch a:visited {
+    color: #d7dfea;
+}
+
+.icon_top_sendtomobile_init,.icon_top_sendtomobile_success,
+.icon_top_sendtomobile_error, .icon_top_sendtomobile_uploading {
+    display: inline-block;;
+    width: 16px;
+    height: 15px;
+    margin-bottom: -4px;
+    background: url("https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/sendtomobile/icon_sendtomobile1e9c5d.png") -128px 0 no-repeat;
+    background-image:-webkit-image(url("https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/sendtomobile/icon_sendtomobile1e9c5d.png") 1x,
+    url("https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/sendtomobile/icon_sendtomobile1e9c5d.png") 2x);
+}
+.pointer{
+    cursor: pointer;
+}
+
+.setinfo {
+    margin: 6px 8px 0 0;
+}
+
+
+.nowrap{
+    white-space: nowrap;
+}
+.search_subject{
+    position: absolute;
+    z-index: 11;
+    right: 0;
+    width: 286px;
+    top: 37px;
+}
+.search_subject .smartsearch{
+    position: relative;
+    border: 1px solid #BBB;
+    background: #FFF;
+    padding: 1px 21px;
+    height: 18px;
+    line-height: 18px;
+    margin: 3px 5px 3px 2px;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px #e6e6e6 inset;
+}
+.search_subject .smartsearch input.searchinput{
+    background: #fff;
+    width: 100%;
+    height: 18px;
+    line-height: 18;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+}
+
+
+.ss_icon{
+    width: 18px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    background: url("https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/smartsearch1e9c5d.png") no-repeat;
+}
+
+.ss_icon_search{
+    background-position: -3px -3px;
+}
+
+.ss_fronticon{
+    left: 2px;
+    top: 2px;
+}
+.ss_endicon{
+    right: 2px;
+    top: 3px;
+}
+.ss_fronticon,.ss_endicon{
+    position: absolute;
+}
+.ss_icon_arrowdown{
+    background-position: -27px -4px;
+}
+
+.lgoo{
+    position: absolute;
+    left: 5px;
+    z-index: 6;
+}
+.imglogo{
+    display: block;
+    float: left;
+}
+.skinlogo img{
+    background-image: url("https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/logo/logo_210_01e9c5d.gif");
+}
+.maillogo{
+    width: 215px;
+    height: 60px;
+    border: none;
+}
+.switch{
+    left: 208px;
+    display: block;
+    float: left;
+    margin: 12px 0 0 0 ;
+    line-height:18px;
+}
+.arrow_fontsize{
+    font-size: 11px;
+    font-family: Arial,sans-serif;
+    padding-bottom: 5px;
+    opacity: 0.45;
+}
+#seplineId{
+
+    position: absolute;
+    top: 66px;
+    left: 0;
+    right: 0;
+    height: 11px;
+}
+.topline{
+    width: auto;
+    height: 8px;
+    border-right: 0;
+    background: #fff;
+    border-top: 1px solid #254588;
+}
+.toplineimg{
+    background: #e7ebf1;
+    height: 6px;
+    border-right: 1px solid #b0bac6;
+    width: 187px;
+}
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+.bodybgbt{
+    position: absolute;
+    width: 187px;
+    top:71px;
+    bottom: 0;
+}
+.fdbody{
+    border-right: 1px solid #b0bac6;
+    background: #95a1b6;
+}
+
+
+
+#leftPanel {
+    position: absolute;
+    top: 71px;
+    left: 0;
+    bottom: 0;
+    width: 187px;
+    border-left: 0 none;
+    height: auto;
+}
+.newskinbody{
+    background: #e8ebef;
+}
+
+#navbardiv{
+    right: 0;
+    z-index: 3;
+}
+ul.navbar{
+    height: 94px;
+    width: auto;
+    border-bottom: 1px solid #bfc8d8;
+}
+.navbar{
+    list-style: none;
+}
+
+.navbar a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "lucida Grande",Verdana,"Microsoft YaHei";
+}
+
+.newskinbody ul.navbar li.composepart{
+    padding: 2px 0 0 0;
+    height: 26px;
+}
+
+.newskinbody ul.navbar li.checkpart {
+    margin: 6px 0px 0 0px;
+}
+
+.newskinbody ul.navbar li.addrpart {
+    margin: 6px 0px 0 0px;
+}
+
+li.fs a:link,li.fs a:visited,li.fd_mg a:link,li.fd_mg a:visited {
+    color: #354b66;
+}
+
+.newskinbody li.fs a,.newskinbody li.fn a {
+    display: block;
+    height: 22px;
+    overflow: hidden;
+    padding-left: 13px;
+    text-decoration: none;
+}
+
+.newskinbody ul.navbar li.fs,.newskinbody ul.navbar li.fs a{
+    height: 24px!important;
+}
+
+.newskinbody ul.navbar li.fs a {
+    line-height: 24px;
+}
+
+.newskinbody li.fs a,.newskinbody li.fn a {
+    padding-left: 53px;
+}
+
+
+
+.newskinbody ul.navbar li.fs input {
+    float: left;
+    border: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    margin: -20px 0 0 12px;
+
+}
+.newskinbody ul.navbar li.fs input {
+    margin-left: 23px;
+}
+
+
+input.composebtn,input.addrbtn,input.checkbtn {
+    background-image: url(https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/newicon/cca1e9c5d.gif);
+}
+
+.composebtn {
+    background: url(https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/newicon/mail327a44.png) 0 -1px no-repeat;
+
+}
+
+input.composebtn,input.addrbtn,input.checkbtn {
+    background-image: url(https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/newicon/cca1e9c5d.gif);
+}
+
+
+.checkbtn {
+    background: url(https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/newicon/mail327a44.png) 0 -33px no-repeat;
+    *background-position: 0 -32px;
+}
+
+.addrbtn {
+    background: url(https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/newicon/mail327a44.png) 0 -63px no-repeat;
+    *background-position: 0 -62px;
+}
+
+
+
+
+
+
+#mainPanel {
+
+    position: absolute;
+    top:71px;
+    left: 192px;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 4;
+
+
+}
+#mainFrame{
+    width: 100%;
+    height: 100%;
+}
+
