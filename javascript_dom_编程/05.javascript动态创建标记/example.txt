@@ -1,0 +1,1 @@
+XMLHTTPRequest测试数据

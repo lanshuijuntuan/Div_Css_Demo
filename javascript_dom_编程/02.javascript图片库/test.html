@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <script src="showPic.js" type="application/javascript" ></script>
+
+<body>
+<div id="mainContent">
+<h1>snapshot</h1>
+<ul>
+    <li><a href="1.jpg" title="花朵1" onclick="showPic(this);return false;">图片1</a></li>
+    <li><a href="2.jpg" title="花朵2" onclick="showPic(this);return false;">图片2</a></li>
+    <li><a href="3.jpg" title="花朵3" onclick="showPic(this);return false;">图片3</a></li>
+</ul>
+<br/>
+<br/>
+<img src="1.jpg" id="placeholder" alt="此为测试图片" width="600" height="400"/>
+<p id="description">请选择图片。</p>
+    <a href="javascript:popUp('http://www.baidu.com');">打开百度</a>
+</div>
+</body>
+</html>

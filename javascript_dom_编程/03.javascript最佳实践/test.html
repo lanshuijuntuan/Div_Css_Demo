@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <script src="file.js" type="application/javascript"></script>
+
+<body>
+<a href="javascript:popUp('http://www.baidu.com');">打开百度</a>
+<a href="http://www.baidu.com" onclick="popUp(this.getAttribute('href'));return false">打开百度</a>
+
+<a href="http://www.baidu.com" class="popup">打开百度</a>
+</body>
+</html>
