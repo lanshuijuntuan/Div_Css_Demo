@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="example.js" defer="defer" async="async" ></script>
 </head>
 <body>
 <h1>这是测试网页</h1>
 <script type="application/javascript" >
+
     function sayHi() {
         alert("Hello world!");
     }
     window.onload=function () {
         sayHi();
         sayScript();
+        compare(10,20);
+        testDataType();
     }
 
     function sayScript() {
