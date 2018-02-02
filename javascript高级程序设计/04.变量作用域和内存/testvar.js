@@ -1,6 +1,3 @@
-/**
- * Created by zhouhongquan on 2018/2/2.
- */
 /*
  function howManyArgs(){
  alert(arguments.length);
@@ -55,3 +52,88 @@
  alert(person.name);
 
  */
+
+
+/*
+ var s="Nicholas";
+ var b=true;
+ var i=22;
+ var u;
+ var n=null;
+ var o=new Object();
+
+ alert(typeof s);
+ alert(typeof b);
+ alert(typeof o);
+ alert(typeof u);
+ alert(typeof n);
+ alert(typeof o);
+
+ alert(person instanceof object);
+ alert(colors instanceof Array);
+ alert(parttern instanceof RegExp);
+
+ */
+
+/*
+ var person=new Object();
+ person.name="Nicholas";
+ person.age=29;
+
+ alert("person.name:"+person.name+"\n\r"+
+ "person.age:"+person.age);
+
+
+ function displayInfo(args){
+ var output="";
+
+ if(typeof args.name=="string"){
+ output+="Name:"+args.name+"\n";
+ }
+ alert(output);
+ }
+
+ displayInfo({name:"Nicholas",age:29});
+
+ displayInfo({name:"Greg"});
+
+ */
+
+
+var colors=new Array();
+
+var colors=new Array(20);
+
+var colors=new Array("red","blue","green");
+
+
+
+var colors=new Array(3);
+
+var names=new Array("Greg");
+
+
+var colors=["red","blue","green"];
+
+var names=[];
+
+var values=[1,2];
+
+var options=[,,,,];
+
+
+var colors=["red","blue","green"];
+
+alert(colors[0]);
+
+colors[2]="black";
+colors[3]="brown";
+
+
+
+
+
+
+
+
+
