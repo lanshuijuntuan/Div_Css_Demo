@@ -1,0 +1,311 @@
+﻿.rssMailCardContent{/*padding:5px 15px 10px;*/padding:5px 0 18px; background:#fff;}
+.rssMailCardContent_pd {padding:5px 15px 10px;}
+.rssMailCardContents{padding:5px 15px 10px; background:#f2f2f2;}
+.rssMailCardContent .bgWhite{background:white;width:2px;height:20px;position:absolute;}
+.rssMailCardToolBar{/*width:760px;padding:20px 0 10px;*/position:relative; /*border-bottom:1px solid #e8e8e8;*/}
+.rssMailCardToolBar_at {width:760px;}
+.rssMailCardToolBarTitle{height: 21px;line-height: 21px; position:relative;}
+.rssMailCardToolBar_path{font-size:12px;color:#444;line-height:normal;padding:8px 0 15px; border-bottom:1px solid #f0f0f0;}
+.rssMailCardToolBar_path h2{/*font-size:24px;*/font-size:18px; font-weight:bold;}
+.rssMailCardToolBar_path h3{margin-top:22px;}
+.rssMailCardToolBar_path p{color:#999999;margin-top: 12px;}
+.rssMailCardToolBar_path p .mr_20{margin-right:20px;}
+.rssMailCardToolBar_path a,.rssMailCardToolBar_path span{margin-right:5px;}
+.rssMailCardToolBar_path .i-smcReturn{vertical-align:middle;margin-right:5px;vertical-align:middle;overflow:hidden;}
+.rssMailCardToolBar_sort{position:absolute;right:0px;top:5px;}
+.rssMailCardToolBar_sort i{margin-left:5px;}
+.rssMailCardToolBar_sort a:hover .i-smcMailList,.rssMailCardToolBar_sort .current .i-smcMailList{background-position:0px -24px;}
+.rssMailCardToolBar_sort a:hover .i-smcCardList,.rssMailCardToolBar_sort .current .i-smcCardList{background-position:-25px -24px;}
+.i-psOrgin, .i-psTime,.i-psRead { width:16px;height:16px; display:inline-block;background: url(../../../images/module/cloudMail2.0/mailM.png?v=9i9vG4I%2BO%2FwZNpB2o%2BfW4g%3D%3D) no-repeat;overflow:hidden;position: relative; top:3px; margin-right:5px;}
+.i-psOrgin{background-position:-5px -5px;}
+.i-psTime{background-position:-4px -27px;}
+.i-psRead{ background-position:-4px -53px; vertical-align:middle;}    /* 阅读图标位置 wxy */
+.rssMailCardMain{width:760px;padding-bottom:10px;}
+.rssMailCardMain_box{}
+.rssMailCardMain_box a{color:#444;}
+.rssMailCardMain_box .rssMailCardMain_ul .rssMailCardMain_list .rssMailCardColumnTitle{overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;}    
+.rssMailCardMain_box a:hover{color:#2592f8;}
+.rssMailCardMain_box_title{width:718px;height:23px;padding: 5px 10px;color:#2592f8;font-size:16px;position:relative; background:#fff; border:1px solid #e4e4e4; border-radius:3px; margin:10px 0 10px 1px;}
+.rssMailCardMain_box_title a{color:#2592f8;position:absolute;top:8px;right:17px;font-size:14px;}
+.rssMailCardMain_box_title .i-smcOpen,.rssMailCardMain_box_title .i-smcPackUp{vertical-align:middle;margin-left:5px;overflow:hidden;cursor:pointer;}
+.rssMailCardMain_ul{margin-left:-15px;/*margin-top:15px;*/overflow:hidden;_zoom:1;}
+.rssMailCardMain_list{width:200px;height:258px;background:#ffffff;overflow:hidden;border:1px solid #E8E8E8;padding:0 17px;margin:0 0 10px 16px;font-size:14px;color:#323232;display:inline;border-radius:5px;}
+.rssMailCardMain_ul .rssMailCardMain_list_click a{color: #999 !important;}
+.rssMailCardColumnTitle{display:block;height:36px;line-height:36px;position:relative;}
+.rssMailCardColumnTitle a{color:#444;}
+.rssMailCardColumnTitle strong{}
+.rssMailCardColumnTitle .i-smcRight{position:absolute;top:10px;right:0;}
+.rssMailCardColumnImgBox,.rssMailCardColumnImgBox img{display:block;width:200px;height:143px;overflow:hidden;}
+.rssMailCardColumnImgBox:hover img{opacity:.7;*filter:alpha(opacity=70);}
+.rssMailCardColumnImgBox{position:relative;}
+.rssMailCardColumnImgBox h3{position:absolute;bottom:0;width:204px;height:32px;line-height:32px;padding:0 10px;cursor:pointer;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;filter:progid:DXImageTransform.Microsoft.gradient(enabled="true", startColorstr="#B2000000", endColorstr="#B2000000");background:rgba(0,0,0,.7);}
+:root .rssMailCardColumnImgBox h3{filter:none;}/* IE9 HACK 避免在IE9下背景色叠加 */
+.rssMailCardColumnUl{margin:10px -17px;}
+.rssMailCardColumnUl h3{
+    width: 204px;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
+    cursor: pointer;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #494949;
+    margin:17px 0 -10px -17px;
+}
+.rssMailCardColumnUl a .rmcSummary{color:#999;line-height:18px; height:68px;padding: 13px 0 3px;clear:both;_zoom:1;overflow:hidden;}
+.rssMailCardColumnUl a{display:block;padding:17px 17px 10px;border-top:1px solid #EFEFEF;overflow:hidden;_zoom:1;}
+.rssMailCardColumnUl a .rmcTxtInfo{width:155px;margin-top: -2px;float:left;cursor:pointer;}
+.rssMailCardColumnUl .rmcNoImg .rmcTxtInfo{width:auto;float:none;}
+.rssMailCardColumnUl a.noTopBd{border-top:none;}
+.rssMailCardColumnUl .lookAll{display:block;height:35px;line-height:35px;border-top:1px solid #EFEFEF;position:relative;}
+.rssMailCardColumnUl .rmcNoImg .lookAlls{position: relative;top: 5px;}
+
+.lookAll .i-smcRight{position:absolute;right:10px;top:20px;}
+.rssMailCardColumnUl a img{display:block;width:42px;height:35px;}
+.rssMailCardColumnUl-smallImg{margin-top:0px;}
+.rssMailCardColumnUl-smallImg a{padding:24px 10px;}
+.rssMailCardColumnUl .rmcText{background:#f5f5f5;width:166px; margin:0 17px 12px;padding-top:7px;}
+.rssMailCardColumnUl a{position:relative;}
+.rssMailCardColumnUl .i-novelNew{position:absolute;top:0;right:0;}
+
+.rssMailCardMain_box_more{width:740px;padding:8px 0;margin-top:10px; background:#fff;text-align:center;border:1px solid #E8E8E8;border-radius:5px;}
+.rssMailCardMain_box_more a{font-size:12px;color:#444;}
+.rssMailCardMain_box_more a:hover{color:#2592f8;}
+.rssMailCardMain_box_more img{vertical-align:-3px;margin-right:5px;}
+
+.rssMailCardColumnLayerOutside{position:fixed;_position:absolute;right:0px;top:36px;z-index:10;}
+.rssMailCardColumnLayer{width:235px; height:auto !important;  overflow: hidden;border: 1px solid #e8e8e8;background: #fff;border-radius: 5px;}
+.rssMailCardColumnLayer-off{width:11px;padding-left:0;right:0;}
+.rssMailCardColumnLayer-off .rmcSwitch .i-leftArrow{background-position:-55px -46px;}
+.rssMailCardColumnLayer-off .rssMailCardColumnLayerMain{display:none;}
+.rssMailCardColumnLayerOutside .rmcSwitch{position:absolute;left:-11px;top:50px;width:10px;height:60px; background:#fff;text-align:center;border:1px solid #E8E8E8;cursor:pointer;}
+.rmcSwitch:hover{background-color:#fff;}
+.rmcSwitch:active{background-color:#fff;}
+.rmcSwitch .i-leftArrow,.rmcSwitch .i-rightArrow{vertical-align:-20px;}
+.rssMailCardColumnLayerMain{width:250px; background:white;}
+.rssMailCardColumnLayerMain h2{height:30px;line-height:30px;padding:0 10px;font-weight:normal;color:#444;border-bottom:1px solid #E8E8E8;}
+.rssMailCardColumnLayerMain ul{overflow:hidden;_zoom:1;padding:5px 10px;}
+.rssMailCardColumnLayerMain li{float:left !important;width:72px !important;padding:5px 0 !important;position:relative;text-align:center;}
+.rssMailCardColumnLayerMain li a{display:block;width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;font-size:12px;color:#444;px;}
+.rssMailCardColumnLayerMain li a span{display:block;width:48px;padding:0px 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; color: #444;}
+.rssMailCardColumnLayerMain li .rmcMoreBtn{display:block;width:50px;height:50px;margin:8px auto;_margin-top:13px;border:1px dashed #C9C9C9; border-radius:5px;text-align:center;line-height:42px;font-size:40px;font-weight:bold;color:#D3E9FE;}
+.rssMailCardColumnLayerMain li a.check img{padding:5px;border:1px solid #D5EAFE;}
+.rssMailCardColumnLayerMain li .rmcMoreBtn:hover{color:#2592F8;}
+.rssMailCardColumnLayerMain li .rmcMoreBtn:active{color:#2592F8;background-color:#F4F4F4;}
+.rssMailCardColumnLayerMain li img{display:block;width:50px;height:50px;margin:5px auto;padding:5px;border-radius:8px;border: 1px solid #fff;}
+.rssMailCardColumnLayerMain .noRss img{opacity:.5;*filter:alpha(opacity=50);}
+.rssMailCardColumnLayerMain li {background:none !important;border-bottom:none !important;height:auto !important;}
+.rssMailCardColumnLayerMain li a:hover img{padding:5px;border:1px solid #D5EAFE;}
+.rssMailCardColumnLayerMain .closeColumn{position:absolute;top:5px;right:10px;width:16px;height:16px;}
+.rssMailCardColumnLayerMain li a .moreReader{margin-top: 5px;display: inline-block;}
+
+.closeColumn:hover .i-smcColumnClose{background-position:-75px -21px;}
+.closeColumn:active .i-smcColumnClose{background-position:-75px -42px;}
+.rssMailCardArticleBox{position:relative;_zoom:1;}
+.rssMailCardArticleBox li{vertical-align:top;}
+.rssMailCardArticleBox_time{width:100px;height:139px;padding:15px 0 0 10px;font-size:16px;color:#999;position:relative;}
+.rssMailCardArticleBox_time strong{display:block;color:#666;line-height:28px;font-size:24px;font-weight:normal;}
+.rssMailCardArticleBox_time .i-smcTimeDot{position:absolute;top:20px;right:-6px;overflow:hidden;z-index:2;}
+.rssMailCardArticleBox_main{padding:0 0 10px 17px;position:relative;border-left: 1px solid #E8E8E8;}
+.rssMailCardArticleBox_main .i-smcTimeArrow{position:absolute;left:10px;top:20px;overflow:hidden;}
+.rmcArticleBox_main_info{width:590px;padding:15px 20px;background-color:white;border:1px solid #E8E8E8;}
+.rmcArticleBox_main_info dl{}
+.rmcArticleBox_main_info dt{font-size:16px;color:#444;font-weight:bold;padding-bottom:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+.rmcArticleBox_main_info dd{height:52px;overflow:hidden;font-size:14px;color:#666;line-height:24px;}
+
+.rssMailCardCodeReturnTop{position:fixed;_position:absolute;right:15px;bottom:20px;z-index:3;}
+.rssMailCardCodeReturnTop .i-rmcCode{vertical-align:-18px;cursor:pointer;}
+.rssMailCardCodeReturnTop .i-rmcReturnTop{vertical-align:-15px;cursor:pointer;}
+.rssMailCardCodeReturnTop a{display:block;width:40px;height:40px;text-align:center;background-color:#C6C6C6;margin-top:5px;}
+.rssMailCardCodeReturnTop a:hover{background-color:#2592F8;}
+
+.rssMailCardMain_mailInfoBox{font-size:14px;color:#444;}
+.rssMailCardMain_mailInfoBox p{font-size:14px;line-height:34px;}
+.rssMailCardMain_mailInfoBox .rmcMain_page{padding:15px 0 0;margin:0 0 0 -5px;}
+.rmcMain_page a{display:inline-block;width:500px;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rmcMain_page a:hover,.rssMailCardMain_mailInfoBox .postOfficeToolOperation a:hover{color:#175fa2;}
+.rmcMain_page .c_1a75ca {color:#1a75ca;}
+.rssMailCardMain_mailInfoBox .postOfficeToolOperation a{color:#666;}
+.rssMailCardMain_mailInfoBox .postOfficeToolOperation span{color:#999;}
+
+.rssMailCardMain_tipsBox{padding:40px 0;}
+.rssMailCardMain .web_popup2{position:static;margin:0;width:auto;}
+.rssMailCardMain .web_topTitle{width:auto;background:none;border:1px solid #E8E8E8;border-bottom:none;}
+.rssMailCardMain .web_bottom2{width:auto;border:1px solid #E8E8E8;border-top:none;padding-right:10px;overflow:hidden;_zoom:1;}
+.rssMailCardMain .web_main2{background:none;width:auto;border:1px solid #E8E8E8;overflow:hidden;_zoom:1;}
+.rssMailCardMain .web_popup2 .web_main2 .web_main_list2 li{width:218px;}
+
+.postOfficeToolOperation{position:relative;}
+.postOfficeToolOperation a{margin-left:20px;}
+/*.postOfficeToolOperation a:hover .i-psComment{background-position:-72px 0px;}
+.postOfficeToolOperation a:hover .i-psCollection{background-position:-104px -115px;}
+.postOfficeToolOperation a:hover .i-psCollectioned{background-position:-104px -143px;}
+.postOfficeToolOperation a:hover .i-psShare{background-position:-72px -24px;}*/
+.postOfficeToolOperation a:hover .i-psNotes{background-position:-96px -63px;}
+
+.postOfficeToolOperation i{margin-right:5px;vertical-align:-3px;cursor:pointer;}
+.i-psComment,.i-psCollection,.i-psCollectioned,.i-psShare,.i-psNotes,.b-laud,.b-laudBy,.i-shareMail,.i-share{display:inline-block;background:url(../../../images/module/cloudMail2.0/ico24.png?v=) no-repeat;_background-image: url(../../../images/module/cloudMail2.0/ico.png?v=);}
+.i-psComment{width:16px;height:16px;background-position:0 0;}
+.i-psCollection,.i-psCollectioned{width:20px;height:16px;}
+.i-psCollection{background-position:0 -115px;}
+.i-psCollectioned{background-position:0 -143px;}
+.i-psShare{width:17px;height:14px;background-position:0 -24px;}
+.i-psNotes{width:16px;height:16px;background-position:0 -63px;}
+.b-laud{ width:15px; height:16px; background-position:-137px -16px;}
+.b-laudBy{width:15px; height:16px; background-position:-137px -38px;}
+.i-share{width:20px; height:16px; background-position:3px -23px;}
+
+/*----------图标----------*/
+.i-smcRight,.i-smcOpen,.i-smcPackUp,.i-smcColumnClose,.i-smcTimeDot,.i-smcTimeArrow,
+.i-smcMailList,.i-smcCardList,.i-smcReturn,
+.i-rmcCode,.i-rmcReturnTop,
+.i-leftArrow,.i-rightArrow,
+.i-smcSpace,.i-novelNew{display:inline-block;background:url(../../../images/module/cloudMail2.0/rssMailCard.png?v=w1cuUiwZJLmtbhXTpkuQGw%3D%3D) no-repeat;_background-image:url(../../../images/module/cloudMail2.0/rssMailCardIE6.png?v=u90fPpYMTgImXSpYCYQjLA%3D%3D);}
+.i-smcRight{width:6px;height:11px;background-position:0 -46px;}
+.i-smcOpen,.i-smcPackUp{width:9px;height:5px;}
+.i-smcOpen{background-position:-24px -54px;}
+.i-smcPackUp{background-position:-24px -46px;}
+.i-smcColumnClose{width:16px;height:16px;background-position:-75px -1px;cursor:pointer;}
+.i-smcTimeDot{width:11px;height:11px;background-position:-96px 0px;}
+.i-smcTimeArrow{width:8px;height:13px;background-position:-96px -15px;}
+.i-smcMailList,.i-smcCardList{width:16px;height:16px;}
+.i-smcMailList{background-position:0px 0px;}
+.i-smcCardList{background-position:-25px 0px;}
+.i-smcReturn{width:7px;height:7px;background-position:-37px -46px;}
+.i-rmcCode{width:18px;height:18px;background-position:-51px 0px;}
+.i-rmcReturnTop{width:23px;height:13px;background-position:-48px -24px;}
+.i-leftArrow,.i-rightArrow{width:4px;height:7px;}
+.i-leftArrow{background-position:-48px -46px;}
+.i-rightArrow{background-position:-55px -46px;}
+.i-smcSpace{width:135px;height:150px;background-position:-264px 0px;}
+.i-novelNew{width:51px;height:22px;background-position:-1px -66px;}
+/* ============== 评论 ============== */
+.review{margin:10px 0 0;_zoom:1; background:#f8f8f8; padding:20px 20px 5px;}
+.review-text{padding: 5px;border:1px solid #e8e8e8;_zoom:1; background:#fff;}
+.review-text textarea {resize:none;width: 100%;height: 70px;font-size:14px; border: 0;outline: none;line-height:25px; overflow-x: hidden;overflow-y: auto;}
+.review-btn{padding-top: 7px;margin-bottom: 10px;}
+.review-btn .num{font-weight:400;color: #000;font-size: 20px;}
+.review-btn .num.red{color: #c00;}
+.review-buttom{border: 1px solid #00B615;height: 21px;line-height:21px;width: 68px;text-align: center;color: #FFF;display: inline-block;
+background:#00B615;}
+.review-buttom:hover{color:#fff;}
+.review-list{margin-bottom: 5px;}
+.review-list ul{border-top: 1px solid #e5e5e5;zoom:1;}
+.review-list ul li{padding:15px 0;color: #999;margin-bottom: -1px;color:gray;word-break: break-all; border-bottom:1px dashed #e8e8e8;}
+.review-list ul li .faceImg{border:1px solid #dce5f1;}
+.review-list ul li  dl{/*margin-left:50px; */font-size:14px; color:#444;}
+.review-list ul li  dl dt .shing{margin-left:10px; color:#999;}
+.booklist .review-list ul li .shing,.list-rss-li .review-list ul li .shing {border-radius:3px;padding: 2px 4px;background-color: #fe6600;margin-left: 10px;color: #FFF;}
+.booklist .review-list ul li p,.list-rss-li .review-list ul li p{font-size: 12px;color: #000;word-break:break-all; }
+
+
+/*推荐列表*/
+.borderNone {border:none !important;}
+.mailCardListContainer {width:851px;margin:10px auto 0;padding:5px 0 0;border:1px solid #9fc1dd;}
+.mailCardListContainer .rssMailCardMain {padding:0 15px;width:auto;}
+.mailCardListContainer .rssMailCardArticleBox_main {padding:0;border: none;}
+.mailCardListContainer .rmcArticleBox_main_info{width:auto;padding:17px 0;border:none;border-top:1px solid #E8E8E8;}
+.mailCardListContainer .rmcArticleBox_main_info dd {height:auto;}
+.mailCardListContainer .mailCardList {width:auto;margin-left:0;padding:0 15px;border-top:1px solid #e7e7e8;}
+.mailCardListContainer .mailCardList .application {width:180px;}
+.mailCardListContainer .mailCardList .applicationOver{width:auto;}
+.mailCardListContainer .mailCardList .application dl, .mailCardListContainer .mailCardList .application dl dd {margin-top:0;}
+
+/**/
+.readerLine{border-bottom: 1px solid #e8e8e8;margin-top: 15px;}
+
+/*订阅邮件卡片-小黄条*/
+.tipsYellowTop{margin-top:-2px !important;}
+.tipsYellowTop_close{  position: absolute; right: 0px;  top: -3px;  padding: 5px;  color: #6D6F6E;  font-size: 18px;}
+
+
+/*订阅邮件-文章推荐 wxy*/
+.postOfficeToolOperation .function-list a{margin-left:20px; color:#666;}
+.postOfficeToolOperation .function-list{ float:right;}
+.essayRecommendArea .shareList{border-top:1px solid #f0f0f0; margin-left:-5px;}
+/*.essayRecommendArea .shareList .tips{ left:58px; top:48px;}
+.essayRecommendArea .shareList .tips .tipsBottom{ width:15px; height:9px; background-position:-51px -344px; top:-9px;}
+.essayRecommendArea .shareList span{ color:#666;}
+.essayRecommendArea .shareList a{ width:20px; height:20px; margin:0 9px;}
+.essayRecommendArea .shareList .i-shareMail{width:20px; height:20px; background-position:-26px -86px; vertical-align:middle;}*/
+.essayRecommendArea .rmcMain_page{border-top:1px solid #f0f0f0;}
+.essayRecommendArea .postOfficeToolOperation{ padding-bottom:15px; margin-top:15px;}
+.essayRecommendArea-table{border-top:1px solid #f0f0f0; margin-top:7px; padding-top:10px;}
+.essayRecommendArea-table .table1{ width:425px; height:245px; border:1px solid #e6e6e6; float:left; margin-right:16px;}
+.essayRecommendArea-table .table1 h2{ height:38px; line-height:38px; background-color:#f7f7f7; border-bottom:1px solid #e6e6e6; padding-left:20px; color:#444;}
+.essayRecommendArea-table .table1 ul{ margin:12px 0 0 12px;}
+.essayRecommendArea-table .table1 ul li{ height:30px; line-height:30px; width:395px; }
+.essayRecommendArea-table .table1 ul li,.essayRecommendArea-table .table1 h2{overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.essayRecommendArea-table .table1 ul li a{ color:#444;}
+.essayRecommendArea-table .table2{ width:315px; height:245px; border:1px solid #e6e6e6; float:right;}
+.essayRecommendArea-table .table2 h2{ height:38px; line-height:38px; background-color:#f7f7f7; border-bottom:1px solid #e6e6e6; padding:0 10px 0 20px; color:#444;}
+.essayRecommendArea-table .table2-item{ padding:12px 0 10px 12px;}
+.table2-item .table2-item-img,.table2-item .table2-item-txt{float:left;}
+.table2-item .table2-item-img{ width:64px; height:84px; overflow:hidden; margin-right:15px;}
+.table2-item .table2-item-img img{ display:block;}
+.table2-item .table2-item-txt h3{ color:#444; width:218px;}
+.table2-item .table2-item-txt p{color:#999; height:24px; line-height:24px; margin-bottom:5px; width:218px;}
+.essayRecommendArea-table .table2 h2,.table2-item .table2-item-txt h3,.table2-item .table2-item-txt p{ overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.table2-item .table2-item-txt span{ display:block; color:#cc2829;}
+.rssMailCardContent_cent{ width:1130px; margin:0 auto; overflow:hidden; _zoom:1;}
+.rssMailCardContent_cent .reivew_height{ height:145px;}
+.rssMailCardContent_cent .bottomApplication{ border-top:1px solid #f0f0f0; margin-top:16px; padding-top:20px; margin-left:-5px;}
+.rssMailCardContent_left{border:1px solid #e8e8e8; box-shadow:0 0 5px #e8e8e8; width:760px; padding:5px 35px 10px; float:left; background-color:#fff;}
+.rssMailCardContent_cent .sidebarArea{ width:293px; float:right; margin-bottom: 10px;}
+.rssMailCardContent_cent .sidebarAreaFixed{ position:fixed; left:50%; bottom:0; margin-left:278px; margin-bottom: 10px; }
+.sidebarAreaList .item-pic a:first-child{ margin-right: 10px;}
+.laud em,.laudBy em{ vertical-align:middle;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList h2,.sidebarBottomList h2{ width:245px; height:36px; line-height:36px; font-size:16px; color:#444; padding-left:15px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-pic{ width:288px; height:118px; padding:10px 0 0 15px; border-top:1px solid #e6e3e3;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-pic a{display:block; float:left;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-pic h3{overflow:hidden; _zoom:1; float:left; width:146px; margin-left:3px;  width:145px; height:67px; overflow:hidden;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-pic h3 a,.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-txt h3 a{font-size:14px; color:#444; font-weight:normal;}
+#recommendArticle .item-pic h3 a{ margin-right:0;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-pic .readNumber{ clear:both; padding-top:13px;}
+.sidebarAreaList,.sidebarBottomList{border:1px solid #e8e8e8; box-shadow:0 0 5px #e8e8e8; background-color:#fff;}
+.i-psRead,.b-laud,.b-laudBy{background: url(../../../images/module/cloudMail2.0/ico24.png?v=) no-repeat; margin-right:5px; cursor:pointer;}
+.i-psRead{ width:17px;height:15px; background-position:-135px 4px; vertical-align:top;}
+.b-laud{ width:15px; height:16px; background-position:-137px -16px; margin-left:15px;}
+.b-laudBy{ width:15px; height:16px; background-position:-137px -38px;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-txt{ width:288px; height:118px; padding-left:15px; border-top:1px solid #e6e3e3;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-txt .readNumber{ clear:both; padding-top:13px;}
+.rssMailCardContent_cent .sidebarArea .sidebarAreaList .item-txt h3{ width:258px;  margin-top:15px; height:40px; overflow:hidden;}
+.sidebarAreaBanner{ margin:10px 0; cursor: pointer;}
+.sidebarBottomList{ overflow:hidden; _zoom:1;}
+.sidebarBottomList .sidebarBottomList-item .img,.sidebarBottomList .sidebarBottomList-item .txt{ float:left; cursor: pointer; }
+.rmcMain_page a{ width: 750px;}
+.sidebarBottomList .sidebarBottomList-item .txt{width:146px; margin-left:12px;}
+.sidebarBottomList .sidebarBottomList-item .txt h3{font-size:14px; color:#444; font-weight:normal; width:160px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.sidebarBottomList .sidebarBottomList-item .txt p{ font-size:12px; color:#999; width:167px; height:57px; overflow:hidden;}
+.sidebarBottomList .sidebarBottomList-item .txt span{color:#cc2829;font-size:12px; display:block;}
+.sidebarBottomList-item{border-top:1px solid #e6e3e3;  padding:12px 0 0 15px; height:119px;}
+.i-shareMail-icon,.i-shareRoom-icon,.i-shareBlog-qq,.i-shareBlog-sina,.i-shareChat-qq,.i-shareRenren{ display:inline-block; background:url(../../../images/module/cloudMail2.0/ico24.png?v=) no-repeat; width:24px; height:24px; vertical-align:middle;}
+.shareList .i-shareMail-icon{ background-position:-166px -55px;}
+.shareList .i-shareMail-icon:hover{ background-position:-194px -55px;}
+.shareList .i-shareRoom-icon{ background-position:-166px -81px;}
+.shareList .i-shareRoom-icon:hover{ background-position:-194px -81px;}
+.shareList .i-shareBlog-qq{ background-position:-166px -107px;}
+.shareList .i-shareBlog-qq:hover{ background-position:-194px -107px;}
+.shareList .i-shareBlog-sina{ background-position:-166px -134px;}
+.shareList .i-shareBlog-sina:hover{ background-position:-194px -134px;}
+.shareList .i-shareChat-qq{ background-position:-166px -162px;}
+.shareList .i-shareChat-qq:hover{ background-position:-194px -162px;}
+.shareList .i-shareRenren{ background-position:-166px -188px;}
+.shareList .i-shareRenren:hover{ background-position:-194px -188px;}
+/*云邮局三栏模式*/
+.z-index100{z-index: 100;} 
+.cloudMail_ThreeColumn_box{}
+.cloudMail_ThreeColumn_box a{cursor: pointer;}
+.cloudMail_ThreeColumn_box ul li span {color: #444;}
+.cloudMail_ThreeColumn_box ul li { font-size: 12px;}
+.cloudMail_ThreeColumn_left{background-color:#f7f7f7;overflow: hidden;}
+.cloudMail_ThreeColumn_box .rssMailCardColumnLayerOutside{top:214px;}
+.cloudMail_ThreeColumn_box .alert-remind{top: 260px;left: -300px;}
+.cloudMail_ThreeColumn_box .mail_noneWord{padding: 215px 40px;display: block;font-size: 18px;color: #888888;text-align: center;}
+.cloudMail_ThreeColumn_box .switch-shrink, .switch-expand{top:55px;}
+.cloudMail_ThreeColumn_box .gload_MailNone{margin: 45px;}
+.cloudMail_ThreeColumn_box  .rssMailCardColumnLayerOutside{z-index: 100;}  

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<!-- saved from url=(0098)http://appmail.mail.10086.cn/m2015/html/compose_v3.html?sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>收件箱-139邮箱</title>
+
+
+<style>
+#floatDiv input{width:70px;font-size:16px;cursor:pointer;}
+#floatDiv
+{
+	position:relative;
+	margin-top:-20px;
+	left:0px;
+	width:70px;
+	height:23px;
+	overflow:hidden;
+	z-index:1;
+	padding:0 0 3px 0;
+    opacity:0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    #filter:alpha(opacity=0);
+}
+
+#videoFloatDiv
+{
+	overflow:hidden;
+	z-index:1;
+    opacity:0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    #filter:alpha(opacity=0);
+}
+
+#signs:hover .i_triangle_d{
+	background-position: -450px -22px;
+}
+.sendPsel span{
+	width: 201px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	float: left;
+}
+
+.MemberButton:hover{
+    background-color:#e8e8e8;
+}
+
+.MemberButton:hover a{
+    background-color:#e8e8e8;
+}
+
+#divCompanyAddressList .GroupButton .i_triangle_r{margin-right:9px;}
+
+
+
+</style>
+<script type="text/javascript">
+//    document.domain = window.location.host.match(/[^.]+\.[^.]+$/)[0];
+//    if (!top.m139LoadScript) {
+//        top.m139LoadScript = top.loadScript;
+//    }
+</script>
+
+<script>
+    try{
+    	//var skinCss = 'skin/'+top.$User.getSkinName()+'.css';
+//        top.loadCSS(["common/global_v3.css", "module/write_v3.css"], document);
+
+        top.$App.setModuleSkinCSS(document);
+
+        window.Utils={
+            loadSkinCss:function (){
+                top.$App.setModuleSkinCSS(document);
+            }
+        }
+    } catch (e) { }
+</script><link cssonload="1" onload="this.setAttribute(&#39;cssonload&#39;,&#39;1&#39;)" rel="stylesheet" href="./global_v3.css" type="text/css"><link cssonload="1" onload="this.setAttribute(&#39;cssonload&#39;,&#39;1&#39;)" rel="stylesheet" href="./write_v3.css" type="text/css"><link id="moduleSkinCSS" rel="stylesheet" href="./skin_lightblue.css" type="text/css">
+
+</head>
+<body class="compose_body" id="view_0.022510976257066995">
+    <div class="new-main-left" style="width:auto;margin-right: 200px;" id="outerContainer">
+        <!-- 写信页左侧区域-->
+        <div class="p_relative horizon_full">
+            <!-- 操作工具栏 -->
+            <div class="new-main-topbar" id="toolBar">
+                <div class="p_relative ptblr_s1 manage-topbar clearfix ">
+                    <div class="manage-fit">
+                        <a href="javascript:;" class="manage-fit-share" title="新窗口写信" id="newWinComposeLink"><i class="i-c-share"></i></a>
+                        <p class="t-right">
+                            <a hidefocus="1" href="javascript:;" id="aShowCc">删除抄送</a>
+                            <span class="lineMlr">|</span>
+                            <a hidefocus="1" href="javascript:;" id="aShowBcc" title="同时将这封邮件发送给其他联系人，但其他收件人和抄送人不会看到密送人">密送</a>
+                            <span class="lineMlr">|</span>
+                            <a hidefocus="1" href="javascript:;" id="aAllToOne" title="群发的邮件，在收件人看来，就像单独发给他/她的一样。">群发单显</a>
+                        </p>
+                    </div>
+                    <ul class="toolBarUl">
+                        <li class="mr_6"><a id="topSend" title="Ctrl+Enter快捷发送" href="javascript:" class="icoG"><span class="p_relative">发送<i class="r-line"></i></span></a></li>
+                        <li class="mr_6"><a id="topSave" href="javascript:" class="icoAll"><span>存草稿</span></a></li>
+                        <li class="mr_6"><a id="composePreviewLink" bh="compose_preview" href="javascript:" class="icoTb"><span>预览</span></a></li>
+                        <li class="mr_6" style=""><a id="activityInvite" bh="compose_click_startMeeting" href="javascript:" class="icoTb"><span>发起邀请</span></a></li>
+						<li class="mr_6"><a id="startDiscuss" bh="compose_click_startDiscuss" href="javascript:" class="icoTb"><span>发起讨论</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 主内容区域 -->
+            <div class="p_absolute new-main-inner new-border-r">
+                <div class="p_relative new-main-data bgPadding" id="mainContainer" style="overflow-x: hidden; padding: 0px 10px !important; height: 752px; overflow-y: auto;">
+                    <table class="writeTable writeLetter">
+                        <tbody>
+                            <!-- 收件人-->
+                            <!--
+                            <tr>
+                                <th scope="row" class="ta_l pl_5" valign="top" width="58">
+                                <span class="fl mt_5"><a hidefocus="1" href="javascript:;"></a></span>
+                            </th>
+                                <td>
+                                    <p class="t-right">
+                                        <a hidefocus="1" href="javascript:;" id="aShowCc">删除抄送</a>
+                                        <span class="lineMlr">|</span>
+                                        <a hidefocus="1" href="javascript:;" id="aShowBcc" title="同时将这封邮件发送给其他联系人，但其他收件人和抄送人不会看到密送人">密送</a>
+                                        <span class="lineMlr">|</span>
+                                        <a hidefocus="1" href="javascript:;" id="aAllToOne" title="群发的邮件，在收件人看来，就像单独发给他/她的一样。">群发单显</a>
+                                    </p>
+                                </td>
+                            </tr> -->
+                            <!-- 收件人-->
+                            <tr class="">
+                                <th scope="row" class="ta_l b-bottom fn5" valign="top" width="59">
+                                    <span class="fl p-Pad1"><a hidefocus="1" href="javascript:;" id="receiverTo" title="点击选择收件人">收件人：</a></span>
+                                </th>
+                                <td class="b-bottom fn6">
+                                    <div class="p_relative" style="z-index:999;">
+                                        <a href="javascript:;" class="write-voice" id="btn_voiceTo" style="right:1px;z-index:999">
+                                            <i class="i_voice"></i>
+                                        </a>
+                                        <div id="toContainer"><div class="p_relative RichInputBox writeTable" style="z-index:3;"><div class="tips write-tips EmptyTips" style="left:0;top:29px;display:none;"><div class="tips-text EmptyTipsContent"></div><div class="tipsTop diamond"></div></div><div class="ItemContainer writeTable-txt clearfix" unselectable="on" style="cursor: text;/**overflow-x:hidden;*/"><div class="PlaceHold" style="position: absolute; color: rgb(204, 204, 204); left: 3px;">输入对方移动手机号，就能给他发邮件</div><div class="addrText" style="margin-top: -3px; *margin:0 0 0 3px;"><input type="text" style="width:100%" class="addrText-input" tabindex="1"></div></div><div class="addnum" style="display:none"></div><div class="pt_5 addrDomainCorrection" style="display:none"></div></div></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 抄送 -->
+                            <tr id="trCc" class="" style="">
+                                <th scope="row" class="ta_l fn0 b-bottom" valign="top" width="59">
+                                    <span class="fl">
+                                        <a class="write_copy" hidefocus="1" href="javascript:;" id="receiverCc" title="点击选择抄送地址">抄　送：</a>
+                                    </span>
+                                </th>
+                                <td class="b-bottom">
+                                    <div class="p_relative" style="z-index:3;">
+                                        <div id="ccContainer"><div class="p_relative RichInputBox writeTable" style="z-index:4;"><div class="tips write-tips EmptyTips" style="left:0;top:29px;display:none;"><div class="tips-text EmptyTipsContent"></div><div class="tipsTop diamond"></div></div><div class="ItemContainer writeTable-txt clearfix" unselectable="on" style="cursor: text;/**overflow-x:hidden;*/"><div class="PlaceHold" style="position:absolute;color: #ccc;display:none;left:3px;"></div><div class="addrText" style="margin-top: -3px; *margin:0 0 0 3px;"><input type="text" style="width:100%" class="addrText-input" tabindex="2"></div></div><div class="addnum" style="display:none"></div><div class="pt_5 addrDomainCorrection" style="display:none"></div></div></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 密送 -->
+                            <tr id="trBcc" class="" style="display: none;">
+                                <th scope="row" class="ta_l fn0 b-bottom" valign="top" width="59">
+                                    <a class="write_blind" hidefocus="1" href="javascript:;" id="receiverBcc" title="点击选择密送地址">密　送：</a>
+                                </th>
+                                <td class="b-bottom">
+                                    <div class="p_relative" style="z-index:3;">
+                                        <div id="bccContainer"><div class="p_relative RichInputBox writeTable" style="z-index:3;"><div class="tips write-tips EmptyTips" style="left:0;top:29px;display:none;"><div class="tips-text EmptyTipsContent"></div><div class="tipsTop diamond"></div></div><div class="ItemContainer writeTable-txt clearfix" unselectable="on" style="cursor: text;/**overflow-x:hidden;*/"><div class="PlaceHold" style="position:absolute;color: #ccc;display:none;left:3px;"></div><div class="addrText" style="margin-top: -3px; *margin:0 0 0 3px;"><input type="text" style="width:100%" class="addrText-input" tabindex="3"></div></div><div class="addnum" style="display:none"></div><div class="pt_5 addrDomainCorrection" style="display:none"></div></div></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 关联联系人提示信息-->
+                            <!--
+                            <tr style="margin-top:40px;display: none;" id="associateInfo">
+                                <td colspan="2" class="write-link write-link-p">
+                                    <div class="addnum"></div>
+                                </td>
+                            </tr>-->
+
+                            <!-- 主题 -->
+                            <tr class="">
+                                <th scope="row" class="ta_l fn0 b-bottom" width="59">主　题：</th>
+                                <td class="b-bottom">
+                                    <div class="p_relative" style="z-index:998;"><!-- 大于附件操作栏的z-index-->
+                                        <div class="p_relative writeTable-txt dG0" id="divSubject">
+                                            <p class="dragonP" id="CoolMailtip" style="display:none"></p>
+                                            <div class="theme-input">
+												<i id="checkScoutIcon" keepel="" class="icons i-track" style="display:none;"></i>
+                                                <input id="txtSubject" name="txtSubject" class="fl addrText-input" maxlength="200" tabindex="4" type="text">
+                                            </div>
+                                            <div class="theme-select" title="主题文字的颜色，仅支持139域内往来的邮件" style="cursor: pointer;">
+                                                <span id="subjectColorSelector" class="theme-i i_tag_c"></span><i class="i_triangle_d"></i>
+                                            </div>
+                                            <div class="theme-select-ul menuPop shadow hide" id="subjectColor">
+                                                <ul><li onclick="subjectView.selectColor(this)"><a><span class="theme-i theme01"><i class="i_xgg"></i></span>黑色</a></li><li onclick="subjectView.selectColor(this)"><a><span class="theme-i theme02"><i class="i_xgg"></i></span>红色</a></li><li onclick="subjectView.selectColor(this)"><a><span class="theme-i theme03"><i class="i_xgg"></i></span>橙色</a></li><li onclick="subjectView.selectColor(this)"><a><span class="theme-i theme04"><i class="i_xgg"></i></span>绿色</a></li><li onclick="subjectView.selectColor(this)"><a><span class="theme-i theme05"><i class="i_xgg"></i></span>蓝色</a></li><li onclick="subjectView.selectColor(this)"><a><span class="theme-i theme06"><i class="i_xgg"></i></span>紫色</a></li></ul>
+                                            </div>
+                                        </div>
+                                        <a href="javascript:;" class="write-voice" id="btn_voiceSubject" style=""><i class="i_voice"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 操作文件栏,包括: 添加附件, 插入内容, 图片, 写信模板等按钮-->
+                            <tr>
+                                <td colspan="2" class="write-link">
+                                    <div style="position: relative;z-index: 997;" id="composeUploadBar">
+                                        <div class="insertMail" id="mailInsertContainer" style="display: none;">
+                                            <!--<a href="javascript:;" class="" id="mailInsert" bh="compose_clickIcon_insertToEditor">插入收件人姓名</a>
+                                            <a href="javascript:;" id="mailInsertTip"><i class="i-unknow"></i></a> closingbtn-->
+											插入收件人姓名
+											<span class="qunSend" id="insertContactsSwitch">
+											    <label class="openingbtn" style="cursor: pointer;"></label>
+											</span>
+                                        </div>
+                                        <div class="mailsend-box" id="mailInsertGuide" style="display:none;position: absolute;top:25px;">
+                                            <a href="javascript:;" bh="compose_clickIcon_knowMore">了解更多</a>
+                                        </div>
+                                        <!-- 添加附件按钮(外壳而已)-->
+                                        <!--
+                                        <a href="javascript:;" class="icoSend icoSendBtn">
+                                            <span class=" p_relative">添加附件
+                                                <i class="l-line"></i>
+                                                <i class="i_attachmentS"></i>
+                                                <em class="icoSendEm" id="attachmentSwitchIcon"><i class="i_triangle_d"></i></em>
+                                            </span>
+                                        </a>-->
+
+                                        <a id="uploadFileBtn" class="addattra" href="javascript:;" hidefocus="1">
+                                            <i class="i_attachmentS"></i>添加附件
+                                        </a>
+                                        <span class="max-g" style="display: none;">（最大2G）</span>
+                                        <a class="max-level" style="cursor:pointer;display: none;" id="upPackage">升至4G</a>
+                                        <span class="lineMlr">|</span>
+                                        <a class="i_triangleBtn button_triangle" id="attachmentSwitchIcon" href="javascript:;"></a>
+
+                                        <!-- 插入内容按钮 -->
+                                        <!--
+                                        <a href="javascript:;" class="icoSend" id="insertContentBtn">
+                                            <span class=" p_relative">插入内容
+                                                <i class="l-line"></i>
+                                                <i class="i-content"></i>
+                                                <i class="i_triangle_d"></i>
+                                            </span>
+                                        </a>-->
+										<div class="writeNew">
+											<a id="insertContentBtn" href="javascript:;" class="addattra" hidefocus="1">
+												<i class="i-content"></i>插入内容
+											</a>
+											<!-- <i style="right: -8px;top: -6px;" class="i-writing i-w-new"></i>-->
+										</div>
+
+                                        <!-- 插入图片按钮-->
+                                        <!--
+                                        <a href="javascript:;" class="icoT" id="aInsertPic">
+                                            <span class=" p_relative">图片
+                                                <i class="l-line"></i>
+                                                <i class="i-photo"></i>
+                                                <i class="i_triangle_d"></i>
+                                            </span>
+                                        </a>-->
+                                        <a id="aInsertPic" href="javascript:;" class="addattra" hidefocus="1">
+                                            <i class="i-photo"></i>插入图片
+                                        </a>
+                                        <!--问卷调研 ++ 在线投票-->
+                                        <div class="writeNew" id="" style="margin-left:0">
+                                            <a href="javascript:;" class="addattra" id="questionSurveyLink" bh="voteSurveyEnter">
+                                                <i class="icons i-mypaper"></i>调查统计
+                                            </a>
+                                            <!--<i style="right: -8px;top: -6px;" class="i-writing i-w-new"></i>-->
+                                        </div>
+
+                                        <!-- 写信模板按钮 -->
+                                        <!--
+                                        <a href="javascript:" class="icoSend" id="btn_template">
+                                            <span class=" p_relative">写信模板
+                                                <i class="l-line"></i>
+                                                <i class="i-model"></i>
+                                                <i class="i_triangle_d"></i>
+                                            </span>
+                                        </a>-->
+                                        <!--<a id="btn_template" href="javascript:;" class="addattra" hidefocus="1">
+                                            <i class="i-model"></i>写信模板
+                                        </a>-->
+										<div class="writeNew">
+	                                        <a id="btn_newDoc" href="javascript:;" class="addattra" hidefocus="1">
+	                                            <i class="icons i-file-soon"></i>最近文件
+	                                        </a>
+	                                        
+                                        </div>
+                                        <!-- 真实的添加附件上传按钮-->
+                                        <div style="padding:0 0 0 0;margin-top:0px;position:absolute;top:0px;left:0px;height:26px;width:86px;" id="floatDiv">
+                                            <form target="frmAttachTarget" method="post" id="fromAttach" enctype="multipart/form-data" style="width: 86px;">
+                                                <input type="file" id="uploadInput" name="uploadInput" style="height:26px;width:86px;cursor: pointer;" multiple="true">
+                                            </form>
+                                            <iframe name="frmAttachTarget" style="display: none" id="frmAttachTarget" src="./saved_resource(3).html"></iframe>
+                                        </div>
+
+                                        <!--引入和笔记列表框-->
+                                        <div id="noteListBox" class="searchContents menuPop" style="z-index:2000;top:26px;left:114px;display:none;"></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 添加附件后, 在界面中展示的位置-->
+                            <tr>
+                                <td colspan="2">
+                                    <table border="0" cellspacing="1" cellpadding="0" class="eidt-content-bottom">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="writeattrlist clearfix" style="display: none; border:none;">
+                                                        <ul class="attrlistUl" id="attachContainer" style="display: none;"></ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding-top:0;" colspan="2">
+                                    <!-- 写信编辑器区域 -->
+                                    <div id="htmlEdiorContainer"><div class="editorWrap" id="view_0.16135346266926343"><div class="tips write-tips ErrorTip" style="left: 0px; top: -32px; display:none;"><div class="tips-text ErrorTipContent" style=""></div><div class="tipsBottom diamond" style=""></div></div><div style="position:absolute;width:100%;"><div class="PlaceHolder" unselectable="on" style="position: absolute;left: 10px;top: 35px;color:silver;z-index:50;font-size:16px;display:none;width:100%;"></div></div><div class="eidt-body" style="height: 377px;"><!-- eidt-body-full 展开时加上 --><div class="eidt-bar"><a bh="compose_editor_more" hidefocus="1" href="javascript:;" title="更多操作" class="pushon ShowMoreMenu"></a><span class="defaultLine line" style="position:absolute;right:24px;top:0;"></span><a bh="compose_toolbar_fullScreenOperate" hidefocus="1" href="javascript:;" title="全屏写信" class="reduce" id="operateFullScreen"></a><div class="EditorBarCommon eidt-bar-li"><a bh="compose_editor_fontfamily" title="设置字体" class="editFont" id="ED_FontFamily" href="javascript:;"><span>字体</span><i class="i_triangle_d"></i></a><a bh="compose_editor_fontsize" title="设置字号" class="editFontsize" id="ED_FontSize" href="javascript:;"><span>字号</span><i class="i_triangle_d"></i></a><a bh="compose_editor_bold" title="文字加粗" href="javascript:;" class="edit-btn" id="ED_Bold"><span class="edit-btn-rc"><b class="ico-edit ico-edit-b">粗体</b></span></a><a bh="compose_editor_italic" title="斜体字" href="javascript:;" class="edit-btn" id="ED_Italic"><span class="edit-btn-rc"><b class="ico-edit ico-edit-i">斜体</b></span></a><a bh="compose_editor_underline" title="下划线" href="javascript:;" class="edit-btn" id="ED_UnderLine"><span class="edit-btn-rc"><b class="ico-edit ico-edit-ud">下划线</b></span></a><a bh="compose_editor_color" title="文字颜色" hidefocus="1" href="javascript:;" class="edit-btn editor-btn-select p_relative " id="ED_FontColor"><span class="edit-btn-rc" id="ED_SetFontColor"><b class="ico-edit ico-edit-color">文字颜色</b><span class="ico-edit-color-span" style="background-color:rgb(0,0,0);"></span></span><span bh="compose_editor_color_select" class="ico-edit-color-xl"></span></a><a bh="compose_editor_bgcolor" title="背景颜色" hidefocus="1" href="javascript:;" class="edit-btn editor-btn-select p_relative " id="ED_BackgroundColor"><span class="edit-btn-rc" id="ED_SetBackgroundColor"><b class="ico-edit ico-edit-color ico-editbg-color">背景颜色</b><span class="ico-edit-font" style="background-color: #000000;"></span></span><span bh="compose_editor_bgcolor_select" class="ico-edit-color-xl"></span></a><span class="defaultLine line"></span><a bh="compose_editor_align_left" title="左对齐" href="javascript:;" class="edit-btn" id="ED_AlignLeft"><span class="edit-btn-rc"><b class="ico-edit ico-edit-alil">左对齐</b></span></a><a bh="compose_editor_align_middle" title="居中对齐" href="javascript:;" class="edit-btn" id="ED_AlignCenter"><span class="edit-btn-rc"><b class="ico-edit ico-edit-aliz" id="ED_AlignCenter">居中对齐</b></span></a><a bh="compose_editor_align_right" title="右对齐" href="javascript:;" class="edit-btn" id="ED_AlignRight"><span class="edit-btn-rc"><b class="ico-edit ico-edit-alir">右对齐</b></span></a><a bh="compose_editor_ul" title="插入项目编号" href="javascript:;" class="edit-btn" id="ED_UnorderedList"><span class="edit-btn-rc"><b class="ico-edit ico-edit-xl">项目编号</b></span></a><a bh="compose_editor_ol" title="插入数字编号" href="javascript:;" class="edit-btn" id="ED_OrderedList"><span class="edit-btn-rc"><b class="ico-edit ico-edit-xl2">数字编号</b></span></a><a bh="compose_editor_table" title="插入表格" href="javascript:;" class="edit-btn" id="ED_Table"><span class="edit-btn-rc"><b class="ico-edit ico-edit-tab">表格</b></span></a><span class="defaultLine line"></span><a bh="compose_editor_undo" title="撤消" href="javascript:;" class="edit-btn" id="ED_Undo"><span class="edit-btn-rc"><b class="ico-edit ico-edit-cx">撤消</b></span></a><a bh="compose_editor_printer" title="格式刷，使用方法：
+1. 选中邮件正文的内容
+2. 单击格式刷，将复制选中内容的格式
+3. 再选中正文的其它内容，这些内容会自动应用上一步复制的格式
+
+提示：步骤2中若双击格式刷，可连续执行步骤3" href="javascript:;" class="edit-btn" id="ED_FormatPrinter"><span class="edit-btn-rc"><b class="ico-edit ico-edit-bush">格式刷</b></span></a><span class="defaultLine line"></span><a bh="compose_editor_face" title="插入表情" href="javascript:;" class="edit-btn" id="ED_Face"><span class="edit-btn-rc"><b class="ico-edit ico-edit-smile">表情</b></span></a><a bh="compose_editor_screenshot" title="截屏" href="javascript:;" class="edit-btn" id="ED_ScreenShot"><span class="edit-btn-rc"><b class="ico-edit ico-edit-clip">截屏</b></span></a><a bh="compose_editor_link" title="插入链接" href="javascript:;" class="edit-btn" id="ED_Link"><span class="edit-btn-rc"><b class="ico-edit ico-edit-link">链接</b></span></a><a title="写信模板" href="javascript:;" class="edit-btn" id="ED_WritePapers"><span class="edit-btn-rc"><b class="ico-edit ico-edit-paper">写信模板</b></span></a><a bh="compose_editor_image" title="插入图片" href="javascript:;" class="edit-btn" id="ED_InsertImage" style="display: none;"><span class="edit-btn-rc"><b class="ico-edit ico-edit-img">图片</b></span></a></div><div class="EditorBarMore eidt-bar-li"><span class="lineBottom" style="position:absolute;right:24px;top:34px;"></span><a bh="compose_strike" title="删除线" href="javascript:;" class="edit-btn" id="ED_Delete"><span class="edit-btn-rc"><b class="ico-edit ico-edit-delLine">删除线</b></span></a><a bh="compose_remove_format" title="清除格式" href="javascript:;" class="edit-btn" id="ED_RemoveFormat"><span class="edit-btn-rc"><b class="ico-edit ico-edit ico-edit-ra">清除格式</b></span></a><span class="line lineBottom" style="margin-left:220px;"></span><a bh="compose_editor_indent" title="减少缩进" href="javascript:;" class="edit-btn" id="ED_Outdent"><span class="edit-btn-rc"><b class="ico-edit ico-edit-jdsj">减少缩进</b></span></a><a bh="compose_editor_outdent" title="增加缩进" href="javascript:;" class="edit-btn" id="ED_Indent"><span class="edit-btn-rc"><b class="ico-edit ico-edit-addsj">增加缩进</b></span></a><a bh="compose_editor_lineheight" title="设置行距" href="javascript:;" class="edit-btn" id="ED_RowSpace"><span class="edit-btn-rc"><b class="ico-edit ico-edit-sxali">行距</b></span></a><span class="line lineBottom" style="margin-left:76px;"></span><a bh="compose_editor_redo" title="恢复撤销的操作" href="javascript:;" class="edit-btn" id="ED_Redo"><span class="edit-btn-rc"><b class="ico-edit ico-edit-hf">恢复</b></span></a><a bh="compose_select_all" title="全选" href="javascript:;" class="edit-btn" id="ED_SelectAll"><span class="edit-btn-rc"><b class="ico-edit ico-edit-allSeled">全选</b></span></a><span class="line lineBottom"></span><a bh="compose_editor_voice" title="语音识别" href="javascript:;" class="edit-btn" id="ED_Voice"><span class="edit-btn-rc"><b class="ico-edit ico-edit-voice">语音</b></span></a><a bh="compose_insert_video" title="将mp4/flv格式的视频文件插入到邮件正文" href="javascript:;" class="edit-btn" id="ED_Video"><span class="edit-btn-rc"><b class="ico-edit ico-edit-picture">视频</b></span></a><a bh="compose_insert_audio" title="将mp3格式的音频文件插入邮件正文" href="javascript:;" class="edit-btn" id="ED_Audio"><span class="edit-btn-rc"><b class="ico-edit ico-edit-music">音乐</b></span></a><a bh="compose_editor_preSet" title="预设模板" href="javascript:;" class="edit-btn" id="ED_BeforehandSet"><span class="edit-btn-rc"><b class="ico-edit ico-edit-preset">预设</b></span></a></div></div><div class="eidt-content"><iframe hidefocus="1" src="./editor_blank.html" frameborder="0" style="height:100%;border:0;width:100%;" tabindex="5"></iframe></div><div class="edit-additional" style="position: absolute;height:24px;bottom:8px;display:none;"></div><a hidefocus="1" style="display:none" href="javascript:void(0)" class="stationery"></a></div></div></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 底部操作栏区域 -->
+            <div id="toobarBottom" class="bottombtn clearfix" style="left:0px;background:white;">
+                <ul class="toolBarUl toolBarUl-li">
+                    <li class=""><a href="javascript:" class="icoG" id="bottomSend" title="Ctrl+Enter快捷发送"><span class="p_relative">发送<i class="r-line"></i></span></a></li>
+                    <li class=""><a hidefocus="1" class="send-btnTime" href="javascript:;" id="bottomTiming"><span>定时发送</span></a></li>
+                    <li class=""><a hidefocus="1" class="send-btnTime" href="javascript:;" id="checkScout" isdeny="0"><span>跟踪邮件</span></a></li>
+                    
+                    <li class="">
+                        <a hidefocus="1" class="send-btnTime" href="javascript:;" id="encrypEmailSet"><span>加密邮件</span></a>
+                    </li>
+                   
+                </ul>
+                <div class="writePar p fr p_relative" id="view_0.35256101191043854">
+                    <div>
+                        <!--<a id="sender" style="cursor: pointer;">发件人</a>-->
+                        <a hidefocus="1" href="javascript:;" style="padding:0px;" class="sendPsel">发件人
+						    <i class="i_triangle_d ml_5"></i>
+                        </a>
+                        <span class="lineMlr">|</span>
+                        <a hidefocus="1" href="javascript:;" id="signs">签名
+                            <i class="i_triangle_d ml_5"></i>
+                        </a>
+                        <span class="lineMlr">|</span>
+
+                        <label class="ml_10" style="display: none;"><input type="checkbox" class="mr_5" id="replyNotify">回信短信提醒</label>
+                        <!--
+                        <a hidefocus="1" href="javascript:;" id="showMoreOptions">
+                            <span style="color:#1a75ca;">更多</span>
+                        </a>-->
+                        <a id="showMoreOptions" href="javascript:;" hidefocus="1">更多
+                            <i class="i_triangle_d ml_5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 写信页右侧区域(联系人组件) -->
+    <div class="new-main-right" style="width:200px;position: fixed;right:0;top:0px;left:auto;_position:absolute;" id="contactsListArea">
+        <div class="p_relative new-main-right-inner horizon_full">
+            <!-- 联系人组件搜索区域p_absolute -->
+            <div class="new-main-topbar" style="overflow:hidden;">
+                <div class="searchContact searchContactT">
+                    <input id="searchContactsBtn" class="searchContactText " type="text" placeholder="查找联系人" style="color:black;" autocomplete="off"><a hidefocus="1" href="javascript:;" class="searchContactBtn"><i class="i_c-search"></i></a>
+					<input style="display:none">
+                </div>
+                <div class="searchEnd-empty SearchEmptyTip" style="display: none;">
+                    <a href="javascript:" class="delmailTipsClose BtnCloseSearchEmptyTip"><i class="i_u_close"></i></a>
+                    <p class="gray">查找结果：</p>
+                    <p>没有符合条件的联系人</p>
+                </div>
+            </div>
+
+            <!-- 组名固定栏 -->
+            <div style="line-height:25px;color:#444;vertical-align:top;border-top:none;overflow:hidden;_zoom:1;display:none;background:#f7f7f7;position: absolute;top: 45px;left: 0px;z-index: 1000;width:206px;" class="groupFixed" id="addressListGroupFixed">
+                <a hidefocus="1" class="GroupButton contactList_a" href="javascript:;" style="background: transparent;">
+                    <i class="i_triangle_d" style="margin-right:8px;"></i>
+                    <span></span>
+                    <var></var>
+                </a>
+            </div>
+            <!-- 联系人详情区域 -->
+            <div class="tabMain p_relative" id="tabMainAddressList" style="overflow-y: auto; background: rgb(247, 247, 247); height: 790px;">
+                <div class="tabContent show" id="divAddressList" style="width: auto;"><div class="AddrEmptyTip ta_c loadingerror" style="height: 280px; padding: 80px 0px 0px; display: none;"><div class="LoadingImage" style="padding-top: 50px; display: none;"><img src="./searchloading.gif"></div><div class="bodyerror RetryDiv" style=""><img src="./smile.png" width="73" height="72"><p>没加载出来，再试一次吧。</p><a class="btnTb BtnRetry" href="javascript:"><span class="p_relative">重新加载</span></a></div></div><div class="ContentDiv tabContent" style="display: block;"><div class="searchEnd" style="display:none;overflow-y:hidden;height:100%;padding-top:11px;"><ul class="contactList"><li data-groupid="-5"><a hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_plusj"></i><span>搜索结果</span><var></var></a><ul class="pb_5"></ul></li></ul></div><div class="SendToMySelf contactList_a" style="padding-top:11px;line-height:14px;padding-bottom:4px;"><a bh="compose_addressbook_sendself" style="color:#666;" hidefocus="1" href="javascript:;">发给自己</a></div><ul class="contactList GroupList" style="overflow-y: visible; padding-bottom: 5px; position: static; height: 100%;"><li data-groupid="-3" class=""><a title="清空最近联系人记录" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:none" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_lastcontacts" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_d"></i><span>最近联系人</span><var style="display:">(0)</var></a><ul class="pb_5" style="" init="1"></ul></li><li data-groupid="-1" class="oLi-bt"><a title="" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:none" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_allcontacts" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_r"></i><span>所有联系人</span><var style="display:">(1)</var></a><ul class="pb_5" style="display:none"></ul></li><li data-groupid="60231550386" class=""><a title="" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_vip" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_r"></i><span>VIP联系人</span><var style="display:">(0)</var></a><ul class="pb_5" style="display:none"></ul></li><li data-groupid="60231550387" class=""><a title="" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_customcontacts" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_r"></i><span>亲人</span><var style="display:">(0)</var></a><ul class="pb_5" style="display:none"></ul></li><li data-groupid="60231550388" class=""><a title="" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_customcontacts" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_r"></i><span>同学</span><var style="display:">(0)</var></a><ul class="pb_5" style="display:none"></ul></li><li data-groupid="60231550389" class=""><a title="" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_customcontacts" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_r"></i><span>朋友</span><var style="display:">(0)</var></a><ul class="pb_5" style="display:none"></ul></li><li data-groupid="60231550390" class=""><a title="" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_customcontacts" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_r"></i><span>同事</span><var style="display:">(0)</var></a><ul class="pb_5" style="display:none"></ul></li><li data-groupid="60231550391" class=""><a title="" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_customcontacts" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_r"></i><span>客户</span><var style="display:">(0)</var></a><ul class="pb_5" style="display:none"></ul></li><li data-groupid="60231551897" class=""><a title="" href="javascript:;" style="display:none" class="i_r_yq2 i_dels ClearGroup"></a><a bh="compose_addressbook_addgroupclick" hidefocus="1" style="display:" title="添加整组" href="javascript:;" class="i_r_yq2 AddGroup"></a><a bh="compose_addressbook_readcontacts" hidefocus="1" class="GroupButton contactList_a" href="javascript:;" title="显示或隐藏成员列表"><i class="i_triangle_r"></i><span>读信联系人</span><var style="display:">(0)</var></a><ul class="pb_5" style="display:none"></ul></li></ul><div class="contactListNew" style="display: none;"><a bh="compose_addressbook_createcontacts" hidefocus="1" class="AddNewContacts" href="javascript:;">新建联系人</a></div></div></div>
+                <div class="tabContent" id="divCompanyAddressList" style="padding-top:5px;border-top:1px solid #e8e8e8;background:#f7f7f7;display:none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加更多展开菜单项-->
+    <div id="addMoreMenu" class="menuPop shadow menuPops" style="z-index:9001;display:none;" bh="compose_moreoper">
+        <ul>
+            <li index="0" name="moreOperateItems"><a><input type="checkbox" id="chkUrgent" bh="compose_moreoper_urgent" class="chk-m139check"><label id="lbl_chkUrgent" for="chkUrgent" class="i-chooseMo" style="">&nbsp;&nbsp;&nbsp;&nbsp;</label>紧急</a></li>
+            <li index="1" name="moreOperateItems"><a><input type="checkbox" id="chkReceipt" bh="compose_moreoper_receipt" class="chk-m139check"><label id="lbl_chkReceipt" for="chkReceipt" class="i-chooseMo" style="">&nbsp;&nbsp;&nbsp;&nbsp;</label>需要回执</a></li>
+            <li index="2" name="moreOperateItems" style="display: none"><a><input type="checkbox" checked="true" id="chkSaveToSentBox" bh="compose_moreoper_savetosendbox" class="chk-m139check"><label id="lbl_chkSaveToSentBox" for="chkSaveToSentBox" class="i-chooseMo i-chooseYet" style="">&nbsp;&nbsp;&nbsp;&nbsp;</label>保存到已发送</a></li>
+            <li class="line"></li>
+            <li index="3" id="aMMSSend"><a href="javascript:;">彩信发送正文</a></li>
+			<li index="4" id="aSMSSend"><a href="javascript:;">短信发送正文</a></li>
+            <li index="5" id="denyForward"><a href="javascript:;">禁止转发</a></li>
+        </ul>
+    </div>
+
+    <div class="menuPop shadow" style="z-index: 9001; width:300px; display: none;" id="senders">
+    </div>
+    <!--
+    <div class="writeWrap clearfix bgPadding" id="writeWrap">
+        <div class="writeMain"></div>
+    </div>-->
+    <div id="presetTip" class="tips" style="padding:3px 6px;position:absolute;z-index:9999;outline:none;font-size: 14px;width:132px;display:none;">
+        <i class="i-bulbb"></i>
+        <a href="javascript:;">
+            <i class="i-preDelete"></i>
+        </a>
+        <div class="tips-text" id="tipContent">这里有新功能</div>
+        <div class="tipsBottom" style="left:107px"></div>
+    </div>
+     <!--邮件加密开始-->
+    <div class="tips searchadvancepopup" id="encrypBox" style="position: absolute; bottom: 43px; left: 80px; right: auto; z-index: 1001; width: 348px; height: 173px; display:none" data-fix="1">       
+        <div class="tips-text">
+            <div class="norTips" style="padding:0;">
+                <div class="norTipsContent searchadvance">
+                <!--弹窗内容开始-->
+                    <div class="advSearchpop fulltextsearch secret_stack">
+                        <div class="secretBox">
+                            <p class="secretText">加密后，收件人需要密码才能查看</p>
+                            <ul>
+                                <li>
+                                    <div class="secret_li">
+                                        <div class="bubblePop bubbleSecret" style="position:absolute;z-index:1001;display:none" id="pwd_errortipsCon">
+                                            <div class="inner" id="encryptMail_pwd_error">密码不能为空</div>
+                                            <div class="TriangleBottom" style="right:-11px"></div>
+                                        </div>
+                                        <span>设置密码：</span><input type="text" id="encryptMail_pwd" class="iText" autocomplete="off" value="密码不支持空格输入" style="color:#999;font-size:12px;">
+                                        <!-- 切记不要删除，这里空的input处理诡异的浏览器自动填充password -->
+                                        <input style="display:none" readonly="true" id="testNode" type="button">
+                                        <!--<span class="jiamiplace" id="pwd_holder" style="width:100%">密码不支持空格输入</span>-->
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="secret_li">
+                                        <div class="bubblePop bubbleSecret" style="position:absolute;z-index:1001;display:none" id="repwd_errortipsCon">
+                                            <div class="inner" id="encryptMail_repwd_error">两次密码不一致</div>
+                                            <div class="TriangleBottom" style="right:-11px"></div>
+                                        </div>
+                                        <span>确认密码：</span><input type="text" id="encryptMail_repwd" class="iText" autocomplete="off" value="密码不支持空格输入" style="color:#999;font-size:12px;">
+                                        <!-- 切记不要删除，这里空的input处理诡异的浏览器自动填充password -->
+                                        <input style="display:none" readonly="true">
+                                        <!-- <span class="jiamiplace" id="repwd_holder" style="width:100%">密码不支持空格输入</span>-->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix" style="height: 26px;line-height: 26px; padding: 4px 30px 6px 0px;margin: 0;text-align: right;border-top: #e8e8e8 solid 1px;background-color: #f2f2f2;">
+                            <a href="javascript:void(0)" class="btnSure icoG" bh="advanceSearch_sure" id="encryptMail_ok">
+                                <span>设置密码</span>
+                            </a>
+                            <a href="javascript:void(0)" bh="advanceSearch_cancel" class="btnNormal icoTb" id="encryptMail_cancel">
+                                <span>取消</span>
+                            </a>
+                        </div>
+                    </div>
+            <!--弹窗内容结束-->
+                    <div class="icons colorBottm" style="left:167px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--邮件加密结束-->
+
+    <script>
+//        try {
+//            top.m139LoadScript('libs.pack.js', document);
+//            top.m139LoadScript('m139.core.pack.js', document);
+//            top.m139LoadScript("m2012.ui.common.pack.js", document);
+//            top.m139LoadScript("compose.html.pack.js", document);
+//        } catch (e) { }
+    </script><script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8" type="text/javascript" src="libs.pack.js"></script><script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8" type="text/javascript" src="m139.core.pack.js"></script><script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8" type="text/javascript" src="m2012.ui.common.pack.js"></script><script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8" type="text/javascript" src="compose.html.pack.js"></script><span id="divUploadTip" class="tips write-tips EmptyTips" style="display: none; z-index: 128;"></span>
+    <script>
+        var LoadStatusCheck = {
+            isComplete: function () {
+                var ok = false;
+                try {
+                    ok = $Iframe.isAccessAble(htmlEditorView.editorView.editor.frame);
+                } catch (e) { }
+                return ok;
+            }
+        };
+
+         var HeathCheck = {
+             name:"compose",
+             isSuccess: function () {
+                 if (window.$composeApp) {
+                     return true;
+                 }
+             },
+             checkLoadSuccess: function () {
+                 if (!this.isSuccess()) {
+                     this.reloadPage("&reload=true");
+                 }
+             },
+             reloadPage: function (query) {
+                 if (location.href.indexOf(query) == -1) {
+                     location.href = location.href + query;
+                 } else {//重试还是失败，上报日志
+                     //send log
+                     M139.Logger.sendClientLog({
+                         level: "ERROR",
+                         name: this.name+" js file load Error"
+                     });
+                 }
+             }
+
+         }
+         $(function () { HeathCheck.checkLoadSuccess(); });
+        
+        
+         
+    </script>
+
+<iframe src="./proxy(3).html" style="display:none"></iframe></body><div id="yiButton" style="display: none;">翻译</div><div id="onLineTransBu" style="display: none;"><img id="loading" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/loading.gif">网页翻译中...</div><div id="onLineFailResult" style="display: none;">翻译失败...</div><div id="C_outerbox_trans_div" class="C_outerbox_up" style="display: none;"><div id="C_cententbox_trans_div"><div id="cententbox_beforeFixBox"><p id="C_ptitle_trans_p">原文</p><p id="C_esay_trans_p"></p><div id="C_bottomdiv_trans_div"><img id="C_bottomimg_trans_img" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/img_logo.png" style="cursor: pointer;"><a id="C_bottoma_trans_a">翻译纠错<img id="hrefa" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/IconArrowRight.png"></a></div></div><div id="cententbox_afterFixBox"><p id="cententbox_trans_fix_error">翻译纠错</p><div id="cententbox_trans_fix_box"><textarea id="cententbox_trans_fix_content"></textarea><button id="cententbox_comfirmfix">确定</button></div></div></div><div id="C_innerbox_trans_div" class="C_innerbox_up"></div></div><div id="trans_yiwen_outerDiv" class="C_outerbox_up" style="display: none;"><div id="trans_yiwen_content"><div id="beforeFixBox"><p id="trans_yiwen_title">译文</p><p id="trans_yiwen_easy"></p><div id="trans_yiwen_bottomdiv"><img id="trans_yiwen_bottom_img" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/img_logo.png" style="cursor: pointer;"><a id="trans_yiwen_bottom_a">翻译纠错<img id="trans_yiwen_bottom_a_img" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/IconArrowRight.png"></a></div></div><div id="afterFixBox"><p id="trans_fix_error">翻译纠错</p><div id="trans_fix_box"><textarea id="trans_fix_content"></textarea><button id="comfirmfix">确定</button></div></div></div><div id="trans_yiwen_innerDiv" class="C_innerbox_up"></div></div><div id="trans_word_outerDiv" class="C_outerbox_up" style="display: none;"><div id="trans_word_content"><div id="trans_word_head"><p id="trans_word_title"></p><p id="trans_word_easy"></p></div><div id="eachcharadiv"></div><div id="trans_word_bottomdiv"><img id="trans_word_bottom_img" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/img_logo.png" style="cursor: pointer;"></div></div><div id="trans_word_innerDiv" class="C_innerbox_up"></div></div><div id="trans_box" style="display: none;"><img id="trans_finish" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/IconFinsh.png"><translatebox id="trans_ptitle">是否将当前网页翻译成中文?</translatebox><div id="trans_spanPic" style="background: url(&quot;chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/arrowdownNormal.png&quot;) center center no-repeat;"></div><ul id="trans_buttonfalselist"><li class="buttonfalselistLi thisNoTip">此网站不再提醒</li><li class="buttonfalselistLi allNoTip">所有网站不再提醒</li></ul><div id="trans_buttonfalse">关闭</div><button id="trans_buttonCompare">中英对照</button><button id="trans_buttontrue">翻译网页</button></div><div id="transAutoBox" style="display: none;"><translatebox id="transAutoBox_ptitle">自动翻译已开启</translatebox><div id="transAutoBox_cancle">去设置</div><div id="transAutoBox_close" style="background: url(&quot;chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/BtnClose2Normal.png&quot;) center center no-repeat;"></div></div><div id="compareOuter" style="position: absolute; height: 0px; left: 0px;"><div id="compareInner"><h1 id="titleCompareUp"></h1><h1 id="titleCompareDown"></h1><div id="innerLeft"></div><div id="innerRight"></div></div><div id="compareLoading"><img id="comparing" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/loading.gif">正在翻译...</div><div id="compareFail"><img id="compareFailImg" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/ImgError.png"><h1 id="transFail">翻译失败</h1><p id="transP">未能获得中英文对照翻译结果</p><div id="buttonBottom"><button id="againButton">重试</button><button id="returnButton">返回</button></div></div><div id="closeCompare"><a id="feedBackTrans" target="_blank" href="http://bbs.browser.qq.com/thread-241037-1-1.html">我要反馈</a><img id="closeImg" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/timg.png"></div><div id="whiteDiv"></div></div></html>

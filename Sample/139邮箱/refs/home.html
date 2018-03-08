@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<!-- saved from url=(0139)http://appmail.mail.10086.cn/m2012server/home?Protocol=http%3A&positionCode=web_210&sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005&from=preload -->
+<html sytle="overflow-x:hidden;" class=" indexeddb indexeddb-deletedatabase indexeddbblob"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>139邮箱</title>
+	<!--<link rel="stylesheet" href="/m2012/css/skin/skin_lightblue.css" type="text/css" id="cssfile" /> -->
+
+<script>
+//document.domain = window.location.host.match(/[^.]+\.[^.]+$/)[0];
+
+//top.loadCSS(["module/welcomeNew2016.css"], document);
+
+function $id(id){
+	return document.getElementById(id);
+}
+
+// 性能测试代码，收集加载时间
+var perfObj = {};
+perfObj.start = +new Date();
+
+//var loadedModule = {};
+
+//bigpipe加载回调
+function render(key, data){
+	perfObj[key] = new Date().getTime();
+	//console.warn(key, perfObj[key]);
+	switch(key){
+		case "MailList":
+			if(!$id("MailList")){
+				$("#mailListContainer").html("<li style='line-height:100px;text-align:center;font-size:15px;'><a href='javascript:top.$App.showMailbox(1)'>进入收件箱查看</a></li>")
+				return ;
+			}
+			var html=$id("MailList").innerHTML;
+			if(window.location.protocol=="https:"){
+				html=html.replace(/http:\/\/image[\d\w]+.139cm.com/ig,top.getDomain("resource"));
+			}
+            if(window.mailListView && window.mailListView.isScrollLoading){
+                $("#mailListContainer").append(html);
+            }else{
+			    $id("mailListContainer").innerHTML = html;
+            }
+			if(!window.mailListView){ //避免重复创建实例
+				window.mailListView=new Welcome.MailList.View();
+			}
+			mailListView.render();
+		break;
+		case "YesterdayMail":
+			if(window.initRemindsView) {
+				initRemindsView.onYesterdayMailArrive(data);
+			} else {
+				window._yesterday_mail_count_ = data;
+			}
+			//$id("yes_count").innerHTML=data["stats"].messageCount+"封";
+			break;
+		case "rmInitDataConfig":
+			if(window.initDataConfigView) initDataConfigView.render(data);
+			top.$App && top.$App.trigger("welcome_getInitDataConfig_load", data);
+		break;
+		case "mwInfoSet":
+			if(window.initUserInfoView) initUserInfoView.render(data["var"]);
+			top.$App && top.$App.trigger("welcome_getInfoSet_load", data);
+		break;
+		case "getMailNotify":
+			if(window.initUserInfoView) initUserInfoView.render(data["var"]);
+			top.mailnotify = data["var"];
+			top.$App && top.$App.trigger("notify_load", data["var"]);
+		break;
+		case "addrQueryUserInfo":
+			window.addrQueryUserInfo=data;
+			top.isFirstLoadQueryUserInfo=true
+			if(window.initAddrQueryUserInfoView) initAddrQueryUserInfoView.render(data.UserInfo);
+			top.$App && top.$App.trigger("welcome_QueryUserInfo_load", data);
+			mainView.userInfoView.render();
+		break;
+		case "getUndisturb":
+			if(window.initUserInfoView) initUserInfoView.render(data["var"]);
+			top.Undisturb = data["var"];
+			top.$App && top.$App.trigger("Undisturb_load", data["var"]);
+		break;
+		case "mwUnifiedPositionContent":
+			top.mwUnifiedPositionContent=data;
+			if(mainView.replaceAdData){
+				mainView.replaceAdData(data["var"]);
+			}
+			top.$App && top.$App.trigger("welcome_UnifiedPosition_load", data["var"]);
+			if(window.initUnifiedPositionContentView) initUnifiedPositionContentView.render(data["var"]);
+		break;
+		case "birthContactsInfo":
+			initRemindsView.renderBirthRemind(data);
+			top.$App && top.$App.trigger("welcome_birthContactsInfo_load", data);
+		break;
+		case "RemindMsg":
+			/*
+            if(window.initRemindsView) initRemindsView.render(data);
+			window.remindData=data;//通知
+			*/
+			window.remindData=data;//通知
+			if(window.remindIndexView ){
+				var options = null;
+				var selecteDate = $('body').data('selectDate');
+				options = selecteDate ? {date:selecteDate} :options;
+				window.remindIndexView.renderRemind(data, options);
+			}
+			else{
+				window.remindIndexView = new M2012.Welcome.Remind.View({initData: data});
+			} 
+		    break;
+        case "CalendarView":
+			if(window.initRemindsView) {
+				initRemindsView.initMsgCount(data);
+			} else {
+				window._calendar_view_data_ = data;
+			}
+			
+            var view  = window.calendarIndexView = new M2012.Welcome.Calendar.View();
+			//view.calendarViewSuccess(data)
+            view.showCurrentMonth(data);
+            view.onSelectDate(function(date){
+                $('body').data('selectDate', date);
+                date = $Date.parse(date + " 00:00:00"); 
+                mainView.timeSwitcherView.switchDate(date);	// => trigger("request", date)
+            });
+            if(window.initRemindsView) initRemindsView.initMsgCount(data);
+            break;
+        case "WeatherView":
+            var weatherModel = new M2012.Welcome.Weather.Model;
+            new M2012.Welcome.Weather.View({model: weatherModel, initData: data});
+            break;
+        case "MagazineView":
+            new M2012.Welcome.Magazine.View({initData: data});
+            break;
+		case "querySignState":
+			//console.dir(data);
+
+			if(data["var"].result==1 || data["var"].result==3){
+				switchSign();
+	
+			}
+     
+			break;
+		case "userAddrJsonData":
+			//console.dir(data);
+			top.$App && top.$App.trigger("userAddrJsonData_load", {response:data});
+			break;
+	}
+
+    mainView.adjustContentListHeight();
+	//setTimeout(function(){
+	//	loadedModule[key] = true;
+	//}, 0);
+}
+
+//top.m139LoadScript('libs.pack.js', document);
+
+</script><link cssonload="1" onload="this.setAttribute(&#39;cssonload&#39;,&#39;1&#39;)" rel="stylesheet" href="./welcomeNew2016.css" type="text/css"><script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8" type="text/javascript" src="libs.pack.js"></script>
+
+<script src="webbar.js" defer="" type="text/javascript"></script><link id="moduleSkinCSS" rel="stylesheet" href="./skin_lightblue.css" type="text/css"></head><body class="bodybg" sytle="overflow-x:hidden;" id="view_0.09692008449753375">
+	<div id="mainContainer" style="position: relative; height: 868px;">
+	<div class="welcomeNew clearfix" style="width:1120px;">
+		<div class="welcomeNew_right">
+			<div class="welcomeNew_rightCon clearfix">
+				<div class="welcomeNewSon_left">
+					<div class="modBox new-quick-reply clearfix" id="replyContainer"><div class="readMailReplyMes-w"><textarea class="readMailReplyMes" style="overflow-y: hidden;">@TA，直接写邮件</textarea></div><div class="btnBox btnNewGreen" id="sendEmailBtn" hassend="true">发送</div></div><div class="welcomeNewSon_leftCon">
+						<div class="modBox modBoxCon scroller-outer-container" style="">
+							<div id="contentList" class="mailList"> 
+								<div id="currDayTitle" class="mailListHeaderCon clearfix" timestamp="1520492924491">
+									<!--<a id='back_to_today' href='javascript:;' style='float:right; margin-top:15px;display:none;'>回到今天</a>-->
+									<ul class="mailListHeader clearfix"><li id="list_header" class="on"><span>未读的邮件和消息</span></li>
+									<li style="display:none"><i class="bubble" id="unread" style="display: none;">+</i></li>
+									<li style="display:none"> <i class="i-relatedToMe" style="display:none"></i> </li>
+									<li id="mailState" style="display: list-item;"><i class="i-mail-dynamic mb_5"></i><i class="bubble hide" id="maildynamic-new">new</i></li>
+									</ul>
+									<div class="mailListHeaderOpt">
+<a class="mailListHeaderOpt-link" href="javascript:;">全部标为已读</a>
+                                      <i class="i-welcomeSet"></i>
+                                    </div>
+                                    <i class="i-triangleNewWel"></i>
+                                    <i class="i-guide"></i>
+                                    <!-- <img src="/m2015/images/module/welcome/icon_01.png"> -->
+								</div>
+								<div class="mailList_con scroller-inter-container" id="div_scroller_inter" style="border-left-width: 0px;"> 
+									<div class="scroller-container" style="">
+									<ul class="mailList_con_ul">
+										<li id="remindList" class="mailList_con_li clearfix" style="display: none;"><ul class="mailListCon clearfix"></ul></li>
+										<li class="mailList_con_li clearfix">
+											<ul class="mailListCon" id="mailListContainer"><li class="mailList_con_li clearfix" style="list-style-type:none" id="messageEmpty"><div class="mailListCon_noNews"><i class="i-likeNike-noTips"></i><p class="mailListCon_noNewsTitle">"未读的邮件和消息"没有任何内容</p><p class="mailListCon_noNewsTxt">未读的邮件和消息会展示邮箱内所有的未读邮件及系统消息。</p></div></li></ul>
+											<div class="loadingMore" id="loading_more" style="display:none">
+                                            <img class="loadingMore-animate" src="./load.gif">
+                                            <span class="loadingMore-txt">正在加载页面......</span>
+                                        </div>  
+											<p class="mt_2"><a href="javascript:;" style="display:none" class="mailListCon_btn" id="a_more_email">更多未处理邮件</a></p>
+										</li> 
+									</ul>
+									</div> 
+									<div id="scrollbar-container" class="scrollbar-container" style="visibility: visible;">
+									  <div class="scrollbar-track">
+										<div class="scrollbar-handle" style="visibility: visible;"></div>
+									  </div>
+									</div> 
+									<!-- <i class="div_scroller_image"></i> -->
+									<!-- /#scrollbar-container -->
+								</div> 
+							</div>
+						</div>
+					<div id="addTaskTips" class="modBox mt_8 addTaskTips" style="height: 593px;"><div class="addTaskTipsCon"><i class="i-addTaskTips"></i><div class="addTaskTips_txt"><p>重要事情怕忘记？<br>随手添加至待办事项</p><div class="addTaskBtn" onclick="top.$App.show(&#39;calendar_addAct&#39;, &#39;&amp;date=2018-03-08&#39;)"><a href="javascript:">添加待办事项</a></div></div></div></div></div>
+				</div>
+				<div class="welcomeNewSon_right welcomeFixed" style="top: 15px; left: 688px;">
+					<div class="modBox modBoxCalendar ml_8">
+						<!-- <i class="i_icoCalendarTop" style="top:143px;"></i> -->
+						<div class="calendarMod">
+                            <div id="div_calendar" style="display: none;"><div class="calendarMod_top" style="position: relative; z-index:999999" id="view_0.017545799414369068"><a href="javascript:;" class="i_icoPre preMonth" bh="welcome_prev_month"></a><a href="javascript:;" class="calendarMod_topTime"><em class="calendarYear">2018</em>年<em class="calendarMonth">03</em>月</a><a href="javascript:;" class="i_icoNext nextMonth" bh="welcome_next_month"></a><ul id="ulSelectYear" class="selectList hide" style="width:50px;top:36px;left:71px; height:auto; overflow:auto;z-index:999999;"><li>2019</li><li>2018</li><li>2017</li></ul><ul id="ulSelectMonth" class="selectList hide" style="width:44px;top:36px;left:129px;z-index:9999999;overflow-x:hidden;"><li>12</li><li>11</li><li>10</li><li>9</li><li>8</li><li>7</li><li>6</li><li>5</li><li>4</li><li>3</li><li>2</li><li>1</li></ul></div><table border="0" cellspacing="1" cellpadding="0" class="calendarModTable" style="position: relative; z-index:0"><thead><tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr></thead><tbody><tr><td style="cursor: default;"></td><td style="cursor: default;"></td><td style="cursor: default;"></td><td style="cursor: default;"></td><td rel="1"><span>1</span></td><td rel="2"><span>2</span></td><td rel="3"><span>3</span></td></tr><tr><td rel="4"><span>4</span></td><td rel="5"><span>5</span></td><td rel="6"><span>6</span></td><td rel="7"><span>7</span></td><td rel="8"><span class="calendarMod_today calendarMod_focus">8</span></td><td rel="9"><span>9</span></td><td rel="10"><span>10</span></td></tr><tr><td rel="11"><span>11</span></td><td rel="12"><span>12</span></td><td rel="13"><span>13</span></td><td rel="14"><span>14</span></td><td rel="15"><span>15</span></td><td rel="16"><span>16</span></td><td rel="17"><span>17</span></td></tr><tr><td rel="18"><span>18</span></td><td rel="19"><span>19</span></td><td rel="20"><span>20</span></td><td rel="21"><span>21</span></td><td rel="22"><span>22</span></td><td rel="23"><span>23</span></td><td rel="24"><span>24</span></td></tr><tr><td rel="25"><span>25</span></td><td rel="26"><span>26</span></td><td rel="27"><span>27</span></td><td rel="28"><span>28</span></td><td rel="29"><span>29</span></td><td rel="30"><span>30</span></td><td rel="31"><span>31</span></td></tr></tbody></table></div><!-- /div_calendar -->
+							<div id="wrapper" style="width: 238px; height: 119px; position: relative; margin: 0px auto; background-size: 240px 119px; cursor: pointer;"><div class="calendarDay top">                                <div class="calendarMod_top clearfix">                                    <div class="fl"><span class="calendarMod_topTime calendarMod_topTime_date year_month">2018年03月</span><span class="calendarMod_topTime calendarMod_topTime_name"></span></div>                                    <div class="fr pr_5"><span class="calendarMod_topTime calendarMod_topTime_week week">星期四</span>                                    <span class="i_icon"><i class="i_icoPre prev"></i></span>                                    <span class="i_icon"><i class="i_icoNext next"></i></span>                                    </div>                                </div>                                <p class="calendarMod_time_day currDay">08</p>                            </div></div><div class="calendarWeather clearfix" style="display:none">
+                               
+								<div id="div_weather_today">
+									<span class="calendarWeather_img"><img src="http://appmail.mail.10086.cn/m2012server/home?Protocol=http%3A&amp;positionCode=web_210&amp;sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005&amp;from=preload" alt="" title=""></span>
+									<div class="calendarWeather_info">
+									
+									</div>
+								</div><!-- / div_weather_today -->
+							</div>
+						</div>
+					</div>
+
+                    <div class="modBox mt_8" id="div_magazine">
+					
+                        <div class="advertisingOther">
+                       
+
+                            <div class="advertisingOther_img" id="div_magazine_inner">
+                                <ul class="advertisingOther_ulImg" id="ul_magazine"><li style="display: list-item;"><a href="javascript:top.$App.show(&#39;googSubscription&#39;, {&#39;mtype&#39; : &#39;27&#39;, &#39;cid&#39; : 38626, &#39;serialid&#39; : 6052245, &#39;openRead&#39; : &#39;1&#39;, &#39;isSubscribe&#39; : &#39;1&#39;});"><img orgsrc="" alt="区块链流行病学" src="./A63C1AC6463D4B0CA2ED3293A0E8FCB7_200.jpg"></a></li><li style="display: none;"><a href="javascript:top.$App.show(&#39;googSubscription&#39;, {&#39;mtype&#39; : &#39;27&#39;, &#39;cid&#39; : 38626, &#39;serialid&#39; : 6049713, &#39;openRead&#39; : &#39;1&#39;, &#39;isSubscribe&#39; : &#39;1&#39;});"><img orgsrc="" alt="雷军潜伏区块链，小米野心大" src="./D731746527DD4D9B9716233CC2048012_200.jpg"></a></li><li style="display: none;"><a href="javascript:top.$App.show(&#39;googSubscription&#39;, {&#39;mtype&#39; : &#39;27&#39;, &#39;cid&#39; : 37864, &#39;serialid&#39; : 6049573, &#39;openRead&#39; : &#39;1&#39;, &#39;isSubscribe&#39; : &#39;1&#39;});"><img orgsrc="" alt="适合女性创业的行业有哪些？" src="./404BB83B2CCA496C95A5A6EF416B1AC5_200.jpg"></a></li></ul>
+                                <span></span>
+                                <div class="advertisingOther_ul">
+                                    <p id="p_magazine_title">区块链流行病学</p>
+                                    <ul class="clearfix" id="ul_magazine_node"><li class="seld"><a href="javascript:;"></a></li><li class=""><a href="javascript:;"></a></li><li class=""><a href="javascript:;"></a></li></ul>
+                                </div>
+                            </div>
+
+                           
+
+                            
+
+                        </div>
+                    
+                    
+                    
+                    </div>
+                     
+            <div id="advertising" bh="welcome_ad2" class="modBox advertisingOther_img mt_8 ml_8" style="">
+				<div class="advertising">
+				
+					<p><a href="http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&amp;sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005" target="_blank"><img alt="" src="./activity1.jpg"></a></p>
+				</div>
+			</div>
+                     
+					      <div id="advertising2" bh="welcome_ad3" class="modBox advertisingOther_img mt_8 ml_8" style="">
+				<div class="advertising">
+				
+					<p><a href="https://fun.mail.10086.cn/edm/1711/1114/index.html" target="_blank"><img alt="" src="./201712040511167021.png"></a></p>
+				</div>
+			</div>
+			
+                     
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="welcomeNew_left" style="top:15px;">
+			<div id="userInfo" class="modBox">
+<div class="userInfo">
+	<div class="userInfoHeader clearfix">
+		<a href="javascript:void(0);" class="userInfoPic" bh="welcome_headimg"><img src="./18_ed9036.gif" id="userImg" style="width: 100%;height: 100%;"></a>
+		<div class="userInfoHeader_con">
+			<strong>
+				<a href="javascript:top.$App.show(&#39;account&#39;);" id="userName" bh="welcome_hello">18613981220</a>
+				<!--<i onclick="top.$App.show('health');" id="healthSet" bh="health_top" class="i-greenShield ml_5" style="cursor:pointer;"></i>
+				<div style="left: 60px; top: 38px; width: 60px; text-align: center; display: none;" class="tipsOther">
+					<div class="tips-text">邮箱体检</div>
+				</div>-->
+			</strong>
+			<p id="greeting"><a class="userInfoHeader_a" href="javascript:;">你可以输，但你绝不能放弃｡</a></p>
+		</div>
+	</div>
+	<ul class="userInfo_list">
+		<li>
+		<span class="userInfo_listTxt">我的积分：</span>
+		<a class="userInfo_listVal" href="http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&amp;flag=4&amp;sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005" id="myintegral" bh="welcome_score" target="_blank">100</a>
+		<span class="userInfoLine">|</span>
+		<a class="userInfo_more" href="http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&amp;flag=15&amp;sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005" id="scoreExchange" target="_blank" bh="welcome_exchange">兑换</a></li>
+		<li id="chongZhi_li">话费充值：<span class="c_457fbd ml_5"><a id="chargeDetail" href="javascript:;" class="c_457fbd"><i class="i_iphone"></i>充值</a></span></li>
+	</ul>
+    <div class="userInfo_checkin" id="btn_signin" bh="welcome_sign">
+        <i class="i-checkin"></i>
+        <!-- 未签到 -->
+        <span class="userInfo_checkinTxt">签到赚积分</span>
+        <!-- 已签到 -->
+        <span class="userInfo_checkinTxt hide" bh="welcome_signed">已签到，获赚<strong>1</strong>积分</span>
+    </div>
+</div>
+<div style="top: 95px; left:185px; z-index: 1000; width: 214px; position: absolute;display:none;" class="tipsLayer" id="tipsLayer"><div class="tipsLayerMain"><div class="tipsLayerMainInner tipsLayerShareBox"><dl><dd><div class="tipsLayerShare"><a id="sinaShare" href="javascript:;"><i class="i-conSina"></i>微博分享</a><a id="mailShare" href="javascript:;"><i class="i-conMail"></i>告诉朋友</a></div></dd></dl></div></div><i class="i-tipsLayerArrow tipsTopArrow"></i><div class="tipsLayerMain_div"></div></div></div>
+			<div id="navigate" class="modBox mt_8">
+				<div class="menuOperating">
+					<!-- <strong id="compose_new" class="menuOperating_title"><a href="javascript:void(0);"><i class="i_icoWrite"></i>写 信</a></strong> -->
+					<ul class="menuOperating_list clearfix">
+
+                        <li fid="1"><a href="javascript:void(0);" bh="index_left_inbox"><i class="i_icoReceive"></i><span>收件箱</span></a></li>
+                        <li id="compose_new"><a href="javascript:void(0);" bh="index_left_compose"><i class="i_iconWrite"></i><span>写信</span></a></li>
+                        <!--
+                        <li fid="4"><a href="javascript:void(0);"><i class="i_icoDele"></i><span>已删除</span></a></li>
+                        <li fid="3"><a href="javascript:void(0);"><i class="i_icoSend"></i><span>已发送</span></a></li>
+                        -->
+                        
+                        
+                        
+                        
+                        
+                        
+                    <li><a href="javascript:void(0);" id="smsSend"><i class="i_iconInfo"></i><span>发短信</span></a></li><li><a href="javascript:void(0);" id="Mobilebill"><i class="i_icoBill"></i><span>移动账单</span></a></li><li><a href="javascript:void(0)" target="_self" id="fetion" bh="welcome_fetion"><i class="i_icoFetion"></i><span>和飞信</span></a></li> <li><a href="javascript:" target="_self" id="mcloud" bh="welcome_mcloud"><i class="i_icoAndCloud"></i><span>和彩云</span></a></li><li><a href="javascript:void(0);" id="note"><i class="i_icoAndNote"></i><span>和笔记</span></a></li><li><a href="javascript:" target="_self" id="addr" bh="welcome_pim"><i class="i_icoAndCommunication"></i><span>和通讯录</span></a></li></ul>
+				</div>
+			</div>
+            
+            <div class="modBox mt_8" style="width:238px">
+                <div class="advertisingOther">
+                    <div class="advertisingOtherTitle clearfix">
+                        <h5 class="adTitleNav">服务推荐</h5>
+                        <div class="fr moreNav"><span class="inner"><a href="javascript:showWindow(&#39;business&#39;)">精品业务</a><span class="ad_line">|</span><a href="javascript:showWindow(&#39;city&#39;)">应用商城</a></span></div>
+                    </div>
+                    <!-- 服务推荐 -->
+                    <div class="advertisingOther_img" id="div_recommend">
+                        <ul class="service_list" id="ul_recommend"><li class="clearfix liRecommend" columnid="39637" columnname="作业帮手"><a href="javascript:top.$App.show(&#39;googSubscription&#39;, {&#39;columnId&#39;:39637});"><img src="./column_9C70DFE59E7340B3AA00A608B0270E28.png" alt="作业帮手" width="65" height="65"></a><div class="service_listCon">   <strong><a href="javascript:top.$App.show(&#39;googSubscription&#39;, {&#39;columnId&#39;:39637});">作业帮手</a></strong>   <div class="service_cont"><p>3008位用户</p>   <em class="starBox"><em style="width:95%"></em></em></div></div><div class="fr" name="service_btn" style=""><div class="btnBox btnNewGray" name="mpostUse">使用</div><div class="btnBox btnNewGreen hide" name="mpostAdd">添加</div></div></li><li class="clearfix liRecommend" columnid="39387" columnname="有福定制"><a href="javascript:top.$App.show(&#39;googSubscription&#39;, {&#39;columnId&#39;:39387});"><img src="./1461026069337.png" alt="有福定制" width="65" height="65"></a><div class="service_listCon">   <strong><a href="javascript:top.$App.show(&#39;googSubscription&#39;, {&#39;columnId&#39;:39387});">有福定制</a></strong>   <div class="service_cont"><p>782498位用户</p>   <em class="starBox"><em style="width:95%"></em></em></div></div><div class="fr" name="service_btn" style=""><div class="btnBox btnNewGray" name="mpostUse">使用</div><div class="btnBox btnNewGreen hide" name="mpostAdd">添加</div></div></li></ul>
+                    </div>
+                    
+                </div>
+            </div>
+                    
+            
+		
+		</div> 
+	</div> 
+    
+  <!--  <ul class="welcomeFooter clearfix" style="position:relative;z-index:99; padding:10px 0;text-align:center; background:#fff\9;*background:#fff;_background:#fff;">暂时注释旧的 -->
+  <ul class="welcomeFooter clearfix" style="position:relative;z-index:99; padding:10px 0;text-align:center;">
+    	<li id="bottomLink">
+<!--        <a href="#" id="btn_base" style="display:none" target="_blank" bh="welcomeb_log">基础版</a>
+        <span class="wfLine">|</span>-->
+        <a href="http://help.mail.10086.cn/statichtml/1/Category/39/Listh_1.html" target="_blank" bh="welcomeb_log">最近更新</a>
+        <span class="wfLine">|</span>
+        <a href="http://mail.10086.cn/advertise/index.html" target="_blank" bh="welcomeb_mobile">139邮箱手机版</a>
+        <span class="wfLine">|</span>
+        <a href="https://qiye.mail.10086.cn/" target="_blank" bh="welcomeb_cmail">139企业邮箱</a>
+        <span class="wfLine">|</span>
+        <a href="javascript:top.$App.show(&#39;selfSearch&#39;);" bh="welcomeb_search">自助查询</a>
+        <span class="wfLine">|</span>
+        <a href="javascript:top.$App.show(&#39;uecLab&#39;);" thingid="704">实验室</a>
+        <span class="wfLine">|</span><a href="http://mail.10086.cn/agreement.html" target="_blank">用户协议</a><span class="wfLine">|</span>
+        <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备05001571号</a>  
+		<span class="wfLine">©</span>
+		<a href="http://www.10086.cn/" target="_blank">中国移动通信版权所有</a>
+		&nbsp;&nbsp;客服:10086</li>
+	</ul>
+            
+	</div>
+	
+	
+	<!--与我有关设置-->
+	
+	<div id="related_setting" class="relatedToMe_popw hide" style="top: 115px; left: 469px;">
+                    
+                </div>
+				
+				<!-- end 设置 -->
+
+	
+<!-- todo
+<div class="skin">
+    <div class="skinTop"></div>
+    <div class="skinTopLeft"></div>
+    <div class="skinTopRight"></div>
+	<div class="skinBody"><img src="" alt="" title="" /></div>
+	<div class="skinMenu" style="height:10000px;"></div>
+</div>-->
+
+<div id="div_weather_box" class="hide" style="position:absolute; z-index:9999;">
+	<div class="tapWrapper hide" id="div_city_area_select">
+		<div class="tapH">
+			<ul class="tap">
+				<li>
+					<a href="javascript:;" class="hover" id="em_select_city">
+						<em>请选择</em>
+						<i class="i_arrow_down"></i>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="" id="em_select_area">
+						<em>请选择</em>
+						<i class=""></i>
+					</a>
+				</li>
+			</ul>
+			<i class="i_close"></i>
+			<span class="clearfix"></span>
+		</div>
+		<div class="" id="div_select_city">
+			<ul class="area-list pt_10"> </ul>
+		</div>
+		<div class="hide" id="div_select_area">
+			<ul class="area-list pt_10"></ul>
+		</div>
+		<span class="clearfix"></span>
+	</div> <!-- /div_city_select --> 
+
+	<!-- 天气 -->
+	<div class="weatherForecast" id="div_weather_forecast"></div><!-- /weatherForecast -->
+</div><!-- /div_weather_box -->
+
+<script>
+//设置左右边栏的offset值，10为区块间距值
+function setPositionOffSet () {
+	var _offsetL = $('.mailList').offset().left;
+	var _l = $('.welcomeNew_left').width();
+	var _r = $('.mailList').width();
+	/*
+    $('.welcomeNew_left').css({
+		'left' : _offsetL - _l - 10
+	});
+     
+	$('.welcomeNewSon_right').css({
+		'left' : _offsetL + _r
+	});
+	*/
+
+}
+
+//设置主滚动区域容器高度
+function setContainerH () {
+	var body_h = $(window).height(),
+	headerTopMenu_h = $('.headerTopMenu').height(),
+	header_h = $('.header').height(),
+	main_h = body_h - headerTopMenu_h - header_h;
+
+	$('#mainContainer').height(main_h);
+}
+
+		
+
+$(function () {
+
+	perfObj["DOMContentLoaded"] = +new Date();
+	console.log("DOMContentLoaded.");
+	
+	top.window.WELCOME_LOADED=true;
+
+    var userImgEl = $('#userImg');
+    var hoverTarget = userImgEl.parent('.userInfoPic');
+    
+    hoverTarget.hover(function(){
+        $(this).append('<span></span><p>更换头像</p>');
+    }, function(){
+        $(this).find('span').remove();
+        $(this).find('p').remove();
+    });
+    
+    hoverTarget.on('click', function(){
+        top.BH("home_page_face");
+        new top.M2012.UI.View.ImageCropper({
+            imageUrl: userImgEl.attr('src'),
+            onImgSaving: function(imageInfo){
+                userImgEl.attr('src',imageInfo.imageUrl);
+            }
+        });
+	});
+});
+
+perfObj["loadScriptStart"] = +new Date();
+
+//top.m139LoadScript('m139.core.pack.js', document);
+
+$(top.document).ready(function (){
+setTimeout(function(){
+	top.$App && top.$App.setModuleSkinCSS && top.$App.setModuleSkinCSS(document);
+}, 20);
+});
+
+//top.m139LoadScript("welcome_v4.html.pack.js", document);
+
+</script><script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8" type="text/javascript" src="m139.core.pack.js"></script><script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8" type="text/javascript" src="welcome_v4.html.pack.js"></script>
+
+<script>
+
+perfObj["loadScriptEnd"] = +new Date();
+
+window.mainView = new Main.View();
+mainView.render();
+
+perfObj["mainView.render"] = +new Date();
+
+</script>
+
+<script>
+
+perfObj["mainView.render2"] = +new Date();
+
+console.log("wait for welcome_v4.html.pack.js: " + (perfObj["mainView.render"] - perfObj["loadScriptStart"]) + "ms");
+
+function outputPerfLog(){
+	var keys = Object.keys(perfObj);
+	keys.sort(function(a, b){
+		return perfObj[a] - perfObj[b];
+	});
+	for(var i=0,len=keys.length-1; i<len; i++){
+		console.log(keys[i+1] + " - " + keys[i] + ": " + (perfObj[keys[i+1]] - perfObj[keys[i]]) + "ms");
+	}
+}
+</script>
+
+<script>
+ 	function switchSign(){
+		 $(function (){
+	 	$(".userInfo_checkin").addClass("checked").attr("bh","welcome_signed"); 
+    	$("#btn_signin span").html("已签到，获赠<strong style='color:red'>1</strong>积分");
+       
+		//$("#jifen_prompts").html("已获赠<strong style='color:red'>1</strong>分");//.attr("title",window.querySignStateJson["var"].msg);
+		})
+    }
+
+   
+	$("#btn_signin").live("click",function(){
+		M139.HttpRouter.addRouter( "setting", ["user:signIn"]);
+		M139.RichMail.API.call("user:signIn", {} , function(data) {
+			console.log(data);
+			switchSign();
+
+			top.$App.show("myTask");
+		});
+
+		
+	});
+	
+	window.showWindow=function(key){
+		M139.core.utilCreateScriptTag({src:"/m2015/js/richmail/welcome_v4/welcome.business.view.js", charset:"utf-8"}, function() {
+			if(key=="city"){
+				new M2012.Welcome.Business.View().showCity();
+			}else if(key=="business"){
+				new M2012.Welcome.Business.View().render();
+			}
+		});
+			
+	}
+
+	
+	new Welcome.relatedMail.View().render();
+	
+	
+
+
+</script>
+<script>
+(function(){
+	var Home = undefined;
+	render("Home", Home);
+})();
+</script>
+
+<script>
+(function(){
+	var getMailNotify = {"code":"S_OK","msg":"操作成功","var":[{"notifyid":1,"enable":true,"notifytype":1,"fromtype":0,"supply":false,"syncDy":true,"msgConverge":true,"automaticreply":1,"readreceipt":1,"mailsystem":1,"themekeywords":"","notifystyle":"1,2,4,5","timerange":[{"begin":8,"end":20,"weekday":"1,2,3,4,5,6,7"}],"emaillist":[]}]};
+	render("getMailNotify", getMailNotify);
+})();
+</script>
+
+<script>
+(function(){
+	var getUndisturb = {"code":"S_OK","summary":"","var":{"undisturbType":"-1","undisturbTime":"12-14","undisturbExcludeType":"1","fromMail":""}};
+	render("getUndisturb", getUndisturb);
+})();
+</script>
+
+<script>
+(function(){
+	var querySignState = {"code":"S_OK","summary":"查询成功","var":{"result":"0","msg":"未签到，签到可获赠\u003cstrong\u003e1\u003c/strong\u003e分！"}};
+	render("querySignState", querySignState);
+})();
+</script>
+
+<script>
+
+// 渲染提醒数量
+var initRemindsView = {
+
+	render: function(data) { // data是对象，不是数组
+		var self = this;
+		window._remind_list_data = data;
+
+		if (window.mainView) {
+			if(mainView.remindListView) {
+				window.mainView.remindListView.model.setData(data);
+			} else {
+				console.error("mainView not fully initialized!!!");
+			}
+		}
+		var timestamp = $("#currDayTitle").attr("timestamp");
+		var currDay = new Date(parseInt(timestamp));
+		var isToday = (+new Date - currDay < 24*3600*1000) && ((new Date).getDate() == currDay.getDate());
+		
+		$("#loadingTips").remove();
+		$id("remindList").innerHTML = $id("remindItemTpl").innerHTML;
+		
+		$("#remindList").find("li[rid]").each(function(i) {
+			var card = data[i + 1];
+			var contents = card && card.contents;
+
+			if(i+1==5 && isToday && self.birthText) {	// 生日提醒消息
+				$(this).find("ul").html(self.birthText);
+			} else if (!contents || contents.length === 0) {
+				$(this).hide();
+			} else {
+				if(isToday || i+1 == 3 || i+1 == 4){	// 今天的全部显示，以前的只显示日历“邀请”和“共享”
+					// 按消息中的提醒内容的时间属性过滤出当天的（已在node端处理好）
+					$(this).find("ul").html(card.contents.splice(0, 5).join(""));
+				} else {	// 以前的时间点，除日历“邀请”和“共享”的其它类型都隐藏
+					$(this).hide();
+				}
+			}
+		});
+		$("#remindList").show();
+
+		if(!this.isFirstLoaded) {
+			$(".mailListHeaderCon>span").hide();	// 首次加载，先隐藏所有数量显示信息
+		}
+		
+		if(isToday) {
+			this.showYesterdayMsgCount(data);	// 以往消息可操作，所以需要更新
+		}
+
+		if(this.isFirstLoaded) {
+			mainView.adjustContentListHeight();
+			return;
+		}
+		this.isFirstLoaded = true;
+
+		if(window._calendar_view_data_) {
+			this.initMsgCount(_calendar_view_data_);
+		}
+		
+		if(window._yesterday_mail_count_ != undefined){
+			this.onYesterdayMailArrive(_yesterday_mail_count_);
+		}
+	},
+
+	showYesterdayMsgCount: function(data){
+		// 显示昨天的消息数量
+		var yesInvites = data["yesterday_calendar_invite"];
+		var yesShares = data["yesterday_calendar_share"];
+		this.showOrHideCountInfo("#prevDayInvite", yesInvites && yesInvites.length);
+		this.showOrHideCountInfo("#prevDayShare", yesShares && yesShares.length);
+	},
+	
+	// 生日提醒为独立接口，单独处理
+	renderBirthRemind: function(data){
+		
+	},
+
+	/*
+	 * 根据日历提醒数据获明天的提醒数量
+	 */
+	initMsgCount: function(result) {
+		var activity,
+			nextDayActivity = 0,
+			nextDayTask = 0;
+		var dateNow = (new Date()).getDate();
+		var tomorrow = $Date.format("yyyy-MM-dd", new Date(new Date().setDate(dateNow + 1)));
+
+		var listDetail = result["table"];
+		var ids = result["var"][tomorrow];
+		
+		if (ids) {
+			ids = ids.info || [];
+
+			for (var i = 0; i < ids.length; i++) {
+				activity = listDetail[ids[i]];
+
+				if(activity.specialType == 6) {
+					nextDayTask ++;
+				// 邀请 / 共享 / 群活动 / 订阅
+				} else if (activity.isInvitedCalendar || activity.isSharedCalendar || activity.isGroup || activity.isSubCalendar) {
+					continue;
+				} else {
+					// 普通日历活动
+					nextDayActivity ++;
+				}
+			}
+		}
+		this.showOrHideCountInfo("#nextDayActivity", nextDayActivity);
+		this.showOrHideCountInfo("#nextDayTask", nextDayTask);
+	},
+
+	showOrHideCountInfo: function(selector, count) {
+		var element = $(selector);
+		count = Math.abs(count|0);
+		var action = count ? "show" : "hide";
+
+		element.find("var").html(count).end()[action]();
+
+		if (element.prevAll(":visible").length) {		// 前已有可见项，处理前面的顿号
+			if(!element.prevAll(":visible:first").is(".js_dot")) {
+				element.prev(".js_dot")[action]();
+			}
+		} else if(element.nextAll(":visible").length){	// 后已有可见项，处理后面的顿号
+			if(!element.nextAll(":visible:first").is(".js_dot")) {
+				element.next(".js_dot")[action]();
+			}
+		} else {	// 首个消息数量信息变动，则父标题栏显示/隐藏
+			mainView.adjustContentListHeight(function(){
+				element.closest(".mailListHeader")[action]();
+			});		// 显示逻辑执行完毕，调整高度
+		}
+	},
+
+	onYesterdayMailArrive: function(data) {
+		this.showOrHideCountInfo("#prevDayMail", data);
+	}
+};
+
+</script>
+
+<script>
+(function(){
+	var RemindMsg = {"code":"S_OK","summary":"操作成功","var":[]};
+	render("RemindMsg", RemindMsg);
+})();
+</script><iframe src="./proxy(2).html" style="display:none"></iframe>
+
+<script>
+
+var initDataConfigView = {
+
+	render: function(data) {
+		// 修正邮箱体验Tips位置
+		/*setTimeout(function(){
+			var pos = $("#healthSet").position();
+			$('#healthSet').next(".tipsOther").css("left", (pos.left-30) + "px");
+		}, 50);*/
+		//this.showUnreadMessageCount(data);
+	},
+
+    getTipStr: function(count){
+	    return '';
+	    /*
+        count = count | 0;
+	    if(count <= 0) {
+		    return "";
+	    }
+		if(count > 99) {
+			count = "99+";
+		}
+		return '<p class="i_icoTop"><span style="font-size: 14px;position: relative;top: -3px;left: -4px;display: inline-block;min-width: 26px;text-align: center;height: 14px;">' + count + '</span></p>';
+		*/
+    },
+    
+	showUnreadMessageCount: function(data) {
+        //var allCount=remindCount + mailCount;
+        var unreadCount=data["var"]["messageInfo"]["unreadMessageCount"];
+		$("#unread").attr("count",unreadCount)
+        if(unreadCount>999){
+            unreadCount="999+"
+        }else if(unreadCount>99){
+            unreadCount="99+"
+        }
+        $("#unread").html(unreadCount);
+        
+        
+        //var allCount=remindCount + mailCount;
+        
+		/*	
+		var folderModel = top.$App.getView("folder").model;
+
+		this.updateUnreadMailCount(folderModel.folders);
+		this.updateItem("#li_star", folderModel.get("unreadStarCount"));
+		this.updateItem("#li_todo", folderModel.get("todoTaskCount"));
+
+		this.updateVipUnreadCount();
+		*/
+	},
+
+	updateItem: function(selector, count) {
+		/*
+		var tipStr;
+		var map = {
+			"#navigate li[fid=1]": "unreadMessageCount",
+			"#li_vip": "unreadVipMessageCount",
+			"#li_star": "unreadStarCount",
+			"#li_todo": "todoTaskCount"
+		};
+		var key = map[selector];
+
+		if(count != undefined && this[key] != count) {
+			this[key] = count;
+			tipStr = this.getTipStr(count);
+			$(selector).find(".i_icoTop").remove().end().append(tipStr);
+		}
+		*/
+	},
+	
+	updateUnreadMailCount: function(folders){
+		for (var i = 0; i < folders.length; i++) {
+			if (folders[i].fid == 1) {	// 1 收件箱
+				this.updateItem("#navigate li[fid=1]", folders[i].stats.unreadMessageCount);
+				break;
+			}
+		}
+	},
+	
+	updateVipUnreadCount: function(){
+		var self = this;
+		top.$App.getView("mailbox").model.getVipMailCount(function(stats){
+			self.updateItem("#li_vip", stats && stats.unreadMessageCount);
+		});
+	}
+};
+
+</script>
+<script id="userinfoTpl" type="text/html">
+<div class="userInfo">
+	<div class="userInfoHeader clearfix">
+		<a href="javascript:void(0);" class="userInfoPic" bh="welcome_headimg"><img src="" id="userImg" style="width: 100%;height: 100%;" /></a>
+		<div class="userInfoHeader_con">
+			<strong>
+				<a href="javascript:top.$App.show('account');" id="userName" bh="welcome_hello"></a>
+				<!--<i onclick="top.$App.show('health');" id="healthSet" bh="health_top" class="i-greenShield ml_5" style="cursor:pointer;"></i>
+				<div style="left: 60px; top: 38px; width: 60px; text-align: center; display: none;" class="tipsOther">
+					<div class="tips-text">邮箱体检</div>
+				</div>-->
+			</strong>
+			<p id="greeting"><a class="userInfoHeader_a" href="javascript:;">你可以输，但你绝不能放弃｡</a></p>
+		</div>
+	</div>
+	<ul class="userInfo_list">
+		<li>
+		<span class="userInfo_listTxt">我的积分：</span>
+		<a class="userInfo_listVal" href="http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&flag=4&sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005" id="myintegral" bh="welcome_score" target="_blank"></a>
+		<span class="userInfoLine">|</span>
+		<a class="userInfo_more" href="javascript:void(0);" id="scoreExchange" target="_blank" bh="welcome_exchange">兑换</a></li>
+		<li id="chongZhi_li">
+		<span class="userInfo_listTxt">话费余额：</span>
+			<a id="chargeQuery" href="javascript:void(0);" class="btnNormal" style="display:none;"><span>查询</span></a>
+			<span id="chargeFail" style="color:#ff8157;margin-right:5px;display:none;">系统繁忙</span>
+			<span id="chargeNum" style="display: none;" class="userInfo_listVal"><strong><span id="chargeLoading"><img src="/m2015/images/global/load.gif" width="16" height="16" style="vertical-align:middle; margin-right:5px"></span></strong> 元</span>
+			<span class="userInfoLine">|</span>
+			<span class="c_457fbd"><a id="chargeDetail" href="javascript:;" class="userInfo_more">充值</a></span>
+		</li>
+	</ul>
+    <div class="userInfo_checkin" id="btn_signin" bh="welcome_sign">
+        <i class="i-checkin"></i>
+        <!-- 未签到 -->
+        <span class="userInfo_checkinTxt" >签到赚积分</span>
+        <!-- 已签到 -->
+        <span class="userInfo_checkinTxt hide" bh="welcome_signed">已签到，获赚<strong>1</strong>积分</span>
+    </div>
+</div>
+</script>
+<script>$id("userInfo").innerHTML = $id("userinfoTpl").innerHTML;</script>
+
+<script>
+(function(){
+	var rmInitDataConfig = {"code":"S_OK","result":[0,0,0,0,0],"passFlag":0,"totalStarCount":0,"unreadStarCount":0,"totalTaskCount":0,"todoTaskCount":0,"totalBillCount":0,"newBillCount":0,"totalSubscriptionCount":9,"newSubscriptionCount":0,"billNew1":0,"billNew2":0,"billNew3":0,"billNew4":0,"billNew5":0,"billNew6":0,"billNew7":0,"billNew8":0,"billNew9":0,"var":{"userAttrs":{"uid":"18613981220@139.com","trueName":"","contactOff":0,"replyWithQuote":1,"defaultPageSize":20,"replyPrefix":1,"promptForReceipt":1,"isShowSize":1,"isShowContent":0,"fts_flag":0,"userCosId":13287,"sessionMode":0,"popLimit":0,"unallow_pop3_delete_mail":1,"unallow_pop3_change_mail_state":1},"messageInfo":{"limitMessageSize":1048576,"messageSize":1093,"messageCount":10,"unreadMessageCount":0},"SignList":[],"PopList":[],"folderList":[{"fid":1,"name":"收件箱","type":1,"parentId":0,"folderPassFlag":0,"location":1,"folderColor":0,"reserve":0,"keepPeriod":0,"pop3Flag":1,"hideFlag":0,"vipFlag":0,"stats":{"messageCount":9,"messageSize":1088,"unreadMessageCount":0,"unreadMessageSize":0,"attachmentNum":0}},{"fid":2,"name":"草稿箱","type":1,"parentId":0,"folderPassFlag":0,"location":2,"folderColor":0,"reserve":0,"keepPeriod":0,"pop3Flag":0,"hideFlag":0,"vipFlag":0,"stats":{"messageCount":0,"messageSize":0,"unreadMessageCount":0,"unreadMessageSize":0,"attachmentNum":0}},{"fid":3,"name":"已发送","type":1,"parentId":0,"folderPassFlag":0,"location":3,"folderColor":0,"reserve":0,"keepPeriod":0,"pop3Flag":0,"hideFlag":0,"vipFlag":0,"stats":{"messageCount":0,"messageSize":0,"unreadMessageCount":0,"unreadMessageSize":0,"attachmentNum":0}},{"fid":4,"name":"已删除","type":1,"parentId":0,"folderPassFlag":0,"location":4,"folderColor":0,"reserve":0,"keepPeriod":0,"pop3Flag":0,"hideFlag":0,"vipFlag":0,"stats":{"messageCount":1,"messageSize":5,"unreadMessageCount":0,"unreadMessageSize":0,"attachmentNum":0}},{"fid":5,"name":"垃圾邮件","type":1,"parentId":0,"folderPassFlag":0,"location":5,"folderColor":0,"reserve":0,"keepPeriod":0,"pop3Flag":0,"hideFlag":0,"vipFlag":0,"stats":{"messageCount":0,"messageSize":0,"unreadMessageCount":0,"unreadMessageSize":0,"attachmentNum":0}},{"fid":15,"name":"重要任务","type":5,"parentId":0,"folderPassFlag":0,"location":30000,"folderColor":12,"reserve":0,"keepPeriod":0,"pop3Flag":0,"hideFlag":0,"vipFlag":0,"stats":{"messageCount":0,"messageSize":0,"unreadMessageCount":0,"unreadMessageSize":0,"attachmentNum":0}},{"fid":16,"name":"紧急任务","type":5,"parentId":0,"folderPassFlag":0,"location":30001,"folderColor":0,"reserve":0,"keepPeriod":0,"pop3Flag":0,"hideFlag":0,"vipFlag":0,"stats":{"messageCount":0,"messageSize":0,"unreadMessageCount":0,"unreadMessageSize":0,"attachmentNum":0}}],"userConfig":{"preference_letters":20,"preference_reply":1,"preference_reply_title":1,"preference_receipt":1,"smtpsavesend":1,"auto_replay_status":0,"auto_forward_status":0,"auto_forward_addr":"","auto_forward_bakup":1,"spam_level":1,"spam_deal":1,"virus_status":1,"virus_sucess":3,"virus_fail":1,"virus_doubt":1,"virus_notify_me":0,"virus_notify_send":0,"sms_notify":1,"language":"zh_CN","timezone":"+8","faces":"S","readmailmode":0,"mailcontentdisplay":0,"mailsizedisplay":1,"auto_replay_starttime":0,"auto_replay_endtime":0,"fonts":"","folderdisplaymode":0,"default_sender":"","list_layout":2,"subject_color":0,"_custom_specialTag":"1","_custom_showOnceValue":"65,66,87,72,74,80,75,78,73,95","_custom_folderSet":"1111110011100011","_custom_flip":"0","_custom_from":"addr","_custom_pageStyle":"1","_custom_userIsLayout":"1","disaster_recovery":0,"fts_flag":0,"mail_encrypt":0}}};
+	render("rmInitDataConfig", rmInitDataConfig);
+})();
+</script>
+
+<script>
+var initAddrQueryUserInfoView = {
+
+	render: function(data) {
+		var userData = data && data[0] || {};
+		this.getUserImageUrl(userData);
+		this.getTrueName(userData);
+	},
+
+	getTrueName: function(UserInfo) {
+		if(UserInfo.c) {
+			$id("userName").innerHTML = $TextUtils.htmlEncode(UserInfo.c);
+		}
+	},
+	
+	/**
+	 *获得用户头像
+	 */
+	getUserImageUrl: function(UserInfo) {
+		var headUrl = "/m2012/images/ad/face.jpg";
+		var imgUrl = UserInfo.b8;
+
+		if (imgUrl) {
+			if (/^https?:\/\//i.test(imgUrl)) {
+				headUrl = imgUrl;
+			} else if (!/[<>]/.test(imgUrl)) {
+				headUrl = top.getDomain("resource") + imgUrl;
+			}
+		}
+
+		if (window.location.protocol == "https:") {
+			headUrl = headUrl.replace(/http:\/\/image(0|s).139cm.com/, "https://appmail3.mail.10086.cn/images_139cm");
+		}
+		
+		$id("userImg").src = headUrl;
+	}
+};
+</script>
+
+<script>
+(function(){
+	var addrQueryUserInfo = {"ResultCode":"0","ResultMsg":"successful","UserInfo":[{"un":"8618613981220","b":"0","f":"0","y":"18613981220@139.com","b8":"/Upload/Photo/CommonHeadImage/18/18_ed9036.gif","UIN":"2624823773","LastImageURL":"/Upload/Photo/CommonHeadImage/18/18_ed9036.gif","hf":"0"}]};
+	render("addrQueryUserInfo", addrQueryUserInfo);
+})();
+</script>
+
+<script>
+(function(){
+	var MagazineView = {"body":{"hotItems":[{"columnId":38626,"columnName":"猎云网","effectiveDate":"2018-03-05 00:00:00","itemId":6052245,"serialId":20333,"summary":"猎云注：本文作者以群体行为切入，一针见血的表达了自己对当下疯热的区块链的看法。在他看来，如今世界上存在两种区块链，一种真正是区块链技术的研究探索，另一种则存在于中国人的微信群里。文章来源：创业家。原文如下： 这是《自然》杂志（Nature）1869年创刊以来，第三次从群体行为学角度关注中国。 第...","thumbnail":"http://images.139cm.com/subscribe//journalimages/2018/03/05/38626_20180305070535464/A63C1AC6463D4B0CA2ED3293A0E8FCB7_200.jpg","title":"区块链流行病学"},{"columnId":38626,"columnName":"猎云网","effectiveDate":"2018-03-02 00:00:00","itemId":6049713,"serialId":20299,"summary":"猎云注：对比阿里腾讯在区块链领域的高调布局，小米似乎低调的多。然而最近小米公司正在招聘资深区块链开发工程师、服务端开发工程师的信息，也让小米在区块链领域的探索布局浮现水面。据文中作者而言，小米区块链技术的应用与其生态布局协同，将为其开创时代新局面。文章来源：链内参。原文如下： 近...","thumbnail":"http://images.139cm.com/subscribe//journalimages/2018/03/02/38626_20180302070600162/D731746527DD4D9B9716233CC2048012_200.jpg","title":"雷军潜伏区块链，小米野心大"},{"columnId":37864,"columnName":"青年创业网","effectiveDate":"2018-03-02 00:00:00","itemId":6049573,"serialId":20297,"summary":"越来越多女生踏进了创业大门。那么，适合女生的创业新项目有哪些?下面小编给大家带来适合女生的创业新项目，希望对你有帮助。 适合女性创业的行业 创意服务类以创意想象、执行为主要工作内容的职业，适合需要自由、不受拘束的创意工作者，由于在工作地点上非常具有弹性，因此也适合想兼顾家庭的SOHO族，...","thumbnail":"http://images.139cm.com/subscribe//journalimages/2018/03/02/37864_20180302070600140/404BB83B2CCA496C95A5A6EF416B1AC5_200.jpg","title":"适合女性创业的行业有哪些？"}],"myService":[],"recommends":[{"columnId":39637,"columnName":"作业帮手","contentType":2,"description":"协助老师更加便捷的管理作业","feeModel":0,"feeWay":"免费","logoUrl":"http://images.139cm.com/subscribe/images/logo/column_9C70DFE59E7340B3AA00A608B0270E28.png","sub":0,"subPrice":"0.0","subscribeCount":3008,"virtualScore":"9.5"},{"columnId":39387,"columnName":"有福定制","contentType":2,"description":"网上相片冲印和个性印品DIY定制平台","feeModel":0,"feeWay":"免费","logoUrl":"http://images.139cm.com/subscribe//upload/2016/03/09/266//images/1461026069337.png","sub":0,"subPrice":"0.0","subscribeCount":782498,"virtualScore":"9.5"},{"columnId":38554,"columnName":"和理财","contentType":2,"description":"139邮箱专属理财，投资有保障","feeModel":0,"feeWay":"免费","logoUrl":"http://images.139cm.com/subscribe//upload/2016/03/09/266//images/1458796901445.png","sub":0,"subPrice":"0.0","subscribeCount":18763,"virtualScore":"9.5"}]},"description":"操作成功","resultCode":"0"};
+	render("MagazineView", MagazineView);
+})();
+</script>
+<script id="MailList" type="text/html">
+	
+	<input type="hidden" id="today_mail_count" value="0"/>
+</script>
+<script>
+(function(){
+	var MailList = undefined;
+	render("MailList", MailList);
+})();
+</script>
+
+<script>
+(function(){
+	var userAddrJsonData = "GetUserAddrDataResp={\"ResultCode\":\"0\",\"ResultMsg\":\"successful\",\"TotalRecord\":\"1\",\"UIN\":\"2624823773\",\"TotalRecordGroup\":\"7\",\"TotalRecordRelation\":\"1\",\"Group\":[{\"gd\":\"60231550387\",\"gn\":\"\\u4eb2\\u4eba\",\"cn\":\"0\"},{\"gd\":\"60231550388\",\"gn\":\"\\u540c\\u5b66\",\"cn\":\"0\"},{\"gd\":\"60231550389\",\"gn\":\"\\u670b\\u53cb\",\"cn\":\"0\"},{\"gd\":\"60231550390\",\"gn\":\"\\u540c\\u4e8b\",\"cn\":\"0\"},{\"gd\":\"60231550391\",\"gn\":\"\\u5ba2\\u6237\",\"cn\":\"0\"},{\"gd\":\"60231551897\",\"gn\":\"\\u8bfb\\u4fe1\\u8054\\u7cfb\\u4eba\",\"cn\":\"1\"}],\"Contacts\":[{\"sd\":\"60233754270\",\"c\":\"\\u4e2d\\u56fd\\u79fb\\u52a8\\u548c\\u901a\\u884c\\u8bc1\",\"y\":\"umc_service@139.com\",\"b3\":\"Z\",\"d2\":\"zhongguoyidonghetongxingzheng\",\"d3\":\"zgydhtxz\",\"b8\":\"\\/Upload\\/Photo\\/CommonHeadImage\\/E4B8AD\\/E4B8AD_926ec2.gif\"}],\"GroupList\":[{\"vipg\":\"60231550386\",\"vipn\":\"0\",\"gd\":\"60231551897\",\"sd\":\"60233754270\"}],\"GroupMember\":{},\"NoGroup\":[],\"Vip\":[{\"vipg\":\"60231550386\",\"vipn\":\"0\"}],\"Welcome\":[{\"ucn\":\"0\"}],\"BirthdayContacts\":[],\"UserInfo\":[{\"un\":\"2624823773\",\"b\":\"0\",\"f\":\"0\",\"y\":\"18613981220@139.com\",\"b8\":\"\\/Upload\\/Photo\\/CommonHeadImage\\/18\\/18_ed9036.gif\",\"UIN\":\"2624823773\",\"LastImageURL\":\"\\/Upload\\/Photo\\/CommonHeadImage\\/18\\/18_ed9036.gif\",\"hf\":\"0\"}],\"LastContacts\":[]}";
+	render("userAddrJsonData", userAddrJsonData);
+})();
+</script>
+
+<script>
+/*
+ * 客户端初始化用户信息版面脚本（不包含交互）
+ */
+var initUserInfoView = {
+
+	//el: "#userInfo",
+
+	render: function(data) {
+		var userData = data.userMainData || {};
+
+		this.showAliasName(userData.uidList);
+		
+		// 渲染数据
+		this.renderIntegral(userData.mainUserIntegral);
+	    //this.renderHealth();
+
+		// 显示视图
+		$id("userInfo").style.display = "";
+		return this;
+	},
+
+	showAliasName: function(list) {
+		var item;
+		var name = $id("userName").innerHTML;
+
+		if(name){
+			return;
+		}
+		//console.log(list);
+		for(var i=0, len=list.length; i < len; i++) {
+			item = list[i];
+			if(item.type == "0") {	// 优先取别名
+				name = item.name.split("@")[0];
+				break;
+			} else if(item.type == "2") {	// 手机号
+				name = item.name.split("@")[0];
+			}
+		}
+		$id("userName").innerHTML = $TextUtils.htmlEncode(name);
+	},
+
+	// 积分兑换
+	getScoreLink: function() {
+		var flag, url;
+		var links = [15, 16, 17];
+		flag = links[parseInt(Math.random() * 100) % links.length];
+		url = window.location.protocol + '//zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&flag=' + flag + '&sid=' + top.sid;
+		$id('scoreExchange').href = url;
+	},
+
+	renderIntegral: function(data) {
+ 		if(data && data.integral>=0){
+			$id("myintegral").innerHTML = (data.integral | 0);
+		 }
+		this.getScoreLink();
+	}
+};
+
+</script>
+
+<script>
+(function(){
+	var mwInfoSet = {"code":"S_OK","var":{"userMainData":{"uidList":[{"name":"18613981220@139.com","type":"2","from":"2"},{"name":"1432686289@139.com","type":"3","from":"2"}],"orderInfoList":[{"serviceId":"10","serviceItem":"0015","bindTypeId":"50506","orderStatus":"4","clientType":"2","createTime":"2018-03-01 17:52:19","freezeTime":""},{"serviceId":"70","serviceItem":"7015","bindTypeId":"50506","orderStatus":"4","clientType":"2","createTime":"2018-03-01 17:52:19","freezeTime":""}],"registDate":"2018-03-01 17:52:19","provCode":"81","areaCode":"8101","cardType":"0","vipType":"1","userStatus":"97","serviceItem":"0015","mobileRegex":"^8613[0-9]{9}$|^8615[0-9]{9}$|^8618[0-9]{9}$|^8614[0-9]{9}$|^868[0-9]{10}$|^8617[0-9]{9}$|^86198[0-9]{8}$","lastLoginDate":"2018-03-08 14:04:56","UID":"8618613981220","loginName":"18613981220","defaultSender":"1","defaultSenderAccount":"18613981220@139.com","isumcuser":true,"isumcprov":"true","isFreeze":false,"mainUserIntegral":{"integral":"100","integralLevel":"1","levelInt":"新手"},"vipInfo":{"DISK_1000001":"2048","DISK_1000002":"5120","DISK_1000003":"15","MAIL_2000001":"3","MAIL_2000002":"50","MAIL_2000003":"0","MAIL_2000004":"6000","MAIL_2000005":"2048","MAIL_2000006":"","MAIL_2000007":"普通款","MAIL_2000008":"0","MAIL_2000009":"0","MAIL_2000010":"普通款"},"mainUserConfig":{"shownewuserguide":["0",""],"usercustominfo":["0","agreeCheckBox=1&49=1"],"logintipsstate":["0","{'billTime':'','cloudPostTime':'2018-03-08','unifiedPositionTipTimes':'1','unifiedPositionTime':'2018-03-07','onlineContactTime':''}"]},"myapp":[{"id":"87","key":"2","name":"发彩信","state":"1"},{"id":"88","key":"3","name":"发贺卡","state":"1"},{"id":"89","key":"4","name":"明信片","state":"0"},{"id":"91","key":"6","name":"文件快递","state":"0"},{"id":"92","key":"7","name":"日程提醒","state":"0"},{"id":"93","key":"8","name":"收发传真","state":"0"},{"id":"96","key":"11","name":"彩云笔记","state":"1"},{"id":"97","key":"12","name":"彩云","state":"0"},{"id":"98","key":"13","name":"无线音乐","state":"0"},{"id":"286","key":"14","name":"附件夹","state":"1"},{"id":"486","key":"16","name":"通讯录","state":"0"},{"id":"487","key":"17","name":"日历","state":"0"},{"id":"488","key":"18","name":"精品订阅","state":"0"},{"id":"686","key":"19","name":"和阅读","state":"0"},{"id":"886","key":"20","name":"生日彩蛋","state":"0"},{"id":"1086","key":"22","name":"语音邮箱","state":"1"},{"id":"1286","key":"24","name":"传到手机","state":"1"}]},"mealInfo":{"serviceItem":"0015","serviceName":"免费版","0015":{"name":"免费版","price":"0元/月","priceValue":[0],"volume":"无限容量","volumeValue":[0],"attachSize":"2G","attachSizeValue":[2],"notifyFee":"免费无限量（短信、免提短信、彩信）","notifyFeeValue":[1000000,1000000],"freeSms":"赠送30条/月（超出按0.10元/条收费）","freeSmsValue":[30],"freeMms":"赠送20条/月（超出按0.30元/条收费）","freeMmsValue":[20],"maxRecipients":"50人","maxRecipientsValue":[50],"diskVolume":"16G","diskVolumeValue":[16],"diskSingleFileSize":"2G","diskSingleFileSizeValue":[2048],"largeattachVolume":"5G","largeattachVolumeValue":[5],"largeattachExpire":"15天","largeattachExpireValue":[15],"videomailRecordLimit":"3分钟","videomailRecordLimitValue":[3],"letterPapper":"有","letterPapperValue":[0],"greetingCard":"有","greetingCardValue":[0],"postcard":"有","postcardValue":[0],"skin":"有","skinValue":[0],"pushemailValue":[true],"aliasCount":"1个","aliasCountValue":[1],"aliasLength":"5个字符","aliasLengthValue":[5],"maxSmsRecipients":"平时：50|节假日：50","maxSmsRecipientsValue":[50,50],"maxMmsRecipients":"平时：50|节假日：50","maxMmsRecipientsValue":[50,50],"maxSmsDayLimit":"日封顶均为250条","maxSmsDayLimitValue":[250],"maxSmsMonthLimit":"月封顶均为2500条","maxSmsMonthLimitValue":[2500],"maxContactCount":"6000条","maxContactCountValue":[true],"diskShareCount":"20人","diskShareCountValue":[20],"largeattachMaxRecipients":"50人","largeattachMaxRecipientsValue":[50],"largeattachMaxFileCount":"10个","largeattachMaxFileCountValue":[10]},"0017":{"name":"20元版","price":"20元/月","priceValue":[20],"volume":"无限容量","volumeValue":[0],"attachSize":"4G","attachSizeValue":[4],"notifyFee":"免费无限量（短信、免提短信、短信邮件、彩信）","notifyFeeValue":[1000000,1000000],"freeSms":"赠送30条/月（超出按0.10元/条收费）","freeSmsValue":[30],"freeMms":"赠送20条/月（超出按0.30元/条收费）","freeMmsValue":[20],"maxRecipients":"400人","maxRecipientsValue":[400],"diskVolume":"32G","diskVolumeValue":[32],"diskSingleFileSize":"4G","diskSingleFileSizeValue":[4096],"largeattachVolume":"30G","largeattachVolumeValue":[30],"largeattachExpire":"90天","largeattachExpireValue":[90],"videomailRecordLimit":"10分钟","videomailRecordLimitValue":[10],"letterPapper":"VIP信纸专属10款","letterPapperValue":[10],"greetingCard":"VIP贺卡专属10款","greetingCardValue":[10],"postcard":"VIP明信片专属10款","postcardValue":[10],"skin":"VIP皮肤专属5款","skinValue":[5],"pushemailValue":[true],"aliasCount":"1个","aliasCountValue":[1],"aliasLength":"5个字符","aliasLengthValue":[5],"maxSmsRecipients":"平时：500|节假日：500","maxSmsRecipientsValue":[500,500],"maxMmsRecipients":"平时：500|节假日：500","maxMmsRecipientsValue":[500,500],"maxSmsDayLimit":"日封顶均为1000条","maxSmsDayLimitValue":[1000],"maxSmsMonthLimit":"月封顶均为10000条","maxSmsMonthLimitValue":[10000],"maxContactCount":"6000条","maxContactCountValue":[true],"diskShareCount":"100人","diskShareCountValue":[100],"largeattachMaxRecipients":"400人","largeattachMaxRecipientsValue":[400],"largeattachMaxFileCount":"100个","largeattachMaxFileCountValue":[100]},"0016":{"name":"5元版","price":"5元/月","priceValue":[5],"volume":"无限容量","volumeValue":[0],"attachSize":"4G","attachSizeValue":[4],"notifyFee":"免费无限量（短信、免提短信、短信邮件、彩信）","notifyFeeValue":[1000000,1000000],"freeSms":"赠送30条/月（超出按0.10元/条收费）","freeSmsValue":[30],"freeMms":"赠送20条/月（超出按0.30元/条收费）","freeMmsValue":[20],"maxRecipients":"200人","maxRecipientsValue":[200],"diskVolume":"16G","diskVolumeValue":[16],"diskSingleFileSize":"4G","diskSingleFileSizeValue":[4096],"largeattachVolume":"10G","largeattachVolumeValue":[10],"largeattachExpire":"30天","largeattachExpireValue":[30],"videomailRecordLimit":"10分钟","videomailRecordLimitValue":[10],"letterPapper":"VIP信纸专属5款","letterPapperValue":[5],"greetingCard":"VIP贺卡专属5款","greetingCardValue":[5],"postcard":"VIP明信片专属5款","postcardValue":[5],"skin":"VIP皮肤专属3款","skinValue":[3],"pushemailValue":[true],"aliasCount":"1个","aliasCountValue":[1],"aliasLength":"5个字符","aliasLengthValue":[5],"maxSmsRecipients":"平时：200|节假日：200","maxSmsRecipientsValue":[200,200],"maxMmsRecipients":"平时：200|节假日：200","maxMmsRecipientsValue":[200,200],"maxSmsDayLimit":"日封顶均为1000条","maxSmsDayLimitValue":[1000],"maxSmsMonthLimit":"月封顶均为5000条","maxSmsMonthLimitValue":[5000],"maxContactCount":"6000条","maxContactCountValue":[true],"diskShareCount":"100人","diskShareCountValue":[100],"largeattachMaxRecipients":"200人","largeattachMaxRecipientsValue":[200],"largeattachMaxFileCount":"50个","largeattachMaxFileCountValue":[50]}},"userMobileSetting":{"partner":"false","smsMMsInfo":{"PresentMmsCount":"0","PresentSmsCount":"0","UsedMmsCount":"0","UsedSmsCount":"0"},"serverDateTime":"2018-03-08 15:20:51"},"healthyHistory":{"totalScore":"0","lastUpdateTime":"","lastTipsTime":""},"birthdayRemind":{"mobiles":[]}}};
+	render("mwInfoSet", mwInfoSet);
+})();
+</script>
+
+<script>
+
+var initUnifiedPositionContentView = {
+	render: function(data) {
+		this.getActivityRecommandContent(data);
+		this.getActivityCalContent(data);
+		setTimeout(function() {
+	      top.NewAdLink = data;
+	    }, 0);
+	},
+	getActivityCalContent : function(data)
+	{
+		var str = "";
+		if(data && data["web_164"]) {
+			str = data["web_164"][0].content;//<a href="http://test.zone139.com:8003/jsp/CN201605A1/index.do?sid=">&lt;img src=&quot;=&quot;../resource/content/images/day_160809/201608090453376399.jpg&quot; &gt;</a>
+		}
+
+		if(window.location.protocol == "https:"){
+			str = str.replace(/http:\/\/images.139cm.com/g,"https://appmail.mail.10086.cn/images_139cm");
+		}
+
+	//	wrapper = $("#wrapper");
+		if(str) {
+			$("#wrapper").find(".calendarDay").append(str);//str == <a href="http://test.zone139.com:8003/jsp/CN201605A1/index.do?sid=">&lt;img src=&quot;=&quot;../resource/content/images/day_160809/201608090453376399.jpg&quot; &gt;</a>
+			$("#wrapper").find('a').css('display','none');//让图片隐藏
+			if($('#wrapper .calendarDay').find('#footballGame').length){  //英超联赛
+				$("#wrapper").find('a').attr('href','http://mail.10086.cn/footballGame/html/index.html?sid=' + top.sid);
+			}
+		}
+		//$('#wrapper .calendarDay').css('background',$('#wrapper .calendarDay').find('img').attr('src'));
+		
+		$("#wrapper").show();
+		if($('#wrapper .calendarDay').find('img').length)
+		{
+			$('#wrapper .calendarDay').css('backgroundImage','url('+$('#wrapper .calendarDay').find('img').attr('src')+')');
+		}
+	},
+	getActivityRecommandContent: function(data){
+		var html = "";	// todo default
+
+		if(data && data["web_163"]) {
+			html = data["web_163"][0].content;// + data["web_056"][0].content;
+			
+            
+		}
+
+		if(window.location.protocol == "https:"){
+			html = html.replace(/http:\/\/images.139cm.com/g,"https://appmail.mail.10086.cn/images_139cm");
+		}
+
+		var wrapper = $("#advertising");
+		if(html) {
+			wrapper.find("div>p").html(html);
+
+            
+		}
+		//wrapper.find("img").attr({width: 190, height: 104}); 
+		//wrapper.find("a").attr('href', 'https://happy.mail.10086.cn/jsp/web/cn/activity/activity_index.action');
+        //wrapper.find("img").attr('src', '/m2012/images/module/welcome/ad_20150702.png');
+		wrapper.show();
+		
+		html = "";
+		if(data && data["web_162"]) {
+			html = data["web_162"][0].content;// + data["web_056"][0].content;
+		}
+
+		if(window.location.protocol == "https:"){
+			html = html.replace(/http:\/\/images.139cm.com/g,"https://appmail.mail.10086.cn/images_139cm");
+		}
+
+		wrapper = $("#advertising2");
+		if(html) {
+			wrapper.find("div>p").html(html);
+		}
+		wrapper.show();
+		
+	}
+};
+
+</script>
+
+<script>
+(function(){
+	var mwUnifiedPositionContent = {"code":"S_OK","var":{"date":"2018-03-08 15:20:51","web_118":[{"positionId":6999,"content":"\u003ca href=\"http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201504C1&amp;sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005\" target=\"_blank\" thingid=\"4988\"\u003e\u003cimg alt=\"\" src=\"/m2012/images/module/welcome/ad_20150702.png\" width=\"190\" height=\"125\" /\u003e\u003c/a\u003e","contentId":"7782","contentType":"0","readStatus":"9","expand2":"0|"}],"web_100":[{"positionId":6175,"content":"\u003cdiv class=\"prizeBox\" style=\"left: 60%; top: 0px; position: absolute; z-index: 9999;\"\u003e\u003cspan class=\"prize_line\" style=\"background: url('http://images.139cm.com/web_content_op/content/images/day_180227/201802270520212503.png') repeat-y; width: 2px; height: 28px; margin-left: 18px; vertical-align: middle; display: block;\"\u003e\u003c/span\u003e\u003cdiv class=\"prize\" style=\"background: url('http://images.139cm.com/web_content_op/content/images/day_180227/201802270520394978.png') no-repeat; width: 38px; height: 38px; margin-top: -11px; vertical-align: middle; display: inline-block; position: relative; cursor: pointer;\" onclick=\"top.addBehaviorExt({actionId:8000 , thingId:21892});\" dosomething=\"http://pushemail.10086.cn/download/index/signWeb.html\"\u003e\u003cspan class=\"prizeInfo\" style=\"color:#666666;padding: 0px 6px; border: 1px solid rgb(203, 203, 158); left: 42px; top: 8px; line-height: 23px; display: none; white-space: nowrap; position: absolute; background-color: rgb(255, 255, 225); border-image: none;\"\u003e\u003ci style=\"background: url('../images/201312/prize_01.png') no-repeat -33px -20px; left: -5px; top: 9px; width: 5px; height: 7px; display: inline-block; position: absolute;\"\u003e\u003c/i\u003e点亮139赢好礼\u003c/span\u003e\u003c/div\u003e\u003c/div\u003e","contentId":"29667","contentType":"0","readStatus":"9","expand2":"0|"}],"web_162":[{"positionId":13260,"content":"\u003ca href=\"https://fun.mail.10086.cn/edm/1711/1114/index.html\" target=\"_blank\"\u003e\u003cimg alt=\"\" src=\"http://images.139cm.com/web_content_op/content/images/day_171204/201712040511167021.png\" /\u003e\u003c/a\u003e","contentId":"27975","contentType":"0","readStatus":"9","expand2":"0|"}],"web_163":[{"positionId":13262,"content":"\u003ca href=\"http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&amp;sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005\" target=\"_blank\"\u003e\u003cimg alt=\"\" src=\"http://images.139cm.com/m2015/images/ad/activity1.jpg\" /\u003e\u003c/a\u003e","contentId":"14062","contentType":"0","readStatus":"9","expand2":"0|"}],"web_164":[{"positionId":15761,"content":"\u003ca href=\"http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&amp;flag=0&amp;sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005\" target=\"_blank\"\u003e\u003cimg alt=\"\" src=\"http://images.139cm.com/web_content_op/content/images/day_171219/201712190517011481.jpg\" /\u003e\u003c/a\u003e","contentId":"28026","contentType":"0","readStatus":"9","expand2":"0|"}]}};
+	render("mwUnifiedPositionContent", mwUnifiedPositionContent);
+})();
+</script>
+
+<script>
+(function(){
+	var CalendarView = {"code":"S_OK","summary":"","table":{"235424088_2":{"seqNo":235424088,"isInvitedCalendar":0,"isSharedCalendar":0,"isSubCalendar":1,"status":1,"labelId":8333,"endDate":"2018-03-05","endTime":1000,"color":"#b8d4ff","title":"今日惊蛰：【养生】饮食起居应顺肝之性","site":"","content":"惊蛰（jīng zhé），是24节气中的第三个节气。每年3月5日或6日，太阳到达黄经345度时即为惊蛰，这时气温回升较快，渐有春雷萌动，惊蛰的意思是天气回暖，春雷始鸣，惊醒蛰伏于地下冬眠的昆虫。蛰是藏的意思。【推荐食谱】鸭血菠菜汤、白菜绿豆芽饮、桑椹桂圆饮、芹菜粥","startDate":"2018-03-05","startTime":1000,"calendarType":10,"dateFlag":"0305","week":"0305","enable":"1","sendInterval":0,"specialType":0,"dtStart":"2018-03-05 10:00:00","dtEnd":"2018-03-05 10:00:00","createTime":"2017-02-13 18:08:41","untilDate":"2018-03-05","allDay":0,"inviteinfo":[]},"235424594_2":{"seqNo":235424594,"isInvitedCalendar":0,"isSharedCalendar":0,"isSubCalendar":1,"status":1,"labelId":8333,"endDate":"2018-03-21","endTime":1000,"color":"#b8d4ff","title":"今日春分：【养生】保持人体的阴阳平衡状态","site":"","content":"【介绍】春分，古时又称为“日中”、“日夜分”、“仲春之月”，在每年的3月21日前后(20日～22日)交节，农历日期不固定，这时太阳到达黄经0°。【推荐食谱】韭菜粥、山药核桃羹、燕窝炖冰糖、鲍鱼龙眼麦冬汤、姜葱鲩鱼。","startDate":"2018-03-21","startTime":1000,"calendarType":10,"dateFlag":"0321","week":"0321","enable":"1","sendInterval":0,"specialType":0,"dtStart":"2018-03-21 10:00:00","dtEnd":"2018-03-21 10:00:00","createTime":"2017-02-13 18:12:50","untilDate":"2018-03-21","allDay":0,"inviteinfo":[]}},"var":{"2018-03-05":{"isMore":1,"info":["235424088_2","235424088_2"]},"2018-03-21":{"isMore":1,"info":["235424594_2","235424594_2"]}}};
+	render("CalendarView", CalendarView);
+})();
+</script>
+</body><div id="yiButton" style="display: none;">翻译</div><div id="onLineTransBu" style="display: none;"><img id="loading" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/loading.gif">网页翻译中...</div><div id="onLineFailResult" style="display: none;">翻译失败...</div><div id="C_outerbox_trans_div" class="C_outerbox_up" style="display: none;"><div id="C_cententbox_trans_div"><div id="cententbox_beforeFixBox"><p id="C_ptitle_trans_p">原文</p><p id="C_esay_trans_p"></p><div id="C_bottomdiv_trans_div"><img id="C_bottomimg_trans_img" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/img_logo.png" style="cursor: pointer;"><a id="C_bottoma_trans_a">翻译纠错<img id="hrefa" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/IconArrowRight.png"></a></div></div><div id="cententbox_afterFixBox"><p id="cententbox_trans_fix_error">翻译纠错</p><div id="cententbox_trans_fix_box"><textarea id="cententbox_trans_fix_content"></textarea><button id="cententbox_comfirmfix">确定</button></div></div></div><div id="C_innerbox_trans_div" class="C_innerbox_up"></div></div><div id="trans_yiwen_outerDiv" class="C_outerbox_up" style="display: none;"><div id="trans_yiwen_content"><div id="beforeFixBox"><p id="trans_yiwen_title">译文</p><p id="trans_yiwen_easy"></p><div id="trans_yiwen_bottomdiv"><img id="trans_yiwen_bottom_img" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/img_logo.png" style="cursor: pointer;"><a id="trans_yiwen_bottom_a">翻译纠错<img id="trans_yiwen_bottom_a_img" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/IconArrowRight.png"></a></div></div><div id="afterFixBox"><p id="trans_fix_error">翻译纠错</p><div id="trans_fix_box"><textarea id="trans_fix_content"></textarea><button id="comfirmfix">确定</button></div></div></div><div id="trans_yiwen_innerDiv" class="C_innerbox_up"></div></div><div id="trans_word_outerDiv" class="C_outerbox_up" style="display: none;"><div id="trans_word_content"><div id="trans_word_head"><p id="trans_word_title"></p><p id="trans_word_easy"></p></div><div id="eachcharadiv"></div><div id="trans_word_bottomdiv"><img id="trans_word_bottom_img" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/img_logo.png" style="cursor: pointer;"></div></div><div id="trans_word_innerDiv" class="C_innerbox_up"></div></div><div id="trans_box" style="display: none;"><img id="trans_finish" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/IconFinsh.png"><translatebox id="trans_ptitle">是否将当前网页翻译成中文?</translatebox><div id="trans_spanPic" style="background: url(&quot;chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/arrowdownNormal.png&quot;) center center no-repeat;"></div><ul id="trans_buttonfalselist"><li class="buttonfalselistLi thisNoTip">此网站不再提醒</li><li class="buttonfalselistLi allNoTip">所有网站不再提醒</li></ul><div id="trans_buttonfalse">关闭</div><button id="trans_buttonCompare">中英对照</button><button id="trans_buttontrue">翻译网页</button></div><div id="transAutoBox" style="display: none;"><translatebox id="transAutoBox_ptitle">自动翻译已开启</translatebox><div id="transAutoBox_cancle">去设置</div><div id="transAutoBox_close" style="background: url(&quot;chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/BtnClose2Normal.png&quot;) center center no-repeat;"></div></div><div id="compareOuter" style="position: absolute; height: 0px; left: 0px;"><div id="compareInner"><h1 id="titleCompareUp"></h1><h1 id="titleCompareDown"></h1><div id="innerLeft"></div><div id="innerRight"></div></div><div id="compareLoading"><img id="comparing" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/loading.gif">正在翻译...</div><div id="compareFail"><img id="compareFailImg" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/ImgError.png"><h1 id="transFail">翻译失败</h1><p id="transP">未能获得中英文对照翻译结果</p><div id="buttonBottom"><button id="againButton">重试</button><button id="returnButton">返回</button></div></div><div id="closeCompare"><a id="feedBackTrans" target="_blank" href="http://bbs.browser.qq.com/thread-241037-1-1.html">我要反馈</a><img id="closeImg" src="chrome-extension://hlppekcioiicbfafmmgikkdkljnjpiao/images/timg.png"></div><div id="whiteDiv"></div></div></html>

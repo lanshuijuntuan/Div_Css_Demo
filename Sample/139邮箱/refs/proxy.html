@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://smsrebuild1.mail.10086.cn//proxy.htm -->
+<html id="pageLoading" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="IE=EmulateIE7" http-equiv="X-UA-Compatible">
+<script type="text/javascript">
+document.domain=window.location.host.match(/[^.]+\.[^.]+$/)[0].replace(/:\d+/,"");
+if (top.loadScript) {
+    top.loadScript("jquery.js", document);
+}
+String.prototype.trim = function(){
+	return this.replace(/^\s+|\s+$/g, "");
+}
+    window._ajax = {
+    _objPool: [],
+    _getInstance: function() {
+        for (var i = 0; i < this._objPool.length; i++) {
+            if (this._objPool[i].readyState == 0 || this._objPool[i].readyState == 4) {
+                return this._objPool[i];
+            }
+        }
+        this._objPool[this._objPool.length] = this._createObj();
+        return this._objPool[this._objPool.length - 1];
+    },
+    _createObj: function() {
+        if (window.XMLHttpRequest) {
+            var objXMLHttp = new XMLHttpRequest();
+        }
+        else {
+            var MSXML = ['MSXML2.XMLHTTP.5.0', 'MSXML2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP', 'Microsoft.XMLHTTP'];
+            for (var n = 0; n < MSXML.length; n++) {
+                try {
+                    var objXMLHttp = new ActiveXObject(MSXML[n]);
+                    break;
+                }
+                catch (e) {
+                }
+            }
+        }
+        if (objXMLHttp.readyState == null) {
+            objXMLHttp.readyState = 0;
+            objXMLHttp.addEventListener("load", function() {
+                objXMLHttp.readyState = 4;
+                if (typeof objXMLHttp.onreadystatechange == "function") {
+                    objXMLHttp.onreadystatechange();
+                }
+            }, false);
+        }
+        return objXMLHttp;
+    },
+    post: function(url, data, callback,isSyn) {
+        if (typeof data == "string") {
+            data = data.trim();
+        }
+        this.SendRequest("post", url, data, callback,isSyn)
+    },
+    get: function(url, data, callback,isSyn) {
+        this.SendRequest("get", url, data, callback,isSyn)
+    },
+    /// 开始发送请求    
+    SendRequest: function(method, url, data, callback,isSyn) {
+        var objXMLHttp = this._getInstance();
+		if(typeof isSyn=='undefined'){isSyn = true};
+        with (objXMLHttp) {
+            try {
+                if (url.indexOf("?") > 0) {
+                    url += "&randnum=" + Math.random();
+                }
+                else {
+                    url += "?randnum=" + Math.random();
+                }
+                open(method, url,isSyn);
+                setRequestHeader("Content-Type", "application/xml");
+                setRequestHeader("Accept", "text/javascript");
+                send(data);
+                onreadystatechange = function() {
+                    // if(objXMLHttp.readyState == 4)
+                    //   alert(objXMLHttp.status)
+                    if (objXMLHttp.readyState == 4 && ((objXMLHttp.status >= 200 && objXMLHttp.status < 300) || objXMLHttp.status == 304)) {
+                        callback(responseText);
+                    }
+                }
+            }
+            catch (e) {
+                //alert(e);
+                top.FloatingFrame.alert(UtilsMessage["UtilsNoloadError"]);
+            }
+        }
+    }
+};
+
+
+
+</script>
+<title>139邮箱</title>
+
+</head>
+<body>
+
+
+
+</body></html>
