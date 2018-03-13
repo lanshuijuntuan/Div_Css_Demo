@@ -738,7 +738,7 @@
     <script id="shortcut_key" charset="utf-8" src="refs/shortcutkey.pack.js" defer="" type="text/javascript"></script>
 </head>
 
-<body style="overflow-x: auto; overflow-y: hidden; position: relative; width: 1039px;" class="bodycolor"
+<body style="overflow-x: auto; overflow-y: hidden; position: relative;" class="bodycolor"
       id="view_0.3001231527963495">
 <div id="LoginLoadingTip">
     <script>
@@ -1130,12 +1130,9 @@
         <li id="logout" class="newLogoInfo_li">
             <a href="javascript:;" bh="top_logout" class="newLogoInfo_a"><i>退出</i></a>
         </li>
-        <li id="togAudioBox" class="newLogoInfo_li off" style="display: none;">
-            <a href="javascript:void(0);" class="i_musicIco newLogoInfo_a"><i></i></a>
-        </li>
+
     </ul>
-    <iframe id="audioBox" src="refs/saved_resource.html" frameborder="0" class="musicPop shadow"
-            style="height: 284px; width:240px;position:absolute;right:10px;_right:10px; top:36px;display:none;"></iframe>
+
 </div>
 <div id="mainContentBox" class="bodyBg Loading_Hidden" style="height: 908px; display: block;">
     <div class="header" id="header">
@@ -1689,45 +1686,7 @@
             <p><br></p></div>
     </div>
 
-    <div id="appSpecial" class="appSpecial">
-        <div class="appspecial_wraper clearfix">
-            <div id="appList_mini" class="apps_wraper_l" style="height: auto; width: 178px; display: none;">
-                <i class="icons i-app-trangle"></i>
-                <a href="javascript:void(0)" class="apps_set"><i class="icons i-app-set"></i></a>
-                <div class="apps_list">
-                    <ul style="display: block;">
-                        <li>
-                            <div onclick="javascript:$App.jumpTo(&#39;greetingcard&#39;)" class="appsDiv"
-                                 title="精美的FLASH贺卡，为朋友送去最真诚的祝福" bh="left_grettingcard"><i
-                                    class="icons i-app-fhk"></i><span>发贺卡</span></div>
-                        </li>
-                        <li>
-                            <div onclick="javascript:top.$App.showQuestionSurvey();" class="appsDiv"
-                                 title="轻度的问卷制作，深度的行业调研" bh=""><i class="icons i-app-paper"></i><span>问卷调研</span></div>
-                        </li>
-                        <li>
-                            <div onclick="javascript:top.$App.showVote();" class="appsDiv" title="简单、便捷的统计在线投票活动"
-                                 bh="voteSpecial"><i class="icons i-app-vote"></i><span>在线投票</span></div>
-                        </li>
-                        <li>
-                            <div id="moreApp" class="appsDiv"><i class="icons i-app-gdyy"></i><span>更多应用</span></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div id="appList_full" class="apps_wraper_r" style="display: none;">
-                <i class="icons i-app-trangle"></i>
-                <div class="apps_r_top">
-                    <i class="icons i-app-set"></i><i class="icons i-app-reduce"></i>
-                </div>
-                <div class="apps_r_b">
-                    <ul class="clearfix">
 
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="main" id="main" style="height: 836px; left: 201px;">
         <div class="TransparentBg clearfix" id="div_main" style="">
@@ -1961,102 +1920,6 @@
         type="text/javascript" src="refs/m139.core.pack.js"></script>
 <script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8"
         type="text/javascript" src="refs/m2012.ui.common.pack.js"></script>
-<script>
-    top.MusicBox = function () {
-        var VISIBLE = false;
-        var MUSIC_BOX_LOADED = false;
-
-        var audioBox = $('#audioBox');
-        var toggleBtn = $("#togAudioBox");
-
-        return {
-            load: function (callback) {
-                if (audioBox.prop("src").indexOf(getRootPath() + "/html/music_box.html") != -1) return;
-                audioBox.attr("src", getRootPath() + "/html/music_box.html");
-
-                //warn 重新加载框架时，不要再引用回调
-                audioBox.one("load", function () {
-                    console.log("music box loaded");
-                    MUSIC_BOX_LOADED = true;
-                    if (typeof callback == "function") {
-                        callback();
-                    }
-                });
-                top.addBehavior("music_box_load");
-            },
-            ready: function () {  // not a good name
-                return MUSIC_BOX_LOADED;
-            },
-            addMusic: function (instantPlay, playList) {
-                var frameWin;
-                if (audioBox.length < 1) return;
-
-                frameWin = audioBox[0].contentWindow;
-
-                if (MUSIC_BOX_LOADED) {
-                    frameWin.onAddMusic(instantPlay, playList);
-                } else {
-                    this.load(function () {
-                        frameWin.onAddMusic(instantPlay, playList);
-                    });
-                    toggleBtn.show();   // ...
-                }
-            },
-            getMusicAddr: function (id, callback) {
-                M139.RichMail.API.call("disk:getFile", {fileId: id}, function (result) {
-                    var data = null;
-                    if (result && (data = result.responseData)) {
-                        callback(data["var"]);
-                    } else {
-                        callback(); // 无返回数据
-                    }
-                });
-            },
-            show: function () {
-                //if(VISIBLE) return ;
-                audioBox.show();
-                VISIBLE = true;
-                var v = $App.getView("top");
-                v && v.resetTopFixTabsCssAndDropdown(document.getElementById("audioBox"));
-            },
-            hide: function (onlyHideSelf) {
-                //if(!VISIBLE) return ;
-                audioBox.hide();
-                VISIBLE = false;
-                if (onlyHideSelf) {
-                    return;
-                }
-                var v = $App.getView("top");
-                v && v.resetTopFixTabsCssAndDropdown(document.getElementById("audioBox"));
-            },
-            showPlayStatus: function (play) {
-                if (play) {
-                    toggleBtn.removeClass("off").addClass("on");
-                } else {
-                    toggleBtn.removeClass("on").addClass("off");
-                }
-            },
-            toggle: function () {
-                VISIBLE ? this.hide() : this.show();
-            },
-            changeSkin: function () {
-            }
-        };
-    }();
-
-    $("#togAudioBox").click(function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        //MusicBox.ready() || MusicBox.load();
-        MusicBox.toggle();
-    });
-
-    setTimeout(function () {
-        $("#umcboxpluginbar, #umcboxpluginbar a").click(function (e) {
-            MusicBox.hide();
-        });
-    }, 3000);
-</script>
 </div>
 
 <div class="dRound skinPop" style="left:442px;top:36px; display:none;">
@@ -2633,18 +2496,6 @@
       showkey="0.3341224423472957">正在加载....</span>
 <div id="dragBasket" style="position:absolute;z-index:9999;display:none"><span class="msg msgYellow"><i
         class="i_t_move"></i> <span id="dragtips">移动n封邮件</span></span></div>
-<div id="cordlampBox">
-    <div class="prizeBox" style="left: 60%; top: 0px; position: absolute; z-index: 9999;"><span class="prize_line"
-                                                                                                style="background: url(&#39;http://images.139cm.com/web_content_op/content/images/day_180227/201802270520212503.png&#39;) repeat-y; width: 2px; height: 28px; margin-left: 18px; vertical-align: middle; display: block;"></span>
-        <div class="prize"
-             style="background: url(&quot;http://images.139cm.com/web_content_op/content/images/day_180227/201802270520394978.png&quot;) no-repeat; width: 38px; height: 38px; margin-top: -11px; vertical-align: middle; display: inline-block; position: relative; cursor: pointer; top: 0px;"
-             onclick="top.addBehaviorExt({actionId:8000 , thingId:21892});"
-             dosomething="http://pushemail.10086.cn/download/index/signWeb.html"><span class="prizeInfo"
-                                                                                       style="color:#666666;padding: 0px 6px; border: 1px solid rgb(203, 203, 158); left: 42px; top: 8px; line-height: 23px; display: none; white-space: nowrap; position: absolute; background-color: rgb(255, 255, 225); border-image: none;"><i
-                style="background: url(&#39;../images/201312/prize_01.png&#39;) no-repeat -33px -20px; left: -5px; top: 9px; width: 5px; height: 7px; display: inline-block; position: absolute;"></i>点亮139赢好礼</span>
-        </div>
-    </div>
-</div>
 <iframe src="refs/proxy(1).html" style="display:none"></iframe>
 <div id="qb-sougou-search" style="display: none; opacity: 0;"><p>搜索</p>
     <p class="last-btn">复制</p>

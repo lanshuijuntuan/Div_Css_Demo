@@ -1917,6 +1917,7 @@ var M139;
             var r = this._configs[e];
             r || (r = this._configs[e] = {}), r[t] = n, this.trigger("update", {configName: e, key: t, value: n})
         }, getConfig: function (e, t) {
+        }, getConfig: function (e, t) {
             return 1 == arguments.length ? this._configs[e] : this._configs[e] && this._configs[e][t]
         }, showAll: function () {
             try {

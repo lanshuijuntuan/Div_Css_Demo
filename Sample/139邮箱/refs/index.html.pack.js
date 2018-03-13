@@ -6908,7 +6908,8 @@ M139.namespace("M2012.History", {
             return "83" === this.getProvCode()
         },
         isChinaMobileUser: function () {
-            return this.getProvCode() <= 31
+            return false;
+            // return this.getProvCode() <= 31
         },
         isPrettyNumberUser: function () {
             if (!$App.getConfig("UserData"))return !1;
@@ -30642,7 +30643,7 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
     } catch (e) {
     }
 }), M139.core.namespace("M139.UI.WGuide", Backbone.View.extend({
-    template: ['<div class="norTips" id="wGuideBox">', '<a class="i_t_close DL_CloseBut CloseButton" style="top:11px;right:11px;" title="关闭" href="javascript:;"></a>', '<div class="assistant-guide">', '<div class="guide-head"></div>', '<div class="guide-list clearfix">', "<% if (isChinaMobileUser) { %>", "<ul>", '<li class="clearfix">', '<span class="class-name">邮箱短信提醒：</span>', '<div class="class-check">', '<span class="mr_15"><input type="checkbox" class="chk-m139check" checked="checked"><label id="chkOpen" style="background-image:url(/m2015/images/global/global_v3_24.png)" for="chkUrgent" class="i-chooseMo i-chooseYet">&nbsp;&nbsp;&nbsp;&nbsp;</label>开启</span>', '<span class="mr_15"><input type="checkbox" class="chk-m139check" checked="checked"><label id="chkClose" style="background-image:url(/m2015/images/global/global_v3_24.png)" for="chkUrgent" class="i-chooseMo">&nbsp;&nbsp;&nbsp;&nbsp;</label>关闭</span>', "</div>", '<p id="wgCloseExp" class="class-check-tips" style="display:none">温馨提示：开启短信提醒后，接收邮件到达提醒</p>', "</li>", "</ul>", "<% } %>", "</div>", '<div class="guide-maylike clearfix">', '<h3 class="headtop clearfix">猜您喜欢：</h3>', '<div class="innercon clearfix">', '<ul id="commend_List">', "</ul>", "</div>", "</div>", "</div>", "</div>"].join(""),
+    template: ['<div class="norTips" id="wGuideBox">', '<a class="i_t_close DL_CloseBut CloseButton" style="top:11px;right:11px;" title="关闭" href="javascript:;"></a>', '<div class="assistant-guide">', '<div class="guide-head"></div>', '<div class="guide-list clearfix">', "<% if (isChinaMobileUser) { %>", "<ul>", '<li class="clearfix">', '<span class="class-name">邮箱短信提醒：</span>', '<div class="class-check">', '<span class="mr_15"><input type="checkbox" class="chk-m139check" checked="checked"><label id="chkOpen" style="background-image:url(/refs/global_v3_24.png)" for="chkUrgent" class="i-chooseMo i-chooseYet">&nbsp;&nbsp;&nbsp;&nbsp;</label>开启</span>', '<span class="mr_15"><input type="checkbox" class="chk-m139check" checked="checked"><label id="chkClose" style="background-image:url(/refs/global_v3_24.png)" for="chkUrgent" class="i-chooseMo">&nbsp;&nbsp;&nbsp;&nbsp;</label>关闭</span>', "</div>", '<p id="wgCloseExp" class="class-check-tips" style="display:none">温馨提示：开启短信提醒后，接收邮件到达提醒</p>', "</li>", "</ul>", "<% } %>", "</div>", '<div class="guide-maylike clearfix">', '<h3 class="headtop clearfix">猜您喜欢：</h3>', '<div class="innercon clearfix">', '<ul id="commend_List">', "</ul>", "</div>", "</div>", "</div>", "</div>"].join(""),
     initialize: function (e) {
         var t = this;
         t.render(), t.initView(), t.initEvents()
