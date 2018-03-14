@@ -45,7 +45,7 @@ $(function () {
 
         events: {
             "click .toggle": "toggleDone",
-            "dbclick .view": "edit",
+            "dblclick .view": "edit",
             "click a.destroy": "clear",
             "keypress .edit": "updateOnEnter",
             "blur .edit": "close"
@@ -85,7 +85,9 @@ $(function () {
         },
 
         updateOnEnter: function (e) {
-            if (e.keyCode == 13) this.close();
+            if (e.keyCode == 13) {
+                this.close();
+            }
         },
 
         clear: function () {
@@ -101,7 +103,7 @@ $(function () {
         events: {
             "keypress #new-todo": "createOnEnter",
             "click #clear-completed": "clearCompleted",
-            "click #toggle-all": "toggleAllComplete"
+            "click #toggle-all": "toggleAllCompleted"
         },
 
         initialize: function () {
