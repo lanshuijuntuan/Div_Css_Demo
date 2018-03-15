@@ -7,12 +7,12 @@
     <title>139邮箱</title>
     <script type="text/javascript">
         /*
-        _udata 用户数据：
-        setStartTime :启动时间  比如： Fri Mar 09 2018 16:29:04 GMT+0800 (中国标准时间)
-        setAccount:账户数据 比如："18613981220@139.com"
-        setAutoPageView  自动页面 比如 false
+         _udata 用户数据：
+         setStartTime :启动时间  比如： Fri Mar 09 2018 16:29:04 GMT+0800 (中国标准时间)
+         setAccount:账户数据 比如："18613981220@139.com"
+         setAutoPageView  自动页面 比如 false
 
-        */
+         */
         //   设置_udata的启动时间
         var _udata = _udata || [];
         _udata.push(["setStartTime", new Date()]);
@@ -25,20 +25,20 @@
             }
         }
 
-//        设置文档域 比如 为 10086.cn
+        //        设置文档域 比如 为 10086.cn
         //document.domain=window.location.host.match(/[^.]+\.[^.]+$/)[0];
 
-//        获取当期使用使用协议 http  或者 https
+        //        获取当期使用使用协议 http  或者 https
         function getProtocol() {
             return window.location.protocol + "//";
         }
-//设置m2012ResourceDomain的值为  images.139cm.com
+        //设置m2012ResourceDomain的值为  images.139cm.com
         var m2012ResourceDomain = getProtocol() + location.host;
         if (document.domain == "10086.cn" && window.location.href.indexOf("reload=true") == -1 && window.location.protocol == "http:") {
             m2012ResourceDomain = /appmail3/.test(location.host) ? getProtocol() + "image0.139cm.com" : getProtocol() + "images.139cm.com";
         }
 
-//        设置和检查当前版本号 currentVersion=2.5 最终为2.5，根据版本号使用不同的根目录，最终使用的是 /m2015 的根目录
+        //        设置和检查当前版本号 currentVersion=2.5 最终为2.5，根据版本号使用不同的根目录，最终使用的是 /m2015 的根目录
         var currentVersion = "2.5";
         var versionMath = location.href.match(/[?&]v=([0-9]*)/);
         if (versionMath && versionMath[1] >= 25) {
@@ -52,7 +52,7 @@
             }
         }
 
-//        根据版本号 返回根目录路径
+        //        根据版本号 返回根目录路径
         function getRootPath() {
             if (currentVersion == "2.5") {
                 return "/m2015";
@@ -61,7 +61,7 @@
             }
         }
 
-//        动态加载Js版本
+        //        动态加载Js版本
         function loadScript(path, _doc, charset, rootPath) {
             //fixed proxy.htm
             if (path === "jquery.js") {
@@ -106,7 +106,7 @@
             }
             (_doc || document).write("<script jsonload='0' onload='this.setAttribute(\"jsonload\",\"1\")' " + (charset ? "charset=\"" + charset + "\" " : "") + " type=\"text/javascript\" src=\"" + path + "\"></" + "script>");
         }
-//        指定m139LoadScript函数
+        //        指定m139LoadScript函数
         var m139LoadScript = loadScript, resetDiskSelect = true;//网盘目录记忆功能清空
 
         function getResourceVersion(path) {
@@ -317,172 +317,6 @@
                 $(".Loading_Hidden").show();
             }
         };
-
-        /**
-         精简版日志上报
-         */
-        (function () {
-            var HealthCheckModule = {
-                timeMap: {}, //记录时间戳的map
-                startHealthCheck: function () {
-                    var This = this;
-
-                    function setTimestamp(key) {
-                        if (!This.timeMap[key]) {
-                            This.timeMap[key] = new Date();
-                        }
-                    }
-
-                    var check_map = {
-                        M139: function () {
-                            return !!window.M139;
-                        },
-                        TopWin: function () {
-                            return window == top;
-                        },
-                        M2012: function () {
-                            return !!window.M2012;
-                        },
-                        SiteConfig: function () {
-                            return !!window.SiteConfig;
-                        },
-                        jQuery: function () {
-                            return !!window.jQuery;
-                        },
-                        Folders: function () {
-                            if (document.getElementById("li_mailbox") != null) {
-                                setTimestamp("folders");
-                                return true;
-                            }
-                            return false;
-                        },
-                        Welcome: function () {
-                            //var result = !!(window.jQuery && $("#adv2", $("iframe[id=welcome]")[0].contentWindow.document).children().length > 0);
-                            if (window.WELCOME_LOADED) {
-                                setTimestamp("welcome");
-                                return true;
-                            }
-                        }
-                    };
-                    var errList;
-                    var interval = 500;
-                    var stopLog = 1000 * 65 / interval;
-                    var timer = setInterval(watch, interval);
-                    var count = 0;
-
-                    function watch() {
-                        count++;
-                        var time = count * interval;
-                        if (isSucc()) {
-                            clearInterval(timer);
-                            This.logLoginSuccess(time);
-                        } else {
-                            //15s,25s...65s
-                            if (count >= 30 && (count - 30) % 20 == 0) {
-                                if (count <= stopLog) {
-
-                                    if (IndexHTML.cssErrorList.length > 0) {
-                                        errList = errList.concat(IndexHTML.cssErrorList);
-                                    }
-                                    This.logLoginUnSuccess(time, errList.join(","));
-                                }
-                            }
-                        }
-                    }
-
-                    function isSucc() {
-                        var error = [];
-                        for (var p in check_map) {
-                            if (!check_map[p]()) {
-                                error.push(p);
-                            }
-                        }
-                        if (error.length > 0) {
-                            errList = error;
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    }
-                },
-                sendLog: function (logInfo) {
-                    var log = '<object><string name="version">m2012</string><array name="messages"><object>';
-                    //noencode
-                    for (var p in logInfo) {
-                        log += '<string name="' + p.toUpperCase() + '">' + logInfo[p] + '</string>';
-                    }
-                    log += '</object></array></object>';
-                    var url = (window.SiteConfig && SiteConfig.scriptLog) || "/mw2/weather/weather?func=user:monitorLogAction";
-                    url += "&sid=" + this.getSid();
-                    LightHttpClient.post({
-                        url: url,
-                        data: log
-                    });
-                },
-                logLoginSuccess: function (time) {
-                    var fromLoginTime = "";
-                    var welcomeLoadTime = "";
-                    var loginCguid = $Url.queryString("cguid");
-                    if (loginCguid) {
-                        var lDate = M139.Text.Utils.getDateTimeFromCGUID(loginCguid);
-                        if (lDate) {
-                            var folderTime = this.timeMap["folders"];
-                            if (folderTime < lDate) {
-                                lDate.setDate(lDate.getDate() - 1);//跨天了
-                            }
-                            fromLoginTime = folderTime - lDate;
-                            welcomeLoadTime = this.timeMap["welcome"] - lDate;
-                        }
-                    }
-                    this.sendLog({
-                        time: time,
-                        name: "LOGINSUCCESS",
-                        level: "INFO",
-                        serviceTime: $Url.queryString("mtime"),
-                        fromLoginTime: fromLoginTime,
-                        welcomeLoadTime: welcomeLoadTime,
-                        loginCguid: loginCguid
-                    });
-                },
-                logLoginUnSuccess: function (time, errObj) {
-                    this.sendLog({
-                        level: "ERROR",
-                        time: time,
-                        runtime: time,
-                        name: "LOGINERROR",
-                        errorObj: errObj,
-                        commonlog: "[" + time + "]LOGINERROR:" + errObj //兼容老版本格式(监控采集)
-                    });
-                },
-                getSid: function () {
-                    return location.href.match(/sid=([^&]+)/)[1];
-                }
-            };
-            var LightHttpClient = {
-                post: function (options) {
-                    var xhr = this.getXHR();
-                    xhr.open("post", options.url, true);
-                    xhr.send(options.data || null);
-                },
-                getXHR: function (options) {
-                    var win = (options && options.window) || window;
-                    if (win.XMLHttpRequest) {
-                        return new win.XMLHttpRequest();
-                    } else {
-                        var MSXML = ['MSXML2.XMLHTTP.5.0', 'MSXML2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'Microsoft.XMLHTTP'];
-                        for (var n = 0; n < MSXML.length; n++) {
-                            try {
-                                return new win.ActiveXObject(MSXML[n]);
-                                break;
-                            } catch (e) {
-                            }
-                        }
-                    }
-                }
-            };
-            HealthCheckModule.startHealthCheck();
-            window.HealthCheckModule = HealthCheckModule;
-        })(window);
 
     </script>
     <style>
@@ -733,7 +567,7 @@
     <link rel="stylesheet" type="text/css" cssonload="1" href="refs/global_v3.css">
     <link rel="stylesheet" type="text/css" cssonload="1" href="refs/frame_v3.css">
     <link rel="stylesheet" type="text/css" cssonload="1" href="refs/inbox_v3.css">
-    <script id="UMC_SSO_BOX_PACK" src="refs/plugin" defer="" type="text/javascript"></script>
+    <script id="UMC_SSO_BOX_PACK" src="refs/plugin.js" defer="" type="text/javascript"></script>
     <link href="refs/txz.css" rel="stylesheet" type="text/css">
     <script id="shortcut_key" charset="utf-8" src="refs/shortcutkey.pack.js" defer="" type="text/javascript"></script>
 </head>
@@ -928,8 +762,6 @@
         <i class="i-red_dot" id="msgBoxComing" style="position:absolute; left:20px; display:none; top:5px;"></i>
     </a>
     <ul id="toFixTabs" class="newMenu">
-        <li id="toptab_welcome" name="welcome" channel="welcome" style="display: none;"><a
-                href="javascript:$App.showChannel(&#39;welcome&#39;)"><i>首页</i></a></li>
         <li id="toptab_mailbox" name="mailbox_1" channel="mail" bh="top_mail" class="on"><a
                 href="javascript:$App.showChannel(&#39;mail&#39;)"><i>邮件</i></a></li>
         <li id="toptab_addr" name="addr" channel="addr"><a href="javascript:$App.showChannel(&#39;addr&#39;)"><i>通讯录</i></a>
@@ -940,8 +772,7 @@
                                                                  bh="top_disk"><i>彩云网盘</i></a></li>
         <li id="toptab_googSubscription" name="googSubscription" channel="subscribe"><a
                 href="javascript:$App.showChannel(&#39;subscribe&#39;)" bh="top_mpost"><i>云邮局</i></a></li>
-        <li id="top_bussinessoffice" name="billCharge" style="display:none" channel="billCharge"><a
-                href="javascript:$App.show(&#39;billCharge&#39;)" bh="top_billCharge">邮箱营业厅</a></li>
+
     </ul>
     <ul class="newLogoInfo">
         <li class="newLogoInfo_li" style="visibility:hidden;" id="sendFileStatus">
@@ -959,67 +790,11 @@
             </div>
         </li>
         <li class="newLogoInfo_li" id="iMobile">
-            <!--
-           <a href="javascript:;" class="newLogoInfo_a" style="*margin-top:1px;margin-top:1px/8;"><i class="i-mobile c-pointer"></i></a>
-           <div id="i_qrcode" class="qrcode_new tips" style="position:absolute;background:#fff;top:40px;left:-70px;padding:0;z-index:999;display:none;">
-                <div class="qrc_main">
-                    <h1 class="qrc_title">139邮箱手机APP</h1>
-                    <img class="qrc_img" width="111" height="111" alt="">
-                    <p class="qrc_para">扫描二维码下载</p>
-                </div>
-                <div class="qrc_footer">
-                    <button class="qrc_btn ta_l" id="epDownBtn" style="font-size:13px;">获取下载地址</button>
-                </div>
-                <div class="tipsTop" style="top:-12px;left:50%;margin-left:-7px;"></div>
-            </div>
-            -->
             <a href="http://mail.10086.cn/advertise/index.html" target="_blank" class="newLogoInfo_a"
                style="*margin-top:1px;margin-top:1px/8;"><i class="i-mobile c-pointer"></i></a>
-            <div class="tips qrcodedownload" id="i_qrcode"
-                 style="position:absolute;top:40px;left:-84px;z-index:999;display:none;">
-                <div class="pc">
-                    <h1 class="fz_14 downloadTitle">139邮箱PC客户端</h1>
-                    <div class="box-main mt_15">
-                        <img class="fl" width="78" height="67"
-                             orgsrc="http://appmail.mail.10086.cn/m2015/images/global/pc.png">
-                        <div class="fr box-txt">
-                            <p>适用系统：Xp/Vista/<br>Win7/Win8</p>
-                            <p class="mt_10 ta_r"><a
-                                    href="http://images.139cm.com/m2012/controlupdate/139Mail_Setup.exe"
-                                    class="icoG"><span>立即下载</span></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt_10 pc-light">
-                    <h1 id="qrc_title" class="fz_14 downloadTitle">139邮箱手机APP</h1>
-                    <div class="box-main mt_10">
-                        <img class="fl qrc_img" width="79" height="79"
-                             orgsrc="http://appmail.mail.10086.cn/m2015/images/global/qrcode.jpg">
-                        <div class="fr box-txt">
-                            <p class="mt_10">手机登录邮箱仅需一步扫码下载</p>
-                            <p class="mt_10 ta_r"><a id="epDownBtn" href="javascript:;"
-                                                     class="icoG"><span>立即下载</span></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt_10 pc-light">
-                    <h1 class="fz_14 downloadTitle">139邮箱官方微信</h1>
-                    <div class="box-main mt_10">
-                        <img class="fl weChat_img" width="85" height="85" alt=""
-                             orgsrc="http://appmail.mail.10086.cn/m2015/images/global/weChat.jpg">
-                        <div class="fr box-txt mt_30">
-                            <p>关注我</p>
-                            <p>享受服务和福利</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="tipsTop" style="top:-12px;left:37%;margin-left:-7px;"></div>
-            </div>
+
         </li>
-        <!-- <li class="newLogoInfo_li noMar">|</li>
-        <li class="newLogoInfo_li">
-            <a class="newLogoInfo_a" bh="uc_index" title="权益中心" href="javascript:$App.show('usercenter');"><i class="i-imperialcrown c-pointer"></i></a>
-        </li> -->
+
         <li class="newLogoInfo_li noMar">|</li>
         <li id="toEnterpriseEml" class="newLogoInfo_li" bh="open_enterprise">
             <a href="https://qiye.mail.10086.cn/webmail/login/userssologin.do?ssocode=MUY5QTQzMkE1MzNBMDFCNjlFNTk1N0IyOEM5MzE4RTI1QjI5NjYzRkVCQ0RCMUU3RTM2MTEyMTg1QkU2ODNFQURBNjAzQ0U4M0Q5MzNBNUJFOTM1MTNFQTU0OTA0NzU5RTYzOTZGQzlDMTRGNDY3NTA1MEQ5NzRDODM5NkVBQzYzMTU3QjkyNjVDNEZGQkE5QTlDRUEwOTZDRjI1QUVBNg%3D%3D"
@@ -1028,97 +803,17 @@
             </a>
         </li>
         <li class="newLogoInfo_li noMar">|</li>
-        <!--<li id="head_changeSkin" class="newLogoInfo_li">
-            <a href="javascript:;" class="newLogoInfo_a"><i>换肤</i></a>
-        </li>
-        <li class="newLogoInfo_li noMar">|</li>-->
-        <li id="umcboxpluginbar" class="newLogoInfo_li newLogoInfo_raset" style="position: relative;"><a
-                href="javascript:void(0)" class="newLogoInfo_a">和通行证</a></li>
-        <li class="newLogoInfo_li noMar">|</li>
         <li id="chooseVipMail" class="newLogoInfo_li">
             <a href="javascript:void(0)" manualbh="topBar_vipmailCenter_click" class="newLogoInfo_a"><i>升级服务</i></a>
-            <div class="menuPop shadow JSaddr_more hide"
-                 style="top: 36px; left: -85px; z-index: 9001; width: 180px; position: absolute; display: block;"
-                 bindautohide="1">
-                <ul></ul>
-            </div>
+
         </li>
         <li class="newLogoInfo_li noMar">|</li>
         <li id="mailSetLi" class="newLogoInfo_li">
             <a href="javascript:void(0)" class="newLogoInfo_a"><i>设置</i></a>
-            <div class="menuPop J-dropdown hide" style="position:absolute;top:36px;right:0;z-index:9001;width:212px;"
-                 bindautohide="1">
-                <ul>
-                    <li index="1" target="preference" statistical="top_setting_plain"><a bh="top_setting_set"
-                                                                                         href="javascript:;"><span
-                            class="text"><i class="i-setIco"></i><i class="dib">常规设置</i></span></a></li>
-                    <li index="2" target="setDefaultTabEntry" statistical="top_setting_index"><a bh="set_default_tab"
-                                                                                                 href="javascript:;"><span
-                            class="text"><i class="dib">默认主页</i></span></a></li>
-                    <li index="3" target="account_accountSet" statistical="top_setting_info"><a bh="top_setting_set"
-                                                                                                href="javascript:;"><span
-                            class="text"><i class="dib">帐户信息</i></span></a></li>
-                    <li index="4" target="account_areaSign" statistical="top_setting_sign"><a bh="top_setting_set"
-                                                                                              href="javascript:;"><span
-                            class="text"><i class="dib">邮件签名</i></span></a></li>
-                    <li index="5" target="changeSkin"><a bh="top_setting_set" href="javascript:;"><span class="text"><i
-                            class="icons i-set-skin"></i><i class="dib">换肤</i></span></a></li>
-                </ul>
-            </div>
-            <div id="setDefaultTab" class="newMenuMore">
-                <div id="setDefaultTabDiv" class="boxIframe J-dropdown hide"
-                     style="right: -38px; top: 9px; width:274px; cursor: default;">
-                    <div class="boxIframeMain">
-                        <div class="boxIframeText">
-                            <div class="norTips clearfix">
-                                <label>登录后默认进入的主页：</label>
-                                <div id="defaultTabSel" style="display:inline-block;width:90px;">
-                                    <div class="dropDown" id="view_0.6272537909985894" style="width: 90px;">
-                                        <div class="dropDownA" href="javascript:void(0)"><i class="i_triangle_d"></i>
-                                        </div>
-                                        <div class="dropDownText">邮件</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="boxIframeBtn">
-                            <span class="bibText"></span>
-							<span class="bibBtn">
-								<a href="javascript:void(0)" id="setDefaultTabConfirm" class="btnSure">
-									<span>确 定</span>
-								</a>
-								<a href="javascript:void(0)" id="setDefaultTabCalcel" class="btnNormal">
-									<span>取 消</span>
-								</a>
-							</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </li>
         <li class="newLogoInfo_li noMar">|</li>
         <li id="helpLi" class="newLogoInfo_li">
             <a href="javascript:;" class="newLogoInfo_a" bh="top_help"><i>帮助</i></a>
-            <div class="menuPop J-dropdown hide" style="position:absolute;top:36px;right:0;z-index:9001;width:100px;"
-                 bindautohide="1">
-                <ul>
-
-                    <li index="2"><a bh="top_setting_help_center"
-                                     href="http://help.mail.10086.cn/statichtml/0/index.html?sid=00UyMDQ4OTA5NjAwMDQ0ODcz03038393000005"
-                                     id="helpcenter" target="_blank"><span class="text"><i
-                            class="dib">帮助中心</i></span></a></li>
-                    <li index="3"><a bh="top_setting_update_log"
-                                     href="http://help.mail.10086.cn/statichtml/1/Category/39/Listh_1.html"
-                                     target="_blank"><span class="text"><i class="dib">更新日志</i></span></a></li>
-                    <li index="4"><a bh="" href="javascript:top.$App.show(&#39;selfSearch&#39;);" target="_self"><span
-                            class="text"><i class="dib">自助查询</i></span></a></li>
-                    <li index="5"><a bh="top_setting_formal_blog" href="http://blog.sina.com.cn/yd139yx"
-                                     target="_blank"><span class="text"><i class="dib">官方博客</i></span></a></li>
-                    <li index="6"><a bh="top_setting_formal_twitter" href="http://e.weibo.com/139yx"
-                                     target="_blank"><span class="text"><i class="dib">官方微博</i></span></a></li>
-
-                </ul>
-            </div>
         </li>
         <li class="newLogoInfo_li noMar">|</li>
         <li id="opinionFeedback" class="newLogoInfo_li">
@@ -1687,49 +1382,16 @@
     </div>
 
 
-
     <div class="main" id="main" style="height: 836px; left: 201px;">
         <div class="TransparentBg clearfix" id="div_main" style="">
-            <!--<script>-->
-            <!--debugger;-->
-            <!--if (window.name.indexOf("sid") == -1) {-->
-            <!--window.TRIGGER_LIST = [], window.ON_LIST = [];-->
-            <!--window.$App = {-->
-            <!--getSid: function () {-->
-            <!--return window.sid;-->
-            <!--},-->
-            <!--trigger: function (key, obj) {-->
-            <!--window.TRIGGER_LIST.push({key: key, val: obj});-->
-            <!--//console.warn("trigger",key,obj);-->
-            <!--},-->
-            <!--on: function (key, obj) {-->
-            <!--window.ON_LIST.push({key: key, val: obj});-->
-            <!--//console.warn("on",key,obj)-->
-            <!--}-->
-            <!--}-->
-            <!--var homeUrl = "/m2012server/home?Protocol=" + encodeURIComponent(window.location.protocol);-->
-            <!--if (SiteConfig.positionCode) {-->
-            <!--homeUrl += "&positionCode=" + SiteConfig.positionCode;-->
-            <!--}-->
-            <!--homeUrl += "&sid=" + window.sid + "&from=preload";-->
-            <!--//var div=document.createElement("DIV");-->
-            <!--document.write('<div class="gload" id="div_welcome" style="display:none;"><iframe src="' + homeUrl + '" scrolling="auto" class="main-iframe" name="ifbg" frameborder="no" width="100%" allowtransparency="true" id="welcome_preload" style="height: 201px;"></iframe></div>')-->
-            <!--//document.body.appendChild(div);-->
-
-            <!--}-->
-            <!--</script>-->
-            <!--<div class="gload" id="div_welcome" style="display:none;">-->
-            <!--<iframe src="refs/home.html" scrolling="auto" class="main-iframe" name="ifbg" frameborder="no"-->
-            <!--width="100%" allowtransparency="true" id="welcome_preload" style="height: 201px;"></iframe>-->
-        </div>
-        <div id="main_toolbar" class="bgMargin" style="display:none"></div>
-        <div class="" style="">
-            <div class="p_absolute new-main-left" id="main_left" style="width: 357px;">
-                <div class="p_relative horizon_full">
-                    <div class="new-main-topbar">
-                        <div class="p_relative ptblr_s2 manage-topbar clearfix" id="topbarManage">
-                            <div class="fr manage-fit"><a class="mtb_3 c-pointer i-fits" id="btn_setting_new"
-                                                          href="javascript:;"></a></div>
+            <div id="main_toolbar" class="bgMargin" style="display:none"></div>
+            <div class="" style="">
+                <div class="p_absolute new-main-left" id="main_left" style="width: 357px;">
+                    <div class="p_relative horizon_full">
+                        <div class="new-main-topbar">
+                            <div class="p_relative ptblr_s2 manage-topbar clearfix" id="topbarManage">
+                                <div class="fr manage-fit"><a class="mtb_3 c-pointer i-fits" id="btn_setting_new"
+                                                              href="javascript:;"></a></div>
                                 <span class="fl manage-sel"><input type="checkbox"
                                                                    id="chk_mailist_all_0.8953729511267845"
                                                                    class="chk-m139check"><label
@@ -1739,187 +1401,183 @@
                                         class="i-sel-triangle"><i
                                         class="i_triangle_d c-pointer"></i></span></a></span><i class="fl text-static"
                                                                                                 id="new_three_count_div">(共
-                            9 封)</i>
-                            <div id="maillist_pager_top" style="padding-right:35px;">
-                                <div class="p_relative fr mtb_3 jumppageslink" id="view_0.9153051870229354">
-                                    <div></div>
-                                    <a rel="selector" class="icoJump ml_6" href="javascript:"><span
-                                            class="p_relative"><em>1/1</em><i class="l-line"></i><i
-                                            class="i_triangle_d"></i></span></a><a rel="prev" title="上一页"
-                                                                                   href="javascript:;"
-                                                                                   class="ml_6 iconPrevBan c-default"></a><a
-                                        rel="next" title="下一页" href="javascript:;"
-                                        class="ml_6 iconNextBan c-default"></a></div>
+                                9 封)</i>
+                                <div id="maillist_pager_top" style="padding-right:35px;">
+                                    <div class="p_relative fr mtb_3 jumppageslink" id="view_0.9153051870229354">
+                                        <div></div>
+                                        <a rel="selector" class="icoJump ml_6" href="javascript:"><span
+                                                class="p_relative"><em>1/1</em><i class="l-line"></i><i
+                                                class="i_triangle_d"></i></span></a><a rel="prev" title="上一页"
+                                                                                       href="javascript:;"
+                                                                                       class="ml_6 iconPrevBan c-default"></a><a
+                                            rel="next" title="下一页" href="javascript:;"
+                                            class="ml_6 iconNextBan c-default"></a></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="new-main-inner">
-                        <div class="p_relative new-main-data horizon_full">
-                            <div class="background-layout">
-                                <div class="p_relative new-main-left-list mailing-lists-left inbox-wrap-left"
-                                     style="overflow-y: auto; width: 357px; height: 794px;" id="div_maillist">
-                                    <div>  <!--section start-->
-                                        <div class="newdayArea">
-                                            <div href="javascript:" class="daytableTitle" style="display: none;"><a><i
-                                                    class="i_new_minus"></i><span><b id="period_today">今天</b></span></a>
-                                            </div>
+                        <div class="new-main-inner">
+                            <div class="p_relative new-main-data horizon_full">
+                                <div class="background-layout">
+                                    <div class="p_relative new-main-left-list mailing-lists-left inbox-wrap-left"
+                                         style="overflow-y: auto; width: 357px; height: 794px;" id="div_maillist">
+                                        <div>  <!--section start-->
+                                            <div class="newdayArea">
+                                                <div href="javascript:" class="daytableTitle" style="display: none;"><a><i
+                                                        class="i_new_minus"></i><span><b id="period_today">今天</b></span></a>
+                                                </div>
 
-                                            <table class="dayAreaTable">
-                                                <tbody>
+                                                <table class="dayAreaTable">
+                                                    <tbody>
 
-                                                <tr mid="7a83000006a5e2e100000001" sessionid="19" sendid="38575">
-                                                    <td name="td_new">
-                                                        <div class="fl mail-motion">
-                                                            <p>
-                                                                <input type="checkbox" id="id_6420897133457877"
-                                                                       class="chk-m139check"><label
-                                                                    id="lbl_id_6420897133457877"
-                                                                    for="id_6420897133457877" class="i-chooseMo"
-                                                                    style="">&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                            </p>
-                                                            <p>
-                                                                <i class="i_m_rssg" title="订阅邮件"></i>
-                                                            </p>
-                                                        </div>
-                                                        <div class="p_relative mail-infos">
-                                                            <div class="mail-form" name="from">
+                                                    <tr mid="7a83000006a5e2e100000001" sessionid="19" sendid="38575">
+                                                        <td name="td_new">
+                                                            <div class="fl mail-motion">
+                                                                <p>
+                                                                    <input type="checkbox" id="id_6420897133457877"
+                                                                           class="chk-m139check"><label
+                                                                        id="lbl_id_6420897133457877"
+                                                                        for="id_6420897133457877" class="i-chooseMo"
+                                                                        style="">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                                </p>
+                                                                <p>
+                                                                    <i class="i_m_rssg" title="订阅邮件"></i>
+                                                                </p>
+                                                            </div>
+                                                            <div class="p_relative mail-infos">
+                                                                <div class="mail-form" name="from">
                                                                     <span name="from" class="fw_n" style=""
                                                                           bindcard="1">订阅邮件</span>
-                                                            </div>
-                                                            <h2 class="mail-title" mid="7a83000006a5e2e100000001"
-                                                                mailnum="1" name="subject" style="width:90%;">
+                                                                </div>
+                                                                <h2 class="mail-title" mid="7a83000006a5e2e100000001"
+                                                                    mailnum="1" name="subject" style="width:90%;">
 
                                                                     <span class="fw_n" title="全国政协委员于欣伟：应尽快建立游戏分级制度"
                                                                           style=""
                                                                           name="subject">全国政协委员于欣伟：应尽快建立游戏分级制度</span>
-                                                            </h2>
+                                                                </h2>
 
 
-                                                            <div class="p_absolute mail-received-time"><i class=""
-                                                                                                          title=""></i><span
-                                                                    title="2018年3月08日 13:04">13:04</span></div>
+                                                                <div class="p_absolute mail-received-time"><i class=""
+                                                                                                              title=""></i><span
+                                                                        title="2018年3月08日 13:04">13:04</span></div>
 
-                                                            <!--<div class="p_absolute mail-received-remark"><i class="bgc-light-blue ml_10 br2">9</i><a href="javascript:;" class="" name="mailtask" style="" title=><span mid="7a83000006a5e2e100000001" status="add" taskDate="0"></span></a><i class="i_starM ml_10" name="list_starmail"></i></div>-->
-                                                            <div class="p_absolute mail-received-remark"><i
-                                                                    class="bgc-light-blue ml_10 br2">9</i> <i
-                                                                    taskflag="0" starflag="0" class="i_starM"
-                                                                    taskdate="0" name="list_starmail"></i></div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                                <!--<div class="p_absolute mail-received-remark"><i class="bgc-light-blue ml_10 br2">9</i><a href="javascript:;" class="" name="mailtask" style="" title=><span mid="7a83000006a5e2e100000001" status="add" taskDate="0"></span></a><i class="i_starM ml_10" name="list_starmail"></i></div>-->
+                                                                <div class="p_absolute mail-received-remark"><i
+                                                                        class="bgc-light-blue ml_10 br2">9</i> <i
+                                                                        taskflag="0" starflag="0" class="i_starM"
+                                                                        taskdate="0" name="list_starmail"></i></div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
 
-                                                </tbody>
-                                            </table>
-                                            <!--[if lt ie 8]></div><![endif]-->
+                                                    </tbody>
+                                                </table>
+                                                <!--[if lt ie 8]></div><![endif]-->
+                                            </div>
+                                            <!--section end-->
+                                            <p style="line-height: 50px;font-size: 20px;display:none"><a
+                                                    href="javascript:" id="btn_nextPage">加载下一页</a></p>
                                         </div>
-                                        <!--section end-->
-                                        <p style="line-height: 50px;font-size: 20px;display:none"><a
-                                                href="javascript:" id="btn_nextPage">加载下一页</a></p>
-                                    </div>
-                                    <div class="downPagenumBox clearfix" id="maillist_pager_bottom"
-                                         style="padding-right:10px;">
-                                        <div class="p_relative fr mtb_3 jumppageslink"
-                                             id="view_0.17260194555613406">
-                                            <div></div>
-                                            <a rel="selector" class="icoJump ml_6" href="javascript:"><span
-                                                    class="p_relative"><em>1/1</em><i class="l-line"></i><i
-                                                    class="i_triangle_d"></i></span></a><a rel="prev" title="上一页"
-                                                                                           href="javascript:;"
-                                                                                           class="ml_6 iconPrevBan c-default"></a><a
-                                                rel="next" title="下一页" href="javascript:;"
-                                                class="ml_6 iconNextBan c-default"></a></div>
+                                        <div class="downPagenumBox clearfix" id="maillist_pager_bottom"
+                                             style="padding-right:10px;">
+                                            <div class="p_relative fr mtb_3 jumppageslink"
+                                                 id="view_0.17260194555613406">
+                                                <div></div>
+                                                <a rel="selector" class="icoJump ml_6" href="javascript:"><span
+                                                        class="p_relative"><em>1/1</em><i class="l-line"></i><i
+                                                        class="i_triangle_d"></i></span></a><a rel="prev" title="上一页"
+                                                                                               href="javascript:;"
+                                                                                               class="ml_6 iconPrevBan c-default"></a><a
+                                                    rel="next" title="下一页" href="javascript:;"
+                                                    class="ml_6 iconNextBan c-default"></a></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="p_absolute wrapMiddleMiddle" id="mailbox_split"
-                 style="z-index: 9; height: 700px; left: 357px; position: absolute;">
-                <div class="slHvalign">
-                    <div class="slHvalignCnt">
-                        <div class="slHvalignCntInner"><span class="i_leftr"></span></div>
+                <div class="p_absolute wrapMiddleMiddle" id="mailbox_split"
+                     style="z-index: 9; height: 700px; left: 357px; position: absolute;">
+                    <div class="slHvalign">
+                        <div class="slHvalignCnt">
+                            <div class="slHvalignCntInner"><span class="i_leftr"></span></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="p_absolute new-main-right" id="main_right" style="left: 358px;">
-                <div class="p_relative new-main-right-inner horizon_full">
-                    <div class="new-main-topbar" id="toolbar_div" style="*position: relative;*z-index: 2;zoom:1;">
-                        <div class="new-main-topbar">
-                            <div class=" p_relative ptblr_s6 receiver-topbar clearfix" id="mailbox_toolbar_1">
-                                <ul class="toolBarUl_v3" style="display: block;">
-                                    <li id="btn_replyAll" class=""><a class="icoTb mr_6" href="javascript:"
-                                                                      id="view_0.38537500435052596"><span
-                                            class="p_relative">全部回复<i class="l-line"></i></span></a></li>
-                                    <li id="btn_reply"><a class="icoTb mr_6" href="javascript:"
-                                                          id="view_0.3590879577355208"><span class="p_relative">回复<i
-                                            class="r-line"></i></span></a></li>
-                                    <li id="btn_replyAll_2" class="" style="display: none;"><a class="icoTd mr_6"
-                                                                                               href="javascript:"
-                                                                                               id="view_0.3294538101443356"><span
-                                            class="r two">全部回复<i class="l-line"></i><span><i
-                                            class="i_triangle_d"></i></span></span></a></li>
-                                    <li id="btn_reply_2" style="display: none;"><a class="icoTd mr_6"
-                                                                                   href="javascript:"
-                                                                                   id="view_0.0822802033959047"><span
-                                            class="r two">回复<span><i class="i_triangle_d"></i></span><i
-                                            class="r-line"></i></span></a></li>
-                                    <li id="btn_forward"><a class="icoTd mr_6" href="javascript:"
-                                                            id="view_0.163914282141141"><span class="r two">转发<span><i
-                                            class="i_triangle_d"></i></span><i class="r-line"></i></span></a></li>
-                                    <li><a class="icoTd mr_6" href="javascript:" id="view_0.3442410573213093"><span
-                                            class="r two">删除<span><i class="i_triangle_d"></i></span><i
-                                            class="r-line"></i></span></a></li>
-                                    <li id="MarkTo"><a class="icoTl" href="javascript:"
-                                                       id="view_0.6345956901845129"><span class="p_relative">标记为<i
-                                            class="i_triangle_d"></i></span></a></li>
-                                    <li class="ml-1"><a class="icoTr mr_6" href="javascript:"
-                                                        id="view_0.8585211860590101"><span class="p_relative">移动到<i
-                                            class="i_triangle_d"></i></span></a></li>
-                                    <li id="btn_extra"><a class="icoT" href="javascript:"
-                                                          id="view_0.32520146753583457"><span
-                                            class="p_relative">更多<i class="l-line"></i><i
-                                            class="i_triangle_d"></i></span></a>
-                                    </li>
-                                </ul>
-                                <div id="maillist_pager"></div>
-                                <div id="maillist_text" class="toolBararray fr mr_5 p_relative"></div>
+                <div class="p_absolute new-main-right" id="main_right" style="left: 358px;">
+                    <div class="p_relative new-main-right-inner horizon_full">
+                        <div class="new-main-topbar" id="toolbar_div" style="*position: relative;*z-index: 2;zoom:1;">
+                            <div class="new-main-topbar">
+                                <div class=" p_relative ptblr_s6 receiver-topbar clearfix" id="mailbox_toolbar_1">
+                                    <ul class="toolBarUl_v3" style="display: block;">
+                                        <li id="btn_replyAll" class=""><a class="icoTb mr_6" href="javascript:"
+                                                                          id="view_0.38537500435052596"><span
+                                                class="p_relative">全部回复<i class="l-line"></i></span></a></li>
+                                        <li id="btn_reply"><a class="icoTb mr_6" href="javascript:"
+                                                              id="view_0.3590879577355208"><span class="p_relative">回复<i
+                                                class="r-line"></i></span></a></li>
+                                        <li id="btn_replyAll_2" class="" style="display: none;"><a class="icoTd mr_6"
+                                                                                                   href="javascript:"
+                                                                                                   id="view_0.3294538101443356"><span
+                                                class="r two">全部回复<i class="l-line"></i><span><i
+                                                class="i_triangle_d"></i></span></span></a></li>
+                                        <li id="btn_reply_2" style="display: none;"><a class="icoTd mr_6"
+                                                                                       href="javascript:"
+                                                                                       id="view_0.0822802033959047"><span
+                                                class="r two">回复<span><i class="i_triangle_d"></i></span><i
+                                                class="r-line"></i></span></a></li>
+                                        <li id="btn_forward"><a class="icoTd mr_6" href="javascript:"
+                                                                id="view_0.163914282141141"><span class="r two">转发<span><i
+                                                class="i_triangle_d"></i></span><i class="r-line"></i></span></a></li>
+                                        <li><a class="icoTd mr_6" href="javascript:" id="view_0.3442410573213093"><span
+                                                class="r two">删除<span><i class="i_triangle_d"></i></span><i
+                                                class="r-line"></i></span></a></li>
+                                        <li id="MarkTo"><a class="icoTl" href="javascript:"
+                                                           id="view_0.6345956901845129"><span class="p_relative">标记为<i
+                                                class="i_triangle_d"></i></span></a></li>
+                                        <li class="ml-1"><a class="icoTr mr_6" href="javascript:"
+                                                            id="view_0.8585211860590101"><span class="p_relative">移动到<i
+                                                class="i_triangle_d"></i></span></a></li>
+                                        <li id="btn_extra"><a class="icoT" href="javascript:"
+                                                              id="view_0.32520146753583457"><span
+                                                class="p_relative">更多<i class="l-line"></i><i
+                                                class="i_triangle_d"></i></span></a>
+                                        </li>
+                                    </ul>
+                                    <div id="maillist_pager"></div>
+                                    <div id="maillist_text" class="toolBararray fr mr_5 p_relative"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="new-main-inner three-column-mode" id="readWrap" style="height: 784px;">
+                            <div class="whitebaby-remind whitebaby-remind0"
+                                 style="position:absolute;top:50%;height:198px;margin-top:-99px;left:50%;width:208px;margin-left:-104px;display:block;">
+                                <div class="remind-layout">
+                                    <div class="remind-text"><p class="fz_14 c_999 ta_c">单击一封邮件在此处显示</p></div>
+                                    <i class="remind-direction"></i><i class="remind-character"></i></div>
                             </div>
                         </div>
                     </div>
-                    <div class="new-main-inner three-column-mode" id="readWrap" style="height: 784px;">
-                        <div class="whitebaby-remind whitebaby-remind0"
-                             style="position:absolute;top:50%;height:198px;margin-top:-99px;left:50%;width:208px;margin-left:-104px;display:block;">
-                            <div class="remind-layout">
-                                <div class="remind-text"><p class="fz_14 c_999 ta_c">单击一封邮件在此处显示</p></div>
-                                <i class="remind-direction"></i><i class="remind-character"></i></div>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <div class="gload" id="div_composeContainer" style="display:none">
+                <iframe src="refs/compose_v3.html" scrolling="auto" class="main-iframe" frameborder="no" width="100%"
+                        allowtransparency="true" name="ifbg" id="compose_preload"
+                "=""></iframe></div>
         </div>
-        <div class="gload" id="div_composeContainer" style="display:none">
-            <iframe src="refs/compose_v3.html" scrolling="auto" class="main-iframe" frameborder="no" width="100%"
-                    allowtransparency="true" name="ifbg" id="compose_preload"
-            "=""></iframe></div>
-    </div>
-    <div id="fetionElemTop" class="" title="飞信" style="display: none;">
-        <div class="fxdiva" id="fetionContainerId">
+        <div id="fetionElemTop" class="" title="飞信" style="display: none;">
+            <div class="fxdiva" id="fetionContainerId">
+            </div>
         </div>
     </div>
-</div>
-<!--<script>-->
-<!--m139LoadScript('Div_Css_Demo/Sample/139邮箱/refs/libs.pack.js');-->
-<!--m139LoadScript('Div_Css_Demo/Sample/139邮箱/refs/m139.core.pack.js')-->
-<!--m139LoadScript("Div_Css_Demo/Sample/139邮箱/refs/m2012.ui.common.pack.js", document);-->
-<!--</script>-->
-<script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8"
-        type="text/javascript" src="refs/libs.pack.js"></script>
-<script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8"
-        type="text/javascript" src="refs/m139.core.pack.js"></script>
-<script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8"
-        type="text/javascript" src="refs/m2012.ui.common.pack.js"></script>
+
+    <script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8"
+            type="text/javascript" src="refs/libs.pack.js"></script>
+    <script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8"
+            type="text/javascript" src="refs/m139.core.pack.js"></script>
+    <script jsonload="1" onload="this.setAttribute(&quot;jsonload&quot;,&quot;1&quot;)" charset="utf-8"
+            type="text/javascript" src="refs/m2012.ui.common.pack.js"></script>
 </div>
 
 <div class="dRound skinPop" style="left:442px;top:36px; display:none;">

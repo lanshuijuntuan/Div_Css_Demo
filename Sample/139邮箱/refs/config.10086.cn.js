@@ -899,7 +899,7 @@ var domainList = {
         uec                : "http://uec.mail.10086.cn/",
         loginDomain        : 'http://mail.10086.cn',
         syncguide          : "http://images.139cm.com/rm/richmail/page/sync_guide_inner.html",
-        UMCSVR             : "http://www.cmpassport.com/umcsso/plugin",
+        UMCSVR             : "http://www.cmpassport.com/umcsso/plugin.js",
         caiyun             : "http://www.cytxl.com.cn/login.php?channel=139mail",
         userzone           : "http://zone.mail.10086.cn/api/sso/ssoformail.ashx",
         imgCode            : "http://imgnews.mail.10086.cn/getimage?",
