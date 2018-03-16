@@ -28,7 +28,8 @@ function createMailboxRenderFunctions(e, t) {
         date: y.getDate(),
         hour: y.getHours(),
         minutes: y.getMinutes()
-    }, M = {
+    }, 
+        M = {
         receiver: "receiver",
         sender: "sender",
         none: "none"
@@ -1567,7 +1568,8 @@ function _letterInlineScript(e, t) {
             $Msg.getCurrent().minisize()
         }
     }
-}(jQuery, _, M139), function (e, t, i, a) {
+}(jQuery, _, M139),
+function (e, t, i, a) {
     i.namespace("M2012.Contacts.Business.Constant", {
         MAX_VIP: 20,
         MAX_CONTACT_LV1: 3e3,
@@ -1580,7 +1582,8 @@ function _letterInlineScript(e, t) {
         FROM_TYPE: { MAIL: 16, MOBILE: 32, FAX: 64, NONE: 0, SMS: 1, CARD: 2, POST: 3, EMAIL: 4, MMS: 5, FILE: 6 },
         COLUMN: ["SerialId", "UserType", "SourceType", "AddrFirstName", "AddrSecondName", "AddrNickName", "UserSex", "CountryCode", "ProvCode", "AreaCode", "CityCode", "StreetCode", "ZipCode", "HomeAddress", "MobilePhoneType", "BirDay", "MobilePhone", "BusinessMobile", "BusinessPhone", "FamilyPhone", "BusinessFax", "FamilyFax", "OtherPhone", "OtherMobilePhone", "OtherFax", "FamilyEmail", "BusinessEmail", "OtherEmail", "PersonalWeb", "CompanyWeb", "OtherWeb", "OICQ", "MSN", "OtherIm", "CPCountryCode", "CPProvCode", "CPAreaCode", "CPCityCode", "CPStreetCode", "CPZipCode", "CPAddress", "CPName", "CPDepartName", "Memo", "StartCode", "BloodCode", "StateCode", "ImageUrl", "SchoolName", "BokeUrl", "UserJob", "GroupId", "AddGroupId", "AddGroupName", "AddNewGroup", "OverWrite", "FavoWord"]
     })
-}(jQuery, _, M139, window._top || window.top), function (e, t, i, a) {
+}(jQuery, _, M139, window._top || window.top),
+function (e, t, i, a) {
     i.namespace("M2012.Contacts.Business.Msg", {
         CODE: {
             9: "组名已存在",
@@ -1613,7 +1616,8 @@ function _letterInlineScript(e, t) {
             VIP_TO_MAX: 'VIP联系人已经达到上限！<a style="text-decoration:none;" href="javascript:top.FF.close();top.Links.show(\'addrvipgroup\');" ><br/>管理VIP联系人</span></a>'
         }
     })
-}(jQuery, _, M139, window._top || window.top), function (e, t, i) {
+}(jQuery, _, M139, window._top || window.top),
+function (e, t, i) {
     var a = {}, s = M2012.Contacts.Business.Msg, o = M2012.Contacts.Business.Constant, n = new i.Logger;
     a.init = function () {
         n.info("top.Contacts.init", !0)
@@ -2098,7 +2102,8 @@ function _letterInlineScript(e, t) {
             }
         }
     })
-}($, _, M139), function (e, t, i) {
+}($, _, M139),
+function (e, t, i) {
     i.namespace("M2012.Contacts.Cache", function (e) {
         var i = this, a = e.data, s = e.model || M2012.Contacts.getModel(), o = new M2012.Contacts.CacheGroup, n = new M2012.Contacts.CacheContacts, r = function (e) {
             a = e, i.setModelData(), i.dataRefresh()
@@ -2400,7 +2405,8 @@ function _letterInlineScript(e, t) {
             }), a
         }
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = !1;
     i.namespace("M2012.Contacts.Model", Backbone.Model.extend({
         initialize: function (e) {
@@ -3041,7 +3047,8 @@ function _letterInlineScript(e, t) {
             return window != window.top ? top.M2012.Contacts.getCache() : (this.cache || this.getModel(), this.cache)
         }
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     function a(e) {
         for (var t in e) this[t] = e[t] || "";
         this.emails = [], this.mobiles = [], this.faxes = [];
@@ -4748,10 +4755,15 @@ TabPageView = Backbone.View.extend({
                 "none" != $("#divTab ul")[0].style.display ? $(".skin-mainContainer").addClass("offset-top") : $(".skin-mainContainer").removeClass("offset-top"), "welcome" == p ? $(".skin-mainContainer").hide().prev().hide() : $(".skin-mainContainer").show().prev().show(), this.lastModule = o, $App.closeWriteOkPage(), $("#scoutTemplate", top.document).remove()
             }
         }), this.tab = new TabLabel(document.getElementById("divTab"), this), this.tab.call = [this.onTabDelete, this.onTabActive, this.onTabClose], this.watchScrollbar(), this.setAnimalSkin()
-    }, orignTabs: null, prevModule: null, events: {}, render: function () {
+    },
+    orignTabs: null,
+    prevModule: null,
+    events: {},
+    render: function () {
         var e = this.model.get("currentModule");
         e && this.activeTab(e)
-    }, setAnimalSkin: function () {
+    },
+    setAnimalSkin: function () {
         var e = this;
         window.ZodiacCommand = function (e, t) {
             "dispear" == e && ($("#animalFlash").addClass("hide"), window.isHideAnimalFlash = !0)
@@ -4764,9 +4776,11 @@ TabPageView = Backbone.View.extend({
             top.M139.HttpRouter.addRouter("together", ["together:heMessage"]), top.M139.RichMail.API.call("together:heMessage", {}, function (e) {
             })
         }, 3e3)
-    }, setTitle: function (e, t) {
+    },
+    setTitle: function (e, t) {
         t || (t = this.model.get("currentModule")), this.tab.title(t, e), this.model.getModule(t).title = e
-    }, showModule: function (e) {
+    },
+    showModule: function (e) {
         var t = this.model, i = t.getModule(e), a = t.getPrevious();
         if (i || (i = t.getModule("welcome")), null != a && a != i && $(a.element).hide(), i.element.style.display = "", i.view.el = i.element, i.view && i.view.render) {
             var s = !!i.isRendered, o = i.view.model && i.view.model.get("mid");
@@ -4781,17 +4795,22 @@ TabPageView = Backbone.View.extend({
             }
         } else this.toolbar.style.display = "none";
         return i
-    }, getVisibleTab: function () {
+    },
+    getVisibleTab: function () {
         var e = $("#divTab ul").children(), t = $.grep(e, function (e, t) {
             return "none" != e.style.display && "tabsMenuIco" != e.id
         });
         return t
-    }, getVisibleCount: function () {
+    },
+    getVisibleCount: function () {
         return this.getVisibleTab().length
-    }, renderCloseAllButton: function () {
-    }, renderMenuListButton: function () {
+    },
+    renderCloseAllButton: function () {
+    },
+    renderMenuListButton: function () {
         $("#tabsMenuIco")[0] || $("#divTab ul").append('<li id="tabsMenuIco" class="noAll" tabindex="0"><a href="javascript:;" class="closeAll" title="点击查看更多"></a></li>')
-    }, activeTab: function (e) {
+    },
+    activeTab: function (e) {
         var t = this;
         if (this.tab.exist(e)) {
             if (this.lastActive && this.lastActive[e] && new Date - this.lastActive[e] < 200) return;
@@ -4806,10 +4825,12 @@ TabPageView = Backbone.View.extend({
         }, 100)), setTimeout(function () {
             t.hideOverTab()
         }, 200), this.addClass2left(e)
-    }, addClass2left: function (e) {
+    },
+    addClass2left: function (e) {
         var t = e, i = $App.getCurrentFid(), a = $App.getMailboxView() && $App.getMailboxView().model;
         $("#sub li").find("a").removeClass("on"), "mailbox_1" == t ? $("#sub li[fid=1]").find("a").addClass("on") : "mailsub_0" == t && (1 != i ? $("#sub li[fid=" + i + "]").find("a").addClass("on") : a && a.isVipMode() ? $("#sub li#li_vip").find("a").addClass("on") : a && a.isStarMode() ? $("#sub li#li_star").find("a").addClass("on") : a && a.isTaskMode() ? $("#sub li#li_remind").find("a").addClass("on") : a && a.isBillMode() ? $("#sub li#li_bill").find("a").addClass("on") : a && a.isSubscribeMode() && $("#sub li#li_subscribe").find("a").addClass("on"))
-    }, christmasMan: function () {
+    },
+    christmasMan: function () {
         "skin_christmas" == top.$User.getSkinName() && ($("#divTab li[role=tab][id!=tabsMenuIco]:visible span").unbind("hover").hover(function (e) {
             if ($(".santaClaus").length > 0 && $(".santaClaus").remove(), !$("#accountSet.selected").length) {
                 var t = $(e.target).parents("[role=tab]").offset().left;
@@ -4823,21 +4844,26 @@ TabPageView = Backbone.View.extend({
         }, 100), setTimeout(function () {
             $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last .christmasHats").length || $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
         }, 1e3))
-    }, replace: function (e, t) {
+    },
+    replace: function (e, t) {
         this.tab.replace(e, t)
-    }, close: function (e) {
+    },
+    close: function (e) {
         e || (e = this.model.get("currentModule")), this.tab.close(e)
-    }, closeAllTab: function () {
+    },
+    closeAllTab: function () {
         for (elem in this.model.pages) "welcome" != elem && this.close(elem);
         setTimeout(function () {
             M2012.History.clear()
         }, 1e3)
-    }, resize: function () {
+    },
+    resize: function () {
         var e = this;
         this.showAllTab(), this.tab.size(), setTimeout(function () {
             e.hideOverTab()
         }, 100)
-    }, showAllTab: function () {
+    },
+    showAllTab: function () {
         if ($App && 83 * this.getVisibleCount() < $D.getWinWidth() - 154 && $App.getView("tabpage").prevChannel && "mail" == $App.getView("tabpage").prevChannel) {
             $("#divTab li").not("[tabid=welcome]").not("#tabsMenuIco").show();
             for (var e = $("#divTab li").not("[tabid=welcome]").not("#tabsMenuIco"), t = 0; t < e.length; t++) {
@@ -4846,7 +4872,8 @@ TabPageView = Backbone.View.extend({
             }
             $("[tabid*=mpostOnlineService]").hide()
         }
-    }, fixFlashRemove: function (e) {
+    },
+    fixFlashRemove: function (e) {
         if ($.browser.msie && (e.indexOf("compose") >= 0 || "account" == e || "mms" == e || "postcard" == e) || "greetingcard" == e || "activityInvite" == e || "quicklyShare" == e || "diskDev" == e) {
             var t = this.model.getModule(e);
             if (t) {
@@ -4857,12 +4884,15 @@ TabPageView = Backbone.View.extend({
                 }
             }
         }
-    }, framePool: [], getFrame: function (e) {
+    },
+    framePool: [], getFrame: function (e) {
         var t;
         return t = this.framePool.length > 0 ? this.framePool.shift() : document.createElement("iframe"), t.src = e, t
-    }, recycleFrame: function (e) {
+    },
+    recycleFrame: function (e) {
         $(e).removeAttr("id"), $(e).removeAttr("name"), $(e).removeAttr("style"), this.framePool.push(e), e.parentNode.removeChild(e)
-    }, onCloseTab: function (e) {
+    },
+    onCloseTab: function (e) {
         var t = this.model.getModule(e);
         if (t) {
             this.fixFlashRemove(e);
@@ -4875,12 +4905,14 @@ TabPageView = Backbone.View.extend({
             }
             $(i).remove()
         }
-    }, clearTabCache: function (e) {
+    },
+    clearTabCache: function (e) {
         for (elem in this.model.pages) {
             var t = this.model.pages[elem];
             t.name.indexOf(e) >= 0 && (t.isRendered = !1)
         }
-    }, createOrignTabs: function (e, t, i) {
+    },
+    createOrignTabs: function (e, t, i) {
         for (var a, s, o = 0; o < e.length; o++) {
             if (a = e[o], "mailbox_1" == a) s = {
                 name: "mailbox_1",
@@ -4894,7 +4926,8 @@ TabPageView = Backbone.View.extend({
             }
             this.createModule(s), this.createTab(a, !0, i)
         }
-    }, createModule: function (e) {
+    },
+    createModule: function (e) {
         var t = this.model.getModule(e.name);
         if (t) return t.data && "object" == typeof t.data.inputData && _.extend(t.data.inputData, e.data.inputData), t;
         this.model.fillModuleData(e);
@@ -4907,7 +4940,8 @@ TabPageView = Backbone.View.extend({
             i.innerHTML = "<span class='gloadbg'></span>"
         }
         "welcome" == e.name && document.getElementById("div_welcome") ? i = document.getElementById("div_welcome") : e.name.indexOf("compose") >= 0 && !e.type && document.getElementById("div_composeContainer") ? $.browser.safari || $.browser.mozilla || $B.is.ie && $B.getVersion() <= 8 ? (this.el.appendChild(i), window.firstComposeLoaded = !0) : (i = document.getElementById("div_composeContainer"), i.id = "") : this.el.appendChild(i), e.element = i, e.view.el = i
-    }, watchScrollbar: function () {
+    },
+    watchScrollbar: function () {
         if (!($.browser.msie && $.browser.version < 8) && $.browser.msie) {
             var e = ["#sidebar", "#div_maillist", "#readmail_container", "#covMailSummaryList"];
             M139.Timing.setInterval("watchScrollbar", function () {
@@ -4919,7 +4953,8 @@ TabPageView = Backbone.View.extend({
                 }
             }, 1e3)
         }
-    }, channelOptions: {}, showChannel: function (e) {
+    },
+    channelOptions: {}, showChannel: function (e) {
         if (top.$App.pushMpostMsg && top.$App.trigger("updateMpostMsgStatus"), "welcome" != e) {
             var t = $Cookie.get("SkinPath2");
             $("#animalFlash").hasClass("hide") && this.addFlash2AnimalSkin(t)
@@ -4931,7 +4966,8 @@ TabPageView = Backbone.View.extend({
         this.channelOptions[e] && (i = this.channelOptions[e].defaultTab);
         var a = this.model.get("channelState");
         a[e] && a[e].current ? (i = a[e].current, this.tab.exist(i) ? ($App.activeTab(i), "welcome" != i && $(".loadingTip").remove()) : this.channelOptions[e] && this.channelOptions[e].defaultTab ? $App.show(this.channelOptions[e].defaultTab) : $App.showMailbox(1)) : (this.showLoading(i), "mail" == i ? $App.showMailbox(1) : $App.show(i))
-    }, showLoading: function (e) {
+    },
+    showLoading: function (e) {
         var t = {
             calendar: { icon: "i-pre-loading i-loading-clock", text: "<h6>待办事项提醒，不漏每一项重要工作</h6>" },
             addr: { icon: "i-pre-loading i-loading-men", text: "<h6>轻松发送会议邀请，体验高效工作</h6>" },
@@ -4947,15 +4983,18 @@ TabPageView = Backbone.View.extend({
                 s.remove()
             }, 4e3)
         }
-    }, addFlash2AnimalSkin: function (e) {
+    },
+    addFlash2AnimalSkin: function (e) {
         if (M139.Dom.flashChecker().hasFlash) if (e.indexOf("animal") > -1 && !window.isHideAnimalFlash) {
             $("#animalFlash").removeClass("hide");
             var t = '<embed src="../flash/skin/' + e.split("animal")[1].toLowerCase() + '.swf" width="200" height="200" type=application/x-shockwave-flash; quality="high"wmode="transparent">';
             $("#animalFlash").html(t)
         } else $("#animalFlash").addClass("hide"), $("#animalFlash embed").attr("src", "")
-    }, registerChannel: function (e, t) {
+    },
+    registerChannel: function (e, t) {
         this.channelOptions[e] = t
-    }, renderChannel: function (e) {
+    },
+    renderChannel: function (e) {
         function t(e, t) {
             if (e) {
                 $("#leftOther").hide(), !$App.isNewWinCompose() && s.show(), $("#main").css("left", "201px");
@@ -5017,15 +5056,18 @@ TabPageView = Backbone.View.extend({
             var h = "10" == $T.Url.queryString("v");
             t(h && "welcome" == m ? !0 : "welcome" !== e), i(g)
         }
-    }, hideOverTab: function () {
+    },
+    hideOverTab: function () {
         var e = 30, t = $D.getWinWidth() - e - 124, i = this.getVisibleTab(), a = Math.ceil(t / 83);
         if (83 * (i.length - 1) > t && ($("#tabsMenuIco").show(), a < i.length)) for (var s = a; s < i.length; s++)$(i[s]).hide()
-    }, maxTabHandler: function () {
+    },
+    maxTabHandler: function () {
         var e, t, i = this.model.get("maxTabsNum") || 23;
         this.tabContainer = this.tabContainer || $("#divTab ul");
         var a = this.tabContainer.find("li").not("#tabsMenuIco").not("[tabid=welcome]");
         a.length >= i && (e = this.tabContainer[0].lastChild.previousSibling, t = e.getAttribute("tabid"), t && $App.closeTab(t))
-    }, createTab: function (e, t, i) {
+    },
+    createTab: function (e, t, i) {
         var a = this, s = this.tab.exist(e);
         if (!s) try {
             var o = $("#divTab ul").find("li").not("#tabsMenuIco").not("[tabid=welcome]");
@@ -5055,10 +5097,13 @@ TabPageView = Backbone.View.extend({
         } catch (d) {
             console.log(d)
         }
-    }, onTabDelete: function (e) {
-    }, onTabActive: function (e) {
+    },
+    onTabDelete: function (e) {
+    },
+    onTabActive: function (e) {
         return this.model.set("currentModule", e), !0
-    }, onTabClose: function (e) {
+    },
+    onTabClose: function (e) {
         var t = this, i = { cancel: !1, name: e };
         try {
             $App.trigger("closeTab", i)
@@ -5068,7 +5113,8 @@ TabPageView = Backbone.View.extend({
             t.showAllTab(), t.tab.size(), t.hideOverTab()
         }, 200), i.cancel ? !1 : (this.onCloseTab(e), !0)
     }
-}), function () {
+}),
+function () {
     var e = Backbone.Model.extend({
         initialize: function (e) {
             window.LinkConfig || (window.LinkConfig = {
@@ -6169,7 +6215,8 @@ var FrameView = Backbone.View.extend({
         $(window).resize(function () {
             t.onResize()
         })
-    }, render: function (e) {
+    },
+    render: function (e) {
         var t = this, i = this.parentView.model, a = i.get("currentModule"), s = this.model.getLink(i), o = ['<div class="bodyerror ErrorTips" style="display:none">', '<img id="img_smile" _src="../images/global/smile.png" width="73" height="72">', "<p>没加载出来，再试一次吧</p>", '<a class="btnTb" href="javascript:"><span class="p_relative">重新加载</span></a>', '</div><div class="gtips NoCompleteTips" style="display:none">', '<span class="ml_5">由于网络原因，当前页面未完全加载，是否<a class="Retry" style="text-decoration: underline;" href="javascript:">重新加载</a>？</span>', '<a href="javascript:" class="i_u_close Close"></a>', "</div>"].join("");
         if (s) {
             if (this.parentView.setTitle(i.getModule(a).title || s.title), "" == $(this.el).html() || !e || s.refresh) {
@@ -6209,7 +6256,8 @@ var FrameView = Backbone.View.extend({
         }, 50), e || setTimeout(function () {
             t.watchIframeStatus(i.getModule(a))
         }, 0)
-    }, createIframe: function (e, t) {
+    },
+    createIframe: function (e, t) {
         var i, a, s = $App.getView("tabpage").getFrame(e);
         return $(s).attr({
             scrolling: "auto",
@@ -6221,7 +6269,8 @@ var FrameView = Backbone.View.extend({
         }), t && ($(s).attr({ id: t }), $(s).on("load", function () {
             $(".loadingTip").remove()
         })), e.match(/^set.*|uec\/.*\.html/) && (i = $('<div class="skin_mainWrapper"></div>'), a = $('<div class="skin_main"></div>').append(s), s = i.append(a)), s
-    }, onResize: function () {
+    },
+    onResize: function () {
         if (this.el) try {
             var e = $(this.el).find("iframe")[0];
             !e && (e = {}) && (e.id = "");
@@ -6238,14 +6287,18 @@ var FrameView = Backbone.View.extend({
             }
         } catch (s) {
         }
-    }, getIframe: function () {
+    },
+    getIframe: function () {
         return this.el.firstChild || null
-    }, setTabStatus: function (e) {
+    },
+    setTabStatus: function (e) {
         var t = this.getIframe();
         t && t.id && $App.getView("tabpage").tab.setStateIcon(t.id, e), this.model.set("tabStatus", e)
-    }, getTabStatus: function () {
+    },
+    getTabStatus: function () {
         return this.model.get("tabStatus")
-    }, watchIframeStatus: function (e) {
+    },
+    watchIframeStatus: function (e) {
         function t() {
             var e = c.src;
             return /^\/|https?:\/\/(appmail\d+|rm|app|smsrebuild\d+|subscribe\d+|html5)\.mail\./.test(e) && e.indexOf(top.getRootPath()) > -1 ? !(e.indexOf("inner/reader/index") >= 0 || e.indexOf("voiceMail") >= 0) : !1
@@ -6310,7 +6363,8 @@ var FrameView = Backbone.View.extend({
                 $(d.document).ready(i)
             })
         }
-    }, checkIframeHealth: function (e) {
+    },
+    checkIframeHealth: function (e) {
         var t = this, i = !0;
         return ($B.is.ie && $B.getVersion() >= 9 || window.FormData) && !function () {
             for (var a = e.contentWindow.document.getElementsByTagName("script"), s = 0; s < a.length; s++) {
@@ -6335,7 +6389,8 @@ var FrameView = Backbone.View.extend({
 _.extend(TabLabel.prototype, {
     init: function (e) {
         this.context = e, this.cur = null, this.tabs = [], this.group = [], this.count = 0, this.width = 720, this.max = 124, this.min = 90, this.history = [], this.call = []
-    }, add: function (e, t, i) {
+    },
+    add: function (e, t, i) {
         function a() {
             return "welcome" === n || "mailbox_1" === n || $.inArray(n, l) > -1 ? !0 : void 0
         }
@@ -6379,13 +6434,16 @@ _.extend(TabLabel.prototype, {
             m && m != n && this.exist(m) && (this.call[2].call(this.context, m), this.replace(m, n)), this.group[e.group] = n
         }
         specialTreatments(e, r, this)
-    }, exist: function (e) {
+    },
+    exist: function (e) {
         var t = this.tabs[e];
         return t && t.nodeType && t.getAttribute("tabid") ? t : null
-    }, del: function (e) {
+    },
+    del: function (e) {
         var t = this.exist(e);
         t && (this.cur == t && (this.cur = null), this.main.removeChild(t), delete this.tabs[e], this.count-- , this.size(), this.call[0] && this.call[0].call(this.context, e), this.update(e, !1), !this.cur && this.history.length && (t = this.history[this.history.length - 1], this.history.length-- , "welcome" == t && (t = "mailbox_1"), this.active(t)), $App.getView("tabpage").tab.count > top.maxTabCount ? $("#tabsMenuIco").show() : $("#tabsMenuIco").hide())
-    }, active: function (e) {
+    },
+    active: function (e) {
         function t(e, t) {
             if (t) {
                 var i = e.getAttribute("tabid");
@@ -6401,7 +6459,8 @@ _.extend(TabLabel.prototype, {
             if (this.call[1] && !this.call[1].call(this.context, e)) return !1;
             this.cur && t(this.cur, !1), this.cur = i, t(i, !0), this.update(e, !0)
         }
-    }, title: function (e, t) {
+    },
+    title: function (e, t) {
         var i = this.exist(e);
         if (i) {
             var a = i.getElementsByTagName("span")[0];
@@ -6411,10 +6470,12 @@ _.extend(TabLabel.prototype, {
             }
             a.innerHTML = $T.Html.encode(t), i.title = t
         }
-    }, close: function (e) {
+    },
+    close: function (e) {
         var t = this.exist(e);
         t && $(t).find(".i_close").trigger("click")
-    }, change: function (e, t, i) {
+    },
+    change: function (e, t, i) {
         var a = this.exist(e);
         if (a) {
             t && this.title(e, t), delete this.tabs[e], a.setAttribute("tabid", i), this.tabs[i] = a;
@@ -6424,13 +6485,15 @@ _.extend(TabLabel.prototype, {
                 break
             }
         }
-    }, replace: function (e, t) {
+    },
+    replace: function (e, t) {
         var i = this.exist(e) && this.exist(t);
         if (i) {
             var a = this.title(t);
             this.cur = this.exist(e), this.del(t), this.change(e, a, t), this.active(t)
         }
-    }, size: function (e) {
+    },
+    size: function (e) {
         var t, i;
         if (e) this.width = e; else {
             var a = 30;
@@ -6443,11 +6506,13 @@ _.extend(TabLabel.prototype, {
             var s = "收件箱" == $(t).text() ? this.max - 33 : this.min - 33;
             .5 > s && (s = 0), t.style.width = s + "px"
         }
-    }, update: function (e, t) {
+    },
+    update: function (e, t) {
         var i, a, s = this.history.length, o = [];
         for (i = 0; s > i; i++)a = this.history[i], a != e && (o[o.length] = a);
         t && (o[o.length] = e), this.history = o
-    }, setStateIcon: function (e, t) {
+    },
+    setStateIcon: function (e, t) {
         var i = {
             loading: "error-loading",
             error: "error-tab",
@@ -6459,7 +6524,8 @@ _.extend(TabLabel.prototype, {
             top: "9px"
         }), a.style.display = ""))
     }
-}), function (e, t, i) {
+}),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.TabMenu.View", s.extend({
         events: { "click #orignTabsManage": "onOrignTabsManage" },
@@ -6617,9 +6683,11 @@ var Package = {
             },
             cool_mail: { path: "m2012.coolmail.pack.js", directory: e.defaultDir, depend: null }
         }
-    }, addConfig: function (e) {
+    },
+    addConfig: function (e) {
         this.packageList || this.config(), _.defaults(this.packageList, e)
-    }, require: function (e, t) {
+    },
+    require: function (e, t) {
         function i(e) {
             if (e.loaded) t(); else {
                 var i = top.getResourceVersion(e.path) || $Date.format("yyyyMMdd", new Date), a = {
@@ -6682,7 +6750,8 @@ M139.namespace("M2012.History", {
                 i && (i.style.visibility = ""), t.restorePage()
             })
         }
-    }, updatePage: function (e, t) {
+    },
+    updatePage: function (e, t) {
         if (window.sessionStorage) if (window.sessionStorage.setItem("currentPage", e), "mailsub_0" == e) {
             var i = $App.getMailboxView().model;
             if (i.get("isSearchMode")) {
@@ -6692,7 +6761,8 @@ M139.namespace("M2012.History", {
                 void 0 != s && (a.billTab = s), window.sessionStorage.setItem("currentOptions", JSON.stringify(a))
             } else window.sessionStorage.setItem("currentOptions", JSON.stringify({ folderId: i.get("fid") }))
         } else "diskDev" == e && t && window.sessionStorage.setItem("currentOptions", JSON.stringify({ index: t }))
-    }, restorePage: function () {
+    },
+    restorePage: function () {
         if (window.sessionStorage) {
             var e = window.sessionStorage.getItem("currentPage");
             if (e) if ("mailsub_0" == e) {
@@ -6706,7 +6776,8 @@ M139.namespace("M2012.History", {
                 }, 2e3)
             }
         }
-    }, addBehavior: function (e) {
+    },
+    addBehavior: function (e) {
         function t(e, t) {
             return window.LinkConfig[e] ? window.LinkConfig[e].url : "mailbox_1" == e || "mailsub_0" == e ? "VIP邮件" == t.title ? "mail_vip" : "星标邮件" == t.title ? "mail_star" : "待办任务" == t.title ? "mail_task" : "服务邮件" == t.title ? "mail_service" : "s?func=mbox:listMessages&fid=" + $App.getCurrentFid() : e.indexOf("readmail") >= 0 ? "s?func=view:readMessage&mid=" + e.replace("readmail_", "") : e.indexOf("compose") >= 0 ? "compose.html" : e
         }
@@ -6715,9 +6786,11 @@ M139.namespace("M2012.History", {
             var i = t(e.name, e);
             this.referUrl && i && window._udata.sendPageInfo({ fp: this.referUrl, cp: i }), this.referUrl = i
         }
-    }, clear: function () {
+    },
+    clear: function () {
         this.historyList = []
-    }, add: function (e) {
+    },
+    add: function (e) {
         var t = this;
         if (this.historyList.push(e), this.historyIndex++ , window.history.pushState) {
             var i = location.href.replace(/[\&]?h=\d+/gi, "");
@@ -6729,14 +6802,17 @@ M139.namespace("M2012.History", {
             } catch (i) {
             }
         }, 50)
-    }, addCompose: function (e, t) {
+    },
+    addCompose: function (e, t) {
         var i = $.extend({}, e), a = $.extend({}, t), s = $App.getCurrentTab().name;
         return function () {
             $App.getTabByName(s) ? $App.activeTab(s) : $App.show("compose", i, { inputData: a })
         }
-    }, modifyCurrent: function (e) {
+    },
+    modifyCurrent: function (e) {
         this.historyList.pop(), this.historyList.push(e)
-    }, goBack: function (e) {
+    },
+    goBack: function (e) {
         if (this.historyList.length > 1) {
             var t = this.historyList.pop(), i = this.historyList[this.historyList.length - 1];
             if (i.fromHistory = !0, this.fromHistory = !0, "function" == typeof i) i(); else {
@@ -6748,7 +6824,8 @@ M139.namespace("M2012.History", {
                 }
             }
         }
-    }, createHtml5History: function (e) {
+    },
+    createHtml5History: function (e) {
         var t = this, i = window.onload;
         window.onload = function () {
             i && i(), setTimeout(function () {
@@ -6759,7 +6836,8 @@ M139.namespace("M2012.History", {
         }, setTimeout(function () {
             e && e()
         }, 50)
-    }, createIframeHistory: function (e) {
+    },
+    createIframeHistory: function (e) {
         var t = this, i = document.createElement("iframe");
         i.id = "frmHistory", i.name = "frmHistory", i.style.display = "none", document.body.appendChild(i), i.style.display = "none", i.contentWindow.location.href = "history.html?sid=" + top.sid;
         $(i).load(function () {
@@ -6771,7 +6849,8 @@ M139.namespace("M2012.History", {
             }
         })
     }
-}), function (e, t, i) {
+}),
+function (e, t, i) {
     var a = e, s = i.Model.ModelBase, o = "M2012.UserModel";
     i.namespace(o, s.extend({
         initialize: function (e) {
@@ -7308,7 +7387,8 @@ M139.namespace("M2012.History", {
             for (var e in this) 0 == e.indexOf("get") && t.isFunction(this[e]) && console.log(e + ":" + this[e]())
         }
     })), window.$User = new M2012.UserModel
-}(jQuery, _, M139), function (jQuery, Backbone, _, M139) {
+}(jQuery, _, M139),
+function (jQuery, Backbone, _, M139) {
     function enqueueMailInfo(e) {
         M139.core.utilCreateScriptTag({
             id: "contact_inbox_async_method",
@@ -7320,82 +7400,141 @@ M139.namespace("M2012.History", {
             }, $App.trigger("app:mailreaded#savecontact", e)
         })
     }
-
-    var $ = jQuery, superClass = M139.PageApplication, isFirstLoadGetInfoSet = !0, isFirstLoadInitConfigData = !0;
+    var $ = jQuery,
+        superClass = M139.PageApplication,
+        isFirstLoadGetInfoSet = !0,
+        isFirstLoadInitConfigData = !0;
     M139.namespace("M2012.MainApplication", superClass.extend({
         initialize: function (e) {
             superClass.prototype.initialize.apply(this, arguments)
-        }, defaults: { name: "M2012.MainApplication" }, run: function () {
-            if (window.sid = $T.Html.encode($App.query.sid), window.name && "string" == typeof window.name && window.name.indexOf("sid") >= 0) {
+        },
+        defaults: { name: "M2012.MainApplication" },
+        run: function () {
+            window.sid = $T.Html.encode($App.query.sid);
+            if (window.name && "string" == typeof window.name && window.name.indexOf("sid") >= 0) {
                 var e = $Url.queryString("cguid"), t = M139.Text.Utils.getDateTimeFromCGUID(e);
                 if (new Date - t > 2e4) {
                     var i = window.name.match(/sid=([^&]+)/);
-                    i && (window.sid = i[1], $App.query.sid = window.sid)
-                } else window.name = ""
+                    if (i) {
+                        window.sid = i[1];
+                        $App.query.sid = window.sid;
+                    }
+                } else {
+                    window.name = "";
+                }
             }
             var a = M139.Logger.getDefaultLogger();
-            a && "function" != typeof a.timeStart && (a.timeStart = function () {
-            }, a.timeEnd = function () {
-            }), this.isNewWinCompose() && ($("#sub, #divTab, #header").hide(), $("#top").children().not("a:first").hide(), $("#top>a:first").attr("href", "javascript:;").css("cursor", "default"), $("#main").removeClass("main").addClass("main_write").hide()), this.registerView("folder", new M2012.Folder.View.FolderMain), this.loadLevel = 0, this.initConfigData(), this.initEvents(), this.initModels(), this.initApi(), this.initSubViews(), this.initOldTimesAdapter(), this.initProductView(), this.initSsoRedirect(), M2012.History.initialize(), this.registerChannel("welcome", {
+            if(a && "function" != typeof a.timeStart){ 
+                a.timeStart = function () { };
+                a.timeEnd = function () { };
+            }
+            if(this.isNewWinCompose()){
+                $("#sub, #divTab, #header").hide();
+                $("#top").children().not("a:first").hide();
+                $("#top>a:first").attr("href", "javascript:;").css("cursor", "default");
+                $("#main").removeClass("main").addClass("main_write").hide();
+            }
+            this.registerView("folder", new M2012.Folder.View.FolderMain);
+            this.loadLevel = 0;
+            this.initConfigData();
+            this.initEvents();
+            this.initModels();
+            this.initApi();
+            this.initSubViews();
+            this.initOldTimesAdapter();
+            this.initProductView();
+            this.initSsoRedirect();
+            M2012.History.initialize();
+            this.registerChannel("welcome", {
                 leftNav: "none",
                 defaultTab: "welcome",
                 hideTab: !0
-            }), this.registerChannel("addr", {
+            });
+            this.registerChannel("addr", {
                 leftNav: "none",
                 defaultTab: "addr",
                 hideTab: !0
-            }), this.registerChannel("disk", {
+            });
+            this.registerChannel("disk", {
                 leftNav: "none",
                 defaultTab: "diskDev",
                 hideTab: !0
-            }), this.registerChannel("calendar", {
+            });
+            this.registerChannel("calendar", {
                 leftNav: "none",
                 defaultTab: "calendar",
                 hideTab: !0
-            }), this.registerChannel("subscribe", {
+            });
+            this.registerChannel("subscribe", {
                 leftNav: "none",
                 defaultTab: "googSubscription"
-            }), this.registerChannel("billCharge", {
+            });
+            this.registerChannel("billCharge", {
                 leftNav: "none",
                 defaultTab: "billCharge",
                 hideTab: !0
-            }), this.registerChannel("note", {
+            });
+            this.registerChannel("note", {
                 leftNav: "none",
                 hideTab: !1,
                 withinMail: !0
-            }), this.registerChannel("groupMail", {
+            });
+            this.registerChannel("groupMail", {
                 leftNav: "none",
                 hideTab: !1,
                 withinMail: !0
-            }), this.registerChannel("setting", {
+            });
+            this.registerChannel("setting", {
                 leftNav: function () {
                     settingsIndexView.getSettingsNav()
                 }, hideTab: !1, withinMail: !0
-            }), this.registerChannel("usercenter", { leftNav: "none", hideTab: !1, withinMail: !0 })
-        }, initEvents: function () {
+            });
+            this.registerChannel("usercenter",
+                { leftNav: "none", hideTab: !1, withinMail: !0 });
+        },
+        initEvents: function () {
             function e() {
                 var e = i.getBodyHeight();
                 if ("true" == s.attr("welcome")) {
                     var t = 0, o = e - a - t;
-                    s.height(o), $(".welcomeFooter").show();
+                    s.height(o);
+                    $(".welcomeFooter").show();
                     var n = $("#welcome").height() - 100;
-                    window.$iframe && ($iframe.find("#div_scroller_inter").height(n), $iframe.find(".welcomeNewSon_leftCon").height(o))
-                } else s.height(e - 36), $(".welcomeFooter").hide()
+                    if (window.$iframe) {
+                        $iframe.find("#div_scroller_inter").height(n);
+                        $iframe.find(".welcomeNewSon_leftCon").height(o);
+                    }
+                } else {
+                    s.height(e - 36);
+                    $(".welcomeFooter").hide();
+                }
             }
-
             function t(e) {
                 var t = o;
-                t && ("tab" == t.type ? t.name.indexOf(e.name) >= 0 && $App.showSysTips(t.summary) : $App.currentChannel == t.name && $App.showSysTips(t.summary))
+                if (t) { 
+                    if ("tab" == t.type) {
+                        if (t.name.indexOf(e.name) >= 0)
+                        {
+                            $App.showSysTips(t.summary);
+                        }
+                    } else {
+                        if ($App.currentChannel == t.name) {
+                            $App.showSysTips(t.summary);
+                        }
+                    }
+                }
             }
-
             var i = this;
             this.on("folderRendered", function () {
                 this.onResize()
             });
             var a = $(".headerTopMenu").height(), s = $("#mainContentBox");
-            e(), $(window).resize(function () {
-                e(), i.onResize()
-            }), top.$App.on("bindBeforeunload", function () {
+            e();
+            $(window).resize(function () {
+                e();
+                i.onResize();
+            });
+            top.$App.on("bindBeforeunload", function () {
                 $(window).unbind("beforeunload").bind("beforeunload", function () {
                     var e = window.event, t = !1;
                     if (e && e.clientY > 0 && (t = !0), !t) {
@@ -7406,27 +7545,36 @@ M139.namespace("M2012.History", {
                         }
                     }
                 })
-            }), top.$App.on("removeBeforeunload", function () {
+            });
+            top.$App.on("removeBeforeunload", function () {
                 $(window).unbind("beforeunload")
-            }), top.$GlobalEvent.on("keydown", function (e) {
+            });
+            top.$GlobalEvent.on("keydown", function (e) {
                 top.SiteConfig.shortcutKeyConf ? $App.shortcutKey(e.event, e.window) : $App.keyReply(e.event, e.window)
-            }), top.$GlobalEvent.on("click", function (e) {
+            });
+            top.$GlobalEvent.on("click", function (e) {
                 M139.UI.TipMailView && M139.UI.TipMailView.rollTitleConfig && 1 === M139.UI.TipMailView.rollTitleConfig.run && M139.UI.TipMailView.reSetDocTitle()
-            }), this.on("change:sessionOut", function (e, t) {
+            });
+            this.on("change:sessionOut", function (e, t) {
                 t && this.showSessionOutDialog()
-            }), this.on("change:contact_maindata", function (e, t) {
+            });
+            this.on("change:contact_maindata", function (e, t) {
                 i.initContactData()
-            }), this.on("sms_send", function (e) {
+            });
+            this.on("sms_send", function (e) {
                 var t = e.count, i = $User.getSmsMMsInfo();
                 i && (i.UsedSmsCount = Number(i.UsedSmsCount) + t), $App.clearTabCache("welcome")
-            }), this.on("mms_send", function (e) {
+            });
+            this.on("mms_send", function (e) {
                 var t = e.count, i = $User.getSmsMMsInfo();
                 i && (i.UsedMmsCount = Number(i.UsedMmsCount) + t), $App.clearTabCache("welcome")
-            }), this.on("mail_send", function (e) {
+            });
+            this.on("mail_send", function (e) {
                 $App.clearTabCache("welcome")
-            }), $B.is.ie && this.on("closeTab", function () {
+            });
+            $B.is.ie && this.on("closeTab", function () {
                 M139.Dom.fixIEFocus()
-            }), this.on("addCalendar", function (e, t) {
+            }); this.on("addCalendar", function (e, t) {
                 i.addCalendar(e, t)
             });
             var o, n = {
@@ -7441,10 +7589,16 @@ M139.namespace("M2012.History", {
                 9: { name: "postcard|greetingcard", type: "tab" },
                 10: { name: "mail" }
             };
-            if (this.on("maintaining", function (e) {
+
+            this.on("maintaining", function (e) {
                 var i = e.summary;
-                "PML410070001" == e.code || "0" == e.serviceId ? this.showSysTips(i) : (o = e.serviceId && n[e.serviceId] ? n[e.serviceId] : n[1], o.summary = i, t(this.getCurrentTab()))
-            }), this.on("showTab", function (e) {
+                if ("PML410070001" == e.code || "0" == e.serviceId) {
+                    this.showSysTips(i);
+                } else {
+                    o = e.serviceId && n[e.serviceId] ? n[e.serviceId] : n[1], o.summary = i, t(this.getCurrentTab());
+                }
+            });
+            this.on("showTab", function (e) {
                 if ("welcome" == e.name && (top.$App.dyinfoChanged || top.$App.dyinfoChanged1)) {
                     var i = top.document.getElementById("welcome").contentWindow.welcomeView;
                     i && i.reloadProd()
@@ -7452,15 +7606,24 @@ M139.namespace("M2012.History", {
                 setTimeout(function () {
                     t(e)
                 }, 10)
-            }), $(window).load(function () {
+            });
+            $(window).load(function () {
                 setTimeout(function () {
                     M139.RichMail.API.call("setting:querySystemStatus", {}, function (e) {
-                        e.responseData.code && "S_OK" == e.responseData.code && $(e.responseData["var"]).each(function (e, t) {
-                            "0" != t.status ? (t.code = t.status, "0" == t.serviceId ? t.code = "PML410070001" : t.code = "PML410070002", $App.trigger("maintaining", t)) : t.summary && "" != t.summary && $App.trigger("maintaining", t)
-                        })
+                        if (e.responseData.code && "S_OK" == e.responseData.code) {
+                            $(e.responseData["var"]).each(function (e, t) {
+                                if ("0" != t.status) {
+                                    (t.code = t.status, "0" == t.serviceId ? t.code = "PML410070001" : t.code = "PML410070002", $App.trigger("maintaining", t));
+                                } else {
+                                    t.summary && "" != t.summary && $App.trigger("maintaining", t);
+                                }
+                            });
+                        }
                     })
-                }, 1e3), $App.getPrettyNumberData()
-            }), SiteConfig.saveinboxcontact) {
+                }, 1e3);
+                $App.getPrettyNumberData();
+            });
+            if (SiteConfig.saveinboxcontact) {
                 var r = this;
                 window.simpleMode && window.simpleMode() || r.on("readmail", function (e) {
                     enqueueMailInfo(e)
@@ -7472,8 +7635,10 @@ M139.namespace("M2012.History", {
                 var e = $(this).attr("tabid");
                 "mailbox_1" == e && BH("click_mailbox_tab")
             })
-        }, initModels: function () {
-        }, initSsoRedirect: function () {
+        },
+        initModels: function () {
+        },
+        initSsoRedirect: function () {
             var e = (new M2012.SsoRedirect, this);
             this.on("folderLoaded", function () {
                 if (!e.isDefaultEntryInvoke && (e.isDefaultEntryInvoke = !0, !window.sessionStorage || !window.sessionStorage.getItem("currentPage"))) {
@@ -7512,7 +7677,8 @@ M139.namespace("M2012.History", {
                     }
                 }
             })
-        }, initProductView: function () {
+        },
+        initProductView: function () {
             setTimeout(function () {
                 $App.prodFuns = top.ProductFuns;
                 var e = top.$App.prodFuns;
@@ -7527,16 +7693,20 @@ M139.namespace("M2012.History", {
                     (new M2012.Settings.Initset.View_New).render()
                 })
             })
-        }, initGuide: function () {
+        },
+        initGuide: function () {
             new M139.UI.Ticket
-        }, onUserDataComplete: function (e) {
+        },
+        onUserDataComplete: function (e) {
             this.completeCallbackList || (this.completeCallbackList = []), this.completeCallbackList.push(e), this.checkUserDataComplete()
-        }, checkUserDataComplete: function () {
+        },
+        checkUserDataComplete: function () {
             if (this.loadLevel >= 2 && this.completeCallbackList) for (; this.completeCallbackList.length > 0;) {
                 var e = this.completeCallbackList.shift();
                 e()
             }
-        }, initConfigData: function () {
+        },
+        initConfigData: function () {
             var e = this;
             this.initContactData(), this.reloadUserAttrs({
                 callback: function () {
@@ -7550,16 +7720,19 @@ M139.namespace("M2012.History", {
                     }
                 }), $App.clearTabCache("welcome"), e.reloadUserAttrs(t)
             }), "20" == $User.getAreaCode() && this.getAdLinkData(), this.getNewUserInfo()
-        }, initContactData: function (e) {
+        },
+        initContactData: function (e) {
             var t = this, i = M2012.Contacts.getModel();
             this.registerModel("contacts", i), i.loadMainData({}, function (e) {
                 t.registerConfig("ContactData", e), t.trigger("contactLoad", e)
             }), i.on("update", function (e) {
                 t.trigger("contactUpdate", e)
             })
-        }, initUserMainData: function (e, t) {
+        },
+        initUserMainData: function (e, t) {
             e && ("8613632599010" == e.UID && (e.UID = "8680000000000"), this.registerConfig("UserData", e), this.trigger("userDataLoad", e), t && t(e))
-        }, initMainInfoData: function (e) {
+        },
+        initMainInfoData: function (e) {
             var t = this;
             this.loadMWGetInfoSet(function (i) {
                 if (i.responseData && "S_OK" == i.responseData.code) {
@@ -7567,7 +7740,8 @@ M139.namespace("M2012.History", {
                     a.healthyHistory ? t.registerConfig("healthyHistory", a.healthyHistory) : t.logger.error("healthyHistory data error", "[info:getInfoSet]", i), a.userMainData ? t.initUserMainData(a.userMainData, e) : t.logger.error("userMainData data error", "[info:getInfoSet]", i), a.mealInfo ? t.registerConfig("mealInfo", a.mealInfo) : t.logger.error("mealInfo data error", "[info:getInfoSet]", i), a.userMobileSetting ? (t.registerConfig("PersonalData", a.userMobileSetting), t.trigger("personalDataLoad", a.userMobileSetting)) : t.logger.error("userMobileSetting data error", "[info:getInfoSet]", i), a.birthdayRemind ? t.registerConfig("birthdayRemind", a.birthdayRemind) : t.logger.error("birthdayRemind data error", "[info:getInfoSet]", i), t.loadLevel++ , t.isInfoSetLoad = !0, t.trigger("infoSetLoad", a), t.checkUserDataComplete()
                 } else t.logger.error("info:getInfoSet", "[info:getInfoSet]", i)
             })
-        }, deepCloneJSON: function (e) {
+        },
+        deepCloneJSON: function (e) {
             if (!e) return e;
             if ("object" != typeof e) return e;
             if (_.isArray(e)) {
@@ -7577,10 +7751,12 @@ M139.namespace("M2012.History", {
             var s = {};
             for (var o in e) e.hasOwnProperty(o) && (s[o] = arguments.callee.call(this, e[o]));
             return s
-        }, isShowWelcomePage: function () {
+        },
+        isShowWelcomePage: function () {
             var e = document.getElementById("welcome");
             return e && "IFRAME" === e.tagName ? !0 : $User.isChinaMobileUser()
-        }, loadMWGetInfoSet: function (e) {
+        },
+        loadMWGetInfoSet: function (e) {
             function t(i, a) {
                 a && (i = $App.deepCloneJSON(i)), e({ responseData: i }), t = new Function
             }
@@ -7603,7 +7779,8 @@ M139.namespace("M2012.History", {
                 })
             } else M139.RichMail.API.call("info:getInfoSet", null, e);
             isFirstLoadGetInfoSet = !1
-        }, loadRMInitDataConfig: function (e) {
+        },
+        loadRMInitDataConfig: function (e) {
             function t(i, a) {
                 a && (i = $App.deepCloneJSON(i)), e({ responseData: i }), t = new Function
             }
@@ -7633,7 +7810,8 @@ M139.namespace("M2012.History", {
                 }
             } else M139.RichMail.API.call("user:getInitDataConfig", { visiblePurgeBoxFlag: 1 }, e);
             isFirstLoadInitConfigData = !1
-        }, getMainData: function (e) {
+        },
+        getMainData: function (e) {
             var t = this;
             $App.getConfig("UserData") ? M139.RichMail.API.call("user:getMainData", null, function (i) {
                 if (i.responseData && "S_OK" == i.responseData.code) {
@@ -7645,7 +7823,8 @@ M139.namespace("M2012.History", {
             }) : t.initMainInfoData(function () {
                 t.getUserAccountList(), e && e()
             })
-        }, getUserAccountList: function () {
+        },
+        getUserAccountList: function () {
             var e = $App.getConfig("UserData");
             if (e && e.uidList) {
                 var t = e.uidList;
@@ -7661,46 +7840,54 @@ M139.namespace("M2012.History", {
                     }
                 })
             }
-        }, getDiskAttConf: function (e) {
+        },
+        getDiskAttConf: function (e) {
             var t = this;
             "function" != typeof e && (e = $.noop), M139.RichMail.API.call("disk:getDiskAttConf", null, function (i) {
                 var a = i.responseData || {};
                 "S_OK" == a.code ? $App.setConfig("DiskAttConf", "autoSaveToDisk", a["var"].largerAttSave) : t.logger.error("getDiskAttConf data error", "[disk:getDiskAttConf]", i), e(a)
             })
-        }, setDiskAttConf: function (e, t) {
+        },
+        setDiskAttConf: function (e, t) {
             var i = this;
             "function" != typeof t && (t = $.noop), M139.RichMail.API.call("disk:updateDiskAttConf", { enable: String(Boolean(e)) }, function (a) {
                 var s = a.responseData || {};
                 "S_OK" == s.code ? $App.setConfig("DiskAttConf", "autoSaveToDisk", Boolean(e) ? "0" : "1") : i.logger.error("updateDiskAttConf failed", "[disk:updateDiskAttConf]", a), t(s)
             })
-        }, getCommConfig: function (e, t) {
+        },
+        getCommConfig: function (e, t) {
             var i = this;
             "function" != typeof t && (t = $.noop), M139.RichMail.API.call("user:getCommConfig", e, function (e) {
                 var a = e.responseData || {};
                 "S_OK" == a.code ? $App.registerConfig("CommConfig", a["var"]) : i.logger.error("getCommConfig data error", "[user:getCommConfig]", e), t(a)
             })
-        }, setCommConfig: function (e, t) {
+        },
+        setCommConfig: function (e, t) {
             var i = this;
             "function" != typeof t && (t = $.noop), M139.RichMail.API.call("user:updateCommConfig", e, function (e) {
                 var a = e.responseData || {};
                 "S_OK" == a.code ? $App.registerConfig("CommConfig", a) : i.logger.error("updateCommConfig failed", "[user:updateCommConfig]", e), t(a)
             })
-        }, setUserConfigItem: function (e, t) {
+        },
+        setUserConfigItem: function (e, t) {
             var i = this;
             "function" != typeof t && (t = $.noop), M139.RichMail.API.call("user:setUserConfigItem", e, function (e) {
                 var a = e.responseData || {};
                 "S_OK" == a.code ? $App.registerConfig("CommConfig", a) : i.logger.error("updateCommConfig failed", "[user:updateCommConfig]", e), t(a)
             })
-        }, requireUserData: function (e) {
+        },
+        requireUserData: function (e) {
             $App.getConfig("UserData") ? e($App.getConfig("UserData")) : $App.once("userDataLoad", function (t) {
                 e(t)
             })
-        }, getAdLinkData: function (e) {
+        },
+        getAdLinkData: function (e) {
             var t = this, i = "/sharpapi/userconfig/service/ajaxhandler.ashx?func=user:adlink&sid=" + sid, a = M139.HttpRouter.getNoProxyUrl(i);
             $.getScript(a, function () {
                 AdLink ? (t.registerConfig("AdLink", AdLink), e && e(AdLink)) : e && e(null)
             })
-        }, loadAttrs1: function (e, t) {
+        },
+        loadAttrs1: function (e, t) {
             var i = this;
             this.loadRMInitDataConfig(function (a) {
                 if ("S_OK" == a.responseData.code) {
@@ -7714,12 +7901,14 @@ M139.namespace("M2012.History", {
                     }), e && e(i.getConfig("UserAttrs"))
                 }
             })
-        }, loadAttrs2: function (e) {
+        },
+        loadAttrs2: function (e) {
             var t = this, i = { attrIds: [] };
             $RM.getAttrs(i, function (i) {
                 t.registerConfig("UserAttrsAll", i["var"]), e(i["var"])
             })
-        }, getNewUserInfo: function (e) {
+        },
+        getNewUserInfo: function (e) {
             var t = this;
             M2012.Contacts.API.queryNewUserInfo({
                 success: function (i) {
@@ -7728,7 +7917,8 @@ M139.namespace("M2012.History", {
                     e && e(null)
                 }
             })
-        }, reloadUserAttrs: function (e) {
+        },
+        reloadUserAttrs: function (e) {
             function t() {
                 a++ , 2 == a && "function" == typeof e.callback && e.callback()
             }
@@ -7737,14 +7927,16 @@ M139.namespace("M2012.History", {
             e || (e = {}), this.loadAttrs1(t, function (t) {
                 "undefined" != typeof e.trueName && (t.trueName = e.trueName), i.isUserAttrsLoad = !0, $App.trigger("userAttrsLoad", i.getConfig("UserAttrsAll"))
             }), this.getMainData(t)
-        }, drawLimitSkin: function (e) {
+        },
+        drawLimitSkin: function (e) {
             return $App.getUserConfigInfo("skintrialtag") && $App.getUserConfigInfo("skintrialtag").match(/isDrew=(0|1)/).length && $App.getUserConfigInfo("skintrialtag").match(/isDrew=(0|1)/)[1] ? void $App.getCommConfig({ configId: 62 }, function (t) {
                 if (t = t["var"], 62 == t[0].configId && t[0].configValue2) {
                     var i = parseInt(t[0].configValue2.match(/isDrew=(0|1)/)[1]);
                     e && e(i), i || (top.SiteConfig.drawLimitSkin = !1)
                 }
             }) : (e && e(!1), void (top.SiteConfig.drawLimitSkin = !1))
-        }, setLastSkin: function (e) {
+        },
+        setLastSkin: function (e) {
             var t = this;
             e.indexOf("animal") > -1 || $App.getCommConfig({ configId: 62 }, function (i) {
                 if (i = i["var"], i.length > 0 && 62 == i[0].configId && i[0].configValue2) {
@@ -7755,7 +7947,8 @@ M139.namespace("M2012.History", {
                     })
                 }
             })
-        }, getLastSkin: function (e) {
+        },
+        getLastSkin: function (e) {
             $App.getCommConfig({ configId: 62 }, function (t) {
                 if (t = t["var"], 62 == t[0].configId && t[0].configValue2) {
                     if (!t[0].configValue2.match(/\&isDrew=(0|1)/)[1]) return;
@@ -7763,7 +7956,8 @@ M139.namespace("M2012.History", {
                     e && e(i)
                 }
             })
-        }, setSkin: function (e, t) {
+        },
+        setSkin: function (e, t) {
             $Cookie.set({
                 name: "SkinPath2" + $Url.queryString("k"),
                 value: e,
@@ -7772,7 +7966,8 @@ M139.namespace("M2012.History", {
                 var i = e.responseData;
                 i && "S_OK" === i.code && t && t()
             }), top.MusicBox.changeSkin()
-        }, changeSkin: function (e) {
+        },
+        changeSkin: function (e) {
             var t = e || $User.getSkinName(), i = $("#skinLink"), a = i.attr("href");
             isAlternateSkin(t) && (t = chooseAlternateSkin(t)), a = a.replace(/skin_[^_^\.]+/, t), $B.is.firefox ? $('<img src="' + a + '"/>').bind("error", function () {
                 setTimeout(function () {
@@ -7807,13 +8002,15 @@ M139.namespace("M2012.History", {
                     }
                 }
             }, 100), this.christmasMan(t), this.addFlash2AnimalSkin(t)
-        }, addFlash2AnimalSkin: function (e) {
+        },
+        addFlash2AnimalSkin: function (e) {
             if (M139.Dom.flashChecker().hasFlash) if (e.indexOf("animal") > -1) {
                 window.isHideAnimalFlash = !1, $("#animalFlash").removeClass("hide");
                 var t = '<embed src="../flash/skin/' + e.split("animal")[1].toLowerCase() + '.swf" width="200" height="200" type=application/x-shockwave-flash; quality="high"wmode="transparent">';
                 $("#animalFlash").html(t)
             } else $("#animalFlash").addClass("hide"), $("#animalFlash embed").attr("src", "")
-        }, christmasMan: function (e) {
+        },
+        christmasMan: function (e) {
             return "skin_christmas" != e ? ($("#divTab li[role=tab][id!=tabsMenuIco]:visible span").unbind("hover"), $("#christmasCanvas") && $("#christmasCanvas").remove(), void (window.intervral4Christmas && clearInterval(window.intervral4Christmas))) : ($("#divTab li[role=tab][id!=tabsMenuIco]:visible span").unbind("hover").hover(function (e) {
                 if ($(".santaClaus").length > 0 && $(".santaClaus").remove(), !$("#accountSet.selected").length) {
                     var t = $(e.target).parents("[role=tab]").offset().left;
@@ -7825,7 +8022,8 @@ M139.namespace("M2012.History", {
             }), $(".christmasHats").remove(), setTimeout(function () {
                 $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
             }, 100), void this.snow())
-        }, snow: function () {
+        },
+        snow: function () {
             function e() {
                 a.clearRect(0, 0, s, o), a.fillStyle = "rgba(255, 255, 255, 0.6)", a.shadowBlur = 5, a.shadowColor = "rgba(255, 255, 255, 0.9)", a.beginPath();
                 for (var e = 0; n > e; e++) {
@@ -7866,7 +8064,8 @@ M139.namespace("M2012.History", {
                 var c = 0;
                 window.intervral4Christmas = setInterval(e, 70)
             }
-        }, setModuleSkinCSS: function (e) {
+        },
+        setModuleSkinCSS: function (e) {
             if (!e) throw new Error("请传入document对象");
             var t = top.$User.getSkinName();
             isAlternateSkin(t) && (t = chooseAlternateSkin(t));
@@ -7876,7 +8075,8 @@ M139.namespace("M2012.History", {
                 var s = top.getResourceVersion(t + ".css");
                 s && (a += "?v=" + s), $("head:eq(0)", e).append('<link id="moduleSkinCSS" rel="stylesheet" href="' + a + '" type="text/css" />')
             }
-        }, addCalendar: function (e, t) {
+        },
+        addCalendar: function (e, t) {
             t = t || {};
             var i = t.callName || "addBirthdayCalendar", a = function () {
             }, s = t.fnSuccess || a, o = t.fnFail || a, n = n || a;
@@ -7902,7 +8102,8 @@ M139.namespace("M2012.History", {
                     s(a, t)
                 } else o(i, t)
             })
-        }, initSubViews: function () {
+        },
+        initSubViews: function () {
             var e = document.getElementById("div_main");
             this.registerView("tabpage", new TabPageView({ el: e })), this.registerView("mailbox", new M2012.Mailbox.View.Main), this.registerView("mailbox_other", new M2012.Mailbox.View.Main({ multiInstance: !0 })), this.getView("tabpage").render(), this.registerView("tabmenu", new M2012.TabMenu.View), this.registerView("remind", new M2012.Remind.View), this.registerView("top", new M2012.Main.View.TopView), this.getView("top").render(), this.createFixedTabs(), this.registerView("contextmenu", new M2012.Mailbox.View.ContextMenu);
             var t = this.getView("mailbox").model;
@@ -7912,7 +8113,8 @@ M139.namespace("M2012.History", {
                     $.browser.safari || $.browser.mozilla || $B.is.ie && $B.getVersion() <= 8 || "http:" == window.location.protocol && $("#div_main").append('<div class="gload" id="div_composeContainer" style="display:none"><iframe src="compose_v3.html?sid=' + top.sid + '" scrolling="auto" class="main-iframe" frameborder="no" width="100%" allowtransparency="true" name="ifbg" id="compose_preload" "></iframe></div>')
                 }, 500)
             })
-        }, createFixedTabs: function () {
+        },
+        createFixedTabs: function () {
             var e = this, t = this.getView("tabpage");
             new FrameView({ parent: t });
             if (t.createOrignTabs(["mailbox_1"], e.getView("mailbox")), $User.isChinaMobileUser()) {
@@ -7927,17 +8129,21 @@ M139.namespace("M2012.History", {
                     $App.trigger("initSsoRedirect", {})
                 }, 100)
             })
-        }, initOldTimesAdapter: function () {
+        },
+        initOldTimesAdapter: function () {
             var e = new M2012.MatrixVM;
             e.start()
-        }, switchVersion: function (e) {
+        },
+        switchVersion: function (e) {
             var t = "new" == e ? "25" : "10", i = function (e) {
                 return e = e.replace(/[\&]?h=\d+/gi, ""), e.toLowerCase().indexOf("v=") > 0 && (e = e.replace(/[\&]?v=\d+/gi, "")), e = e + "&v=" + t
             }, a = { configId: 54, configValue1: t };
             M139.RichMail.API.call("user:updateCommConfig", a, function () {
                 top.location.href = i(top.location.href)
             })
-        }, _defResource: "http://images.139cm.com", getResourceHost: function () {
+        },
+        _defResource: "http://images.139cm.com",
+        getResourceHost: function () {
             var e = top.m2012ResourceDomain;
             if (e) return e;
             try {
@@ -7945,7 +8151,8 @@ M139.namespace("M2012.History", {
             } catch (t) {
             }
             return e = e.match(/^(https?:\/\/)?([^\/]+)/i)[0], e ? e : this._defResource
-        }, getResourcePath: function () {
+        },
+        getResourcePath: function () {
             try {
                 return top.getDomain("rmResourcePath")
             } catch (e) {
@@ -7955,9 +8162,11 @@ M139.namespace("M2012.History", {
                 }
             }
             return this._defResource + top.getRootPath() + ""
-        }, getSiteConfig: function (e) {
+        },
+        getSiteConfig: function (e) {
             return SiteConfig[e]
-        }, initApi: function () {
+        },
+        initApi: function () {
             this.on("beforeRequireLoad", function (e) {
                 e && "main_ext" == e.key && (delete M2012.UI.Dialog.ContactsEditor, delete M2012.UI.Dialog.AddressBook)
             }), M139.namespace("M2012.UI.Dialog.ContactsEditor", function (e) {
@@ -8520,16 +8729,19 @@ M139.namespace("M2012.History", {
                     })
                 }
             })
-        }, getUserConfigInfo: function (e, t) {
+        },
+        getUserConfigInfo: function (e, t) {
             e = e.toLowerCase();
             var i = $App.getConfig("UserData").mainUserConfig;
             return i[e] && 2 == i[e].length ? void 0 == t ? i[e][1] : i[e][t] : ""
-        }, setMailTips: function (e) {
+        },
+        setMailTips: function (e) {
             var t = this;
             this.setUserConfigInfo("newmailtips", e, function () {
                 t.getMainData()
             })
-        }, getUserCustomInfo: function (e) {
+        },
+        getUserCustomInfo: function (e) {
             try {
                 var t = top.$App.getUserConfigInfo("usercustominfo")
             } catch (i) {
@@ -8539,7 +8751,8 @@ M139.namespace("M2012.History", {
                 var a = new RegExp("(?:^|&)" + e + "=(\\d+)"), s = t.match(a);
                 if (s) return s[1]
             } else;
-        }, setUserCustomInfoNew: function (e, t) {
+        },
+        setUserCustomInfoNew: function (e, t) {
             var i = $User.getUserConfig(), a = {};
             if (i && i.usercustominfo && i.usercustominfo.length > 1) oldValue = i.usercustominfo[1], 0 == oldValue.indexOf("&") && (oldValue = oldValue.substring(1)), a = $T.Url.getQueryObj("?" + oldValue); else {
                 if (!i || i.usercustominfo) return;
@@ -8553,7 +8766,8 @@ M139.namespace("M2012.History", {
             this.setUserConfigInfo("usercustominfo", $T.Url.urlEncodeObj(s), function () {
                 o.getMainData(t)
             })
-        }, setUserCustomInfo: function (e, t, i) {
+        },
+        setUserCustomInfo: function (e, t, i) {
             var a = this, s = "", o = !isNaN(e) && !isNaN(t) && e >= 0 && 101 >= e && t >= 0 && 9 >= t, n = "";
             if ($User.getUserConfig() && $User.getUserConfig().usercustominfo && $User.getUserConfig().usercustominfo[1]) {
                 if (n = $User.getUserConfig().usercustominfo[1], o) {
@@ -8562,7 +8776,8 @@ M139.namespace("M2012.History", {
                 }
                 return a.setUserConfigInfo("usercustominfo", s), a.getMainData(), i && i(), t
             }
-        }, onResize: function () {
+        },
+        onResize: function () {
             var e = $App.getView("folder");
             e && e.resizeSideBar();
             var t = "none" == $("#divTab")[0].style.display ? 106 : 74, i = $App.getBodyHeight(), t = 106;
@@ -8577,7 +8792,8 @@ M139.namespace("M2012.History", {
                 height: $D.getWinHeight(),
                 overflow: "hidden"
             }), "none" === $("#divTab ul").css("display") ? $("#main").height(i - 76) : $("#main").height(i - 108)
-        }, showPage: function (e) {
+        },
+        showPage: function (e) {
             function t() {
                 return 0 == s.name.indexOf("readmail") && s.name == window.READMAIL_PRELOAD && n && n.logoType && n.logoType > 89 && n.logoType < 97
             }
@@ -8599,24 +8815,31 @@ M139.namespace("M2012.History", {
                 name: e.name,
                 prev: a
             }))
-        }, disposeView: function (e) {
+        },
+        disposeView: function (e) {
             view = $App.getTabByName(e).view, view && ($(view.el).off(), view.undelegateEvents())
-        }, showFrame: function (e) {
+        },
+        showFrame: function (e) {
             var t = new FrameView({ parent: this.getView("tabpage") });
             this.showPage({ name: e, view: t })
-        }, showUrl: function (e, t, i) {
+        },
+        showUrl: function (e, t, i) {
             var a = new FrameView({ parent: this.getView("tabpage"), url: e, title: t });
             this.showPage({ name: "frame_" + Math.random(), view: a, group: i || t })
-        }, showHtml: function (e, t) {
+        },
+        showHtml: function (e, t) {
             var i = new FrameView({ parent: this.getView("tabpage"), html: e, title: t });
             this.showPage({ name: "frame_" + t, view: i })
-        }, openThirdParty: function (e) {
+        },
+        openThirdParty: function (e) {
             var t = FrameModel.getLinkByKey(e), i = t.url;
             i += i.indexOf("?") > -1 ? "&sid=" : "?sid=", i = SiteConfig.ssoInterface + "/GetUserByKeyEncrypt?url=" + encodeURIComponent(i) + "&comeFrom=" + t.comefrom + "&sid=" + top.sid, window.open(i)
-        }, subscribe: function (e) {
+        },
+        subscribe: function (e) {
             var t = "/subscribe/inner/bis/subscribe?sid=" + top.sid;
             M139.RichMail.API.call(t, e)
-        }, show: function (e, t, i) {
+        },
+        show: function (e, t, i) {
             var i = i || {}, t = t || {}, a = FrameModel.getLinkByKey(e), s = null, o = null;
             if ("compose" == e) {
                 var n = (new Date).getTime(), r = M139.Core.getCGUID(), l = ["writemail", r, "", ""];
@@ -8642,7 +8865,8 @@ M139.namespace("M2012.History", {
                 var c = $Cookie.get("SkinPath2");
                 $("#animalFlash").hasClass("hide") && this.addFlash2AnimalSkin(c)
             }
-        }, loadSyncguide: function () {
+        },
+        loadSyncguide: function () {
             Package.require("sync_guide_tip", function () {
                 var e = new M2012.Product.Syncguide, t = e.loadHtml(), i = $Msg.showHTML(t, {
                     width: "551px",
@@ -8650,11 +8874,13 @@ M139.namespace("M2012.History", {
                 });
                 e.loadEvents(i.$el), console.log("m2012.product.syncguide.js load success...")
             })
-        }, mailToMe: function (e, t) {
+        },
+        mailToMe: function (e, t) {
             e.subject && e.content && M139.RichMail.API.call("user:mailToMe", e, function (e) {
                 t && t(e.responseData.code)
             })
-        }, getDownLoadUrl: function (e) {
+        },
+        getDownLoadUrl: function (e) {
             if (e) {
                 var t = "/RmWeb/view.do";
                 return M139.Text.Url.makeUrl(t, {
@@ -8669,7 +8895,8 @@ M139.namespace("M2012.History", {
                 }) + "&name=" + encodeURIComponent(e.name)
             }
             return ""
-        }, jumpTo: function (e, t) {
+        },
+        jumpTo: function (e, t) {
             var i = ["attachlist", "greetingcard", "postcard", "sms", "mms", "fax", "diskDev", "quicklyShare", "calendar", "groupMail", "dingyuezhongxin", "addrWhoAddMe", "addrWhoWantAddMe", "health"];
             if ($App.getSiteConfig("embedRelease") && $.inArray(e, i) >= 0) {
                 if (("sms" == e || "mms" == e) && !$User.checkAvaibleForMobile()) return;
@@ -8694,29 +8921,34 @@ M139.namespace("M2012.History", {
                 var r = '<input type="checkbox" id="checkJump" /> <label for="checkJump">不再提示</label>';
                 $(".BottomTip").html(r)
             }
-        }, readmailResize: function (e) {
+        },
+        readmailResize: function (e) {
             var t = $("iframe[id=mid_" + e + "]");
             if (t) {
                 var i = t.contents().height();
                 t.height(i)
             }
-        }, getCurrMailMid: function () {
+        },
+        getCurrMailMid: function () {
             var e = null, t = $App.getCurrentTab().name;
             t.indexOf("readmail_") > -1 && (e = t.split("_")[1]);
             var i = $("#readWrap .readMail-left");
             $("#readWrap .mailSectionWrap");
             return ("top" == $App.getLayout() || "left" == $App.getLayout()) && i.length > 0 && i.attr("id") && (e = i.attr("id").split("_")[1]), e
-        }, shortcutKey: function (e, t) {
+        },
+        shortcutKey: function (e, t) {
             var i = { command: "shortcutKey", currEvent: e, win: t };
             $App.trigger("mailCommand", i)
-        }, getAd: function (e, t) {
+        },
+        getAd: function (e, t) {
             return 1 == arguments.length ? window.mwUnifiedPositionContent && mwUnifiedPositionContent["var"] && mwUnifiedPositionContent["var"][e] ? mwUnifiedPositionContent["var"][e][0] : {} : void M139.RichMail.API.call("unified:getUnifiedPositionContent", { positionCodes: e }, function (i) {
                 if (i.responseData.code && "S_OK" == i.responseData.code) {
                     var a = i.responseData["var"][e];
                     a && a.length > 0 && t(a[0], i.responseData)
                 }
             })
-        }, keyReply: function (e, t) {
+        },
+        keyReply: function (e, t) {
             var i = e.target;
             if (!(/input|textarea/i.test(i.tagName) || t && t.location.href.indexOf("blank.htm") > -1)) {
                 var a, s = e.keyCode, o = [], n = { attach: !1, command: "reply", mids: o, all: !1 };
@@ -8730,7 +8962,8 @@ M139.namespace("M2012.History", {
                     }, 0)
                 }
             }
-        }, openDialog: function (title, className, options) {
+        },
+        openDialog: function (title, className, options) {
             function loadCallback() {
                 var view_class = eval(className), view = new view_class(options);
                 if (view.button1Click) var button1Click = function () {
@@ -8742,21 +8975,26 @@ M139.namespace("M2012.History", {
             }
 
             options || (options = {}), M2012.View || (M2012.View = {}), eval(className) ? loadCallback() : (M139.core.registerJS(className, "richmail/dialog/" + className.toLowerCase() + ".js"), M139.core.requireJS([className], loadCallback))
-        }, isSessionOut: function () {
+        },
+        isSessionOut: function () {
             return !!this.get("sessionOut")
-        }, checkSessionOut: function () {
+        },
+        checkSessionOut: function () {
             var e = this.isSessionOut();
             return e && this.showSessionOutDialog(), e
-        }, setSessionOut: function () {
+        },
+        setSessionOut: function () {
             this.showSessionOutDialog()
-        }, showSessionOutDialog: function () {
+        },
+        showSessionOutDialog: function () {
             function e() {
                 $App.get("sessionOutDialogShow") || (new M2012.UI.Dialog.SessionOut).render().on("remove", function () {
                 })
             }
 
             M2012.UI.Dialog.SessionOut ? e() : M139.core.utilCreateScriptTag({ src: top.getRootPath() + "/js/ui/dialog/m2012.ui.dialog.sessionout.js" }, e)
-        }, showOauthDialog: function (e) {
+        },
+        showOauthDialog: function (e) {
             function t() {
                 $App.get("showOauthDialogShow") || ($App.set("showOauthDialogShow", !0), new M2012.UI.Dialog.BindOauth(e).render().on("remove", function () {
                     $App.set("showOauthDialogShow", !1)
@@ -8764,7 +9002,8 @@ M139.namespace("M2012.History", {
             }
 
             M2012.UI.Dialog.BindOauth ? t() : M139.core.utilCreateScriptTag({ src: top.getRootPath() + "/js/ui/dialog/m2012.ui.dialog.bindoauth.js" }, t)
-        }, showGroupDialog: function (e, t, i) {
+        },
+        showGroupDialog: function (e, t, i) {
             function a() {
                 var i = new M2012.UI.Dialog.AutoGroup;
                 i.render(), i.updateGroupInfo(e, t, !0)
@@ -8776,7 +9015,8 @@ M139.namespace("M2012.History", {
             }
 
             i ? (BH("group_auto_created"), M139.core.utilCreateScriptTag({ src: top.getRootPath() + "/js/ui/dialog/m2012.ui.dialog.autogroup.js" }, a)) : BH("group_auto_created2"), M139.core.utilCreateScriptTag({ src: top.getRootPath() + "/js/service/groupmail/m2012.groupmail.list.view.js" }, s)
-        }, onHttpClientResponse: function (e, t) {
+        },
+        onHttpClientResponse: function (e, t) {
             var i = t.responseData;
             if (i && "S_OK" != i.code) {
                 var a = i.errorCode, s = i.code, o = i.summary;
@@ -8792,7 +9032,8 @@ M139.namespace("M2012.History", {
                 })
             }
             i && e.requestOptions.url.indexOf("unified:getUnifiedPositionContent") >= 0 && this.replaceAdData(i["var"])
-        }, replaceAdData: function (e) {
+        },
+        replaceAdData: function (e) {
             function t(e) {
                 e.content = e.content.replace(/\$cid\$/g, e.contentId), e.content = e.content.replace(/\$thingId\$/g, e.thingId), e.content.indexOf("$behaviorUrl$") && (e.content = e.content.replace(/\$behaviorUrl\$/g, top.getDomain("rebuildDomain") + "/weather/weather?func=user:logBehaviorAction&sid=" + top.sid + "&version=m2012")), "https:" == window.location.protocol && e.content.indexOf("https://monitor.cm-analysis.com/") && (e.content = e.content.replace("https://monitor.cm-analysis.com/", "https://monitor.cm-analysis.com:8081/"), e.content = e.content.replace("https://track.cm-analysis.com/", "https://track.cm-analysis.com:8081/"))
             }
@@ -8802,14 +9043,17 @@ M139.namespace("M2012.History", {
                 var i = e[elem][0];
                 if (i) if (i.content) t(i); else if (i.contentList) for (var a = 0; a < i.contentList.length; a++)t(i.contentList[a])
             }
-        }, showSysTips: function (e, t) {
+        },
+        showSysTips: function (e, t) {
             0 == $("#sys_tips").length ? $(".personalInformation").after('<div id="sys_tips" class="sys_tips">' + e + "</div>") : $("#sys_tips").html(e)
-        }, getComposeIframe: function () {
+        },
+        getComposeIframe: function () {
             for (var e = $(".main-iframe"), t = 0; t < e.length; t++) {
                 var i = e[t];
                 if ($(i).attr("src").indexOf("compose") > -1) return i
             }
-        }, showImgEditor: function (e, t) {
+        },
+        showImgEditor: function (e, t) {
             var i = e.find("img");
             i && i.length > 0 && (window.ImgEditorMenu ? ImgEditorMenu.mouseEvent(e, t) : window.setTimeout(function () {
                 M139.core.utilCreateScriptTag({
@@ -8820,7 +9064,8 @@ M139.namespace("M2012.History", {
                     ImgEditorMenu.mouseEvent(e, t)
                 })
             }, 1e3))
-        }, showMapEditor: function (e) {
+        },
+        showMapEditor: function (e) {
             var t = $(e).find(".mapWrap");
             t.each(function (e, t) {
                 var i = $(t), a = i.data("events");
@@ -8842,7 +9087,8 @@ M139.namespace("M2012.History", {
                     top.insertMapDialog = null
                 })), "delete" == i && (top.mapDialogOptions && (top.mapDialogOptions.mapid = ""), t.parents("table").remove())
             })
-        }, showAddPopAccountDialog: function () {
+        },
+        showAddPopAccountDialog: function () {
             top.addPopAccountDialog ? top.addPopAccountDialog.show() : (top.addPopAccountDialog = top.$Msg.open({
                 dialogTitle: "添加邮箱帐户",
                 url: "set/add_pop_new.html?sid=" + top.sid,
@@ -8851,7 +9097,8 @@ M139.namespace("M2012.History", {
             }), top.addPopAccountDialog.on("remove", function () {
                 top.addPopAccountDialog = null
             }))
-        }, showVcardEditView: function (e) {
+        },
+        showVcardEditView: function (e) {
             function t() {
                 new M2012.VcardEdit.View({ afterSubmit: e })
             }
@@ -8861,25 +9108,32 @@ M139.namespace("M2012.History", {
                 src: "vcardedit.html.pack.js",
                 charset: "utf-8"
             }, t)
-        }, getSysAccount: function () {
+        },
+        getSysAccount: function () {
             return ["subscribe@139.com", "homemail@139.com", "admin@139.com", "postmaster@139.com", "idea@139.com", "antispam@139.com", "ued@139.com", "mail139@139.com", "uec@139.com", "service@139.com", "mail139_holiday@139.com", "kefu@139.com", "administrator@139.com", "hostmaster@139.com", "webmaster@139.com", "club@139.com", "port@139.com", "mail139_vip@139.com", "szlvsechuxing@139.com", "subscribe-topic@139.com", "care@139.com", "139duobao@richinfo.cn", "services@richinfo.cn", "babyhippo@139.com", "jiraadmin@richinfo.cn"]
-        }, getSessionDataContent: function () {
+        },
+        getSessionDataContent: function () {
             var e = top.M139.PageApplication.getTopApp().sessionPostData, t = "";
             return e && e.content && (t = e.content), M139.PageApplication.getTopApp().sessionPostData = null, t
-        }, getBodyHeight: function () {
+        },
+        getBodyHeight: function () {
             return $D.getWinHeight()
-        }, closeWriteOkPage: function () {
+        },
+        closeWriteOkPage: function () {
             var e = $App.getView("tabpage").tab.tabs;
             for (var t in e) t.indexOf("compose_") > -1 && $App.getTabByName(t).data.status && $App.closeTab(t)
-        }, isNewWinCompose: function () {
+        },
+        isNewWinCompose: function () {
             var e = top.$T.Url.queryString("t");
             return "win_compose" == e && -1 == top.location.hash.indexOf("newwin_done")
-        }, closeNewWinCompose: function (e) {
+        },
+        closeNewWinCompose: function (e) {
             e && this.trigger("closeNewWinCompose"), this.isNewWinCompose() && (top.location.hash = "#newwin_done", setTimeout(function () {
                 $("#main").removeClass("main_write").addClass("main"),
                     $("#sub, #divTab, #header").show(), $("#top").children().show(), $("#top>a:first").attr("href", 'javascript:$App.show("welcome");').css("cursor", "pointer")
             }, 100))
-        }, showTaskBubble: function (e) {
+        },
+        showTaskBubble: function (e) {
             function t(e, t) {
                 var i = {
                     fid: 0,
@@ -8930,7 +9184,8 @@ M139.namespace("M2012.History", {
             }
 
             i()
-        }, getPrettyNumberData: function () {
+        },
+        getPrettyNumberData: function () {
             if ($App.getConfig("prettyNumber")) return !0;
             if ($D.storage.exists("prettyNumberStr")) {
                 var prettyNumberData = eval(localStorage.getItem("prettyNumberStr"));
@@ -8939,7 +9194,8 @@ M139.namespace("M2012.History", {
                 var obj = eval(jsonText);
                 $App.registerConfig("prettyNumber", obj), $D.storage.save("prettyNumberStr", jsonText), $App.trigger("showMailbox", { comefrom: "commandCallback" })
             })
-        }, requestAtRemind: function (e) {
+        },
+        requestAtRemind: function (e) {
             if ("object" == typeof e) {
                 var t = { comeFrom: 0, calendar: [] };
                 setTimeout(function () {
@@ -8965,7 +9221,8 @@ M139.namespace("M2012.History", {
                     })
                 }, 1500)
             }
-        }, showBillCharge: function () {
+        },
+        showBillCharge: function () {
             try {
                 var e = top.$User.getProvCode(), t = ["1", "17", "26", "4", "16", "19"], i = 39352;
                 -1 !== $.inArray(e, t) && (i = 38159), top.$App.show("mpostOnlineService", null, {
@@ -8976,7 +9233,8 @@ M139.namespace("M2012.History", {
             } catch (a) {
                 console.log(a.name + ":" + a.message)
             }
-        }, isclearSkinUser: function () {
+        },
+        isclearSkinUser: function () {
             for (var e = "ComplexMailbox", t = top.$App.getConfig("UserData").orderInfoList, i = t.length, a = [], s = [], o = 0; i > o; o++)a.push(t[o].serviceId), s.push(t[o].orderStatus);
             for (var o in a) {
                 if ("300" == a[o] && ("0" == s[o] || "4" == s[o])) {
@@ -8986,14 +9244,16 @@ M139.namespace("M2012.History", {
                 e = "ComplexMailbox"
             }
             return e
-        }, isYouthMailUser: function (e) {
+        },
+        isYouthMailUser: function (e) {
             var t = top.$T.Url.queryString("v") || "", i = top.$User.getSkinName(), a = ["skin_youthDefault", "skin_youthMiku", "skin_youthExam"];
             return "35" == t ? ($Cookie.set({
                 name: "_139_login_version",
                 value: "35",
                 domain: "mail." + document.domain
             }), -1 == $.inArray(i, a) && $App.setSkin("skin_youthDefault"), !0) : ($.inArray(i, a) > -1 && $App.setSkin("skin_lightblue"), !1)
-        }, getAirlinesShortName: function (e) {
+        },
+        getAirlinesShortName: function (e) {
             var t, i = {
                 s_bk: "奥凯航空",
                 s_jd: "首都航空",
@@ -9051,13 +9311,15 @@ M139.namespace("M2012.History", {
                 cname: i["s_" + t],
                 ename: t
             })), a
-        }, showQrcode: function (e) {
+        },
+        showQrcode: function (e) {
             var t = this, e = e || {}, i = $.extend({ width: 123, height: 123 }, e.style);
             Package.require("qrcode", function () {
                 var a = new QRCode(e.id, i);
                 a.makeCode(e.url), e.callback && e.callback(), e.isCopy && t.setCopyContent(e.isCopy)
             })
-        }, setCopyContent: function (e) {
+        },
+        setCopyContent: function (e) {
             var e = e || {};
             Package.require("jquery_zclip", function () {
                 var t = e;
@@ -9069,7 +9331,8 @@ M139.namespace("M2012.History", {
                     }
                 })
             })
-        }, televents: function (e) {
+        },
+        televents: function (e) {
             var t = ["<div>是否将该号码通过短信发送至您的手机？</div>"].join(), i = top.$Msg.confirm(t, function (t) {
                 top.BH && top.BH("readmail_sign_dialTelephone"), t.cancel = !0;
                 var a = "/mw2/sms/sms?func=sms:sendSysSms&sid=" + top.$App.getSid() + "&rnd=" + Math.random(), s = ["<object>", '<int name="type">2</int>', '<int name="attr">', e.tele, "</int>", "</object>"].join("");
@@ -9081,10 +9344,12 @@ M139.namespace("M2012.History", {
                     }))) : void 0
                 })
             }, { dialogTitle: "发送确认", buttons: ["确定", "取消"], icon: "warn", isHtml: !0 })
-        }, getVipMailCenterUrl: function (e) {
+        },
+        getVipMailCenterUrl: function (e) {
             var t = location.href.split("//")[0], i = t + "//";
             return i += null != location.href.match("mail.10086.cn") ? "vip.mail.10086.cn/" : "rm.mail.10086ts.cn/m2015/vipMailcenter/", e && (i = i + e + location.search.replace(/sid=[^&$]+/, "sid=" + this.getSid())), i
-        }, showQuestionSurvey: function () {
+        },
+        showQuestionSurvey: function () {
             top.BH("queSurveyMenu");
             var e = $Msg.open({
                 dialogTitle: "我的问卷",
@@ -9095,7 +9360,8 @@ M139.namespace("M2012.History", {
             top.BH("queSurveyWindow"), top.$App.off("closeSurveyWin").on("closeSurveyWin", function (t) {
                 e.off("close"), e.close()
             })
-        }, showVote: function () {
+        },
+        showVote: function () {
             var e = $Msg.open({
                 dialogTitle: "发起投票",
                 url: "/m2015/html/vote/vote.html?isShowMyQuestionTab=1",
@@ -9107,7 +9373,8 @@ M139.namespace("M2012.History", {
             })
         }
     }))
-}(jQuery, Backbone, _, M139), function (e, t, i, a) {
+}(jQuery, Backbone, _, M139),
+function (e, t, i, a) {
     var s = e, o = a.View.ViewBase;
     a.namespace("M2012.SsoRedirect", o.extend({
         initialize: function (e) {
@@ -9116,34 +9383,48 @@ M139.namespace("M2012.History", {
             $App.on("initSsoRedirect", function () {
                 t.ssoRedirect()
             })
-        }, defaults: { name: "M2012.SsoRedirect" }, initEvents: function () {
-        }, SsoConfig: {
+        },
+        defaults: { name: "M2012.SsoRedirect" },
+        initEvents: function () {
+        },
+        SsoConfig: {
             compose: function () {
                 $App.show("compose")
-            }, "Send.aspx": function () {
+            },
+            "Send.aspx": function () {
                 Links.show("sms")
-            }, "MMSSend.aspx": function () {
+            },
+            "MMSSend.aspx": function () {
                 Links.show("mms")
-            }, "SendFax.aspx": function () {
+            },
+            "SendFax.aspx": function () {
                 Links.show("fax")
-            }, "contactlist.aspx": function () {
+            },
+            "contactlist.aspx": function () {
                 Links.show("addr")
-            }, "Clone/default.aspx": function () {
+            },
+            "Clone/default.aspx": function () {
                 Links.show("migrate")
-            }, pushmail: function () {
+            },
+            pushmail: function () {
                 Links.show("pushemail")
-            }, timeset: function () {
+            },
+            timeset: function () {
                 Links.show("timeset")
-            }, mails: function () {
+            },
+            mails: function () {
                 a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
                     $App.showMailbox(1)
                 })
-            }, "/mailnotify.aspx": function () {
+            },
+            "/mailnotify.aspx": function () {
                 $App.show("notice")
-            }, "/LoginSMS.aspx": function () {
+            },
+            "/LoginSMS.aspx": function () {
                 $App.show("notice")
             }
-        }, ssoComposeAction: function (e, t, i) {
+        },
+        ssoComposeAction: function (e, t, i) {
             if (e && "string" == typeof e) {
                 var a = {
                     music: {
@@ -9184,7 +9465,8 @@ M139.namespace("M2012.History", {
                 }, o = null, n = "", e = "", r = t && "string" == typeof t && t.toLowerCase().trim() || "";
                 o = r.match(/(\S+)\_(\S+)/i), n = o && o[1] || "", e = o && o[2] || "", a[n] && a[n].exe ? a[n].exe(e, i) : CM.show(), a = o = null
             }
-        }, ssoRedirect: function () {
+        },
+        ssoRedirect: function () {
             var e = this, t = $T.Url.queryString("id"), i = $T.Url.queryString("to"), o = $T.Url.queryString("draftId"), n = ($T.Url.queryString("t"), $T.Url.queryString("c_composeitem")), r = $T.Url.queryString("goto"), l = $T.Url.queryString("ShareSmsId"), c = location.search, d = "", p = /id=\d+/gi, m = /c_composeitem=\S+_\d+/gi, u = /user=\S+/gi, h = null, f = null, g = null, v = ".mail." + document.domain, b = "", y = null;
             $T.Url.queryString("c_fileid");
             if ($App.isNewWinCompose()) return s("#main").show(), void (o && "null" != o && "undefined" != o && -1 == location.hash.indexOf("newwin_") ? (location.hash = "#newwin_", $App.show("compose", {
@@ -9456,7 +9738,8 @@ M139.namespace("M2012.History", {
             }
         }
     }))
-}(jQuery, Backbone, _, M139), M139.namespace("M2012.Folder.Model", {
+}(jQuery, Backbone, _, M139),
+M139.namespace("M2012.Folder.Model", {
     FolderModel: Backbone.Model.extend({
         setorderObj: {
             remindM: 1,
@@ -10284,7 +10567,8 @@ M139.namespace("M2012.History", {
             }
         }
     })
-}), M139.namespace("M2012.Folder.View", {
+}),
+M139.namespace("M2012.Folder.View", {
     SetMore: M139.View.ViewBase.extend({
         el: "body",
         events: { "click #barmorelink": "finalLeftBarsetting" },
@@ -10499,7 +10783,8 @@ M139.namespace("M2012.History", {
             top.BH("barmorelink_set"), e.rendersetMore()
         }
     })
-}), M139.namespace("M2012.Folder.View", {
+}),
+M139.namespace("M2012.Folder.View", {
     FolderCustom: Backbone.View.extend({
         el: "#customfolder_list",
         template: ['<a bh="left_foldermanager" hidefocus id="folder_inbox" href="javascript:;"  >', '<i name="i_unfold" class="triangle t_blackRight" bh="left_unfoldInbox"></i>', "<span>文件夹</span>", '<i class="i_add" id="btn_addfolder" style="display:none" bh="left_createFolder" title="添加文件夹"></i>', '<i class="i_set" id="btn_setCustom" style="display:none" bh="left_inboxSetting" onClick="return false" title="文件夹个性化设置"></i>', "</a>", '<div id="folder_custom" style="display:none">', '<ul class="small" style="display:block;">', "<!--item start-->", '<li fid="$fid"><a hidefocus href="javascript:void(0)" fid="$fid" title="@getTitle()" @getStyle() >@getLock() @maxLength(name,10)', "@getMailCount()</a></li>", "<!--item end-->", "</ul>", "</div>"].join(""),
@@ -10632,7 +10917,8 @@ M139.namespace("M2012.History", {
             }), i.model.set("unfoldCustom", o.hasClass("t_blackDown")), $("#folder_custom ul").children().length > 0 ? $("#folder_custom").toggle() : $("#folder_custom").hide(), $App.getView("folder").resizeSideBar())
         }
     })
-}), M139.namespace("M2012.Folder.View", {
+}),
+M139.namespace("M2012.Folder.View", {
     FolderPop: Backbone.View.extend({
         el: "#pop_list",
         template: ['<a bh="left_pop" hidefocus id="fd_popStat" href="javascript:void(0)"><i name="i_unfold" class="triangle t_blackRight" bh="left_unfoldPop"></i><span>其他邮箱</span><i id="btn_addpop" style="display:none" title="添加其他邮箱" name="addpop" class="i_add" bh="left_createPop"></i><i class="i_set" title="其他邮箱文件夹个性化设置" onClick="return false" id="btn_setPop" style="display:none" bh="left_popSetting"></i></a>', '<ul class="small" style="display:none;" id="folder_pop">', "<!--item start-->", '<li  fid="$fid"><a href="javascript:" title="@getTitle()" @getStyle()>@getLock()<span class="otheMail">@maxLength(name,10)', '</span><span class="otheMailNum">@getMailCount()</span></a></li>', "<!--item end-->"].join(""),
@@ -10726,7 +11012,8 @@ M139.namespace("M2012.History", {
             }), t.model.set("unfoldPop", o.hasClass("t_blackDown")), o.parent().next().toggle(), $App.getView("folder").resizeSideBar())
         }
     })
-}), M139.namespace("M2012.Folder.View", {
+}),
+M139.namespace("M2012.Folder.View", {
     FolderTag: Backbone.View.extend({
         el: "#tag_list",
         template: ['<a bh="left_tag" hidefocus id="fd_tagStat" href="javascript:">', '<i name="i_unfold" class="triangle t_blackRight" bh="left_unfoldTag"></i>', "<span>标签邮件</span>", '<i class="i_add" title="添加标签" id="btn_addtag" style="display:none" bh="left_createTag"></i>', '<i title="标签个性化设置" class="i_set" id="btn_setTag" style="display:none" onClick="return false"></i></a>', '<ul class="small" style="display:none;" id="folder_tag">', "<!--item start-->", '<li fid="$fid"><a href="javascript:" title="@getTitle()" @getStyle()><span class="tagMin@getSpecialTag(1)" style="border-color:@getColor()"><span class="tagBody" style="border-color:@getColor();background-color:@getColor();">@getSpecialTag(2)</span></span>', '<span class="tagText">@maxLength(name,10)@getMailCount() </span></a></li>', "<!--item end-->", "</ul>"].join(""),
@@ -10810,7 +11097,8 @@ M139.namespace("M2012.History", {
             }), i.model.set("unfoldTag", o.hasClass("t_blackDown")), o.parent().next().toggle(), $App.getView("folder").resizeSideBar())
         }
     })
-}), M139.namespace("M2012.Folder.View", {
+}),
+M139.namespace("M2012.Folder.View", {
     FolderMain: Backbone.View.extend({
         el: "#sb_h",
         template: "",
@@ -11240,7 +11528,8 @@ M139.namespace("M2012.History", {
             $App.trigger("mailCommand", { command: "addFolder" })
         }
     })
-}), function (e, t, i, a) {
+}),
+function (e, t, i, a) {
     a.namespace("M2015.Mailnotify.Model", i.Model.extend({
         defaults: {
             enable: void 0,
@@ -11355,7 +11644,8 @@ M139.namespace("M2012.History", {
             })
         }
     }))
-}(jQuery, _, Backbone, M139), function (e, t, i, a) {
+}(jQuery, _, Backbone, M139),
+function (e, t, i, a) {
     var s = e, o = a.View.ViewBase;
     a.namespace("M2015.Mailnotify.View", o.extend({
         el: "body",
@@ -11714,7 +12004,8 @@ M139.namespace("M2012.History", {
         var t = $App.getConfig("mailnotifyTip");
         t.model.setData(e)
     }
-}(jQuery, _, Backbone, M139), function (e, t, i) {
+}(jQuery, _, Backbone, M139),
+function (e, t, i) {
     i.namespace("M2012.Remark.Model", Backbone.Model.extend({
         defaults: {
             max: 50,
@@ -11752,7 +12043,8 @@ M139.namespace("M2012.History", {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Remark.View", s.extend({
         filterNull: function (e) {
@@ -11966,7 +12258,8 @@ M139.namespace("M2012.History", {
     })), $D.appendHTML(document.body, '<div id="remarkContainer"></div>');
     var o = new M2012.Remark.View({ el: "#remarkContainer", showtype: "list" });
     o.model.set({ mid: null, showtype: "list" }), o.initEvents()
-}(jQuery, _, M139), M139.namespace("M2012.Model.Pns", {
+}(jQuery, _, M139),
+M139.namespace("M2012.Model.Pns", {
     PnsModel: Backbone.Model.extend({
         callApi: M139.RichMail.API.call,
         get_pnsUrl: function () {
@@ -12156,7 +12449,8 @@ M139.namespace("M2012.History", {
             }
         }
     })
-}), M139.namespace("M2012.Mailbox.Model", {
+}),
+M139.namespace("M2012.Mailbox.Model", {
     Mailbox: Backbone.Model.extend({
         defaults: {
             fid: 1,
@@ -13605,7 +13899,8 @@ M139.namespace("M2012.History", {
             })
         }
     })
-}), M139.namespace("M2012.Mailbox.Model", {
+}),
+M139.namespace("M2012.Mailbox.Model", {
     Eofficial: Backbone.Model.extend({
         initialize: function (e) {
             this.model = $App.getMailboxView().model
@@ -13719,7 +14014,8 @@ M139.namespace("M2012.History", {
             return s && s.hasOwnProperty("middlelogo") ? s.middlelogo : ""
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     Main: Backbone.View.extend({
         template: {
             listHeader: ['<div class="mailing-lists-head">', "<div>", '<table class="tableTitle" id="list_header">', "<tbody>", "<tr>", '<td class="td1">', '<input type="checkbox" id="chk_mailist_all_{0}"/><i class="i_triangle_d c-pointer" id="btn_checkMenu" bh="mailbox_selectAllDrop"></i>', "</td>", '<td class="td7"></td>', '<td class="td2">', '<a id="th_from" field="from" href="javascript:" hidefocus="true" style="cursor: default;"><span>发件人</span><i class=""></i></a>', "</td>", '<td class="tdtitle">', '<a id="th_subject" field="subject" href="javascript:" hidefocus="true" style="cursor: default;"><span>主题</span><i class=""></i></a>', "</td>", '<td class="td3">', '<a id="th_date" field="receiveDate" href="javascript:"  hidefocus="true" style="cursor: default;"><span >日期</span><i class=""></i></a>', "</td>", '<td class="td4">', '<a id="th_size" field="size" href="javascript:" hidefocus="true" style="cursor: default;"><span>大小</span><i class=""></i></a>', "</td>", "</tr>", "</tbody>", "</table>", "</div>", "</div>"].join(""),
@@ -14075,7 +14371,8 @@ M139.namespace("M2012.History", {
         }, getListHeaderHtml: function () {
         }
     })
-}), function () {
+}),
+function () {
     function e() {
         var e = new Date, t = e.getFullYear(), i = e.getMonth() + 1, a = e.getDate(), s = [], o = [];
         o = [t, t, t], s = 20 > a ? [i - 4, i - 3, i - 2] : [i - 3, i - 2, i - 1];
@@ -15002,7 +15299,8 @@ M139.namespace("M2012.History", {
             }
         })
     })
-}(), M139.namespace("M2012.Mailbox.View", {
+}(),
+M139.namespace("M2012.Mailbox.View", {
     MailMenu: Backbone.View.extend({
         el: "", template: "", events: {}, initialize: function (e) {
             function t(e) {
@@ -15723,7 +16021,8 @@ M139.namespace("M2012.History", {
             t || (t = {}), t.command = e, $App.trigger("mailCommand", t), $("#conversationDialog").remove()
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     ListView: Backbone.View.extend({
         template: "",
         events: {
@@ -16766,7 +17065,8 @@ M139.namespace("M2012.History", {
             t || (t = {}), t.command = e, $App.trigger("mailCommand", t), $("#conversationDialog").remove()
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     SearchClassify: Backbone.View.extend({
         el: "",
         template: "",
@@ -16895,7 +17195,8 @@ M139.namespace("M2012.History", {
             t.hasClass("searchListoff") ? (t.removeClass("searchListoff"), $(e).attr("title", "隐藏分类搜索")) : (t.addClass("searchListoff"), $(e).attr("title", "展开分类搜索")), BH("top_searchToggle")
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     SearchClassifyItem: Backbone.View.extend({
         el: "",
         template: "",
@@ -17093,7 +17394,8 @@ M139.namespace("M2012.History", {
             "close" == $(e).attr("current") ? (t.dl.find("dd:gt(1)").show(), $(e).attr("current", "open"), $(e).html('<span>只显示部分项</span><i class="g-up"></i>')) : (t.dl.find("dd:gt(1)").hide(), $(e).attr("current", "close"), $(e).html('<span>显示全部</span><i class="g-down"></i>'))
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     SearchClassifyChoosed: Backbone.View.extend({
         el: "", template: "", events: {}, initialize: function (e) {
             this.el = e.el, this.model = e.model
@@ -17142,7 +17444,8 @@ M139.namespace("M2012.History", {
             delete e.approachSearch, this.model.set("selected", null), e.isSearch = 1, $App.searchMail(e)
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     Command: Backbone.View.extend({
         el: "", initialize: function (e) {
             this.model = e.model;
@@ -18019,7 +18322,8 @@ M139.namespace("M2012.History", {
             return { mids: a, sids: s ? [+s] : null }
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     MailTag: Backbone.View.extend({
         el: "#div_main",
         events: { "click [name=tag_item] a": "deleteClick" },
@@ -18086,7 +18390,8 @@ M139.namespace("M2012.History", {
             return a.join("")
         }
     })
-}), M139.namespace("M2012.Mailbox.Model", {
+}),
+M139.namespace("M2012.Mailbox.Model", {
     ContextMenu: Backbone.Model.extend({
         defaults: { isShield: !0 },
         initialize: function (e) {
@@ -18325,7 +18630,8 @@ M139.namespace("M2012.History", {
             })
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     ContextMenu: Backbone.View.extend({
         el: "body",
         template: "",
@@ -18550,7 +18856,8 @@ M139.namespace("M2012.History", {
             })
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     Drag: Backbone.View.extend({
         initialize: function () {
             this.model = $App.getMailboxView().model
@@ -18604,7 +18911,8 @@ M139.namespace("M2012.History", {
             return e.mids.length
         }
     })
-}), function () {
+}),
+function () {
     M139.namespace("M2012.Mailbox.Model", {
         Sublist: Backbone.Model.extend({
             getMySub: function (e) {
@@ -18708,7 +19016,8 @@ M139.namespace("M2012.History", {
             }
         })
     })
-}(), function (e, t, i) {
+}(),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Readmail.Stroke.Templatehtml", s.extend({
         el: "",
@@ -18875,7 +19184,8 @@ M139.namespace("M2012.History", {
             })
         }
     }))
-}(jQuery, _, M139), M139.namespace("M2012.Mailbox.Model", {
+}(jQuery, _, M139),
+M139.namespace("M2012.Mailbox.Model", {
     Strokenavbar: Backbone.Model.extend({
         navTree: ['<div class="new-main-topbar">', '<div class="p_relative ptblr_s2 clearfix">', '<ul class="toolBarUl_v3">', '<li><a class="icoTb mr_6" href="javascript:" id="Official_back">', '<span class="p_relative">返回</span></a>', "</li>", "</ul>", "</div>", "</div>"].join(""),
         cardBox: ['<div class="" id="navcon">', '<div class="travel-cardBox clearfix">', '<div class="cardMain">', '<div class="cardMain-inner">', '<h4 class="cardMain-title"><%= companyName %></h4>', '<p class="cardMain-txt"><%= companyDesc %></p>', '<ul class="nav-link clearfix" id="menufuncs"></ul>', "</div>", "</div>", '<div class="cardAside">', "<%= companyIconCls %>", "</div>", "</div>", "</div>"].join(""),
@@ -19127,7 +19437,8 @@ M139.namespace("M2012.History", {
             }
         }
     })
-}), M139.namespace("M2012.Mailbox.View", {
+}),
+M139.namespace("M2012.Mailbox.View", {
     Strokenavbar: Backbone.View.extend({
         initVal: "——", initialize: function (e) {
             this.model = $App.getMailboxView().model, this.eofficialModel = new M2012.Mailbox.Model.Eofficial, this.navbarmodel = new M2012.Mailbox.Model.Strokenavbar, this.handeEle = e.handeEle, this.render()
@@ -19244,7 +19555,8 @@ M139.namespace("M2012.History", {
             })
         }
     })
-}), function (e, t, i) {
+}),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Mailbox.View.Bankbill", s.extend({
         sendId: "",
@@ -19421,7 +19733,8 @@ M139.namespace("M2012.History", {
             i = t.extend(i, { element: e.target }), s.popMenu || (s.popMenu = $App.getView("starOrRemindPopMenu")), s.popMenu.showMenu(i), a("#starOrRemindPopContainer").css({ left: "998px" })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Mailbox.View.Utilitybill", s.extend({
         sendId: "",
@@ -19555,7 +19868,8 @@ M139.namespace("M2012.History", {
             return a && a[0] ? a[0] : i
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Mailbox.View.Eofficial", s.extend({
         initialize: function (e) {
@@ -19652,7 +19966,8 @@ M139.namespace("M2012.History", {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Mailbox.View.telbillcard", s.extend({
         tellBillSymbel: "telBill", billSymbel: "bill", initialize: function (e) {
@@ -19762,7 +20077,8 @@ $(function () {
             }
         }
     }, 50)
-}), function (e, t, i) {
+}),
+function (e, t, i) {
     var a = i.View.ViewBase;
     i.namespace("M2012.ReadMail.CalendarWord.View", a.extend({
         name: "M2012.ReadMail.CalendarWord",
@@ -19872,7 +20188,8 @@ $(function () {
             return (o = e.match(/本月(\d\d?)号/)) ? (n.keyword = o[0], n.datetime = this.getMonthTime(0, o[1]), n) : (o = e.match(/下月(\d\d?)号/)) ? (n.keyword = o[0], n.datetime = this.getMonthTime(1, o[1]), n) : (o = e.match(/(\d\d?)月第[一二三四]周/)) ? (n.keyword = o[0], n.datetime = t, n.week = t.getDay(), n.subject = "记下你准备做的事，最多输入100字", n.isWeekView = !0, n) : (o = e.match(/会议/)) ? (n.datetime = a(1), n.keyword = o[0], n) : (o = e.match(/五一|六一|情人节|愚人节|教师节|国庆节|光棍节/)) ? (n.keyword = o[0], n.datetime = this.getNewDayTime(o[0]), n) : (o = e.match(/银行账单|电子单/)) ? (n.keyword = o[0], n.datetime = t, n.isMonthView = !0, n) : (o = e.match(/面试(通知|邀请)?/)) ? (n.datetime = a(1), n.keyword = o[0], n) : (o = e.match(/集合|聚餐|出游/)) ? (n.datetime = a(1), n.keyword = o[0], n) : n.keyword ? (null == n.datetime && (n = {}), n) : (n.datetime && o ? n.keyword = o[0] : (o = e.match(/紧急|重要/)) && (n.datetime = a(1), n.keyword = o[0]), n)
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.Image.View", s.extend({
         name: "M2012.ReadMail",
@@ -20050,7 +20367,8 @@ $(function () {
             return e
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.HotWord.View", s.extend({
         name: "M2012.ReadMail.HotWord", events: {}, initialize: function (e) {
@@ -20248,7 +20566,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = i.View.ViewBase, s = "Zan_View";
     i.namespace(s, a.extend({
         name: s,
@@ -20534,7 +20853,8 @@ $(function () {
             }) : t()
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2012.ReadMail.Normal.Model", Backbone.Model.extend({
         defaults: {
             fid: null,
@@ -20601,7 +20921,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.Normal.View", s.extend({
         name: "M2012.ReadMail",
@@ -21906,7 +22227,8 @@ $(function () {
             e.is(":visible") ? (e.hide(), i.removeClass("g-up").addClass("g-down"), t.css("bottom", "13px")) : (e.show(), i.removeClass("g-down").addClass("g-up"), t.css("bottom", e.height() + 13 + "px"))
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2012.ReadMail.Model", Backbone.Model.extend({
         defaults: {
             fid: null,
@@ -21916,7 +22238,8 @@ $(function () {
             el: null
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.View", s.extend({
         initialize: function () {
@@ -22017,7 +22340,8 @@ $(function () {
             this._readMailNormalView && this._readMailNormalView.undelegateEvents(), this._readMailSessionView && this._readMailSessionView.undelegateEvents()
         }
     }))
-}(jQuery, _, M139), $(function () {
+}(jQuery, _, M139),
+$(function () {
     function e(e) {
         $.each(e, function (t) {
             $App.validateTab("readmail_" + e[t])
@@ -22112,7 +22436,8 @@ $(function () {
     try {
     } catch (t) {
     }
-}), function (e, t, i) {
+}),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.View.ReadMailContent", s.extend({
         el: "",
@@ -22428,7 +22753,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.View.FilePreview", s.extend({
         el: "body",
@@ -22757,7 +23083,8 @@ $(function () {
                 return ""
             }
         }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("m2012.starOrRemindPopMenu.view", s.extend({
         direction: {
@@ -23135,7 +23462,8 @@ $(function () {
     })), a(function () {
         $App.registerView("starOrRemindPopMenu", new m2012.starOrRemindPopMenu.view({}))
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2012.ChangeStar.Model", Backbone.Model.extend({
         defaults: { ids: [], type: "starFlag", value: 0 },
         UpdatStar: function (e, t) {
@@ -23150,7 +23478,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ChangeStar.View", s.extend({
         el: "body",
@@ -23343,7 +23672,8 @@ $(function () {
     })), a(function () {
         $App.registerView("starView", new M2012.ChangeStar.View)
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2012.ReadMail.Model.QuickReply", Backbone.Model.extend({
         tips: {
             replySuccess: "邮件回复成功",
@@ -23402,7 +23732,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.View.QuickReply", s.extend({
         el: "",
@@ -23470,7 +23801,8 @@ $(function () {
             }
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2012.Receipt.Model", Backbone.Model.extend({
         defaults: {
             mailListData: null,
@@ -23501,7 +23833,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Receipt.View", s.extend({
         el: "body",
@@ -23537,9 +23870,11 @@ $(function () {
             }, { buttons: ["确定", "取消"], dialogTitle: "发送回执", icon: "warn" })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2012.ReadMail.ToolBar.Model", Backbone.Model.extend({ defaults: { dataSource: null } }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.ToolBar.View", s.extend({
         el: "",
@@ -23662,7 +23997,8 @@ $(function () {
             return $T.Utils.format(i, [t, a])
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.VCard.View", s.extend({
         template: {
@@ -23843,7 +24179,8 @@ $(function () {
             }
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e;
     i.View.ViewBase;
     i.namespace("M2012.Readmail.Iframe.Event.Model", Backbone.Model.extend({
@@ -23864,7 +24201,8 @@ $(function () {
         },
         callApi: i.RichMail.API.call
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Readmail.Iframe.Event.View", s.extend({
         el: "",
@@ -24043,7 +24381,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2012.ReadMail.RiskTips.Model", Backbone.Model.extend({
         defaults: {
             fid: null,
@@ -24143,7 +24482,8 @@ $(function () {
             stranger: [{ text: "为了保护你的邮箱安全，我们对内容中的图片进行了屏蔽处理，你可以&nbsp;", showpic: !0, contact: !0, refuse: !0 }]
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.RiskTips.View", s.extend({
         template: {
@@ -24270,7 +24610,8 @@ $(function () {
             return $T.Utils.format(i, d)
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = i.View.ViewBase, s = !1;
     i.namespace("M2012.ReadMail.ScrollBar.View", a.extend({
         initialize: function (e) {
@@ -24333,7 +24674,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2012.Myapp.Model", Backbone.Model.extend({
         defaults: {
             userData: null,
@@ -24478,7 +24820,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Myapp.View", s.extend({
         el: "body",
@@ -24608,7 +24951,8 @@ $(function () {
             top.BH("smswin_fu"), top.$App.show("sms", "&newYear=1")
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.namespace("M2015.Myapp.Model", Backbone.Model.extend({
         defaults: {
             userData: null,
@@ -24848,7 +25192,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2015.Myapp.View", s.extend({
         initialize: function () {
@@ -24981,7 +25326,8 @@ $(function () {
             e.renderIcon(), e.model.getMyapp(!0), e.model.getMySettingApp(!0)
         })
     })
-}(jQuery, _, M139), function (e) {
+}(jQuery, _, M139),
+function (e) {
     function t(e, t) {
         return "/sharpapi/addr/apiserver/" + e + "?sid=" + $App.getSid() + (t ? "&APIType=" + t : "") + "&r=" + Math.random()
     }
@@ -25481,7 +25827,8 @@ $(function () {
             })
         }
     })
-}(M139), function (e, t) {
+}(M139),
+function (e, t) {
     var i = M2012.Contacts.API, a = (M2012.Contacts.Model, M2012.Contacts.getCache()), s = {
         S_OK: "S_OK",
         SUCCESS: 0
@@ -26469,7 +26816,8 @@ $(function () {
         }
         return $.extend(a, { SourceType: "2", AddrSecondName: "", AddrFirstName: e.name || e.AddrFirstName })
     }
-}(M139, _), window.settingsIndexView = function () {
+}(M139, _),
+window.settingsIndexView = function () {
     var e = {
         $el: null,
         currentSetting: null,
@@ -26663,7 +27011,8 @@ $(function () {
                 return e
             }
         }
-}(), function (e, t, i) {
+}(),
+function (e, t, i) {
     i.namespace("M2012.MailComplaint.Model", Backbone.Model.extend({
         defaults: {
             fid: null,
@@ -26793,7 +27142,8 @@ $(function () {
             e && i.UI.TipMessage.show(e, { colour: "msgRed", prior: !0, delay: 3e3 })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.MailComplaint.View", s.extend({
         el: "",
@@ -26901,7 +27251,8 @@ $(function () {
     })), a(function () {
         mailboxComplaintView = new M2012.MailComplaint.View
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Dialog.ContactsEditor";
     i.namespace(o, s.extend({
         initialize: function (e) {
@@ -27104,7 +27455,8 @@ $(function () {
             this.trigger("cancel")
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Widget.ContactsCard";
     i.namespace(o, s.extend({
         initialize: function (t) {
@@ -27486,7 +27838,8 @@ $(function () {
             return this.current || (this.current = (new M2012.UI.Widget.ContactsCard).render()), this.current
         }
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = i.Model.ModelBase, s = "M2012.UI.Widget.Contacts.Model";
     i.namespace(s, a.extend({
         initialize: function (e) {
@@ -27628,7 +27981,8 @@ $(function () {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Widget.Contacts.View", n = {
         All: -1,
         Ungroup: -2,
@@ -28296,7 +28650,8 @@ $(function () {
             }
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Dialog.AddressBook";
     i.namespace(o, s.extend({
         initialize: function (e) {
@@ -28410,7 +28765,8 @@ $(function () {
             return t
         }
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.TreeView.MainView";
     i.namespace(o, s.extend({
         initialize: function (t) {
@@ -28481,7 +28837,8 @@ $(function () {
             return e = t.defaults(e, n), new M2012.UI.TreeView.MainView(e)
         }
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = i.View.ViewBase, s = "M2012.UI.TreeView.NodeView";
     i.namespace(s, a.extend({
         initialize: function (t) {
@@ -28550,7 +28907,8 @@ $(function () {
             e ? t.css({ color: "white", background: "rgb(50,119,222)" }) : t.css({ color: "", background: "" })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Dialog.SaveToDisk", n = {
         PHOTO: 20,
         MUSIC: 30
@@ -28863,7 +29221,8 @@ $(function () {
             this.trigger("cancel")
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.UI.Scroll", s.extend({
         wrap: "",
@@ -28921,7 +29280,8 @@ $(function () {
         },
         _template: '<ul class="nessageReminding" id="{id}" style="overflow:hidden;">{lis}</ul>'
     }))
-}(jQuery, _, M139), function (e, t, a) {
+}(jQuery, _, M139),
+function (e, t, a) {
     var s = a.View.ViewBase;
     a.namespace("M2012.UI.MutiScroll", s.extend({
         data: [],
@@ -28979,7 +29339,8 @@ $(function () {
         _templateUl: '<ul id="ul_{id}" style="overflow:hidden;margin:0px;">{lis}</ul>',
         _templateLi: '<li style="overflow:hidden;">{info}</li>'
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.UI.HoriScroll", s.extend({
         parentEl: null,
@@ -29034,14 +29395,18 @@ $(function () {
         },
         _template: ['<div class="slide-item" id="hs_{id}">', '<div class="slide-item-con">', '<ul class="slide-item-ul m_clearfix" id="UL_{id}">{lis}</ul>', "</div>", '<a href="javascript:void(0);" title="上一页" class="slideBtn-prev"><i></i></a>', '<a href="javascript:void(0);" title="下一页" class="slideBtn-next"><i></i></a>', "</div>"].join("")
     }))
-}(jQuery, _, M139), M139.core.namespace("M139.UI.BottomTip", Backbone.View.extend({
+}(jQuery, _, M139),
+M139.core.namespace("M139.UI.BottomTip", Backbone.View.extend({
     initialize: function (e) {
         this.isClosed = !0, this.isOver = !1, this.timerClose = 0, this.taskList = [], this.createContainer(), this.initEvents()
-    }, createContainer: function () {
+    },
+    createContainer: function () {
         "undefined" == typeof this.contentElement && (this.contentElement = document.createElement("div"), this.contentElement.style.cssText = "position:absolute;right:1px;bottom:0px;display:none;z-index:9999;", this.contentElement.id = "remindTip", document.body.appendChild(this.contentElement), $("#remindTip").on("mouseout", this.mouseOut), $("#remindTip").on("mousemove", this.mouseMove), $("#remindTip").on("click", this.clickHander))
-    }, initEvents: function () {
+    },
+    initEvents: function () {
         this.on("show", this.show)
-    }, show: function () {
+    },
+    show: function () {
         function e() {
             if (i.isClosed) i.contentElement.style.display = "none", window.clearInterval(p); else {
                 i.contentElement.style.display = "block", c = i.contentElement.offsetHeight, c + 1 >= d ? i.contentElement.style.bottom = (-c + d).toString() + "px" : (window.clearInterval(p), d = 0, i.isOver || (i.timerClose = setTimeout(i.close, i.timeOut)));
@@ -29058,12 +29423,15 @@ $(function () {
             var c = 0, d = 0, p = window.setInterval(e, 30);
             l && top.BH(l)
         }
-    }, updateContent: function (e, t) {
+    },
+    updateContent: function (e, t) {
         this.contentElement.innerHTML = this._getContent(e, t)
-    }, close: function () {
+    },
+    close: function () {
         var e = $BTips.instance.contentElement;
         e.style.bottom = (-e.offsetHeight).toString() + "px", e.style.display = "none", $BTips.instance.isClosed = !0, this.onCloseCall && this.onCloseCall(), $BTips.instance.trigger("show")
-    }, clickHander: function (e) {
+    },
+    clickHander: function (e) {
         var t = e.target;
         do {
             if ("A" === t.tagName && "postShare" !== t.id) {
@@ -29073,11 +29441,14 @@ $(function () {
             t = t.parentNode
         } while ("remindTip" !== t.id);
         $BTips.instance.onclick && $BTips.instance.onclick(e, $BTips.instance)
-    }, mouseMove: function () {
+    },
+    mouseMove: function () {
         0 != $BTips.instance.timerClose && ($BTips.instance.isOver = !0, clearTimeout($BTips.instance.timerClose))
-    }, mouseOut: function (e) {
+    },
+    mouseOut: function (e) {
         e.toElement && "IFRAME" !== e.toElement.tagName && "DIV" !== e.toElement.tagName || ($BTips.instance.isOver = !1, $BTips.instance.timerClose = setTimeout($BTips.instance.close, $BTips.instance.timeOut))
-    }, _getContent: function (e, t, i, a, s) {
+    },
+    _getContent: function (e, t, i, a, s) {
         var o = '<div class="boxIframe {addNewClass}" style="width:{width}px;"><div class="boxIframeTitle"><h2><span>{title}</span></h2><a class="i_t_close" bh="{bhClose}" id="tipCloseLink" href="javascript:{href}void(0);"></a></div><div class="boxIframeMain"><div class="boxIframeText">{content}</div></div></div>';
         return top.$T.Utils.format(o, {
             width: i,
@@ -29088,7 +29459,8 @@ $(function () {
             href: "top.$BTips.instance.close();"
         })
     }
-})), function (e, t, i) {
+})),
+function (e, t, i) {
     e.extend(i.UI.BottomTip, {
         timer: !1, interval: 333, show: function (e) {
             $BTips.instance.show(e)
@@ -29105,7 +29477,8 @@ $(function () {
             $BTips.instance.taskList.splice(0, 1)
         }, instance: new i.UI.BottomTip
     }), window.$BTips = i.UI.BottomTip
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = i.View.ViewBase;
     i.namespace("M2012.UI.Tip.UmcUpgradeTip.View", a.extend({
         initialize: function (e) {
@@ -29130,7 +29503,8 @@ $(function () {
             a = $Url.makeUrl(a, t), window.open(a)
         }
     }))
-}(jQuery, _, M139), function () {
+}(jQuery, _, M139),
+function () {
     if (!($B.is.ie && $B.getVersion() < 8)) {
         var e = function () {
             return window.devicePixelRatio || 1
@@ -29187,7 +29561,8 @@ $(function () {
         };
         M139.core.namespace("M2012.UI.Tip.ZoomTip.Model", d)
     }
-}(M139), function (e, t, i) {
+}(M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M139_ZoomTip_Not_Show_Again";
     i.namespace("M2012.UI.Tip.ZoomTip.View", s.extend({
         initialize: function (t) {
@@ -29243,7 +29618,8 @@ $(function () {
             }
         }
     })
-}(jQuery, _, M139), function (e) {
+}(jQuery, _, M139),
+function (e) {
     function t() {
         if (0 != p.length) {
             var e = n();
@@ -29284,7 +29660,8 @@ $(function () {
             p.push(e), 1 == p.length && t()
         }
     }
-}(window), function (e) {
+}(window),
+function (e) {
     e.namespace("M2012.UI.Tip.NetHealthCheck", {
         check: function () {
             NetHealthCheck.check(function (e) {
@@ -29292,7 +29669,8 @@ $(function () {
             })
         }
     })
-}(M139), function (e, t, i) {
+}(M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = {
         Date: {
             parse: function (e) {
@@ -29472,7 +29850,8 @@ $(function () {
             return t
         }
     })
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     i.PUtils = {
         mobileMail: "", getImageSrc: function (e) {
             var t = "{0}/addr/apiserver/httpimgload.ashx?sid={1}&path={2}";
@@ -29755,7 +30134,9 @@ $(function () {
     })
 }($, _, M139);
 var $Evocation = {
-    tagInMsgIcon: !1, tagInMsgBox: !1, create: function (e) {
+    tagInMsgIcon: !1,
+    tagInMsgBox: !1,
+    create: function (e) {
         if (top.SiteConfig.evocation) {
             if ("string" == typeof e) {
                 var e = e || "";
@@ -29770,7 +30151,8 @@ var $Evocation = {
             });
             top.EvocationPopWindow = new top.Evocation.Main.View(t), e.callback && e.callback(top.EvocationPopWindow)
         }
-    }, changeSkin: function (e) {
+    },
+    changeSkin: function (e) {
         top.M139.core.utilCreateScriptTag({
             src: top.getRootPath() + "/js/packs/m2012.changeskin.pack.js",
             charset: "utf-8"
@@ -29779,30 +30161,36 @@ var $Evocation = {
                 top.$App.trigger("EvochangeSkin", { skinName: e })
             }, 500)
         })
-    }, openAndSubject: function (e) {
+    },
+    openAndSubject: function (e) {
         e += "", top.$App.show("googSubscription"), top.$App.show("mpostOnlineService", null, {
             key: e,
             inputData: { columnId: e }
         });
         var t = top.getDomain("image") + "subscribe/inner/bis/subscribe?sid=" + top.sid, i = "{comeFrom:503,columnId:" + e + "}";
         top.M139.RichMail.API.call(t, i)
-    }, goMailhallUrl: function (e) {
+    },
+    goMailhallUrl: function (e) {
         top.$App.show("mpostOnlineService", null, {
             title: "邮箱营业厅",
             key: "38159",
             inputData: { urlParams: e, columnId: "38159", columnName: "邮箱营业厅" }
         })
-    }, showMessageBox: function () {
+    },
+    showMessageBox: function () {
         var e = new M2012.RemindboxView;
         e.render()
-    }, msgBoxHot: {
+    },
+    msgBoxHot: {
         show: function () {
             var e = $Url.queryString("cguid");
             $("#msgBoxComing").show(), $Cookie.set({ name: "msg", value: e + "|s" })
-        }, hide: function () {
+        },
+        hide: function () {
             var e = $Url.queryString("cguid");
             $("#msgBoxComing").hide(), $Cookie.set({ name: "msg", value: e + "|h" })
-        }, setStatus: function () {
+        },
+        setStatus: function () {
             var e = this, t = $Url.queryString("cguid"), i = $Cookie.get("msg");
             if (i && i.split("|")[0] == t) {
                 var a = i.split("|")[1];
@@ -29816,7 +30204,8 @@ var $Evocation = {
             }
         }
     }
-}, $RechargeRemind = {
+},
+$RechargeRemind = {
     create: function (e) {
         if ("string" == typeof e) {
             var e = e || "";
@@ -29830,7 +30219,8 @@ var $Evocation = {
             new top.M2012.UI.rechargeRemind.View(t)
         })
     }
-}, ProductFuns = {
+},
+ProductFuns = {
     isNeedDisplay: function () {
         var e = !1, t = top.SiteConfig.lazyCard || [], i = top.$App && top.$App.query && top.$App.query.testServerTime ? top.$App.query.testServerTime : !1, a = new Date(M139.Date.getServerTime());
         i && (a = top.$Date.parse(i));
@@ -29838,7 +30228,8 @@ var $Evocation = {
         s = s.replace(/\/>|\s*/g, "");
         var o = $PUtils.dateFormat(t.begin), n = $PUtils.dateFormat(t.end), r = t.key;
         return a >= o && n >= a && s.indexOf(r) < 0 && (e = !0), { isNeedDisplay: e, key: r }
-    }, loadLazyCard: function (e) {
+    },
+    loadLazyCard: function (e) {
         var t = this;
         e ? t.lazyCardResource(e, function (e) {
             t.popLazyCard(e)
@@ -29850,10 +30241,12 @@ var $Evocation = {
                 })
             })
         })
-    }, lazyCardContact: function () {
+    },
+    lazyCardContact: function () {
         var e = top.$App.getModel("contacts");
         return !!(e && e.attributes && e.attributes.data && e.attributes.data.contacts && e.attributes.data.contacts.length)
-    }, lazyCardResource: function (e, t) {
+    },
+    lazyCardResource: function (e, t) {
         var i = {
             cj: { title: "春节", param: [2, 1, 7, 1] },
             yx: { title: "元宵", param: [2, 1, 8, 1] },
@@ -29875,38 +30268,49 @@ var $Evocation = {
                 }
             })
         }
-    }, popLazyCard: function (e) {
+    },
+    popLazyCard: function (e) {
         top.selfBir_mask = top.M2012.UI.DialogBase.showMask();
         var t = 680, i = 550, a = window.location.protocol + "//" + top.window.location.host + top.getRootPath() + "/html/lazyCard/" + e.type + "/lazyCard.html", s = ["<div id='lazycardWindow' style='width:" + t + "px; height:" + i + "px;overflow:hidden; z-index:999; position:absolute;left:50%;top:50%;margin-top: -" + i / 2 + "px;margin-left: -" + t / 2 + "px;'>", "<iframe allowTransparency='true' style='width:" + t + "px; height:" + i + "px; border:none;' frameborder='0' src='", a, "'></iframe>", "</div>"].join("");
         top.lazycardWin = $("body").append(s).find("#lazycardWindow")
-    }, closeLazyCard: function () {
+    },
+    closeLazyCard: function () {
         top.lazycardWin.remove(), top.selfBir_mask.hide()
-    }, showBirthwish: function () {
+    },
+    showBirthwish: function () {
         $App.getModel("contacts").requireData(function () {
             var e = window.location.protocol + "//" + top.window.location.host + top.getRootPath() + "/html/";
             e += "birthdaywish.html";
             var t = top.$Msg.open({ hideTitleBar: !0, url: e, width: 746, height: 536 });
             top.$App.set("birthWishFrame", t), M139.PUtils.iframetransparent()
         })
-    }, showOnlineTips: function () {
+    },
+    showOnlineTips: function () {
         top.SiteConfig.emailOnlineTip && top.M139.UI.TipMailView.show()
-    }, showBillLight: function () {
-    }, examineUserStatus: function (e, t) {
+    },
+    showBillLight: function () {
+    },
+    examineUserStatus: function (e, t) {
         this._callLotteryAPI("setting:examineShowStatus", e, t)
-    }, _callLotteryAPI: function (e, t, i) {
+    },
+    _callLotteryAPI: function (e, t, i) {
         options = { method: "GET" }, i = i || $.noop, t = $Url.makeUrl("", t).replace("?", ""), M139.RichMail.API.call(e, t, function (e) {
             e ? i(e.responseData) : i()
         }, options)
-    }, loadOperateTips: function () {
+    },
+    loadOperateTips: function () {
         top.M139.Timing.waitForReady("NewAdLink", function () {
             var e = new M2012.OperateTips.View;
             top.operatetipsview = e, e.initEvents()
         })
-    }, examineShowStatus: function (e, t) {
+    },
+    examineShowStatus: function (e, t) {
         this._callLotteryAPI("setting:examineShowStatus", e, t)
-    }, examineUserStatus: function (e, t) {
+    },
+    examineUserStatus: function (e, t) {
         this._callLotteryAPI("setting:examineUserStatus", e, t)
-    }, _callLotteryAPI: function (e, t, i) {
+    },
+    _callLotteryAPI: function (e, t, i) {
         options = { method: "GET" }, i = i || $.noop, t = $Url.makeUrl("", t).replace("?", ""), M139.RichMail.API.call(e, t, function (e) {
             e ? i(e.responseData) : i()
         }, options)
@@ -29915,7 +30319,8 @@ var $Evocation = {
 M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
     initialize: function (e) {
     }
-})), function (e, t, i) {
+})),
+function (e, t, i) {
     e.extend(i.UI.RemindTipModel, {
         materialIds: [10679, 10680, 10678, 10621, 10620, 10564, 178, 173, 192, 10561],
         users: { log: [], online: [] },
@@ -30062,10 +30467,12 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
             }, e), void this.requestApi("calendar:subscribeLabel", e, i, a)) : void console.log("function:subscribeCalendar参数错误:labelId不合法")
         }
     }), window.$BMTips = i.UI.RemindTipModel
-}(jQuery, _, M139), M139.core.namespace("M139.UI.TipMailView", Backbone.View.extend({
+}(jQuery, _, M139),
+M139.core.namespace("M139.UI.TipMailView", Backbone.View.extend({
     initialize: function (e) {
     }
-})), function (e, t, i) {
+})),
+function (e, t, i) {
     e.extend(i.UI.TipMailView, {
         title: "您有 {count} 封新邮件",
         show: function () {
@@ -30131,7 +30538,9 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
         },
         _template: ['<div class="imgInfo imgInfo-rb">', '<a class="imgLink" href="javascript:void(0);" title="图片"><i class="i_mail_b"></i></a>', "<dl>", '<dt><strong id="fromMan">{email}</strong></dt>', '<dd class="maila"><a bh="邮件tips查邮件" href="javascript:{hander};void(0);">{subject}</a></dd>', "</dl>", '<p style="display:{display};" class="imgInfo-rb-page"><a  bh="邮件tips左右导航" href="javascript:top.M139.UI.TipMailView.nextMail(\'L\');void(0);" class="pre"></a><span >{cur}/{total}</span><a bh="邮件tips左右导航" href="javascript:top.M139.UI.TipMailView.nextMail(\'R\');void(0);" class="next"></a></p>', "</div>"].join("")
     })
-}(jQuery, _, M139), M139.core.namespace("M139.UI.HelloFriend", Backbone.View.extend({})), function (e, t, i) {
+}(jQuery, _, M139),
+M139.core.namespace("M139.UI.HelloFriend", Backbone.View.extend({})),
+function (e, t, i) {
     var a;
     e.extend(i.UI.HelloFriend, {
         initialize: function (e) {
@@ -30168,10 +30577,12 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
             return a
         }
     })
-}(jQuery, _, M139), M139.core.namespace("M139.UI.TipLoginRemind", Backbone.View.extend({
+}(jQuery, _, M139),
+M139.core.namespace("M139.UI.TipLoginRemind", Backbone.View.extend({
     initialize: function (e) {
     }
-})), function (e, t, i) {
+})),
+function (e, t, i) {
     e.extend(i.UI.TipLoginRemind, {
         requestTime: "",
         hadRequset: !1,
@@ -30356,7 +30767,8 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
             }
         }
     })
-}(jQuery, _, M139), function (e, t, i, a) {
+}(jQuery, _, M139),
+function (e, t, i, a) {
     var s = i.View.ViewBase, o = "M139.Ui.Tip.View.Calendar";
     i.namespace(o, s.extend({
         templates: {
@@ -30514,7 +30926,8 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
             $BTips.isCalendarTip = !0, e.showTips(), e.setDomEvents()
         }
     }))
-}(jQuery, _, M139, window._top || window.top), M139.core.namespace("M139.UI.cordlamp", Backbone.View.extend({
+}(jQuery, _, M139, window._top || window.top),
+M139.core.namespace("M139.UI.cordlamp", Backbone.View.extend({
     autoClose: !0,
     contentId: "",
     readStatus: "",
@@ -30637,12 +31050,14 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
             })
         }
     }
-})), $(function () {
+})),
+$(function () {
     try {
         new M139.UI.cordlamp
     } catch (e) {
     }
-}), M139.core.namespace("M139.UI.WGuide", Backbone.View.extend({
+}),
+M139.core.namespace("M139.UI.WGuide", Backbone.View.extend({
     template: ['<div class="norTips" id="wGuideBox">', '<a class="i_t_close DL_CloseBut CloseButton" style="top:11px;right:11px;" title="关闭" href="javascript:;"></a>', '<div class="assistant-guide">', '<div class="guide-head"></div>', '<div class="guide-list clearfix">', "<% if (isChinaMobileUser) { %>", "<ul>", '<li class="clearfix">', '<span class="class-name">邮箱短信提醒：</span>', '<div class="class-check">', '<span class="mr_15"><input type="checkbox" class="chk-m139check" checked="checked"><label id="chkOpen" style="background-image:url(/refs/global_v3_24.png)" for="chkUrgent" class="i-chooseMo i-chooseYet">&nbsp;&nbsp;&nbsp;&nbsp;</label>开启</span>', '<span class="mr_15"><input type="checkbox" class="chk-m139check" checked="checked"><label id="chkClose" style="background-image:url(/refs/global_v3_24.png)" for="chkUrgent" class="i-chooseMo">&nbsp;&nbsp;&nbsp;&nbsp;</label>关闭</span>', "</div>", '<p id="wgCloseExp" class="class-check-tips" style="display:none">温馨提示：开启短信提醒后，接收邮件到达提醒</p>', "</li>", "</ul>", "<% } %>", "</div>", '<div class="guide-maylike clearfix">', '<h3 class="headtop clearfix">猜您喜欢：</h3>', '<div class="innercon clearfix">', '<ul id="commend_List">', "</ul>", "</div>", "</div>", "</div>", "</div>"].join(""),
     initialize: function (e) {
         var t = this;
@@ -30726,7 +31141,9 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
             } else M139.UI.TipMessage.error("所有短信提醒" + (t.smsData ? "开启" : "关闭") + "失败", { delay: 1e3 })
         })
     }
-})), M139.core.namespace("M139.UI.fileClear", Backbone.View.extend({})), function (e, t, i) {
+})),
+M139.core.namespace("M139.UI.fileClear", Backbone.View.extend({})),
+function (e, t, i) {
     e.extend(i.UI.fileClear, {
         initialize: function (e) {
         }, getMailSize: function () {
@@ -30766,7 +31183,8 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
             }
         }
     })
-}(jQuery, _, M139), M139.core.namespace("M139.UI.DataflowLottery", Backbone.View.extend({
+}(jQuery, _, M139),
+M139.core.namespace("M139.UI.DataflowLottery", Backbone.View.extend({
     template: ['<div id="bottomBigBanner" style="position:fixed;left:0;bottom:0;right: 0;background: transparent;text-align: center;height:80px;z-index: 10000;">', "</div>"].join(""),
     initialize: function () {
         this.stopPopCon()
@@ -30825,14 +31243,16 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
         } catch (t) {
         }
     }
-})), $(function () {
+})),
+$(function () {
     try {
         setTimeout(function () {
             new M139.UI.DataflowLottery
         }, 4e3)
     } catch (e) {
     }
-}), function (e, t, i) {
+}),
+function (e, t, i) {
     i.namespace("M2012.OperateTips.Model", Backbone.Model.extend({
         logger: new top.M139.Logger({ name: "OperateTips" }),
         getTipsData: function () {
@@ -30858,7 +31278,8 @@ M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
             }
         }
     }))
-}(jQuery, _, M139), function (e, t, i, a) {
+}(jQuery, _, M139),
+function (e, t, i, a) {
     var s = e, o = a.View.ViewBase;
     a.namespace("M2012.OperateTips.View", o.extend({
         initialize: function (e) {
@@ -31244,7 +31665,8 @@ var BirthRemind = {
             })
         }
     }))
-}(jQuery, _, M139), function (e, t, i) {
+}(jQuery, _, M139),
+function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Remind.View", s.extend({
         el: "",
@@ -31681,7 +32103,8 @@ var BirthRemind = {
             })
         }
     }))
-}(jQuery, _, M139), M139.core.namespace("M139.UI.TipSubscribeCalendar", Backbone.View.extend({
+}(jQuery, _, M139),
+M139.core.namespace("M139.UI.TipSubscribeCalendar", Backbone.View.extend({
     initialize: function (e) {
         var t = this;
         top.$App.on("welcome_UnifiedPosition_load", function (e) {
@@ -31689,7 +32112,8 @@ var BirthRemind = {
                 t.showTipSubscribeCalendar(e)
             })
         })
-    }, showTipSubscribeCalendar: function (e) {
+    },
+    showTipSubscribeCalendar: function (e) {
         if (e && !$.isEmptyObject(e)) {
             var t = M139.JSON.tryEval(e.content);
             if (1 != e.readStatus) {

@@ -102,7 +102,8 @@
             }
         }
     }())
-}(jQuery), function (t) {
+}(jQuery),
+function (t) {
     function e() {
         return t("<div/>")
     }
@@ -418,7 +419,8 @@
             t(this).data("imgAreaSelect") ? e.remove ? (t(this).data("imgAreaSelect").remove(), t(this).removeData("imgAreaSelect")) : t(this).data("imgAreaSelect").setOptions(e) : e.remove || (void 0 === e.enable && void 0 === e.disable && (e.enable = !0), t(this).data("imgAreaSelect", new t.imgAreaSelect(this, e)))
         }), e.instance ? t(this).data("imgAreaSelect") : this
     }
-}(jQuery), function (t, e, i, a) {
+}(jQuery),
+function (t, e, i, a) {
     a.namespace("UploadForm.Model", e.Model.extend({
         callApi: a.RichMail.API.call, initialize: function () {
             this.render()
@@ -458,7 +460,8 @@
         }, getActivityTime: function (t, e) {
         }
     }))
-}(jQuery, Backbone, _, M139), function (jQuery, Backbone, M139) {
+}(jQuery, Backbone, _, M139),
+function (jQuery, Backbone, M139) {
     var $ = jQuery, superClass = M139.View.ViewBase;
     M139.namespace("M2012.Compose.View.UploadForm", Backbone.View.extend({
         el: "div",
@@ -698,7 +701,8 @@
             flv: "flv-application/octet-stream"
         }
     }))
-}(jQuery, Backbone, M139), function (t, e, i) {
+}(jQuery, Backbone, M139),
+function (t, e, i) {
     var a = "ComputeCoords", n = i.Model.ModelBase;
     i.namespace(a, n.extend({
         name: a,
@@ -881,7 +885,8 @@
             }, this.setCoords({dragBox: e, isCornerDragging: !0})
         }
     }))
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = "M2012.UI.Model.ImageCropper", n = i.Model.ModelBase;
     i.namespace(a, n.extend({
         name: a,
@@ -967,7 +972,8 @@
             })
         }
     }))
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = t, n = "M2012.UI.View.ImageCropper", s = i.View.ViewBase;
     i.namespace(n, s.extend({
         name: n,
@@ -1389,7 +1395,8 @@
         singleImageTpl: ["<% _.each(obj, function(i){ %>", '<li title="<%-i.name%>">', '<a href="javascript:void(0)" role="anchor">', '<img src="<%-i.bigthumbnailURL%>" filename="<%-i.name%>" role="anchor" style="width: 65px; height:65px;" />', '<p role="anchor"><%=i.shortName%></p>', '<i class="i-imgUpload"></i>', "</a>", "</li>", "<% }) %>"].join(""),
         faceImgEditZone: ['<div class="editAvatar_box" id="{cid}_faceImgEditPos" style="position:relative;">', '<img id="{cid}_controlImg" src="{URL}" class="cropAvatarLarge" style="position:absolute; display:none;" />', '<div id="{cid}_divAvatar" style="position:absolute; top:0;left:0px;"></div>', "</div>", '<a href="javascript:void(0)" id="{cid}_rotateLeft" class="btnRotateLeft btnGrayNew editAvatar_left"><span><i class="i-whirlLeft"></i>左旋转</span></a>', '<a href="javascript:void(0)" id="{cid}_rotateRight" class="btnRotateRight btnGrayNew editAvatar_right"><span><i class="i-whirlRight"></i>右旋转</span></a>']
     }))
-}(jQuery, _, M139), function () {
+}(jQuery, _, M139),
+function () {
     M139.core.namespace("M139.UI", {
         Repeater: function (t, e) {
             function i() {
@@ -1453,7 +1460,8 @@
             }
         }
     }), window.Repeater = M139.UI.Repeater
-}(), function (t, e, i) {
+}(),
+function (t, e, i) {
     var a, n, s = t, o = i.View.ViewBase;
     i.namespace("M2012.UI.DialogBase", o.extend({
         initialize: function (e) {
@@ -1780,7 +1788,8 @@
             return i || (i = e(), this.masks.push(i)), i.css("z-index", a), i.css("opacity", n), i.show(), i
         }
     }), window.$Msg = M2012.UI.DialogBase
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = t, n = i.View.ViewBase;
     i.namespace("M2012.UI.PopMenu", n.extend({
         initialize: function (e) {
@@ -1927,7 +1936,8 @@
             return $D.unBindAutoHide(t)
         }
     })
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = t, n = i.View.ViewBase;
     i.namespace("M2012.UI.MenuButton", n.extend({
         initialize: function (t) {
@@ -1993,7 +2003,8 @@
             return a(o).append(n), i
         }
     })
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = t, n = i.View.ViewBase;
     i.namespace("M2012.UI.DropMenu", n.extend({
         initialize: function (t) {
@@ -2072,7 +2083,8 @@
             return t.container.html(i.render().$el), i
         }
     })
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     i.core.namespace("M139.UI.Popup", Backbone.View.extend({
         initialize: function (t) {
             this.options = t || {}, this.target = t.target, this.icon = null, this.buttons = null, this.contentElement = null, t.mainClass = t.mainClass || "tips delmailTips", t.containerClass = t.containerClass || "norTips", t.contentClass = t.contentClass || "norTipsContent", this.width = t.width, this.scrollHeight = this.options.scrollHeight || 0
@@ -2166,7 +2178,8 @@
             t && (e = this.popupList[t]), e && e.close()
         }
     })
-}(jQuery, _, M139), M139.core.namespace("M139.UI", {
+}(jQuery, _, M139),
+M139.core.namespace("M139.UI", {
     TabPage: function (t) {
         function e() {
             for (elem in t)elem && (i[elem] = t[elem])
@@ -2206,8 +2219,10 @@
             return this.init(), this.renderTab(!0), this.changeTab(0, !0), this.el
         }
     }
-}), M139.namespace("M139.UI.TabNav", Backbone.View.extend({
-    events: {"click li.nav-item": "changeTab", "click .groupToggleShow": "toggleFold"}, initialize: function (t) {
+}),
+M139.namespace("M139.UI.TabNav", Backbone.View.extend({
+    events: { "click li.nav-item": "changeTab", "click .groupToggleShow": "toggleFold" },
+    initialize: function (t) {
         var e, i, a = {};
         this.items = [], this.onTabChange = t.onTabChange;
         for (var n in t.items)i = t.items[n], this.items = this.items.concat(i.data), a[n] = $TextUtils.formatBatch(i.itemTemplate, i.data).join("");
@@ -2216,11 +2231,14 @@
         s.appendTo(t.container), s.find("li.nav-item").each(function (t) {
             $(this).attr("nav-index", t)
         }), this.setElement(s)
-    }, render: function () {
+    },
+    render: function () {
         return this
-    }, getItems: function () {
+    },
+    getItems: function () {
         return this.items
-    }, changeTab: function (t) {
+    },
+    changeTab: function (t) {
         var e = 0 | $(t.currentTarget).attr("nav-index");
         if (!("number" == typeof e && 0 > e || e >= this.items.length)) {
             var i = this.items[e].key;
@@ -2228,19 +2246,24 @@
                 $App.show(i)
             }, 0), this.onTabChange(this.items[e])
         }
-    }, switchItem: function (t) {
+    },
+    switchItem: function (t) {
         var e, i, a = this.items;
         if ("string" == typeof t)for (e = 0, i = a.length; i > e && t !== a[e].key; e++); else e = t;
         this.$el.find("li a.on").removeClass("on"), this.$el.find("li.nav-item:eq(" + e + ")>a").addClass("on")
-    }, toggleFold: function (t) {
+    },
+    toggleFold: function (t) {
         var e = $(t.currentTarget).find("i"), i = $(t.currentTarget).next("ul");
         e.hasClass("t_blackRight") ? (i.show(), e.removeClass("t_blackRight").addClass("t_blackDown")) : (i.hide(), e.removeClass("t_blackDown").addClass("t_blackRight"))
-    }, hide: function () {
+    },
+    hide: function () {
         this.$el.hide()
-    }, show: function (t) {
+    },
+    show: function (t) {
         this.$el.show()
     }
-})), M139.core.namespace("M2012.UI.RichHint", Backbone.View.extend({
+})),
+M139.core.namespace("M2012.UI.RichHint", Backbone.View.extend({
     histList: {},
     hintEl: null,
     register: function (t, e) {
@@ -2286,9 +2309,11 @@
         var s = !1, o = !1, r = this;
         a()
     }
-})), function () {
+})),
+function () {
     $Hint = M2012.UI.RichHint.prototype
-}(), function (t, e, i, a) {
+}(),
+function (t, e, i, a) {
     var n = t;
     a.core.namespace("M139.UI", {
         TipMessage: {
@@ -2342,7 +2367,8 @@
             }
         }
     })
-}(jQuery, Backbone, _, M139), function (t, e, i) {
+}(jQuery, Backbone, _, M139),
+function (t, e, i) {
     var a = t, n = i.View.ViewBase, s = "M2012.UI.PageTurning";
     i.namespace(s, n.extend({
         initialize: function (e) {
@@ -2465,7 +2491,8 @@
             disableNextButtonClass: "iconNextBan c-default"
         }
     })
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     t.extend(t.fn, {
         blankText: function () {
             if (this.length < 1)return this;
@@ -2507,7 +2534,8 @@
             })
         }
     })
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = t, n = i.View.ViewBase;
     i.namespace("M2012.UI.Picker.PickerBase", n.extend({
         initialize: function (e) {
@@ -2554,7 +2582,8 @@
             })
         }
     }))
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = M2012.UI.Picker.PickerBase;
     i.namespace("M2012.UI.Picker.Calendar", a.extend({
         initialize: function (t) {
@@ -2645,7 +2674,8 @@
             return e
         }
     })
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     i.namespace("M2012.UI.Picker.CommonAPI", function () {
     });
     var a = M2012.UI.Picker.CommonAPI;
@@ -2665,7 +2695,8 @@
     M2012.UI.Picker.CommonAPI.getInstance = function () {
         return n.commonApi || (n.commonApi = new M2012.UI.Picker.CommonAPI), n.commonApi
     }
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = M2012.UI.Picker.CommonAPI.getInstance(), n = "M2012.UI.Picker.TimePicker", s = function () {
         var t, e = [];
         for (t = 0; 24 > t; t++)e.push({text: a.padding(t, 2), data: t});
@@ -2761,7 +2792,8 @@
             this.currentEl.removeClass("hide")
         }
     }))
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = t, n = M2012.UI.Picker.PickerBase;
     i.namespace("M2015.UI.Picker.Calendar", n.extend({
         initialize: function (t) {
@@ -2884,7 +2916,8 @@
             return e
         }
     })
-}(jQuery, _, M139), function (t, e, i) {
+}(jQuery, _, M139),
+function (t, e, i) {
     var a = t, n = i.View.ViewBase, s = {
         Date: {
             parse: function (t) {
@@ -3288,7 +3321,8 @@
             return e
         }
     })
-}(jQuery, _, M139), function () {
+}(jQuery, _, M139),
+function () {
     function t() {
         this.date = 3 != arguments.length ? new Date : new Date(arguments[0], arguments[1] - 1, arguments[2]), this.setLunar()
     }
@@ -3340,7 +3374,8 @@
     }, t.prototype.toWeekDay = function (t) {
         return this.WeekStart + this.Weeks[t]
     }, window.Lunar = t
-}(), function (t) {
+}(),
+function (t) {
     var e = "placeholder" in document.createElement("input"), i = t.browser.opera && t.browser.version < 10.5;
     t.fn.placeholder = function (a) {
         var a = t.extend({}, t.fn.placeholder.defaults, a), n = a.placeholderCSS.left;
@@ -3364,7 +3399,8 @@
             overflow: "hidden"
         }
     }
-}(jQuery), function (t, e, i) {
+}(jQuery),
+function (t, e, i) {
     var a = t, n = i.View.ViewBase, s = "M2012.UI.Widget.VoiceInput";
     i.namespace(s, n.extend({
         initialize: function (t) {
@@ -3416,19 +3452,27 @@
     }))
 }(jQuery, _, M139);
 var VoiceInput = {
-    _instance: null, _instanceList: [], setCurrent: function (t) {
+    _instance: null,
+    _instanceList: [],
+    setCurrent: function (t) {
         this._instance = t
-    }, create: function (t) {
+    },
+    create: function (t) {
         return t.from || (t.from = "search"), this._instance = new M2012.UI.Widget.VoiceInput(t), this._instanceList.push(this._instance), this._instance.render(), this._instance
-    }, getVoiceOption: function () {
+    },
+    getVoiceOption: function () {
         return this._instance.getVoiceOption()
-    }, onComplete: function (t) {
+    },
+    onComplete: function (t) {
         this._instance.onComplete(t)
-    }, onCancel: function () {
+    },
+    onCancel: function () {
         this._instance.onCancel()
-    }, close: function (t) {
+    },
+    close: function (t) {
         this._instance.onCancel()
-    }, onInit: function (t) {
+    },
+    onInit: function (t) {
     }
 };
 !function (t, e, i, a) {
@@ -3482,7 +3526,8 @@ var VoiceInput = {
             return e
         }
     })
-}(jQuery, Backbone, _, M139), function (t) {
+}(jQuery, Backbone, _, M139),
+function (t) {
     "function" == typeof define && define.amd ? define(["jquery"], t) : "object" == typeof exports ? module.exports = t(require("jquery")) : t(jQuery)
 }(function (t) {
     "use strict";
@@ -3579,7 +3624,8 @@ var VoiceInput = {
             t.data(this, "plugin_" + i) || t.data(this, "plugin_" + i, new e(t(this), a))
         })
     }
-}), function (t) {
+}),
+function (t) {
     t.fn.m139Check = function (e) {
         var i = {
             checkClass: "chk-m139check",
@@ -3612,7 +3658,8 @@ var VoiceInput = {
             e.update ? a(t(this)) : n(t(this))
         })
     }
-}(jQuery), function (t, e, i) {
+}(jQuery),
+function (t, e, i) {
     var a = i.View.ViewBase, n = "M2012.UI.ContactAvatar";
     i.namespace(n, a.extend({
         name: n,

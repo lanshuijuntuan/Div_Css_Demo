@@ -8216,7 +8216,12 @@ UploadManager.prototype = {
         shareTemplate: '<div style="font-family: 宋体;font-size: 13.0px;color: rgb(0,0,0);line-height: 1.5;"><p class="p0" style="margin: 0.0pt 0.0px;padding: 0.0px;line-height: 19.5px;"><span style="font-size: 10.5pt;">Hi，小伙伴：</span><span style="font-size: 10.5pt;"></span></p><p class="p0" style="margin: 0.0pt 0.0px;padding: 0.0px;line-height: 19.5px;"><span style="font-size: 10.5pt;">&nbsp;</span></p><p class="p0" style="margin: 0.0pt 0.0px;padding: 0.0px;line-height: 19.5px;"><span style="font-size: 10.5pt;">“@greetingString”——</span><span style="font-size: 10.5pt;">每次登录邮箱都收到激励或者温情的话，内心有所触动。</span><span style="font-size: 10.5pt;"></span></p><p class="p0" style="margin: 0.0pt 0.0px;padding: 0.0px;line-height: 19.5px;"><span style="font-size: 10.5pt;">&nbsp;</span></p><p class="p0" style="margin: 0.0pt 0.0px;padding: 0.0px;line-height: 19.5px;"><span style="font-size: 10.5pt;">你有get到感动吗？去139邮箱看看吧！</span><span style="font-size: 10.5pt;"></span></p><p class="p0" style="margin: 0.0pt 0.0px;padding: 0.0px;line-height: 19.5px;"><a href="http://mail.10086.cn/" target="_blank"><span class="15" style="color: rgb(0,0,255);">http://mail.10086.cn</span></a></p><br><br></div>',
         letterTemplate: '<iframe frameborder="0" scrolling="no" style="width:191px;border:0;height:{height}px;" src="letterpaper/letterpaper.htm" id="frmLetterPaper" name="frmLetterPaper"></iframe>',
         initialize: function (e) {
-            return this.model = e.model, this.saveDraftComplete = !0, this.initEvents(), this.loadData(), this.encrypt = new M2012.Compose.View.Encrypt({model: this.model}), a.prototype.initialize.apply(this, arguments)
+            return this.model = e.model,
+                this.saveDraftComplete = !0,
+                this.initEvents(),
+                this.loadData(),
+                this.encrypt = new M2012.Compose.View.Encrypt({ model: this.model }),
+                a.prototype.initialize.apply(this, arguments)
         },
         initEvents: function () {
             var e = this, t = -1 != top.$App.getCurrentTab().name.indexOf("compose") || !!o("#compose_preload", top.document).length;

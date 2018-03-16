@@ -162,7 +162,8 @@ var M139;
         }
         return n
     }
-}(jQuery, Backbone), function (e) {
+}(jQuery, Backbone),
+function (e) {
     var t = e;
     M139.Text = {
         Mobile: {
@@ -780,7 +781,8 @@ var M139;
     }, String.prototype.decode = function () {
         return M139.Text.Html.decode(this)
     }
-}(jQuery), function (e, t, n) {
+}(jQuery),
+function (e, t, n) {
     n.Event = {
         getEvent: function (e) {
             var t = e || window.event;
@@ -864,7 +866,8 @@ var M139;
             return this !== r ? r.off.apply(r, arguments) : t.Model.prototype.off.apply(this, arguments)
         }
     }), window.$Event = n.Event, window.$GlobalEvent = n.Event.GlobalEvent = new n.Event.GlobalEventManager
-}(jQuery, Backbone, M139), function (e, t) {
+}(jQuery, Backbone, M139),
+function (e, t) {
     function n(e) {
         var t = {}.toString.call(e);
         return "[object Array]" == t
@@ -1046,7 +1049,8 @@ var M139;
             r(e), i.info("调用了旧版的addBehavior：" + e)
         }
     }
-}(Backbone, M139), function (e, t, n) {
+}(Backbone, M139),
+function (e, t, n) {
     n.Model = {};
     var r = Backbone.Model;
     n.Model.ModelBase = r.extend({
@@ -1069,7 +1073,8 @@ var M139;
             }
         }
     })
-}(jQuery, _, M139), function (e) {
+}(jQuery, _, M139),
+function (e) {
     e.HttpClient = Backbone.Model.extend({
         initialize: function (t) {
             this.logger = new e.Logger({name: this.get("name")}), this.on("beforerequest", this.onBeforeRequest)
@@ -1185,7 +1190,8 @@ var M139;
             }
         }
     })
-}(M139), function (e, t) {
+}(M139),
+function (e, t) {
     var n = e;
     t.Dom = {
         isHide: function (e, t) {
@@ -1593,7 +1599,8 @@ var M139;
             return "placeholder" in document.createElement("input")
         }
     }, window.$D = t.Dom
-}(jQuery, M139), function (jQuery, M139) {
+}(jQuery, M139),
+function (jQuery, M139) {
     function f(e) {
         return 10 > e ? "0" + e : e
     }
@@ -1670,7 +1677,8 @@ var M139;
             return M139.JSON.stringify(e)
         }
     })
-}(jQuery, M139), function (e) {
+}(jQuery, M139),
+function (e) {
     e.Date = {
         parse: function (e) {
             if (/^\d{10}$/.test(e))return new Date(1e3 * e);
@@ -1813,7 +1821,8 @@ var M139;
     }, Date.prototype.format = function (t) {
         return e.Date.format(t, this)
     }, $Date = e.Date
-}(M139), function (e, t) {
+}(M139),
+function (e, t) {
     var n = e, r = navigator.userAgent;
     t.Browser = {
         ua: r,
@@ -1903,7 +1912,8 @@ var M139;
         }, warn: function () {
         }
     })
-}(jQuery, M139), function (e, t) {
+}(jQuery, M139),
+function (e, t) {
     var n = e;
     t.ConfigManager = Backbone.Model.extend({
         initialize: function () {
@@ -1926,7 +1936,8 @@ var M139;
             }
         }
     }), window.$Config = new t.ConfigManager
-}(jQuery, M139), function (e) {
+}(jQuery, M139),
+function (e) {
     var t = e.Text;
     e.ExchangeHttpClient = e.HttpClient.extend({
         initialize: function (t) {
@@ -2000,7 +2011,8 @@ var M139;
             return e.JSON.stringify(t)
         }
     })
-}(M139), M139.HttpRouter = {
+}(M139),
+M139.HttpRouter = {
     serverList: {
         login: {domain: "http://" + location.host, path: "/login/s?func={api}&sid={sid}"},
         appsvr: {domain: "http://" + location.host, path: "/s?func={api}&sid={sid}"},
@@ -2134,7 +2146,8 @@ var M139;
             t(n[0].contentWindow)
         })
     }
-}, function (e, t, n, r) {
+},
+function (e, t, n, r) {
     r.namespace("M139.Iframe", t.Model.extend({
         initialize: function (e) {
             if (!e || !e.name)throw"Application实例缺少参数:name"
@@ -2168,7 +2181,8 @@ var M139;
             return a
         }
     }), $Iframe = r.Iframe
-}(jQuery, Backbone, _, M139), function (e) {
+}(jQuery, Backbone, _, M139),
+function (e) {
     e.core.namespace("M139.RichMail"), e.RichMail.RichMailHttpClient = e.ExchangeHttpClient.extend({
         initialize: function (t) {
             e.ExchangeHttpClient.prototype.initialize.apply(this, arguments), this.router = e.HttpRouter;
@@ -2322,7 +2336,8 @@ var M139;
             })
         }
     }), $RM = e.RichMail.API
-}(M139), function (e, t, n) {
+}(M139),
+function (e, t, n) {
     var r = n.Model.ModelBase;
     n.namespace("M139.PageApplication", r.extend({
         initialize: function (e) {
@@ -2406,7 +2421,8 @@ var M139;
         }, registerGlobalConfig: function () {
         }
     }), window.getTopAppWindow = n.PageApplication.getTopAppWindow
-}(jQuery, Backbone, M139), function () {
+}(jQuery, Backbone, M139),
+function () {
     M139.Timing = {
         waitForReady: function (query, callback) {
             function checkReady() {
@@ -2505,7 +2521,8 @@ var M139;
             }
         }, t)
     }, $Timing = M139.Timing
-}(), function (e, t) {
+}(),
+function (e, t) {
     var n = e;
     t.View = {}, t.View.ViewBase = Backbone.View.extend({
         initialize: function (n) {
