@@ -4674,7 +4674,26 @@ var TabPageModel = Backbone.Model.extend({
     },
     fillModuleData: function (e) {
         var t;
-        return e.mutiple && (e.orignName = e.name, t = e.data && e.data.key ? e.data.key : Math.random(), e.name = e.name + "_" + t), e.group || (e.group = e.name), e.title || (e.title = e.name), e.data || (e.data = new Object), this.pages[e.name] = e, e
+        if (e.mutiple) {
+            e.orignName = e.name;
+            if(e.data && e.data.key){
+                t = e.data.key;
+            }else{
+                t=Math.random();
+            }
+            e.name = e.name + "_" + t;
+            if (!e.group) {
+                e.group = e.name;
+            }
+            if(!e.title){
+                e.title = e.name;
+            }
+            if (!e.data) {
+                e.data = new Object;
+            }
+            this.pages[e.name] = e;
+        }
+        return e;
     },
     deleteModule: function (e) {
         this.pages[e];
@@ -4723,17 +4742,40 @@ TabPageView = Backbone.View.extend({
         this.model = new TabPageModel(e),
         this.model.on("change:currentModule", function (e, i, a) {
             function s(e, t) {
-                for (var i = 0; c > i; i++)if (t[i] == e) return d = !0;
-                return d
+                for (var i = 0; c > i; i++) {
+                    if (t[i] == e) {
+                        return d = !0;
+                    }
+                }
+                return d;
             }
 
             if (null != i) {
                 var o = i;
                 try {
-                    t.showModule(o), t.activeTab(o), t.renderChannel(o), $App.getView("tabpage").tab.count > top.maxTabCount ? ($("#indexTopAd").hide(), $("#tabsMenuIco").show(), $App.set("isTabsExtendLimit", !0)) : $("#tabsMenuIco").hide(), $App && $App.trigger("isShowTopAd"), $App.getView("top").setSearchBox(o), $App.getView("top").switchSearchBoxTips();
-                    var n = "welcome" == top.$App.getCurrentTab().name || "addr" == top.$App.getCurrentTab().name || "calendar" == top.$App.getCurrentTab().name || "diskDev" == top.$App.getCurrentTab().name, r = ["skin_anniversary", "skin_mobileConference", "skin_sheepyear"], l = top.$User.getSkinName(), c = r.length, d = !1;
+                    t.showModule(o);
+                    t.activeTab(o);
+                    t.renderChannel(o);
+                    if($App.getView("tabpage").tab.count > top.maxTabCount){ 
+                        $("#indexTopAd").hide();
+                        $("#tabsMenuIco").show();
+                        $App.set("isTabsExtendLimit", !0);
+                    } else{
+                        $("#tabsMenuIco").hide();
+                    }
+                    if ($App) {
+                        $App.trigger("isShowTopAd");
+                    }
+                    $App.getView("top").setSearchBox(o);
+                    $App.getView("top").switchSearchBoxTips();
+                    var n = "welcome" == top.$App.getCurrentTab().name || "addr" == top.$App.getCurrentTab().name || "calendar" == top.$App.getCurrentTab().name || "diskDev" == top.$App.getCurrentTab().name,
+                        r = ["skin_anniversary", "skin_mobileConference", "skin_sheepyear"],
+                        l = top.$User.getSkinName(),
+                        c = r.length,
+                        d = !1;
                     s(l, r) && n ? $("#logoArea").addClass("skin-setTopH") : $("#logoArea").removeClass("skin-setTopH");
-                    var p = $App.getCurrentTab().name, m = {
+                    var p = $App.getCurrentTab().name,
+                        m = {
                         addr: !0,
                         addrhome: !0,
                         calendar: !0,
@@ -4751,8 +4793,20 @@ TabPageView = Backbone.View.extend({
                         addrvipgroup: !0,
                         groupMail: !0,
                         writeGroupMail: !0
-                    }, u = $App.getTabByName(p);
-                    m[p] || m[u.group] || m[u.channel] ? ($("#div_main").addClass("mainIframeBg_noBg"), "googSubscription" !== p && "groupMail" !== p && "writeGroupMail" !== p ? $("#skinBgSub").addClass("skin_not") : $("#skinBgSub").removeClass("skin_not")) : ($("#div_main").removeClass("mainIframeBg_noBg"), $("#skinBgSub").removeClass("skin_not"));
+                        },
+                    u = $App.getTabByName(p);
+                    if (m[p] || m[u.group] || m[u.channel]) {
+                        $("#div_main").addClass("mainIframeBg_noBg");
+                        if ("googSubscription" !== p && "groupMail" !== p && "writeGroupMail" !== p) {
+                            $("#skinBgSub").addClass("skin_not")
+                        } else {
+                            $("#skinBgSub").removeClass("skin_not");
+                        }
+                    } else {
+                        $("#div_main").removeClass("mainIframeBg_noBg");
+                        $("#skinBgSub").removeClass("skin_not");
+                    }
+                    
                     var h = ("none" == $("#divTab")[0].style.display ? 106 : 74, $("#div_main"));
                     -1 != p.indexOf("compose_") && h.height($App.getBodyHeight() - h.offset().top), $App.onResize()
                 } catch (f) {
@@ -4964,7 +5018,8 @@ TabPageView = Backbone.View.extend({
             }, 1e3)
         }
     },
-    channelOptions: {}, showChannel: function (e) {
+    channelOptions: {},
+    showChannel: function (e) {
         if (top.$App.pushMpostMsg && top.$App.trigger("updateMpostMsgStatus"), "welcome" != e) {
             var t = $Cookie.get("SkinPath2");
             $("#animalFlash").hasClass("hide") && this.addFlash2AnimalSkin(t)
@@ -8220,42 +8275,55 @@ function (jQuery, Backbone, _, M139) {
             }), jQuery.extend(this, {
                 getSid: function () {
                     return $T.Html.encode(this.query.sid)
-                }, getMailDomain: function () {
+                },
+                getMailDomain: function () {
                     return SiteConfig.mailDomain || "139.com"
-                }, getAccountWithLocalDomain: function (e) {
+                },
+                getAccountWithLocalDomain: function (e) {
                     return e + "@" + $App.getMailDomain()
-                }, getValidateCodeUrl: function (e) {
+                },
+                getValidateCodeUrl: function (e) {
                     return domainList.global.imgCode + "clientid=" + e + "&r=" + Math.random()
-                }, isLocalDomainAccount: function (e) {
+                },
+                isLocalDomainAccount: function (e) {
                     return $Email.getDomain(e) === $App.getMailDomain()
-                }, getReplyWithQuote: function () {
+                },
+                getReplyWithQuote: function () {
                     return $User.getReplyWithQuote()
-                }, getPopList: function () {
+                },
+                getPopList: function () {
                     return $App.getConfig("PopList") ? $App.getConfig("PopList") : []
-                }, getSignList: function () {
+                },
+                getSignList: function () {
                     return $App.getConfig("SignList") ? $App.getConfig("SignList") : []
-                }, isNewWin: function () {
+                },
+                isNewWin: function () {
                     return location.search.indexOf("t=newwin") > -1
-                }, isSessionCommand: function (e) {
+                },
+                isSessionCommand: function (e) {
                     var t = {
                         "delete": !0,
                         move: !0,
                         mark: !0
                     }, i = t[e] && $App.isSessionMode() && $App.isSessionFid($App.getCurrentFid());
                     return "mailbox" == $App.getCurrentTab().group || $App.getCurrentTab().group.indexOf("mailsub_") >= 0 ? i && !$App.getCurrentTab().view.model.get("isSearchMode") : i
-                }, readMail: function (e, t, i, a) {
+                },
+                readMail: function (e, t, i, a) {
                     var s = new M2012.ReadMail.View;
                     a || (a = { cguid: "" });
                     var o = s.callReadMail(e, t, i, a);
                     return o ? o : void 0
-                }, addBlackWhite: function (e, t, i) {
+                },
+                addBlackWhite: function (e, t, i) {
                     "undefined" != typeof top.addBlackWhiteView ? top.addBlackWhiteView.addBlackWhite(e, t, i) : (M139.registerJS("M2012.Settings.Spam", "packs/spam.html.pack.js?v=" + Math.random()), M139.requireJS(["M2012.Settings.Spam"], function () {
                         top.addBlackWhiteView = new M2012.Settings.Spam.View, top.addBlackWhiteView.addBlackWhite(e, t, i)
                     }))
-                }, writeContent: function (e, t) {
+                },
+                writeContent: function (e, t) {
                     var i = new M2012.ReadMail.View.ReadMailContent;
                     i.writeContent(e, t)
-                }, showBill: function (e) {
+                },
+                showBill: function (e) {
                     var t = this.getView("mailbox_other").model;
                     2 == e ? (t.set("billTab", 0), BH("service_mail_load"), this.searchMail({
                         fid: 1,
@@ -8358,7 +8426,8 @@ function (jQuery, Backbone, _, M139) {
                         addSendIdFlag: 1,
                         from: "left"
                     }))
-                }, showSubscribe: function (e, t, i) {
+                },
+                showSubscribe: function (e, t, i) {
                     var a, s = this;
                     M139.core.utilCreateCssTag("/mpost2014/css/module/cloudMail2.0/rssMailCard.css", document, function () {
                         var o, n = s.getView("sublist");
@@ -8393,31 +8462,59 @@ function (jQuery, Backbone, _, M139) {
                             view: o
                         }), $App.getView("tabpage").setTitle(t ? t : "订阅邮件")
                     })
-                }, getCurrentView: function () {
+                },
+                getCurrentView: function () {
                     return this.getMailboxView()
-                }, isMailbox: function () {
+                },
+                isMailbox: function () {
                     var e = this.getCurrentTab();
                     return e.name.indexOf("mailsub") >= 0 || e.name.indexOf("mailbox") >= 0
-                }, getMailboxView: function () {
+                },
+                getMailboxView: function () {
                     var e = this.getCurrentTab();
                     return e && e.name.indexOf("mailsub") >= 0 ? e.view : this.getView("mailbox")
-                }, showMailbox: function (e, t) {
+                },
+                showMailbox: function (e, t) {
                     var i = this.getView("mailbox");
-                    if (e > 1 && (i = this.getView("mailbox_other")), 8 == e) return void this.showBill(2);
-                    if (9 == e) return void this.showSubscribe();
-                    if (this.getView("folder").model.isLock(e) && !this.getView("folder").model.get("passwordChecked")) return void this.showUnlock(e);
-                    if (i.model.set("pageIndex", 1), i.model.set("isSearchMode", !1), i.model.set("isVipMode", !1), i.model.set("isTaskMode", !1), i.model.set("isContactsMail", !1), i.model.set("IamFromLaiwang", !1), setTimeout(function () {
+                    if (e > 1) {
+                        i = this.getView("mailbox_other");
+                    }
+                    if (8 == e) {
+                        return void this.showBill(2);
+                    }
+                    if (9 == e) {
+                        return void this.showSubscribe();
+                    }
+                    if (this.getView("folder").model.isLock(e) && !this.getView("folder").model.get("passwordChecked")) {
+                        return void this.showUnlock(e);
+                    }
+                    i.model.set("pageIndex", 1);
+                    i.model.set("isSearchMode", !1);
+                    i.model.set("isVipMode", !1);
+                    i.model.set("isTaskMode", !1);
+                    i.model.set("isContactsMail", !1);
+                    i.model.set("IamFromLaiwang", !1);
+                    setTimeout(function () {
                         "left" == $App.getLayout() && i.model.set("isReadFirst", !0)
-                    }, 100), this.trigger("showMailbox", { fid: e, view: i }), 1 == e) {
+                    }, 100);
+                    this.trigger("showMailbox", { fid: e, view: i });
+                    if (1 == e) {
                         this.autoReadBill();
                         var a = $Date.parse($User.getLastLoginDate());
                         if (a) {
                             var s = $Date.getDaysPass(a, new Date);
                             $App.getConfig("UserData");
-                            s >= 90 && (this.WGuideShown || (this.WGuideShown = !0, new M139.UI.WGuide))
+                            if (s >= 90) {
+                                if(!this.WGuideShown){
+                                    this.WGuideShown = !0,
+                                    new M139.UI.WGuide;
+                                }
+                                    
+                            }
                         }
                     }
-                }, autoReadBill: function () {
+                },
+                autoReadBill: function () {
                     if (!arguments.callee.isInvoked) {
                         arguments.callee.isInvoked = !0;
                         var e = $User.getProvCode();
@@ -8446,9 +8543,11 @@ function (jQuery, Backbone, _, M139) {
                             }
                         })
                     }
-                }, doCommand: function (e, t) {
+                },
+                doCommand: function (e, t) {
                     t || (t = {}), t.command = e, $App.trigger("mailCommand", t)
-                }, showUnlock: function (e, t) {
+                },
+                showUnlock: function (e, t) {
                     var i = this;
                     Package.require("main_ext", function () {
                         new M2012.Folder.View.Unlock({
@@ -8457,12 +8556,15 @@ function (jQuery, Backbone, _, M139) {
                             model: i.getView("folder").model
                         }).render()
                     })
-                }, getLayout: function () {
+                },
+                getLayout: function () {
                     var e = $App.getMailboxView().model.get("layout");
                     return "left" != e || $App.getMailboxView().isUseNew3list() || (e = "list"), $App.getMailboxView().model.isUseNewMode() && (e = "list"), $App.getCurrentTab().name.indexOf("readmail_") > -1 && (e = "list"), e
-                }, flipPage: function (e, t) {
+                },
+                flipPage: function (e, t) {
                     this.getView("mailbox").toolbarView.flipPage(e, t)
-                }, openFullSearch: function (e) {
+                },
+                openFullSearch: function (e) {
                     $RM.setAttrs({ attrs: { fts_flag: 1 } }, function (e) {
                         if ("S_OK" == e.code) {
                             BH("open_search_all_succeed");
@@ -8471,10 +8573,12 @@ function (jQuery, Backbone, _, M139) {
                             }, { title: "", dialogTitle: "系统通知", icon: "ok", buttons: ["立即刷新"] })
                         } else top.M139.UI.TipMessage.show("全文检索开通失败", { className: "msgRed", delay: 1e3 })
                     })
-                }, isFullSearch: function () {
+                },
+                isFullSearch: function () {
                     var e = $App.getConfig("UserAttrs");
                     return 1 == e.fts_flag
-                }, showAdvanceSearch: function () {
+                },
+                showAdvanceSearch: function () {
                     var e = top.$App.getView("mailbox_other").model;
                     e.set("loadAdvanceSearchForm", "mid");
                     var t = this.isFullSearch() ? 310 : 290;
@@ -8487,7 +8591,8 @@ function (jQuery, Backbone, _, M139) {
                             top.window.advanceSearchWin = null
                         }
                     })
-                }, searchMail: function (e) {
+                },
+                searchMail: function (e) {
                     var t = this.getView("mailbox_other");
                     if (e && _.isArray(e.condictions) && e.condictions[0] && "sendId" == e.condictions[0].field && 1000011 == e.condictions[0].value) {
                         var i = [{ field: "sendId1", operator: "GE", value: 1010001 }, {
@@ -8497,36 +8602,56 @@ function (jQuery, Backbone, _, M139) {
                         }];
                         Array.prototype.push.apply(e.condictions, i), e.addSendIdFlag = 1
                     }
-                    t.prepareSearch(e), arguments[1] && t.model.setAll("isContactsMailAndTheEmailIs", $T.Html.encode(arguments[1])), e.isVip && BH("vip_mail_load"), e && (t.model.set("isVipMode", !!e.isVip), t.model.set("isTaskMode", !!e.isTaskmail), t.model.set("isTaskbacklogMode", !(!e.isTaskmail || 1 != e.flags.taskFlag)), t.model.set("isTaskdoneMode", !(!e.isTaskmail || 2 != e.flags.taskFlag)), t.model.setAll("isContactsMail", !!arguments[2]), t.model.set("hasClickUnreadLink", e.hasClickUnreadLink)), this.trigger("showMailbox", {
+                    t.prepareSearch(e),
+                    arguments[1] && t.model.setAll("isContactsMailAndTheEmailIs", $T.Html.encode(arguments[1])),
+                    e.isVip && BH("vip_mail_load"),
+                    e && (t.model.set("isVipMode", !!e.isVip),
+                    t.model.set("isTaskMode", !!e.isTaskmail),
+                    t.model.set("isTaskbacklogMode", !(!e.isTaskmail || 1 != e.flags.taskFlag)),
+                    t.model.set("isTaskdoneMode", !(!e.isTaskmail || 2 != e.flags.taskFlag)),
+                    t.model.setAll("isContactsMail", !!arguments[2]),
+                    t.model.set("hasClickUnreadLink", e.hasClickUnreadLink)),
+                    this.trigger("showMailbox", {
                         fid: 1,
                         isSearch: !0,
                         view: t
                     })
-                }, searchVip: function () {
+                },
+                searchVip: function () {
                     this.getMailboxView().model.searchVip()
-                }, searchTaskmail: function (e) {
+                },
+                searchTaskmail: function (e) {
                     this.getMailboxView().model.searchTaskmail(e)
-                }, setTaskMessage: function (e) {
+                },
+                setTaskMessage: function (e) {
                     e = e || {}, BH("mailList_setsms");
                     var t = $App.getView("starView");
                     t && t.popMenu.changeRemind(_.extend({ sms: !0, setSms: !0 }, e))
-                }, searchSingleDayTaskmail: function (e) {
+                },
+                searchSingleDayTaskmail: function (e) {
                     this.getMailboxView().model.searchSingleDayTaskmail(e)
-                }, getMailDataByMid: function (e) {
+                },
+                getMailDataByMid: function (e) {
                     var t = this.getMailboxView().model.getMailById(e);
                     return t || (t = this.getView("mailbox").model.getMailById(e) || this.getView("mailbox_other").model.getMailById(e)), t
-                }, getSessionMailDataByMid: function (e) {
+                },
+                getSessionMailDataByMid: function (e) {
                     return $App.getView("readSessionMail") ? $App.getView("readSessionMail").model.get("sessionData")[e] : ""
-                }, getFreshMail: function (e, t, i) {
+                },
+                getFreshMail: function (e, t, i) {
                     return this.getMailboxView().model.getFreshMail(e, t, i)
-                }, getTagsById: function (e) {
+                },
+                getTagsById: function (e) {
                     return this.getView("folder").model.getTagsById(e)
-                }, getTagColor: function (e) {
+                },
+                getTagColor: function (e) {
                     return this.getView("folder").model.getColor(e)
-                }, checkCustomFolderPopFlag: function () {
+                },
+                checkCustomFolderPopFlag: function () {
                     var e = $App.getFolders("custom")[0];
                     return !(!e || 1 != e.pop3Flag)
-                }, setTitle: function (e, t) {
+                },
+                setTitle: function (e, t) {
                     this.getView("tabpage").setTitle(e, t)
                 }, setIcon: function (e) {
                     $App.getView("tabpage").tab.setStateIcon(this.getCurrentTab().name, e)
@@ -8542,57 +8667,66 @@ function (jQuery, Backbone, _, M139) {
                     n = n.replace("px", ""), n = parseInt(n) + parseInt(i);
                     var r = e.find(".blackbanner").length, l = '<div style="top: {0}px; height:{1}px; z-index:10; " class="blackbanner mainIframeBg_noBg"></div>';
                     l = $T.Utils.format(l, [n, o]), 0 == r && e.append(l)
-                }, showChannel: function (e) {
+                },
+                showChannel: function (e) {
                     this.getView("tabpage").showChannel(e)
                 }, getCurrentTab: function () {
                     return this.getView("tabpage").model.getCurrent()
                 }, getTabByName: function (e) {
                     return this.getView("tabpage").model.getModule(e)
-                }, validateTab: function (e) {
+                },
+                validateTab: function (e) {
                     var t;
                     t = e ? $App.getTabByName(e) : $App.getCurrentTab(), t && (t.isRendered = !1)
                 }, registerChannel: function (e, t) {
                     this.getView("tabpage").registerChannel(e, t)
                 }, close: function (e) {
                     return this.getView("tabpage").close(e)
-                }, closeTab: function (e) {
+                },
+                closeTab: function (e) {
                     return this.getView("tabpage").close(e)
                 }, activeTab: function (e) {
                     return this.getView("tabpage").activeTab(e)
                 }, clearTabCache: function (e) {
                     return this.getView("tabpage").clearTabCache(e)
-                }, closeAllTab: function () {
+                },
+                closeAllTab: function () {
                     return this.getView("tabpage").closeAllTab()
                 }, getCurrentFid: function () {
                     return this.getCurrentView().model.get("fid")
                 }, getFolderById: function (e) {
                     return this.getView("folder").model.getFolderById(e)
-                }, getFolders: function (e) {
+                },
+                getFolders: function (e) {
                     return this.getView("folder").model.getFolders(e)
                 }, getFolderType: function (e) {
                     return this.getView("folder").model.getFolderType(e)
                 }, getFolderByFolderName: function (e) {
                     return this.getView("folder").model.getFolderByFolderName(e)
-                }, addFolder: function (e, t, i, a) {
+                },
+                addFolder: function (e, t, i, a) {
                     return this.getView("folder").model.addFolder(e, t, i, a)
                 }, addFolders: function (e, t) {
                     return this.getView("folder").model.addFolders(e, t)
                 }, addTag: function (e, t, i, a) {
                     return this.getView("folder").model.addTag(e, t, i, a)
-                }, checkFolderName: function (e, t) {
+                },
+                checkFolderName: function (e, t) {
                     return this.getView("folder").model.checkFolderName(e, t)
                 }, checkTagName: function (e, t) {
                     return this.getView("folder").model.checkTagName(e, t)
                 }, isPopFolder: function (e) {
                     return this.getView("folder").model.isPopFolder(e)
-                }, isTagFolder: function (e) {
+                },
+                isTagFolder: function (e) {
                     return this.getView("folder").model.isTagFolder(e)
                 }, getAddrNameByEmail: function (e) {
                     return $App.getModel("contacts").getAddrNameByEmail(e)
                 }, isSessionMode: function () {
                     var e = $App.getConfig("UserAttrs");
                     return e ? 1 == e.sessionMode : !1
-                }, isSessionFid: function (e) {
+                },
+                isSessionFid: function (e) {
                     var t = [2, 3, 4, 5, 7, 10, 11], i = !0;
                     if (($.inArray(e, t) > -1 || !e) && (i = !1), i && $App.getFolders("tag")) {
                         var a = $App.getFolders("tag");
@@ -8613,7 +8747,8 @@ function (jQuery, Backbone, _, M139) {
                     i.target = "_blank", i.method = "get", $(i).append('<input type="hidden" name="t" value="newwin" />'), $(i).append('<input type="hidden" name="mid" value="' + e + '" />'), $(i).append('<input type="hidden" name="sid" value="' + $App.getSid() + '" />'), document.body.appendChild(i), i.action = t, i.submit(), setTimeout(function () {
                         document.body.removeChild(i)
                     }, 100)
-                }, setReadMailMode: function (e, t, i) {
+                },
+                setReadMailMode: function (e, t, i) {
                     var a = { flag: e };
                     M139.RichMail.API.call("mbox:setSessionMode", a, function (a) {
                         if (a.responseData.code && "S_OK" == a.responseData.code) {
@@ -8632,7 +8767,8 @@ function (jQuery, Backbone, _, M139) {
                     t.type = "forward", t.mid = e, t.lastTabName = $App.getCurrentTab().name, t.asAttch = arguments[2].asAttch, arguments[1] && arguments[1].userAccount && (t.userAccount = arguments[1].userAccount);
                     var i = $App.getCurrentTab().name, a = this.isReadMail(), s = this.isReadSessionMail();
                     this.show("compose", t), a && !s && this.getView("tabpage").replace(i, $App.getCurrentTab().name)
-                }, isReadMail: function () {
+                },
+                isReadMail: function () {
                     var e = $App.getCurrentTab();
                     return e.name.indexOf("readmail") > -1
                 }, isReadSessionMail: function () {
@@ -8645,7 +8781,8 @@ function (jQuery, Backbone, _, M139) {
                     s && !o && setTimeout(function () {
                         $App.closeTab(a)
                     }, 500), this.show("compose", i)
-                }, restoreDraft: function (e) {
+                },
+                restoreDraft: function (e) {
                     var t = {};
                     t.type = "draft", t.mid = e;
                     var i = !1, a = $("#divTab ul").children(":visible");
@@ -8659,7 +8796,8 @@ function (jQuery, Backbone, _, M139) {
                 }, rewriteMessage: function (e) {
                     var t = {};
                     t.type = "rewrite", this.show("compose", t, { inputData: { rewrite: e } })
-                }, sendVcard: function (e) {
+                },
+                sendVcard: function (e) {
                     var t = {};
                     t.type = "vCard", t.sd = e, this.show("compose", t)
                 }, uploadLargeAttach: function () {
@@ -8668,7 +8806,8 @@ function (jQuery, Backbone, _, M139) {
                 }, getAttrs: function (e) {
                     var t = $App.getConfig("UserAttrs"), i = $App.getConfig("UserAttrsAll");
                     return t && t[e] ? t[e] : i && i[e] ? i[e] : ""
-                }, setAttrs: function (e, t) {
+                },
+                setAttrs: function (e, t) {
                     var i = { attrs: e };
                     $RM.setAttrs(i, function (i) {
                         if ("S_OK" == i.code) {
@@ -8683,7 +8822,8 @@ function (jQuery, Backbone, _, M139) {
                 }, setCustomAttrs: function (e, t, i) {
                     var a = "_custom_" + e, s = {};
                     "" == t && (t = " "), s[a] = t, this.setAttrs(s, i)
-                }, showOnceCallbackList: [], showOnce: function (e, t, i) {
+                },
+                showOnceCallbackList: [], showOnce: function (e, t, i) {
                     var a = this;
                     this.requireUserData(function () {
                         if (!a.isOnceShowed(e) && $App.getConfig("UserAttrsAll")) {
@@ -8715,7 +8855,8 @@ function (jQuery, Backbone, _, M139) {
                             })
                         }, 1500)
                     } else i && i()
-                }, isOnceShowed: function (e) {
+                },
+                isOnceShowed: function (e) {
                     var t = Number($App.getCustomAttrs("showOnce")).toString(2), i = Number(SiteConfig.showOnceKey[e]);
                     return i < t.length ? t.substr(i, 1) > 0 : !1
                 }, showOrderinfo: function () {
@@ -8741,7 +8882,8 @@ function (jQuery, Backbone, _, M139) {
                     }) : 4 == e && $User.receiveRights("MAXANNEXSIZE", function () {
                         t("永享4G超大附件。")
                     })
-                }, setUserConfigInfo: function (e, t, i) {
+                },
+                setUserConfigInfo: function (e, t, i) {
                     M139.RichMail.API.call("user:setUserConfigInfo", { configTag: e, configValue: t }, function (e) {
                         i && i(e)
                     })
@@ -8813,26 +8955,61 @@ function (jQuery, Backbone, _, M139) {
         },
         showPage: function (e) {
             function t() {
-                return 0 == s.name.indexOf("readmail") && s.name == window.READMAIL_PRELOAD && n && n.logoType && n.logoType > 89 && n.logoType < 97
+                return 0 == s.name.indexOf("readmail") &&
+                    s.name == window.READMAIL_PRELOAD &&
+                    n &&
+                    n.logoType &&
+                    n.logoType > 89 &&
+                    n.logoType < 97;
             }
-
-            var i = this.getView("tabpage").model, a = null;
-            if (!i.existModule(e.name) || e.mutiple) this.getView("tabpage").createModule(e); else {
-                var s = i.getModule(e.name), o = s.name.replace("readmail_", ""), n = top.$App.getMailDataByMid(o);
-                s.view = e.view, s.isRendered = !1, 0 == s.name.indexOf("readmail") && s.name == window.READMAIL_PRELOAD && n && !n.read_track_enabled && (s.isRendered = !0, setTimeout(function () {
-                    M139.RichMail.API.call("mbox:updateMessagesStatus", {
-                        ids: [o],
-                        type: "read",
-                        value: 0
-                    }, function () {
-                        top.$App.trigger("reloadFolder")
-                    })
-                }, 500)), e.name.indexOf("mailsub") >= 0 && this.disposeView(e.name), t() && (s.isRendered = !1)
+            var i = this.getView("tabpage").model,
+                a = null;
+            if (!i.existModule(e.name) || e.mutiple) {
+                this.getView("tabpage").createModule(e);
             }
-            e.silence ? (e.view.render(), e.isRendered = !0, e.view.el.style.display = "none", window.READMAIL_PRELOAD = e.name) : (a = i.get("currentModule"), e.name == a && i.set("currentModule", null), i.set("currentModule", e.name, e.group), this.trigger("showPage", {
-                name: e.name,
-                prev: a
-            }))
+            else {
+                var s = i.getModule(e.name),
+                    o = s.name.replace("readmail_", ""),
+                    n = top.$App.getMailDataByMid(o);
+                s.view = e.view;
+                s.isRendered = !1;
+                if (0 == s.name.indexOf("readmail") &&
+                    s.name == window.READMAIL_PRELOAD &&
+                    n &&
+                    !n.read_track_enabled) {
+                    s.isRendered = !0;
+                    setTimeout(function () {
+                        M139.RichMail.API.call("mbox:updateMessagesStatus", {
+                            ids: [o],
+                            type: "read",
+                            value: 0
+                        }, function () {
+                            top.$App.trigger("reloadFolder")
+                        })
+                    }, 500);
+                }
+                if(e.name.indexOf("mailsub") >= 0){
+                    this.disposeView(e.name)
+                }
+                if(t()){
+                    s.isRendered = !1
+                }
+            }
+            if(e.silence) {
+                e.view.render();
+                e.isRendered = !0;
+                e.view.el.style.display = "none";
+                window.READMAIL_PRELOAD = e.name;
+            }
+            else{
+                a = i.get("currentModule");
+                e.name == a && i.set("currentModule", null);
+                i.set("currentModule", e.name, e.group);
+                this.trigger("showPage", {
+                    name: e.name,
+                    prev: a
+                });
+            }
         },
         disposeView: function (e) {
             view = $App.getTabByName(e).view, view && ($(view.el).off(), view.undelegateEvents())
@@ -9210,7 +9387,9 @@ function (jQuery, Backbone, _, M139) {
                 "0.1" != prettyNumberData.version ? ($D.storage.remove("prettyNumberStr"), $App.getPrettyNumberData()) : $App.registerConfig("prettyNumber", prettyNumberData)
             } else $.get(location.protocol + "//" + location.host + "/m2015/js/prod/prettyNumber/m2015.prettyNumberStr.js", function (jsonText) {
                 var obj = eval(jsonText);
-                $App.registerConfig("prettyNumber", obj), $D.storage.save("prettyNumberStr", jsonText), $App.trigger("showMailbox", { comefrom: "commandCallback" })
+                $App.registerConfig("prettyNumber", obj),
+                $D.storage.save("prettyNumberStr", jsonText),
+                $App.trigger("showMailbox", { comefrom: "commandCallback" })
             })
         },
         requestAtRemind: function (e) {
@@ -11524,11 +11703,15 @@ M139.namespace("M2012.Folder.View", {
             }
         },
         folderClick: function (e) {
-            var t = e.currentTarget, i = $(t).parents("li[fid]").attr("fid");
-            "" != i && "I" != t.tagName && (top.$App.registerConfig("lastClickFolder", {
-                fid: i,
-                id: null
-            }), top.$App.getMailboxView().model.set("hasClickUnreadLink", !1), $App.showMailbox(Number(i)))
+            var t = e.currentTarget;
+            i = $(t).parents("li[fid]").attr("fid");
+            if ("" != i && "I" != t.tagName) {
+                top.$App.registerConfig("lastClickFolder", {
+                    fid: i,
+                    id: null
+                });
+                top.$App.getMailboxView().model.set("hasClickUnreadLink", !1), $App.showMailbox(Number(i));
+            }
         },
         clearFolder: function (e) {
             var t = e.currentTarget, i = $(t).parents("[fid]").attr("fid");
@@ -14047,7 +14230,8 @@ M139.namespace("M2012.Mailbox.View", {
             }
 
             var i = this;
-            return this.options = e || {}, e && e.multiInstance ? (this.model = $App.getView("mailbox").model.clone(), this.model.set("multiInstance", !0), this.model.set("searchIsComeformDefault", !1), this.model.set("isTaskMode", !1), this.model.set("subscribeName", e.subscribeName), void (e.isSearch && this.model.set("isSearchMode", !0))) : (this.model = new M2012.Mailbox.Model.Mailbox, appView.on("showMailbox", function (e) {
+            return this.options = e || {}, e && e.multiInstance ? (this.model = $App.getView("mailbox").model.clone(), this.model.set("multiInstance", !0), this.model.set("searchIsComeformDefault", !1), this.model.set("isTaskMode", !1), this.model.set("subscribeName", e.subscribeName), void (e.isSearch && this.model.set("isSearchMode", !0))) : (this.model = new M2012.Mailbox.Model.Mailbox,
+                appView.on("showMailbox", function (e) {
                 function a() {
                     $App.trigger("reloadFolder", { reload: !0 })
                 }
@@ -14076,21 +14260,26 @@ M139.namespace("M2012.Mailbox.View", {
                         group: "mailbox"
                     })
                 }
-            }), $App.on("showTab", function (e) {
+                }),
+                $App.on("showTab", function (e) {
                 i.onResize()
-            }), appView.on("mailboxDataChange", function (e) {
+                }),
+                appView.on("mailboxDataChange", function (e) {
                 t();
                 var i = $App.getCurrentView();
                 e && e.render && $App.isMailbox() && i.render(!1, e, function () {
                     i.model.get("mid") && "list" != $App.getLayout() && i.listView.readMailSplitView(i.model.get("mid")), e.callback && e.callback()
                 })
-            }), appView.on("reloadFolder", function () {
+                }),
+                appView.on("reloadFolder", function () {
                 var e = $App.getCurrentView(), a = e.model;
                 t(), e.toolbarView && (e.toolbarView.render(), a.trigger("mabilbox_render", i.model.get("mailList")))
-            }), appView.on("changeStar", function () {
+                }),
+                appView.on("changeStar", function () {
                 var e = $App.getCurrentView().model;
                 e.isStarMode() && $App.trigger("showMailbox")
-            }), void appView.on("reduceFolderMail", function (e) {
+                }),
+                void appView.on("reduceFolderMail", function (e) {
                 var t = $App.getCurrentView();
                 t.toolbarView && (t.toolbarView.refreshCount(), t.listView.createSuperSelectMenu())
             }))
@@ -14100,7 +14289,8 @@ M139.namespace("M2012.Mailbox.View", {
                 1: "<div id='div_maillist' class='MaillistDiv p_relative bgPadding' ></div>"
             }, s = ['<div class="billleft" >', '<div class="billleftDiv"  style="margin:0px;" >', "{0}", "</div>", "</div>"].join("");
             return i = t.model.isBillMode() && "left" != $App.getLayout() && 0 == t.model.get("billTab") ? $T.Utils.format(s, [a[e]]) : a[e]
-        }, getListHeader: function () {
+        },
+        getListHeader: function () {
             var e = this.model.get("fid");
             if ("left" == $App.getLayout()) return "";
             var t = this.template.listHeader;
