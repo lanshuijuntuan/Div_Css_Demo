@@ -1,5 +1,8 @@
 function TabLabel(e, t) {
-    this.main = document.createElement("ul"), $(this.main).html('<li id="tabsMenuIco" class="noAll" tabindex="0" style="display:none"><a href="javascript:;" hidefocus="true" class="closeAll" title="点击查看更多"></a></li>'), $(e).html(this.main), this.init(t)
+    this.main = document.createElement("ul"),
+    $(this.main).html('<li id="tabsMenuIco" class="noAll" tabindex="0" style="display:none"><a href="javascript:;" hidefocus="true" class="closeAll" title="点击查看更多"></a></li>'),
+    $(e).html(this.main),
+    this.init(t)
 }
 function specialTreatments(e, t, i) {
     if ("calendar" == e.name) {
@@ -4715,7 +4718,10 @@ var TabPageModel = Backbone.Model.extend({
 TabPageView = Backbone.View.extend({
     initialize: function (e) {
         var t = this;
-        this.toolbar = $('<div id="main_toolbar" class="bgMargin" style="display:none"></dvi>')[0], this.$el.append(this.toolbar), this.model = new TabPageModel(e), this.model.on("change:currentModule", function (e, i, a) {
+        this.toolbar = $('<div id="main_toolbar" class="bgMargin" style="display:none"></div>')[0],
+        this.$el.append(this.toolbar),
+        this.model = new TabPageModel(e),
+        this.model.on("change:currentModule", function (e, i, a) {
             function s(e, t) {
                 for (var i = 0; c > i; i++)if (t[i] == e) return d = !0;
                 return d
@@ -4754,7 +4760,11 @@ TabPageView = Backbone.View.extend({
                 }
                 "none" != $("#divTab ul")[0].style.display ? $(".skin-mainContainer").addClass("offset-top") : $(".skin-mainContainer").removeClass("offset-top"), "welcome" == p ? $(".skin-mainContainer").hide().prev().hide() : $(".skin-mainContainer").show().prev().show(), this.lastModule = o, $App.closeWriteOkPage(), $("#scoutTemplate", top.document).remove()
             }
-        }), this.tab = new TabLabel(document.getElementById("divTab"), this), this.tab.call = [this.onTabDelete, this.onTabActive, this.onTabClose], this.watchScrollbar(), this.setAnimalSkin()
+        }),
+        this.tab = new TabLabel(document.getElementById("divTab"), this),
+        this.tab.call = [this.onTabDelete, this.onTabActive, this.onTabClose],
+        this.watchScrollbar(),
+        this.setAnimalSkin()
     },
     orignTabs: null,
     prevModule: null,
@@ -6210,7 +6220,13 @@ function () {
 }();
 var FrameView = Backbone.View.extend({
     initialize: function (e) {
-        this.parentView = e.parent, this.model = new FrameModel, this.param = e.param, this.url = e.url, this.html = e.html, this.title = e.title, this.inputData = e.inputData;
+        this.parentView = e.parent,
+        this.model = new FrameModel,
+        this.param = e.param,
+        this.url = e.url,
+        this.html = e.html,
+        this.title = e.title,
+        this.inputData = e.inputData;
         var t = this;
         $(window).resize(function () {
             t.onResize()
@@ -7708,11 +7724,13 @@ function (jQuery, Backbone, _, M139) {
         },
         initConfigData: function () {
             var e = this;
-            this.initContactData(), this.reloadUserAttrs({
+            this.initContactData(),
+            this.reloadUserAttrs({
                 callback: function () {
                     e.loadLevel++ , e.checkUserDataComplete()
                 }
-            }), window.MessageInfo && this.registerConfig("MessageInfo", MessageInfo), $App.on("userAttrChange", function (t) {
+            }),
+            window.MessageInfo && this.registerConfig("MessageInfo", MessageInfo), $App.on("userAttrChange", function (t) {
                 var i = t && t.callback;
                 t = $.extend(t, {
                     callback: function () {
@@ -18941,7 +18959,8 @@ function () {
                 content: ['<div class="rssMailCardColumnLayerOutside z-index100" style="top:230px">', '<div class="rssMailCardColumnLayer" id="columnLayer" style="height:650px;">', '<div class="rssMailCardColumnLayerMain" style=""><!--TODO STYLE-->', "<h2>我的订阅</h2>", '<ul id="columnList" style="width:235px;height: 410px;overflow-x:hidden;overflow-y:scroll;"><!--TODO STYLE-->', '<li class="column"><a href="javascript:;"><img src="/mpost2014/images/module/cloudMail2.0/allMazgin.png" width="50" height="50" alt=""><span>全部栏目</span></a><a href="javascript:;" class="closeColumn"><i></i></a></li>', "<li style=\"margin-top:4px;\"><a href=\"javascript:top.BH('sublist_more');top.$App.show('googSubscription', {'mtype' : 20});\" class=\"rmcMoreBtn\">+</a><span>订阅更多</span></li>", "</ul>", "</div>", '<a id="rmcSwitch" herf="javascript:;" class="p_absolute switch-shrink" style="left: -21px;top:0px"></a>', "</div>", "</div>"].join(""),
                 onestandCon: ['<div class="rssMailCardColumnLayerOutside z-index100" style="top:150px;">', '<div class="rssMailCardColumnLayer" id="columnLayer" style="height:650px;">', '<div class="rssMailCardColumnLayerMain" style=""><!--TODO STYLE-->', '<iframe src="{0}"style="width:235px;height:600px;overflow-x:scroll;overflow-y:scroll; border:0px"></iframe>', "</div>", '<a id="rmcSwitch" herf="javascript:;" class="p_absolute switch-shrink" style="left: -21px;top:0px"></a>', "</div>", "</div>"].join(""),
                 list: _.template(["<!--item start-->", '<li class="column" data-cid="<%= columnId %>" data-subprice="<%= subPrice %>" data-name="<%= columnName %>" data-type="$contentType">', '<a href="javascript:;">', '<img src="<%= logoUrl %>" width="50" height="50" alt="" />', "<span><%= columnName %></span>", "</a>", '<a href="javascript:;" class="closeColumn" style="display:none;"><i class="i-smcColumnClose"></i></a>', "</li>", "<!--item end-->"].join(""))
-            }, initialize: function () {
+            },
+            initialize: function () {
                 this.model = new M2012.Mailbox.Model.Sublist
             }, render: function (e) {
                 if ("undefined" == typeof this.lock || 0 == this.lock) {
@@ -25382,7 +25401,8 @@ function (e) {
         contactexisted: { 224: "手机号码已存在", 225: "商务手机已存在", 226: "电子邮箱已存在", 227: "商务邮箱已存在" },
         groupoverLimit: "联系人分组已达上限",
         groupcontactsoverlimit: "保存失败，分组联系人总数已达上限"
-    }, o = "21", n = "23", r = "24", l = "28", c = ["224", "225", "226", "227"], d = {
+    }, o = "21", n = "23", r = "24", l = "28", c = ["224", "225", "226", "227"],
+    d = {
         OVER_LIMIT: '保存失败，联系人数量已达上限。欢迎使用批量删除功能整理您的<a href="javascript:top.FF.close();top.$App.showChannel(\'addr\');" style="color:#0344AE">通讯录</a>。',
         REACH_LIMIT: '保存联系人部分成功，联系人数量超出上限部分未保存，你可以<a href="javascript:top.FF.close();top.$App.showOrderinfo();" style="color:#0344AE">升级邮箱</a>添加更多！',
         REPEAT: "保存联系人失败，联系人已存在。",

@@ -2183,11 +2183,111 @@ function (e, t, n, r) {
     }), $Iframe = r.Iframe
 }(jQuery, Backbone, _, M139),
 function (e) {
-    e.core.namespace("M139.RichMail"), e.RichMail.RichMailHttpClient = e.ExchangeHttpClient.extend({
+    e.core.namespace("M139.RichMail"),
+    e.RichMail.RichMailHttpClient = e.ExchangeHttpClient.extend({
         initialize: function (t) {
             e.ExchangeHttpClient.prototype.initialize.apply(this, arguments), this.router = e.HttpRouter;
             var n = t || {}, r = n.onrouter || $.noop;
-            r.call(this, this.router), this.router.addRouter("appsvr", ["user:getInitData", "user:getInitDataConfig", "mbox:getAllFolders", "mbox:listMessages", "global:sequential", "mbox:setUserFlag", "mbox:getSearchResult", "mbox:deleteFolders", "mbox:updateMessagesLabel", "mbox:updateMessagesAll", "mbox:setFolderPass", "mbox:updateFolders", "mbox:setSessionMode", "user:getWhiteBlackList", "user:setWhiteBlackList", "user:setFilter_New", "user:getFilter_New", "user:setFilter", "user:getFilter", "user:filterHistoryMail", "user:statMessages", "mbox:updateBillType"]), this.router.addRouter("appsvr2", ["attach:listAttachments", "mbox:queryContactMessages", "attach:queryContactAttachments"]), this.router.addRouter("webapp", ["user:getSignatures", "user:signatures", "mbox:moveMessages", "mbox:deleteMessages", "mbox:updateMessagesStatus", "mbox:readMessage", "mbox:readMessage&comefrom=5", "mbox:updateFolders2", "mbox:getMessageInfo", "mbox:readSessionMessage", "mbox:readAggregateMessage", "mbox:readSessionMessage&comefrom=5", "mbox:replyMessage", "mbox:forwardAttachs", "mbox:forwardMessage", "mbox:searchMessages", "mbox:sendMDN", "mbox:sendMDN&comefrom=5&categroyId=103000000", "mbox:mailFile", "mbox:mailClean", "user:setPOPAccount", "user:getPOPAccounts", "user:syncPOPAccount", "user:syncPOPAccountAll", "mbox:mailMemo", "mbox:getDeliverStatus", "mbox:compose", "mbox:compose&comefrom=5&categroyId=103000000", "mbox:compose&comefrom=5&categroyId=102000000", "mbox:compose&comefrom=5&categroyId=103000005", "mbox:compose&comefrom=5&categroyId=102000015", "mbox:compose&comefrom=5&categroyId=103000010", "mbox:compose&comefrom=5", "mbox:groupCompose", "mbox:getComposeId", "upload:deleteTasks", "attach:refresh", "attach:uploadPicBase64", "mbox:forwardMessages", "mbox:restoreDraft", "mbox:editMessage", "mbox:reportSpamMails", "mbox:recallMessage", "mbox:packMessages", "user:moveHOMail", "mbox:checkDomain", "user:setFilter_139", "user:getFilter_139", "user:filterHistoryMail139", "user:forwardVerify", "user:sortFilter_139", "user:getAttrs", "user:setAttrs", "global:sequential2", "mbox:setTaskMessages", "attach:listAttachments", "mbox:queryContactMessages", "attach:queryContactAttachments", "user:getTemplates", "mbox:readTemplateMail", "user:deleteTemplates"]), this.router.addRouter("setting", ["user:getOnlineFriends", "user:getRightStatus", "user:receiveRight", "user:getMainData", "user:setUserConfigInfo", "user:getInfoCenter", "user:taskCount", "user:getMyTask", "user:taskAward", "user:taskWorshipEnvy", "user:taskStar", "user:taskBadge", "user:getMedals", "poperations:signInit", "poperations:queryphiz", "poperations:publishedsign", "poperations:querysign", "poperations:invitefriends", "poperations:checkinviteadd", "user:getPersonal", "user:setMyApp", "user:sendPasswordAction", "user:updatePasswordAction", "user:checkAliasAction", "user:updateAliasAction", "meal:getMealInfo", "meal:setMealInfo", "mailUpdate:getMailUpdateInfo", "mailUpdate:setMailUpdateInfo", "mailPatter:setMailPatterInfo", "mailPatter:getMailPatterInfo", "mailPatter:getSMSCode", "user:setAddMeRule", "user:bindFeixinAction", "user:getLoginNotify", "user:setLoginNotify", "user:getMailNotify", "user:updateMailNotify", "user:addMailNotifyExcp", "user:modifyMailNotifyExcp", "user:delMailNotifyExcp", "user:getUndisturb", "user:updateUndisturb", "user:mailToMe", "user:sendPasswordAction", "user:checkPhoneAction", "user:bindPhoneAction", "bill:setszjtBill", "user:loginHistory", "user:updateMailSize", "user:mailDeleteHistory", "user:popAgentHistory", "user:passwordModifyHistory", "user:SetDefaultAccount", "user:setDefaultSendAccount", "user:getCommConfig", "user:updateCommConfig", "user:setUserConfigItem", "ir:reflushContent", "ir:getIRContent", "user:checkPassword", "user:getQuestion", "user:setPasswordProtect", "earthhour:earthHourInit", "earthhour:setStatus", "earthhour:getStencil", "earthhour:inviteFriends", "umc:getArtifact", "umc:mailCallUMC", "umc:updatePassport", "umc:passPortTips", "user:cancelMailboxAction", "info:getInfoSet", "addr:getVCard", "umc:rdirectCall", "umc:rdirectTo", "guide:getUserinfo", "guide:setUserinfo", "guide:setUserpic", "bill:getTypeList", "bill:openTrafficBill", "bill:clossTrafficBill", "bill:openBill", "bill:closeBill", "bill:batterypitcherBill", "bill:getBatterypitcherBill", "bill:getSynName", "setting:examineShowStatus", "setting:examineUserStatus", "setting:queryServiceNumbers", "user:getImageCode", "setting:examinePwdStatus", "disk:getDiskAttConf", "disk:updateDiskAttConf", "healthy:getHealthyInfo", "healthy:getShareContent", "healthy:setTrustAutoLogin", "healthy:setTrustForward", "healthy:oneClickUpdate", "healthy:getOneClickUpdateInfo", "healthy:getHealthyHistory", "healthy:updateLastTipsTime", "user:getCapModHist", "msg:getRemindMsg", "msg:delRemindMsg", "user:getPaymentLink", "user:orderFreeProduct", "user:getOrderInfo", "tips:startTipsTask", "user:mailSubscribe", "user:mailSubscribeStatus", "user:getTrialSkinOrder", "user:sendUpdateStatusSmsCode", "user:sendLoginNotifySMsCode", "user:updateStatus", "user:setLoginNotify", "user:sendAliasSmscode", "user:sendSmsCode", "user:bindMobileNumber", "user:bindOldAccount", "user:queryBindStatus", "user:getNoforwardingTimes", "setting:querySystemStatus", "user:getBatchDelStatus", "user:setBatchDelStatus", "user:getDelMailByTool", "user:getDelMids", "user:mailCapacityInfo", "user:mailAttrifilter", "user:queryMailCapacityOrderInfo", "user:queryGPRSDonationStatus", "user:GPRSDonation", "user:searchNiceNumbers", "user:queryNiceNumberInfo", "user:queryOrderStatus", "user:queryUserAliasInfo"]), this.router.addRouter("together", ["user:getExDataSync", "user:getFetionC", "weibo:userinfo", "together:europeCup", "together:getvotes", "together:getTokenInfo", "together:getShowResultInfo", "unified:getUnifiedPositionContent", "unified:logreport", "unified:updatePositionContent", "survey:createSurvey", "survey:updateSurvey", "survey:deleteSurvey", "survey:createQuestion", "survey:updateQuestion", "survey:deleteQuestion", "survey:viewSurvey", "survey:answerSurvey", "survey:statSurvey", "survey:getSurveyList", "survey:getSurveyAnswer", "survey:submitSurvey", "survey:updateSurveyInfo"]), this.router.addRouter("addr", ["GetUserAddrJsonData", "QueryUserInfo", "ModUserInfo", "AddUserInfo", "DelContacts", "WhoAddMeByPage", "OneKeyAddWAM", "WhoWantAddMe", "AgreeOrRefuseAll", "WMAGroupList", "ModDealStatus", "GetUpdatedContactsNum", "GetUpdatedContactsDetailInfo", "QuerySaveAllUpdatedResult", "SaveIncrementalUpdatedInfo", "SaveAllUpdatedInfo", "AddImageReport", "NoPromptUpdate", "SkipCurrent", "QueryContactsAndGroup", "ModContactsField", "MergeContacts", "DelGroup", "AddGroupList", "DelGroupList", "GetAudienceEmailList", "GetBatchOperHistoryRecord", "GetBatchOperStatus", "AutoMergeContacts", "QueryMergeResult", "GetColorCloudInfo", "GetFinshImportResult", "GetFinshImportList", "GetRemindBirdays", "SetRemindBirdays"]), this.router.addRouter("weather", ["weather:getDefaultWeather", "weather:getArea", "weather:getWeather", "weather:setWeather"]), this.router.addRouter("positioncontent", ["positioncontent:ad"]), this.router.addRouter("card", ["card:birthdayRemind", "card:getCardMaterail"]), this.router.addRouter("mms", ["mms:mmsInitData", "mms:getMaterialById"]), this.router.addRouter("sms", ["sms:getSmsMainData", "sms:smsNotifyInit"]), this.router.addRouter("ServiceAPI", ["RMSecretFolder"]), this.router.addRouter("search", ["contact:uploadAfterCut", "mbox:searchMessages", "mail:askAddFriendToMayKnow", "mail:systemCutMessage", "mail:askShareContact", "mail:shareContact", "sign:queryImg", "contact:uploadImageFromDisk"]), this.router.addRouter("bill", ["bill:setBill"]), this.router.addRouter("disk", ["disk:fSharingInitData", "disk:getFiles", "disk:setFiles", "disk:getdiskallinfo", "disk:getdirfiles", "disk:renameFiles", "disk:renameDiskFile", "disk:renameDirectory", "disk:renameDiskAlbum", "disk:renameDiskMusicClass", "disk:saveAttach", "disk:mailFileSend", "disk:flashplay", "disk:shareCopyTo"]), this.router.addRouter("login", ["login:sendWapPush", "login:sendPush", "login:sendSmsCode"]), this.router.addRouter("file", ["file:cabinetFile", "file:cabinet", "file:fSharingInitData", "file:getFiles", "file:setFiles", "file:delFiles", "file:preDownload", "file:continueFiles", "file:renameFiles", "file:fastUpload", "file:resumeUpload", "file:breakPFile", "file:turnFile", "file:toDiskForCenter", "file:mailFileSend", "disk:delete", "disk:getFile", "disk:rename", "disk:getthumbnailimage", "disk:thumbnail", "disk:addDirectory", "disk:turnFile", "disk:move", "disk:init", "disk:createDirectory", "disk:getDirectorys", "disk:fileList", "disk:fileListPage", "disk:search", "file:cabinetSearch", "disk:download", "disk:fastUpload", "disk:breakPFile", "disk:resumeUpload", "disk:normalUpload", "disk:setCover", "disk:resumeUpload", "disk:delDiskDirsAndFiles", "disk:shareCopyTo", "disk:copyContentCatalog", "disk:attachUpload", "disk:thumbnails", "disk:getDiskAlbumList", "disk:getOutLinkList", "disk:delOutLink", "disk:getOutLink", "disk:getDirectLink", "disk:getDirectLinkUrl", "disk:backupMail", "disk:backupAllBillMail", "disk:backupAffix", "disk:index", "disk:isShareSiChuan", "file:downLoadInitNew", "file:fileBatDownload", "disk:getContentInfosByType", "disk:shareDetail", "disk:friendShareList", "disk:myShareList", "disk:deleteShare", "disk:delShare", "disk:cancelShare", "disk:share", "disk:shareDetail", "disk:replyShare", "disk:getVirDirInfo", "disk:mgtVirDirInfo", "disk:getContentInfosByType", "global:files", "global:userFiles", "global:index", "global:download", "global:saveToMcloud", "disk:mgtVirDirInfo", "global:saveToMcloud", "file:fileSenderPnsNotify", "file:sendMobile", "file:sendEmail", "file:sendFileBySms", "disk:mcloudDownload"]), this.router.addRouter("billcharge", ["mailoffice:getTipsinfo"]), this.router.addRouter("fax", ["fax:getSendFaxData", "fax:getReceiveFaxData", "fax:deleteFaxData"]), this.router.addRouter("note", ["mnote:createNote", "mnote:getNote", "mnote:getNotes", "mnote:deleteNote", "mnote:updateNote", "mnote:searchNote", "mnote:mailsToNote", "mnote:uploadNote", "mnote:downloadNote", "mnote:thumbnailNote", "mnote:nothing"]), this.router.addRouter("evernote", ["evernote:createbyMnoteId", "evernote:oauth", "evernote:createOrReplace", "evernote:createNote"]), this.router.addRouter("uec", ["uec:list", "uec:status", "uec:addFeedback"]), this.router.addRouter("middleware", []), this.router.addRouter("outland", []), this.router.addRouter("calendar", ["calendar:addLabel", "calendar:updateLabel", "calendar:updateLabelLimited", "calendar:deleteLabel", "calendar:shareLabel", "calendar:deleteLabelShare", "calendar:acceptShareLabel", "calendar:getUsersOfSharedLabel", "calendar:getLabelById", "calendar:getLabels", "calendar:initCalendar", "calendar:addCalendar", "calendar:addNoteCalendar", "calendar:updateCalendar", "calendar:delCalendar", "calendar:cancelInvitedInfo", "calendar:inviteSomeone", "calendar:updateInviteStatus", "calendar:shareCalendar", "calendar:getCalendarView", "calendar:getCalendarViewWithInviter", "calendar:getCalendarListView", "calendar:getCalendar", "calendar:getCalendarCount", "calendar:getMessageCount", "calendar:activeSyncCalendarList", "calendar:getNormalUploadUrl", "calendar:getDownloadUrl", "calendar:uploadFile", "calendar:activeSyncCalendarList", "calendar:uploadFile", "calendar:addMailCalendar", "calendar:updateMailCalendar", "calendar:getMailCalendar", "calendar:delMailCalendar", "calendar:getMessages", "calendar:updateBabyInfo", "calendar:getBabyInfo", "calendar:getLabelShareMessage", "calendar:getCalendarInviteMessage", "calendar:getCalendarShareMessage", "calendar:processShareLabelInfo", "calendar:delShareMsg", "calendar:acceptCalendarShare", "calendar:addBlackWhiteItem", "calendar:deBlackWhiteItem", "calendar:delBlackWhiteItem", "calendar:getBlackWhiteItem", "calendar:getBlackWhiteList", "calendar:getMessageCount", "calendar:getMessageList", "calendar:getMessageById", "calendar:delMessage", "calendar:setLabelUpdateNotify", "calendar:setCalendarRemind", "calendar:selectDailyRemindar", "calendar:insertDailyRemindar", "calendar:updateDailyRemindar", "calendar:deleteDailyRemindar", "calendar:synCaiYun", "calendar:addBirthdayCalendar", "calendar:getUserAddrJsonData", "calendar:cancelSubscribeLabel", "calendar:subscribeLabel", "calendar:searchPublicLabel", "calendar:searchCalendars", "calendar:setSubLabelUpdateNotify", "calendar:listTopLabels", "calendar:batchAddCalendar", "calendar:getCalendarList", "calendar:getAllLabelTypes", "calendar:getLabelsByType", "calendar:getPublishLabelsByType", "calendar:copyCalendar", "calendar:getPublishedLabelByOper", "calendar:getCalendarsByLabel", "calendar:shareCalendar", "calendar:cancelMailCalendars", "calendar:getGroupCalendarList", "calendar:addGroupLabel", "calendar:updateDragCalendar", "calendar:updateNoteCalendar", "calendar:delNoteCalendar", "calendar:subMovieLabel", "calendar:getBillData", "calendar:notificationContact", "calendar:exportActivityDates", "calendar:validAddCalendar", "calendar:getCalendarListNew", "calendar:addMeeting", "calendar:getAllMeetings", "calendar:getMeetingMessage", "calendar:processMeeting", "calendar:delAllMessage", "calendar:addTicketReminder", "calendar:batchAddCalForMail", "calendar:getIdAddCache", "calendar:getIdDelCache", "calendar:getCalendarsByInterval", "calendar:setSelectLabel", "calendar:getSubLabelStatus", "calendar:shareSubLabel", "calendar:getMarketingCalendarView", "calendar:getMarketingCalendarViewNoCookie", "calendar:subscribeLabelNew", "calendar:setPublishNewStatus", "nothing"]), this.router.addRouter("businessHall", ["businessHall:queryDetailDiscountInfo", "businessHall:getUserConsumption", "businessHall:queryBillInfo", "businessHall:queryProductInfo", "businesshall:userStateQuery", "businesshall:sendSmsAuthCode", "businesshall:productOrder", "businesshall:queryBusinessInfo", "together:getFetionFriends", "together:sendMailToFetion", "together:getLotteryCode"]), this.router.addRouter("bmail", ["mail:sendSystemMail"]), this.router.addRouter("groupmail", ["gm:createGroup", "gm:updateGroup", "gm:queryUserList", "gm:queryGroupByMid", "gm:updateGroupUser", "gm:queryCancelUserList"]), this.router.addRouter("addr3", ["GetHeSubOrgMemberList", "GetHeMemberInfo", "CheckUserNumber"])
+            r.call(this, this.router),
+            this.router.addRouter("appsvr", ["user:getInitData", "user:getInitDataConfig", "mbox:getAllFolders", "mbox:listMessages", "global:sequential", "mbox:setUserFlag",
+                "mbox:getSearchResult", "mbox:deleteFolders", "mbox:updateMessagesLabel", "mbox:updateMessagesAll", "mbox:setFolderPass", "mbox:updateFolders", "mbox:setSessionMode",
+                "user:getWhiteBlackList", "user:setWhiteBlackList", "user:setFilter_New", "user:getFilter_New", "user:setFilter", "user:getFilter", "user:filterHistoryMail",
+                "user:statMessages", "mbox:updateBillType"]),
+            this.router.addRouter("appsvr2", ["attach:listAttachments", "mbox:queryContactMessages", "attach:queryContactAttachments"]),
+            this.router.addRouter("webapp", ["user:getSignatures", "user:signatures", "mbox:moveMessages", "mbox:deleteMessages", "mbox:updateMessagesStatus", "mbox:readMessage",
+                "mbox:readMessage&comefrom=5", "mbox:updateFolders2", "mbox:getMessageInfo", "mbox:readSessionMessage", "mbox:readAggregateMessage", "mbox:readSessionMessage&comefrom=5",
+                "mbox:replyMessage", "mbox:forwardAttachs", "mbox:forwardMessage", "mbox:searchMessages", "mbox:sendMDN", "mbox:sendMDN&comefrom=5&categroyId=103000000", "mbox:mailFile",
+                "mbox:mailClean", "user:setPOPAccount", "user:getPOPAccounts", "user:syncPOPAccount", "user:syncPOPAccountAll", "mbox:mailMemo", "mbox:getDeliverStatus", "mbox:compose",
+                "mbox:compose&comefrom=5&categroyId=103000000", "mbox:compose&comefrom=5&categroyId=102000000", "mbox:compose&comefrom=5&categroyId=103000005",
+                "mbox:compose&comefrom=5&categroyId=102000015", "mbox:compose&comefrom=5&categroyId=103000010", "mbox:compose&comefrom=5", "mbox:groupCompose", "mbox:getComposeId",
+                "upload:deleteTasks", "attach:refresh", "attach:uploadPicBase64", "mbox:forwardMessages", "mbox:restoreDraft", "mbox:editMessage", "mbox:reportSpamMails",
+                "mbox:recallMessage", "mbox:packMessages", "user:moveHOMail", "mbox:checkDomain", "user:setFilter_139", "user:getFilter_139", "user:filterHistoryMail139",
+                "user:forwardVerify", "user:sortFilter_139", "user:getAttrs", "user:setAttrs", "global:sequential2", "mbox:setTaskMessages", "attach:listAttachments",
+                "mbox:queryContactMessages", "attach:queryContactAttachments", "user:getTemplates", "mbox:readTemplateMail", "user:deleteTemplates"]),
+            this.router.addRouter("setting", ["user:getOnlineFriends", "user:getRightStatus", "user:receiveRight", "user:getMainData", "user:setUserConfigInfo", "user:getInfoCenter",
+                "user:taskCount", "user:getMyTask", "user:taskAward", "user:taskWorshipEnvy", "user:taskStar", "user:taskBadge", "user:getMedals", "poperations:signInit",
+                "poperations:queryphiz", "poperations:publishedsign", "poperations:querysign", "poperations:invitefriends", "poperations:checkinviteadd", "user:getPersonal",
+                "user:setMyApp", "user:sendPasswordAction", "user:updatePasswordAction", "user:checkAliasAction", "user:updateAliasAction", "meal:getMealInfo", "meal:setMealInfo",
+                "mailUpdate:getMailUpdateInfo", "mailUpdate:setMailUpdateInfo", "mailPatter:setMailPatterInfo", "mailPatter:getMailPatterInfo", "mailPatter:getSMSCode",
+                "user:setAddMeRule", "user:bindFeixinAction", "user:getLoginNotify", "user:setLoginNotify", "user:getMailNotify", "user:updateMailNotify", "user:addMailNotifyExcp",
+                "user:modifyMailNotifyExcp", "user:delMailNotifyExcp", "user:getUndisturb", "user:updateUndisturb", "user:mailToMe", "user:sendPasswordAction", "user:checkPhoneAction",
+                "user:bindPhoneAction", "bill:setszjtBill", "user:loginHistory", "user:updateMailSize", "user:mailDeleteHistory", "user:popAgentHistory", "user:passwordModifyHistory",
+                "user:SetDefaultAccount", "user:setDefaultSendAccount", "user:getCommConfig", "user:updateCommConfig", "user:setUserConfigItem", "ir:reflushContent", "ir:getIRContent",
+                "user:checkPassword", "user:getQuestion", "user:setPasswordProtect", "earthhour:earthHourInit", "earthhour:setStatus", "earthhour:getStencil", "earthhour:inviteFriends",
+                "umc:getArtifact", "umc:mailCallUMC", "umc:updatePassport", "umc:passPortTips", "user:cancelMailboxAction", "info:getInfoSet", "addr:getVCard", "umc:rdirectCall",
+                "umc:rdirectTo", "guide:getUserinfo", "guide:setUserinfo", "guide:setUserpic", "bill:getTypeList", "bill:openTrafficBill", "bill:clossTrafficBill", "bill:openBill",
+                "bill:closeBill", "bill:batterypitcherBill", "bill:getBatterypitcherBill", "bill:getSynName", "setting:examineShowStatus", "setting:examineUserStatus",
+                "setting:queryServiceNumbers", "user:getImageCode", "setting:examinePwdStatus", "disk:getDiskAttConf", "disk:updateDiskAttConf", "healthy:getHealthyInfo",
+                "healthy:getShareContent", "healthy:setTrustAutoLogin", "healthy:setTrustForward", "healthy:oneClickUpdate", "healthy:getOneClickUpdateInfo", "healthy:getHealthyHistory",
+                "healthy:updateLastTipsTime", "user:getCapModHist", "msg:getRemindMsg", "msg:delRemindMsg", "user:getPaymentLink", "user:orderFreeProduct", "user:getOrderInfo",
+                "tips:startTipsTask", "user:mailSubscribe", "user:mailSubscribeStatus", "user:getTrialSkinOrder", "user:sendUpdateStatusSmsCode", "user:sendLoginNotifySMsCode",
+                "user:updateStatus", "user:setLoginNotify", "user:sendAliasSmscode", "user:sendSmsCode", "user:bindMobileNumber", "user:bindOldAccount", "user:queryBindStatus",
+                "user:getNoforwardingTimes", "setting:querySystemStatus", "user:getBatchDelStatus", "user:setBatchDelStatus", "user:getDelMailByTool", "user:getDelMids",
+                "user:mailCapacityInfo", "user:mailAttrifilter", "user:queryMailCapacityOrderInfo", "user:queryGPRSDonationStatus", "user:GPRSDonation", "user:searchNiceNumbers",
+                "user:queryNiceNumberInfo", "user:queryOrderStatus", "user:queryUserAliasInfo"]),
+            this.router.addRouter("together", ["user:getExDataSync", "user:getFetionC", "weibo:userinfo", "together:europeCup", "together:getvotes", "together:getTokenInfo",
+                "together:getShowResultInfo", "unified:getUnifiedPositionContent", "unified:logreport", "unified:updatePositionContent", "survey:createSurvey", "survey:updateSurvey",
+                "survey:deleteSurvey", "survey:createQuestion", "survey:updateQuestion", "survey:deleteQuestion", "survey:viewSurvey", "survey:answerSurvey", "survey:statSurvey",
+                "survey:getSurveyList", "survey:getSurveyAnswer", "survey:submitSurvey", "survey:updateSurveyInfo"]),
+            this.router.addRouter("addr", ["GetUserAddrJsonData", "QueryUserInfo", "ModUserInfo", "AddUserInfo", "DelContacts", "WhoAddMeByPage", "OneKeyAddWAM", "WhoWantAddMe",
+                "AgreeOrRefuseAll", "WMAGroupList", "ModDealStatus", "GetUpdatedContactsNum", "GetUpdatedContactsDetailInfo", "QuerySaveAllUpdatedResult",
+                "SaveIncrementalUpdatedInfo", "SaveAllUpdatedInfo", "AddImageReport", "NoPromptUpdate", "SkipCurrent", "QueryContactsAndGroup", "ModContactsField",
+                "MergeContacts", "DelGroup", "AddGroupList", "DelGroupList", "GetAudienceEmailList", "GetBatchOperHistoryRecord", "GetBatchOperStatus", "AutoMergeContacts",
+                "QueryMergeResult", "GetColorCloudInfo", "GetFinshImportResult", "GetFinshImportList", "GetRemindBirdays", "SetRemindBirdays"]),
+            this.router.addRouter("weather", ["weather:getDefaultWeather", "weather:getArea", "weather:getWeather", "weather:setWeather"]),
+            this.router.addRouter("positioncontent", ["positioncontent:ad"]),
+            this.router.addRouter("card", ["card:birthdayRemind", "card:getCardMaterail"]),
+            this.router.addRouter("mms", ["mms:mmsInitData", "mms:getMaterialById"]),
+            this.router.addRouter("sms", ["sms:getSmsMainData", "sms:smsNotifyInit"]),
+            this.router.addRouter("ServiceAPI", ["RMSecretFolder"]),
+            this.router.addRouter("search", ["contact:uploadAfterCut", "mbox:searchMessages", "mail:askAddFriendToMayKnow", "mail:systemCutMessage", "mail:askShareContact", "mail:shareContact",
+                "sign:queryImg", "contact:uploadImageFromDisk"]),
+            this.router.addRouter("bill", ["bill:setBill"]),
+            this.router.addRouter("disk", ["disk:fSharingInitData", "disk:getFiles", "disk:setFiles", "disk:getdiskallinfo", "disk:getdirfiles", "disk:renameFiles", "disk:renameDiskFile",
+                "disk:renameDirectory", "disk:renameDiskAlbum", "disk:renameDiskMusicClass", "disk:saveAttach", "disk:mailFileSend", "disk:flashplay", "disk:shareCopyTo"]),
+            this.router.addRouter("login", ["login:sendWapPush", "login:sendPush", "login:sendSmsCode"]),
+            this.router.addRouter("file", ["file:cabinetFile", "file:cabinet", "file:fSharingInitData", "file:getFiles", "file:setFiles", "file:delFiles", "file:preDownload", "file:continueFiles",
+                "file:renameFiles", "file:fastUpload", "file:resumeUpload", "file:breakPFile", "file:turnFile", "file:toDiskForCenter", "file:mailFileSend", "disk:delete", "disk:getFile", "disk:rename",
+                "disk:getthumbnailimage", "disk:thumbnail", "disk:addDirectory", "disk:turnFile", "disk:move", "disk:init", "disk:createDirectory", "disk:getDirectorys", "disk:fileList", "disk:fileListPage",
+                "disk:search", "file:cabinetSearch", "disk:download", "disk:fastUpload", "disk:breakPFile", "disk:resumeUpload", "disk:normalUpload", "disk:setCover", "disk:resumeUpload",
+                "disk:delDiskDirsAndFiles", "disk:shareCopyTo", "disk:copyContentCatalog", "disk:attachUpload", "disk:thumbnails", "disk:getDiskAlbumList", "disk:getOutLinkList", "disk:delOutLink",
+                "disk:getOutLink", "disk:getDirectLink", "disk:getDirectLinkUrl", "disk:backupMail", "disk:backupAllBillMail", "disk:backupAffix", "disk:index", "disk:isShareSiChuan",
+                "file:downLoadInitNew", "file:fileBatDownload", "disk:getContentInfosByType", "disk:shareDetail", "disk:friendShareList", "disk:myShareList", "disk:deleteShare",
+                "disk:delShare", "disk:cancelShare", "disk:share", "disk:shareDetail", "disk:replyShare", "disk:getVirDirInfo", "disk:mgtVirDirInfo", "disk:getContentInfosByType",
+                "global:files", "global:userFiles", "global:index", "global:download", "global:saveToMcloud", "disk:mgtVirDirInfo", "global:saveToMcloud", "file:fileSenderPnsNotify",
+                "file:sendMobile", "file:sendEmail", "file:sendFileBySms", "disk:mcloudDownload"]),
+            this.router.addRouter("billcharge", ["mailoffice:getTipsinfo"]),
+            this.router.addRouter("fax", ["fax:getSendFaxData", "fax:getReceiveFaxData", "fax:deleteFaxData"]),
+            this.router.addRouter("note", ["mnote:createNote", "mnote:getNote", "mnote:getNotes", "mnote:deleteNote", "mnote:updateNote", "mnote:searchNote", "mnote:mailsToNote",
+                "mnote:uploadNote", "mnote:downloadNote", "mnote:thumbnailNote", "mnote:nothing"]),
+            this.router.addRouter("evernote", ["evernote:createbyMnoteId", "evernote:oauth", "evernote:createOrReplace", "evernote:createNote"]),
+            this.router.addRouter("uec", ["uec:list", "uec:status", "uec:addFeedback"]),
+            this.router.addRouter("middleware", []),
+            this.router.addRouter("outland", []),
+            this.router.addRouter("calendar", ["calendar:addLabel", "calendar:updateLabel", "calendar:updateLabelLimited", "calendar:deleteLabel", "calendar:shareLabel", "calendar:deleteLabelShare",
+                "calendar:acceptShareLabel", "calendar:getUsersOfSharedLabel", "calendar:getLabelById", "calendar:getLabels", "calendar:initCalendar", "calendar:addCalendar", "calendar:addNoteCalendar",
+                "calendar:updateCalendar", "calendar:delCalendar", "calendar:cancelInvitedInfo", "calendar:inviteSomeone", "calendar:updateInviteStatus", "calendar:shareCalendar",
+                "calendar:getCalendarView", "calendar:getCalendarViewWithInviter", "calendar:getCalendarListView", "calendar:getCalendar", "calendar:getCalendarCount", "calendar:getMessageCount",
+                "calendar:activeSyncCalendarList", "calendar:getNormalUploadUrl", "calendar:getDownloadUrl", "calendar:uploadFile", "calendar:activeSyncCalendarList", "calendar:uploadFile",
+                "calendar:addMailCalendar", "calendar:updateMailCalendar", "calendar:getMailCalendar", "calendar:delMailCalendar", "calendar:getMessages", "calendar:updateBabyInfo",
+                "calendar:getBabyInfo", "calendar:getLabelShareMessage", "calendar:getCalendarInviteMessage", "calendar:getCalendarShareMessage", "calendar:processShareLabelInfo",
+                "calendar:delShareMsg", "calendar:acceptCalendarShare", "calendar:addBlackWhiteItem", "calendar:deBlackWhiteItem", "calendar:delBlackWhiteItem", "calendar:getBlackWhiteItem",
+                "calendar:getBlackWhiteList", "calendar:getMessageCount", "calendar:getMessageList", "calendar:getMessageById", "calendar:delMessage", "calendar:setLabelUpdateNotify",
+                "calendar:setCalendarRemind", "calendar:selectDailyRemindar", "calendar:insertDailyRemindar", "calendar:updateDailyRemindar", "calendar:deleteDailyRemindar", "calendar:synCaiYun",
+                "calendar:addBirthdayCalendar", "calendar:getUserAddrJsonData", "calendar:cancelSubscribeLabel", "calendar:subscribeLabel", "calendar:searchPublicLabel", "calendar:searchCalendars",
+                "calendar:setSubLabelUpdateNotify", "calendar:listTopLabels", "calendar:batchAddCalendar", "calendar:getCalendarList", "calendar:getAllLabelTypes", "calendar:getLabelsByType",
+                "calendar:getPublishLabelsByType", "calendar:copyCalendar", "calendar:getPublishedLabelByOper", "calendar:getCalendarsByLabel", "calendar:shareCalendar", "calendar:cancelMailCalendars",
+                "calendar:getGroupCalendarList", "calendar:addGroupLabel", "calendar:updateDragCalendar", "calendar:updateNoteCalendar", "calendar:delNoteCalendar", "calendar:subMovieLabel",
+                "calendar:getBillData", "calendar:notificationContact", "calendar:exportActivityDates", "calendar:validAddCalendar", "calendar:getCalendarListNew", "calendar:addMeeting",
+                "calendar:getAllMeetings", "calendar:getMeetingMessage", "calendar:processMeeting", "calendar:delAllMessage", "calendar:addTicketReminder", "calendar:batchAddCalForMail",
+                "calendar:getIdAddCache", "calendar:getIdDelCache", "calendar:getCalendarsByInterval", "calendar:setSelectLabel", "calendar:getSubLabelStatus", "calendar:shareSubLabel",
+                "calendar:getMarketingCalendarView", "calendar:getMarketingCalendarViewNoCookie", "calendar:subscribeLabelNew", "calendar:setPublishNewStatus", "nothing"]),
+            this.router.addRouter("businessHall", ["businessHall:queryDetailDiscountInfo", "businessHall:getUserConsumption", "businessHall:queryBillInfo", "businessHall:queryProductInfo",
+                "businesshall:userStateQuery", "businesshall:sendSmsAuthCode", "businesshall:productOrder", "businesshall:queryBusinessInfo", "together:getFetionFriends", "together:sendMailToFetion",
+                "together:getLotteryCode"]),
+            this.router.addRouter("bmail", ["mail:sendSystemMail"]),
+            this.router.addRouter("groupmail", ["gm:createGroup", "gm:updateGroup", "gm:queryUserList", "gm:queryGroupByMid", "gm:updateGroupUser", "gm:queryCancelUserList"]),
+            this.router.addRouter("addr3", ["GetHeSubOrgMemberList", "GetHeMemberInfo", "CheckUserNumber"])
         },
         defaults: {
             name: "M139.RichMail.RichMailHttpClient",
@@ -2200,114 +2300,141 @@ function (e) {
         onResponse: function (t) {
             return e.ExchangeHttpClient.prototype.onResponse.apply(this, arguments)
         }
-    }), e.core.namespace("M139.RichMail.API", {
+    }),
+    e.core.namespace("M139.RichMail.API", {
         getFolderList: function (e) {
             this.call("mbox:getAllFolders", {}, function (t) {
                 e && e(t.responseData)
             })
-        }, getMailList: function (e, t) {
+        },
+        getMailList: function (e, t) {
             this.call("mbox:listMessages", e, function (e) {
                 t && t(e.responseData)
             })
-        }, readMail: function (e, t) {
+        },
+        readMail: function (e, t) {
             this.call("mbox:readMessage", e, function (e) {
                 t && t(e.responseData)
             })
-        }, getMessageInfo: function (e, t) {
+        },
+        getMessageInfo: function (e, t) {
             var n = {ids: e};
             this.call("mbox:getMessageInfo", n, function (e) {
                 t && t(e.responseData)
             })
-        }, updateFolders: function (e, t) {
+        },
+        updateFolders: function (e, t) {
             this.call("mbox:updateFolders", e, function (e) {
                 t && t(e.responseData)
             })
-        }, moveMessages: function (e, t) {
+        },
+        moveMessages: function (e, t) {
             this.call("mbox:moveMessages", e, function (e) {
                 t && t(e.responseData)
             })
-        }, deleteFolders: function (e, t) {
+        },
+        deleteFolders: function (e, t) {
             this.call("mbox:deleteFolders", e, function (e) {
                 t && t(e.responseData)
             })
-        }, readAggregateMessage: function (e, t) {
+        },
+        readAggregateMessage: function (e, t) {
             this.call("mbox:readAggregateMessage", e, function (e) {
                 t && t(e.responseData)
             })
-        }, readSessionMail: function (e, t) {
+        },
+        readSessionMail: function (e, t) {
             this.call("mbox:readSessionMessage", e, function (e) {
                 t && t(e.responseData)
             })
-        }, setFolderPass: function (e, t) {
+        },
+        setFolderPass: function (e, t) {
             this.call("mbox:setFolderPass", e, function (e) {
                 t && t(e.responseData)
             })
-        }, getAttrs: function (e, t) {
+        },
+        getAttrs: function (e, t) {
             this.call("user:getAttrs", e, function (e) {
                 t && t(e.responseData)
             })
-        }, setAttrs: function (e, t) {
+        },
+        setAttrs: function (e, t) {
             this.call("user:setAttrs", e, function (e) {
                 t && t(e.responseData)
             })
-        }, setSessionModel: function (e, t) {
+        },
+        setSessionModel: function (e, t) {
             this.call("mbox:setSessionModel", e, function (e) {
                 t && t(e.responseData)
             })
-        }, getWhiteBlackList: function (e, t) {
+        },
+        getWhiteBlackList: function (e, t) {
             this.call("user:getWhiteBlackList", e, function (e) {
                 t && t(e.responseData)
             })
-        }, setWhiteBlackList: function (e, t) {
+        },
+        setWhiteBlackList: function (e, t) {
             this.call("user:setWhiteBlackList", e, function (e) {
                 t && t(e.responseData)
             })
-        }, getSignatures: function (e) {
+        },
+        getSignatures: function (e) {
             this.call("user:getSignatures", {}, function (t) {
                 e && e(t.responseData)
             })
-        }, setSignatures: function (e, t) {
+        },
+        setSignatures: function (e, t) {
             this.call("user:signatures", e, function (e) {
                 t && t(e.responseData)
             })
-        }, setPOPAccount: function (e, t, n) {
+        },
+        setPOPAccount: function (e, t, n) {
             this.call("user:setPOPAccount", e, function (e) {
                 t && t(e.responseData)
             }, n)
-        }, getPOPAccounts: function (e, t) {
+        },
+        getPOPAccounts: function (e, t) {
             this.call("user:getPOPAccounts", e, function (e) {
                 t && t(e.responseData)
             })
-        }, syncPOPAccount: function (e, t) {
+        },
+        syncPOPAccount: function (e, t) {
             this.call("user:syncPOPAccount", e, function (e) {
                 t && t(e.responseData)
             })
-        }, setFilter_New: function (e, t) {
+        },
+        setFilter_New: function (e, t) {
             this.call("user:setFilter_New", e, function (e) {
                 t && t(e.responseData)
             })
-        }, getFilter_New: function (e) {
+        },
+        getFilter_New: function (e) {
             var t = {filterFlag: 0, extContentFlag: 1};
             this.call("user:getFilter_New", t, function (t) {
                 e && e(t.responseData)
             })
-        }, setFilter: function (e, t) {
+        },
+        setFilter: function (e, t) {
             this.call("user:setFilter", e, function (e) {
                 t && t(e.responseData)
             })
-        }, getFilter: function (e) {
+        },
+        getFilter: function (e) {
             this.call("user:getFilter", {}, function (t) {
                 e && e(t.responseData)
             })
-        }, statMessages: function (e, t) {
+        },
+        statMessages: function (e, t) {
             this.call("user:statMessages", e, function (e) {
                 t && t(e.responseData)
             })
-        }, filterHistoryMail: function (e, t) {
+        },
+        filterHistoryMail: function (e, t) {
             this.call("user:filterHistoryMail", e, function (e) {
                 t && t(e.responseData)
             })
-        }, call: function (t, n, r, i) {
+        },
+        call: function (t, n, r, i) {
             var o = function () {
             }, a = new e.RichMail.RichMailHttpClient(i || {});
             if (!i || !i.mock) {
