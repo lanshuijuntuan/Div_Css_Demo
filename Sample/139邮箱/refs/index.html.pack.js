@@ -2414,9 +2414,11 @@ function (e, t, i) {
     i.namespace("M2012.Contacts.Model", Backbone.Model.extend({
         initialize: function (e) {
             this.initEvents()
-        }, getUserNumber: function () {
+        },
+        getUserNumber: function () {
             return top.$User.getUid()
-        }, loadMainData: function (e, t) {
+        },
+        loadMainData: function (e, t) {
             e = e || {};
             var s = this;
             if (this.isLoading = !0, e.testUrl) a.get(e.testUrl, function (e) {
@@ -2434,7 +2436,8 @@ function (e, t, i) {
                     })
                 }, 7e3)
             }
-        }, loadQueryUserInfo: function (e) {
+        },
+        loadQueryUserInfo: function (e) {
             function a(t, i) {
                 i && (t = $App.deepCloneJSON(t)), e({ responseData: t }), a = new Function
             }
@@ -2511,7 +2514,8 @@ function (e, t, i) {
             }, function (e) {
                 a && a(e)
             })
-        }, modifyUserInfo: function (e, t) {
+        },
+        modifyUserInfo: function (e, t) {
             var i = this;
             this.contactRequest("ModUserInfo", e, function (e) {
                 i.UserInfoData = null, e && e.responseData && t && t(e.responseData)
@@ -2654,7 +2658,8 @@ function (e, t, i) {
             }, i = {};
             for (elem in e) t[elem] && (i[t[elem]] = e[elem]);
             return i.extEmail = i.extEmail ? i.extEmail.split(",") : [], i.extMobile = i.extMobile ? i.extMobile.split(",") : [], i.extFax = i.extFax ? i.extFax.split(",") : [], i
-        }, getPrivateSettings: function (e) {
+        },
+        getPrivateSettings: function (e) {
             if (window.$User) {
                 var t = new i.ExchangeHttpClient({
                     name: "ContactsLoadMainDataHttpClient",
@@ -2703,7 +2708,8 @@ function (e, t, i) {
                     e(t)
                 }, 0)
             }))
-        }, isLoaded: function () {
+        },
+        isLoaded: function () {
             return !!this.get("data")
         }, onMainDataLoad: function (e, t) {
             e.Groups = e.Group || e.Groups, e.LastContacts || (e.LastContacts = []), e.CloseContacts || (e.CloseContacts = []), e.BirthdayContacts || (e.BirthdayContacts = []), e.Contacts || (e.Contacts = []), e.Groups || (e.Groups = []), e.GroupMember || (e.GroupMember = {}), e.NoGroup || (e.NoGroup = []), e.TotalRecord = parseInt(e.TotalRecord), e.TotalRecordGroup = parseInt(e.TotalRecordGroup), e.TotalRecordRelation = parseInt(e.TotalRecordRelation), e.userSerialId = e.UserSerialId;
@@ -2732,7 +2738,8 @@ function (e, t, i) {
                 o[l.gd] = s[n] = { GroupId: l.gd, id: l.gd, GroupName: l.gn, name: l.gn, CntNum: l.cn, count: l.cn }
             }
             t.groups = s, t.groupsMap = o
-        }, createContactsData: function (e) {
+        },
+        createContactsData: function (e) {
             for (var t = e.exports, i = e.data, a = i.Contacts, s = new Array(a.length), o = {}, n = {}, r = M2012.Contacts.ContactsInfo, l = 0, c = a.length; c > l; l++) {
                 var d = a[l];
                 d.ee = d.ee ? d.ee.split(",") : [], d.em = d.em ? d.em.split(",") : [], d.ef = d.ef ? d.ef.split(",") : [];
@@ -2775,7 +2782,8 @@ function (e, t, i) {
                 } else /^\d+$/.test(n) && delete s[n]
             }
             i.groupMember = o
-        }, createLastAndCloseContactsData: function (e) {
+        },
+        createLastAndCloseContactsData: function (e) {
             for (var t = e.exports, i = e.data, a = i.LastContacts, s = i.CloseContacts, o = [], n = [], r = 0, l = a.length; l > r; r++) {
                 var c = a[r];
                 "object" != typeof c.ac && o.push({ SerialId: c.sd, AddrName: c.an, AddrType: c.at, AddrContent: c.ac })
@@ -2806,7 +2814,8 @@ function (e, t, i) {
             } catch (o) {
             }
             i.vip = s
-        }, getContactsById: function (e) {
+        },
+        getContactsById: function (e) {
             return this.get("data") && this.get("data").contactsMap[e] || null
         }, getContactsGroupById: function (e) {
             return this.getContactsGroupId(e)
@@ -2818,7 +2827,8 @@ function (e, t, i) {
                 if (s.name === e) return s
             }
             return null
-        }, getReadGroupCount: function () {
+        },
+        getReadGroupCount: function () {
             var e = this.getGroupByName("读信联系人");
             return e ? e.CntNum : null
         }, getContactsGroupId: function (e) {
@@ -2835,7 +2845,8 @@ function (e, t, i) {
             var t = this.getGroupById(e);
             if (!t) throw "M2012.Contacts.Model.getGroupContactsLength:不存在联系人分组gid=" + e;
             return t.CntNum
-        }, getGroupMembersId: function (e, t) {
+        },
+        getGroupMembersId: function (e, t) {
             for (var i = this.getGroupMembers(e, t), a = 0, s = i.length; s > a; a++) i[a] = i[a].SerialId;
             return i
         }, getGroupMembers: function (e, t) {
@@ -2859,7 +2870,8 @@ function (e, t, i) {
         }, getVIPGroupId: function () {
             var e = "", t = this.get("data");
             return t && t.vip && (e = t.vip.groupId), e
-        }, isVip: function (e) {
+        },
+        isVip: function (e) {
             var t = this.get("data"), i = !1;
             return t && t.vip && a.each(t.vip.contacts, function (t, a) {
                 return a == e ? (i = !0, !1) : void 0
@@ -2901,7 +2913,8 @@ function (e, t, i) {
                 a = t(s, e), this.set(i, a)
             }
             return a
-        }, getInputMatch: function (e) {
+        },
+        getInputMatch: function (e) {
             function t(e, t, i) {
                 var a = t + p + e;
                 10 > t && (a = "0" + a);
@@ -2965,7 +2978,8 @@ function (e, t, i) {
             return "email" == t ? i.Text.Email.getEmail(e) : "mobile" == t ? i.Text.Mobile.getNumber(e) : ""
         }, getName: function (e, t) {
             return "email" == t ? i.Text.Email.getName(e) : "mobile" == t ? i.Text.Mobile.getName(e) : ""
-        }, getSendText: function (e, t) {
+        },
+        getSendText: function (e, t) {
             return e = (e || "") && e.replace(/["\r\n]/g, " "), '"' + e + '"<' + t + ">"
         }, getContactsByEmail: function (e) {
             e = $Email.getEmailQuick(e);
@@ -2990,7 +3004,8 @@ function (e, t, i) {
                 e.emailHash = i
             }
             return e.emailHash || {}
-        }, getContactsByMobile: function (e) {
+        },
+        getContactsByMobile: function (e) {
             var t = this.get("data"), i = [];
             if (!t || !t.contacts) return i;
             for (var a = 0, s = t.contacts, o = s.length; o > a; a++) for (var n = s[a], r = 0; r < n.mobiles.length; r++) n.mobiles[r] == e && i.push(n);
@@ -3029,7 +3044,8 @@ function (e, t, i) {
                 break
             }
             return o
-        }, isExistMobile: function (e) {
+        },
+        isExistMobile: function (e) {
             var t = this.getContactsByMobile(e) || [];
             return t.length > 0
         }, isExistEmail: function (e) {
@@ -3252,13 +3268,19 @@ M139.namespace("M2012.Main.View", {
         events: {},
         initialize: function (e) {
             var t = this;
-            this.model = null, this.initEvents(), $App.on("infoSetLoad", function (e) {
-                t.fsbeenCleanSkinUser(), t.setBackDefaultskin(), t.Screenadvertising();
-                var i = e.userMainData.mainUserConfig.shownewuserguide && e.userMainData.mainUserConfig.shownewuserguide[0], a = $App.getCurrentTab();
+            this.model = null,
+            this.initEvents(),
+            $App.on("infoSetLoad", function (e) {
+                t.fsbeenCleanSkinUser(),
+                t.setBackDefaultskin(),
+                t.Screenadvertising();
+                var i = e.userMainData.mainUserConfig.shownewuserguide && e.userMainData.mainUserConfig.shownewuserguide[0],
+                    a = $App.getCurrentTab();
                 if ("1" != i && a && "setting" != a.group && "83" != UserData.provCode && ($App.isOnceShowed("UserOpenNotify") || (top.mailNotifyData ? t.showNotifyOpen(top.mailNotifyData) : $App.once("notify_load", function (e) {
                     t.showNotifyOpen(e)
                 }))), "13902220729" !== $User.getShortUid() && "13922201256" !== $User.getShortUid()) {
-                    var s = new Date, o = s.getHours();
+                    var s = new Date,
+                        o = s.getHours();
                     14 > o ? ($(".replace-skin").on("click", "a", function (e) {
                         $(this).hasClass("replace-btn") ? (top.BH("changeSkin_oneKey_leaf"), top.$App.setSkin("skin_claritDreamLeaf"), $(this).parent().parent().hide(), $(document.getElementById("changeSkin").contentWindow.document.body).find(".main h2[name=newSkinLast]").next().find("li a").each(function (e, t) {
                             $(t).find("span:first").addClass("hide")
@@ -3280,7 +3302,8 @@ M139.namespace("M2012.Main.View", {
                         })
                     }, 3e3))
                 }
-            }), $GlobalEvent.on("click", this.resetTopFixTabsCssAndDropdown)
+            }),
+            $GlobalEvent.on("click", this.resetTopFixTabsCssAndDropdown)
         },
         Screenadvertising: function () {
             "CleanMailbox" == top.$App.isclearSkinUser() && top.$App.on("welcome_UnifiedPosition_load", function (e) {
@@ -5047,10 +5070,13 @@ TabPageView = Backbone.View.extend({
     },
     channelOptions: {},
     showChannel: function (e) {
-        if (top.$App.pushMpostMsg && top.$App.trigger("updateMpostMsgStatus"), "welcome" != e) {
+        top.$App.pushMpostMsg && top.$App.trigger("updateMpostMsgStatus");
+        if ("welcome" != e) {
             var t = $Cookie.get("SkinPath2");
-            $("#animalFlash").hasClass("hide") && this.addFlash2AnimalSkin(t)
-        } else $("#animalFlash").addClass("hide");
+            $("#animalFlash").hasClass("hide") && this.addFlash2AnimalSkin(t);
+        } else {
+            $("#animalFlash").addClass("hide");
+        }
         "subscribe" === e && (top.$App.trigger("renderMpostMailnotify"), setTimeout(function () {
             $App.getTabByName("googSubscription") || $App.show("googSubscription")
         }, 500));
@@ -8341,7 +8367,8 @@ function (jQuery, Backbone, _, M139) {
         initApi: function () {
             this.on("beforeRequireLoad", function (e) {
                 e && "main_ext" == e.key && (delete M2012.UI.Dialog.ContactsEditor, delete M2012.UI.Dialog.AddressBook)
-            }), M139.namespace("M2012.UI.Dialog.ContactsEditor", function (e) {
+            }),
+            M139.namespace("M2012.UI.Dialog.ContactsEditor", function (e) {
                 var t = {
                     _callback: {}, on: function (e, t) {
                         this._callback[e] = t
@@ -8355,7 +8382,8 @@ function (jQuery, Backbone, _, M139) {
                         for (elem in t._callback) i.on(elem, t._callback[elem])
                     }, 100)
                 }), t
-            }), M139.namespace("M2012.UI.Dialog.AddressBook", {
+            }),
+            M139.namespace("M2012.UI.Dialog.AddressBook", {
                 create: function (e) {
                     this.render = function () {
                     };
@@ -8371,7 +8399,8 @@ function (jQuery, Backbone, _, M139) {
                         }, 100)
                     }), t
                 }
-            }), jQuery.extend(this, {
+            }),
+            jQuery.extend(this, {
                 getSid: function () {
                     return $T.Html.encode(this.query.sid)
                 },
@@ -8752,9 +8781,11 @@ function (jQuery, Backbone, _, M139) {
                 },
                 setTitle: function (e, t) {
                     this.getView("tabpage").setTitle(e, t)
-                }, setIcon: function (e) {
+                },
+                setIcon: function (e) {
                     $App.getView("tabpage").tab.setStateIcon(this.getCurrentTab().name, e)
-                }, setOpacityLayer: function (e, t) {
+                },
+                setOpacityLayer: function (e, t) {
                     var i = 0;
                     if (t) {
                         var a = t.css("paddingTop");
@@ -8769,17 +8800,21 @@ function (jQuery, Backbone, _, M139) {
                 },
                 showChannel: function (e) {
                     this.getView("tabpage").showChannel(e)
-                }, getCurrentTab: function () {
+                },
+                getCurrentTab: function () {
                     return this.getView("tabpage").model.getCurrent()
-                }, getTabByName: function (e) {
+                },
+                getTabByName: function (e) {
                     return this.getView("tabpage").model.getModule(e)
                 },
                 validateTab: function (e) {
                     var t;
                     t = e ? $App.getTabByName(e) : $App.getCurrentTab(), t && (t.isRendered = !1)
-                }, registerChannel: function (e, t) {
+                },
+                registerChannel: function (e, t) {
                     this.getView("tabpage").registerChannel(e, t)
-                }, close: function (e) {
+                },
+                close: function (e) {
                     return this.getView("tabpage").close(e)
                 },
                 closeTab: function (e) {
@@ -12339,7 +12374,8 @@ function (e, t, i, a) {
             })
         }
     })), M2015.Mailnotify.View.create = function (e) {
-        var t = new M2015.Mailnotify.Model(e), i = new M2015.Mailnotify.View({ model: t, type: e.type });
+        var t = new M2015.Mailnotify.Model(e), 
+            i = new M2015.Mailnotify.View({ model: t, type: e.type });
         return $App.registerConfig("mailnotifyTip", i), i
     }, M2015.Mailnotify.View.setData = function (e) {
         var t = $App.getConfig("mailnotifyTip");
@@ -14469,10 +14505,14 @@ M139.namespace("M2012.Mailbox.View", {
             }
         },
         getMailListWrap: function (e) {
-            var t = this, i = (t.model.get("fid"), t.model.get("billtype"), ""), a = {
+            var t = this,
+                i = (t.model.get("fid"),
+                t.model.get("billtype"), ""),
+                a = {
                 0: "<div class='mailing-lists-content'><div id='div_maillist' class='MaillistDiv p_relative mailing-lists-inner' style='height:600px;overflow:hidden; overflow-y:auto;'></div></div>",
                 1: "<div id='div_maillist' class='MaillistDiv p_relative bgPadding' ></div>"
-            }, s = ['<div class="billleft" >', '<div class="billleftDiv"  style="margin:0px;" >', "{0}", "</div>", "</div>"].join("");
+                },
+            s = ['<div class="billleft" >', '<div class="billleftDiv"  style="margin:0px;" >', "{0}", "</div>", "</div>"].join("");
             return i = t.model.isBillMode() && "left" != $App.getLayout() && 0 == t.model.get("billTab") ? $T.Utils.format(s, [a[e]]) : a[e]
         },
         getListHeader: function () {
@@ -14482,7 +14522,8 @@ M139.namespace("M2012.Mailbox.View", {
             return t = $T.format(t, [Math.random()]), this.model.isBillMode() && 0 == this.model.get("billTab") && (t = "<div class=\"billleftDiv\" style='margin:0px;'>" + t + "</div>"), this.model.isTaskMode() && (t = t.replace(/<td class="td4"><a id="th_size".+?<\/td>/gi, "").replace(/日期/, "计划时间").replace(/<i class=""><\/i>/gi, "")), 7 == e && (t = t.replace(/th_size/gi, "th_deltype").replace(/日期/, "删信日期").replace(/大小/, "删信方式").replace(/td3/gi, "td3 td3-new").replace(/td4/gi, "td4 td4-new")), t
         },
         isUseNew3list: function () {
-            var e = this, t = e.model.get("fid");
+            var e = this,
+                t = e.model.get("fid");
             return 2 == t || 4 == t || 7 == t ? !1 : e.model.isBillMode() ? !1 : e.model.isOnemailMode() ? !1 : -3 != $App.getFolderType(t)
         },
         createNew3ListType: function () {
@@ -14682,9 +14723,11 @@ M139.namespace("M2012.Mailbox.View", {
             var e = this;
             $(window).resize(function () {
                 e.onResize()
-            }), e.model.on("mailboxReady", function () {
+            }),
+            e.model.on("mailboxReady", function () {
                 e.model.get("listViewScollTop") && ($(e.el).find(".MaillistDiv")[0].scrollTop = e.model.get("listViewScollTop"), e.model.set("listViewScollTop", 0))
-            }), $(e.el).find(".MaillistDiv").scroll(function () {
+            }),
+            $(e.el).find(".MaillistDiv").scroll(function () {
                 var t = $(this).scrollTop();
                 e.model.set("listViewScollTop", t)
             })
