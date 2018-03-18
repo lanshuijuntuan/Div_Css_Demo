@@ -1918,24 +1918,30 @@ function (e, t) {
     t.ConfigManager = Backbone.Model.extend({
         initialize: function () {
             this._configs = {}
-        }, registerConfig: function (e, t) {
+        },
+        registerConfig: function (e, t) {
             var r = this;
             t instanceof Array ? this._configs[e] = t : (n.each(t, function (t, n) {
                 r.setConfig(e, t, n)
             }), this.trigger("register", {configName: e, configValue: t}))
-        }, setConfig: function (e, t, n) {
+        },
+        setConfig: function (e, t, n) {
             var r = this._configs[e];
             r || (r = this._configs[e] = {}), r[t] = n, this.trigger("update", {configName: e, key: t, value: n})
-        }, getConfig: function (e, t) {
-        }, getConfig: function (e, t) {
+        },
+        getConfig: function (e, t) {
+        },
+        getConfig: function (e, t) {
             return 1 == arguments.length ? this._configs[e] : this._configs[e] && this._configs[e][t]
-        }, showAll: function () {
+        },
+        showAll: function () {
             try {
                 console.log(t.JSON.stringify(this._configs, "", "    "))
             } catch (e) {
             }
         }
-    }), window.$Config = new t.ConfigManager
+    }),
+    window.$Config = new t.ConfigManager
 }(jQuery, M139),
 function (e) {
     var t = e.Text;
@@ -2470,20 +2476,34 @@ function (e, t, n) {
         initialize: function (e) {
             r.prototype.initialize.apply(this, arguments), e = e || {};
             var t = this;
-            this.name = e.name || this.name, this.win = e.window || window, n.PageApplication.getTopApp() || n.PageApplication.registerTopApp(this), this.query = n.Text.Url.getQueryObj(this.win.location.href), this.config = $Config, this.config.on("update", function (e) {
+            this.name = e.name || this.name,
+            this.win = e.window || window,
+            n.PageApplication.getTopApp() || n.PageApplication.registerTopApp(this),
+            this.query = n.Text.Url.getQueryObj(this.win.location.href),
+            this.config = $Config,
+            this.config.on("update", function (e) {
                 t.trigger("configupdate", e)
-            }), this.inputData = null, this.query && this.query.inputData && (this.inputData = this.getStorage(this.query.inputData)), e.views && this.registerView(e.views)
-        }, registerConfig: function (e, t) {
+            }),
+            this.inputData = null,
+            this.query && this.query.inputData && (this.inputData = this.getStorage(this.query.inputData)),
+            e.views && this.registerView(e.views)
+        },
+        registerConfig: function (e, t) {
             return this.config.registerConfig.apply(this.config, arguments)
-        }, setConfig: function (e, t, n) {
+        },
+        setConfig: function (e, t, n) {
             return this.config.setConfig.apply(this.config, arguments)
-        }, getConfig: function () {
+        },
+        getConfig: function () {
             return this.config.getConfig.apply(this.config, arguments)
-        }, registerMessages: function (e) {
+        },
+        registerMessages: function (e) {
             this.config.registerConfig("Message", e)
-        }, getMessage: function (e) {
+        },
+        getMessage: function (e) {
             this.config.getConfig("Message", e)
-        }, await: function (t, n) {
+        },
+        await: function (t, n) {
             if ("string" != typeof t)throw this.logger.getThrow("await参数非法，必须为字符串");
             if (!e.isFunction(n))throw this.logger.getThrow("await参数非法，必须为函数");
             var r = 0, i = {"|": 1, ",": 2, "&": 4};
@@ -2499,13 +2519,17 @@ function (e, t, n) {
                     l > -1 && (r === i["|"] ? (this.off("somethingready", arguments.callee), n.call(this, s, a)) : r === i[","] ? (t.splice(l, 1), n.call(this, s, a)) : r === i["&"] && (t.splice(l, 1), 0 === t.length && (this.off("somethingready", arguments.callee), n.call(this, s))))
                 } else a === t && (this.off("somethingready", arguments.callee), n.call(this, s))
             })
-        }, makeReady: function (e, t) {
+        },
+        makeReady: function (e, t) {
             this.trigger("somethingready", {event: e, data: t})
-        }, getTop: function () {
+        },
+        getTop: function () {
             return n.PageApplication.getTopAppWindow()
-        }, getTopPageApp: function () {
+        },
+        getTopPageApp: function () {
             return n.PageApplication.getTopApp()
-        }, getStorage: function (e) {
+        },
+        getStorage: function (e) {
             var t = this.getTopPageApp();
             if (t != this)return t.getStorage.apply(t, arguments);
             var r = this.config.getConfig("_Storage_", e);
@@ -2515,39 +2539,54 @@ function (e, t, n) {
                 r = n.JSON.tryEval(r)
             }
             return r
-        }, setStorage: function (e) {
+        },
+        setStorage: function (e) {
             var t = this.getTopPageApp();
             if (t != this)return t.setStorage.apply(t, arguments);
             var r = Math.random();
             return t.config.setConfig("_Storage_", r, n.JSON.stringify(e)), r
-        }, inputDataToUrl: function (e, t) {
+        },
+        inputDataToUrl: function (e, t) {
             return n.Text.Url.makeUrl(e, {inputData: this.setStorage(t)})
-        }, registerHttpClient: function (e) {
+        },
+        registerHttpClient: function (e) {
             this.config.registerConfig("HttpClient", e)
-        }, getHttpClient: function (e) {
+        },
+        getHttpClient: function (e) {
             return this.config.getConfig("HttpClient", e)
-        }, registerView: function (e, t) {
+        },
+        registerView: function (e, t) {
             "object" == typeof arguments[0] ? this.config.registerConfig("Views", arguments[0]) : this.config.setConfig("Views", e, t)
-        }, getView: function (e) {
+        },
+        getView: function (e) {
             return this.config.getConfig("Views", e)
-        }, registerModel: function (e, t) {
+        },
+        registerModel: function (e, t) {
             "object" == typeof arguments[0] ? this.config.registerConfig("Models", arguments[0]) : this.config.setConfig("Models", e, t)
-        }, getModel: function (e) {
+        },
+        getModel: function (e) {
             return this.config.getConfig("Models", e)
         }
-    })), e.extend(n.PageApplication, {
+    })),
+    e.extend(n.PageApplication, {
         getTopAppWindow: function () {
             return window.top
-        }, registerTopApp: function (e) {
+        },
+        registerTopApp: function (e) {
             this.getTopAppWindow()._pageapp = e
-        }, getTopApp: function () {
+        },
+        getTopApp: function () {
             var e = this.getTopAppWindow()._pageapp;
             return e
-        }, utilShowLoading: function () {
-        }, utilHideLoading: function () {
-        }, registerGlobalConfig: function () {
+        },
+        utilShowLoading: function () {
+        },
+        utilHideLoading: function () {
+        },
+        registerGlobalConfig: function () {
         }
-    }), window.getTopAppWindow = n.PageApplication.getTopAppWindow
+    }),
+    window.getTopAppWindow = n.PageApplication.getTopAppWindow
 }(jQuery, Backbone, M139),
 function () {
     M139.Timing = {
@@ -2565,9 +2604,11 @@ function () {
             var tryTimes = 0, done = !1;
             if (checkReady(), !done)var intervalId = this.setInterval("M139.Timing.waitForReady", checkReady, 300);
             var self = this
-        }, makeSureIframeReady: function (e) {
+        },
+        makeSureIframeReady: function (e) {
             return M139.Iframe.checkIframeHealth(e)
-        }, watchElementScroll: function (e) {
+        },
+        watchElementScroll: function (e) {
             function t(e) {
                 for (; e;) {
                     if (e.style && "none" == e.style.display)return !1;
@@ -2594,7 +2635,8 @@ function () {
                     return n(e) ? void M139.Timing.clearInterval(i) : void(t(e) ? r ? (e.scrollTop = e.lastScrollTop, r = !1) : e.lastScrollTop = e.scrollTop : r = !0)
                 }, 500)
             }
-        }, watchIframeHeight: function (e, t, n) {
+        },
+        watchIframeHeight: function (e, t, n) {
             function r() {
                 var t = e.contentWindow.document, n = t.body;
                 n.scrollHeight > e.offsetHeight && (e.style.height = (n.scrollHeight + 35 - s).toString() + "px", $.browser.msie && $.browser.version < 7)
@@ -2614,7 +2656,8 @@ function () {
                     }), i())
                 }
             }, o)
-        }, watchInputChange: function (e, t, n) {
+        },
+        watchInputChange: function (e, t, n) {
             function r(n) {
                 e.value !== i && (i = e.value, $.isFunction(t) && t.call(e, n))
             }
@@ -2622,18 +2665,22 @@ function () {
             var i = e.value;
             this.setInterval("M139.Timing.watchInputChange", r, 1e3);
             $(e).keydown(r).keyup(r)
-        }, setInterval: function (e, t, n) {
+        },
+        setInterval: function (e, t, n) {
             var r = this.timerMap[e];
             r || (r = this.timerMap[e] = new M139.Timing.Timer(e, n));
             var i = r.addHandler(t);
             return i
-        }, clearInterval: function (e) {
+        },
+        clearInterval: function (e) {
             if (e) {
                 var t = e.split("_")[0], n = this.timerMap[t];
                 n && n.removeHandler(e)
             }
-        }, timerMap: {}
-    }, M139.Timing.Timer = function (e, t) {
+        },
+        timerMap: {}
+    },
+    M139.Timing.Timer = function (e, t) {
         this.name = e, this.interval = t;
         var n = {};
         this.addHandler = function (t) {
@@ -2647,7 +2694,8 @@ function () {
             } catch (t) {
             }
         }, t)
-    }, $Timing = M139.Timing
+    },
+    $Timing = M139.Timing
 }(),
 function (e, t) {
     var n = e;

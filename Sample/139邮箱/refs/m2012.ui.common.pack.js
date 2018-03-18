@@ -1403,10 +1403,28 @@ function () {
                 for (elem in e)elem && (this[elem] = e[elem])
             }
 
-            this.HtmlTemplate = null, this.HeaderTemplate = null, this.FooterTemplate = null, this.ItemTemplate, this.EmptyTemplate = "暂无数据", this.SeparateTemplate, this.Functions = null, this.DataSource = null, this.ItemContainer, this.ItemDataBound = null, this.RenderMode = 0, this.RenderCallback = null, this.Element = null, this.Instance = null, this.DataRow = null;
-            void 0 != typeof t && ("string" == typeof t ? this.HtmlTemplate = t : this.Element = t), i(), this.DataBind = function (t) {
+            this.HtmlTemplate = null,
+            this.HeaderTemplate = null,
+            this.FooterTemplate = null,
+            this.ItemTemplate,
+            this.EmptyTemplate = "暂无数据",
+            this.SeparateTemplate,
+            this.Functions = null,
+            this.DataSource = null,
+            this.ItemContainer,
+            this.ItemDataBound = null,
+            this.RenderMode = 0,
+            this.RenderCallback = null,
+            this.Element = null,
+            this.Instance = null,
+            this.DataRow = null;
+            void 0 != typeof t && ("string" == typeof t ? this.HtmlTemplate = t : this.Element = t),
+            i(),
+            this.DataBind = function (t) {
                 var e = this;
-                this.DataSource = t, this.DataSource && !$.isArray(this.DataSource) && (this.DataSource = [this.DataSource]), null == this.HtmlTemplate && (this.HtmlTemplate = this.Element.innerHTML);
+                this.DataSource = t,
+                this.DataSource && !$.isArray(this.DataSource) && (this.DataSource = [this.DataSource]),
+                null == this.HtmlTemplate && (this.HtmlTemplate = this.Element.innerHTML);
                 var i = /(<!--item\s+start-->)([\r\n\w\W]+)(<!--item\s+end-->)/;
                 if (!t || 0 == t.length)return this.Render([]), this.HtmlTemplate.replace(i, "");
                 var a = this.HtmlTemplate.match(i);
