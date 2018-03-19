@@ -1354,8 +1354,21 @@ function _letterInlineScript(e, t) {
                 show: function (e, t) {
                     var i = this.map;
                     if (t && /urlreplace/gi.test(t)) {
-                        var a = window.LinkConfig[e], s = "", o = "", n = {};
-                        -1 == t.indexOf("http://") && -1 == t.indexOf("https://") && (o = t.split("=")[0] + "=", t = t.replace(o, ""), s = getDomain(e) + t), t = s, n.group = a.group, n.title = a.title, n.url = t, e = "urlReplace", window.LinkConfig[e] = n, t = null
+                        var a = window.LinkConfig[e],
+                            s = "",
+                            o = "",
+                            n = {};
+                        if (-1 == t.indexOf("http://") && -1 == t.indexOf("https://")) {
+                            o = t.split("=")[0] + "=";
+                            t = t.replace(o, "");
+                            s = getDomain(e) + t;
+                        }
+                        t = s,
+                        n.group = a.group,
+                        n.title = a.title,
+                        n.url = t,
+                        e = "urlReplace",
+                        window.LinkConfig[e] = n, t = null
                     }
                     if (i[e]) return void $App.show(i[e], t);
                     if (t && t.indexOf("&") > -1) {
@@ -1375,16 +1388,19 @@ function _letterInlineScript(e, t) {
                 a.FM = { folderList: $App.getConfig("FolderList") }
             }), a.MB = {
                 show: function (e) {
-                    $App.showMailbox(e)
-                }, showBillManager: function () {
+                    $App.showMailbox(e);
+                },
+                showBillManager: function () {
                     $App.showMailbox(8)
-                }, subscribeTab: function (e, t) {
+                },
+                subscribeTab: function (e, t) {
                     return e && s.inArray(e, ["myMag", "myCollect", "googSubscription"]) >= 0 ? void $App.show(e) : void $App.showMailbox(9, t)
                 }
             }, a.CM = {
                 show: function (e) {
-                    $App.show("compose", null, { inputData: e })
-                }, sendMail: function (e, a) {
+                    $App.show("compose", null, { inputData: e });
+                },
+                sendMail: function (e, a) {
                     function s(t) {
                         e.onsuccess && e.onsuccess({ mid: t })
                     }
@@ -1483,12 +1499,16 @@ function _letterInlineScript(e, t) {
                     } catch (i) {
                     }
                     if (top.WaitPannel) {
-                        if (t && t.delay) return top.FF.alert(e), void setTimeout(function () {
-                            top.FF.close()
-                        }, t.delay);
+                        if (t && t.delay) {
+                            top.FF.alert(e);
+                            return void setTimeout(function () {
+                                top.FF.close()
+                            }, t.delay);
+                        }
                         top.WaitPannel.show(e)
                     }
-                }, hide: function () {
+                },
+                hide: function () {
                     try {
                         return void top.M139.UI.TipMessage.hide()
                     } catch (e) {
@@ -1541,25 +1561,33 @@ function _letterInlineScript(e, t) {
             } catch (i) {
             }
             top.FF && top.FF.alert && top.FF.alert(e)
-        }, prompt: function (e, t, i, a, s) {
+        },
+        prompt: function (e, t, i, a, s) {
             return this.current = $Msg.prompt(t, a, {
                 dialogTitle: e,
                 defaultValue: i,
                 maxLength: s,
                 isHtml: !0
             }), this.current
-        }, setHeight: function (e) {
+        },
+        setHeight: function (e) {
             $Msg.getCurrent().setHeight(e), $Msg.getCurrent().resetHeight()
-        }, setWidth: function (e) {
+        },
+        setWidth: function (e) {
             $Msg.getCurrent().setWidth(e)
-        }, close: function () {
+        },
+        close: function () {
             $Msg.getCurrent().close()
-        }, confirm: function (e, t, i, a) {
+        },
+        confirm: function (e, t, i, a) {
             var s = { icon: "warn", isHtml: !0 };
             return a && (s.buttons = [" 是 ", " 否 "]), this.current = $Msg.confirm(e, t, i, s), this.current
-        }, show: function (e, t, i, a, s, o, n) {
-            return this.current = $Msg.showHTML(e, { dialogTitle: t, width: i, height: a, onclick: o }), this.current
-        }, open: function (e, t, i, a, s, o, n, r) {
+        },
+        show: function (e, t, i, a, s, o, n) {
+            this.current = $Msg.showHTML(e, { dialogTitle: t, width: i, height: a, onclick: o });
+            return this.current;
+        },
+        open: function (e, t, i, a, s, o, n, r) {
             return this.current = $Msg.open({
                 url: t,
                 dialogTitle: e,
@@ -1567,7 +1595,8 @@ function _letterInlineScript(e, t) {
                 height: a,
                 hideTitleBar: r
             }), this.current
-        }, minimize: function () {
+        },
+        minimize: function () {
             $Msg.getCurrent().minisize()
         }
     }
@@ -4697,7 +4726,7 @@ var TabPageModel = Backbone.Model.extend({
     },
     fillModuleData: function (e) {
         var t;
-        if(e.mutiple){ 
+        if (e.mutiple) {
             e.orignName = e.name,
             t = (e.data && e.data.key ? e.data.key : Math.random());
             e.name = e.name + "_" + t;
@@ -4741,7 +4770,10 @@ var TabPageModel = Backbone.Model.extend({
     },
     saveChannelState: function (e, t) {
         var i = this.get("channelState");
-        e && "groupMail" != e || (e = "mail"), i[e] = { current: t }
+        if (!(e && "groupMail" != e)) {
+            e = "mail";
+        }
+        i[e] = { current: t };
     },
     hasSetFixedTabs: function () {
         return $App.getCustomAttrs("hasSetFixedTabs")
@@ -4828,8 +4860,10 @@ TabPageView = Backbone.View.extend({
                 "none" != $("#divTab ul")[0].style.display ? $(".skin-mainContainer").addClass("offset-top") : $(".skin-mainContainer").removeClass("offset-top"), "welcome" == p ? $(".skin-mainContainer").hide().prev().hide() : $(".skin-mainContainer").show().prev().show(), this.lastModule = o, $App.closeWriteOkPage(), $("#scoutTemplate", top.document).remove()
             }
         }),
+
         this.tab = new TabLabel(document.getElementById("divTab"), this),
         this.tab.call = [this.onTabDelete, this.onTabActive, this.onTabClose],
+
         this.watchScrollbar(),
         this.setAnimalSkin()
     },
@@ -4838,7 +4872,9 @@ TabPageView = Backbone.View.extend({
     events: {},
     render: function () {
         var e = this.model.get("currentModule");
-        e && this.activeTab(e)
+        if (e) {
+            this.activeTab(e);
+        }
     },
     setAnimalSkin: function () {
         var e = this;
@@ -4855,29 +4891,59 @@ TabPageView = Backbone.View.extend({
         }, 3e3)
     },
     setTitle: function (e, t) {
-        t || (t = this.model.get("currentModule")), this.tab.title(t, e), this.model.getModule(t).title = e
+        if (!t) {
+            t = this.model.get("currentModule");
+        }
+        this.tab.title(t, e);
+        this.model.getModule(t).title = e;
     },
     showModule: function (e) {
-        var t = this.model, i = t.getModule(e), a = t.getPrevious();
-        if (i || (i = t.getModule("welcome")), null != a && a != i && $(a.element).hide(), i.element.style.display = "", i.view.el = i.element, i.view && i.view.render) {
-            var s = !!i.isRendered, o = i.view.model && i.view.model.get("mid");
-            i.view.model.get("strokeRead") && o && !strokeUnAlreadyRead && (s = !0, i.view.model.set("needReload", !1), i.view.model.set("strokeRead", !1), strokeUnAlreadyRead = null);
+        var t = this.model,
+            i = t.getModule(e),
+            a = t.getPrevious();
+        if (!i) {
+            i = t.getModule("welcome");
+        }
+        if (null != a && a != i) {
+            $(a.element).hide();
+        }
+        i.element.style.display = "";
+        i.view.el = i.element;
+        if (i.view && i.view.render) {
+            var s = !!i.isRendered,
+                o = i.view.model && i.view.model.get("mid");
+            if (i.view.model.get("strokeRead") && o && !strokeUnAlreadyRead) {
+                s = !0;
+                i.view.model.set("needReload", !1);
+                i.view.model.set("strokeRead", !1);
+                strokeUnAlreadyRead = null;
+            };
             i.view.render(s);
             i.isRendered = !0
         }
         if (i.view && i.view.getToolbar) {
             if (i.group != a.group) {
                 var n = i.view.getToolbar();
-                "string" == typeof n ? this.toolbar.innerHTML = n : 0 == this.toolbar.childNodes.length && this.toolbar.appendChild(n), this.toolbar.style.display = ""
+                if ("string" == typeof n) {
+                    this.toolbar.innerHTML = n
+                } else {
+                    if (0 == this.toolbar.childNodes.length) {
+                        this.toolbar.appendChild(n);
+                    }
+                }
+                this.toolbar.style.display = "";
             }
-        } else this.toolbar.style.display = "none";
-        return i
+        } else {
+            this.toolbar.style.display = "none";
+        }
+        return i;
     },
     getVisibleTab: function () {
-        var e = $("#divTab ul").children(), t = $.grep(e, function (e, t) {
+        var e = $("#divTab ul").children(),
+            t = $.grep(e, function (e, t) {
             return "none" != e.style.display && "tabsMenuIco" != e.id
         });
-        return t
+        return t;
     },
     getVisibleCount: function () {
         return this.getVisibleTab().length
@@ -4890,8 +4956,12 @@ TabPageView = Backbone.View.extend({
     activeTab: function (e) {
         var t = this;
         if (this.tab.exist(e)) {
-            if (this.lastActive && this.lastActive[e] && new Date - this.lastActive[e] < 200) return;
-            this.lastActive = {}, this.lastActive[e] = new Date, this.tab.active(e)
+            if (this.lastActive && this.lastActive[e] && new Date - this.lastActive[e] < 200) {
+                return;
+            }
+            this.lastActive = {},
+            this.lastActive[e] = new Date,
+            this.tab.active(e);
         } else {
             this.createTab(e);
         }
@@ -4899,46 +4969,96 @@ TabPageView = Backbone.View.extend({
             $App.trigger("showTab", this.model.getModule(e))
         } catch (i) {
         }
-        this.christmasMan(), "skin_sheepyear" == top.$User.getSkinName() && ($(".christmasHats").remove(), setTimeout(function () {
-            $("#divTab li[class=on]").append('<i class="christmasHats"></i>')
-        }, 100)), setTimeout(function () {
-            t.hideOverTab()
-        }, 200), this.addClass2left(e)
+        this.christmasMan();
+        if ("skin_sheepyear" == top.$User.getSkinName()) {
+            $(".christmasHats").remove();
+            setTimeout(function () {
+                $("#divTab li[class=on]").append('<i class="christmasHats"></i>');
+            }, 100);
+        }
+        setTimeout(function () {
+            t.hideOverTab();
+        }, 200),
+        this.addClass2left(e);
     },
     addClass2left: function (e) {
-        var t = e, i = $App.getCurrentFid(), a = $App.getMailboxView() && $App.getMailboxView().model;
-        $("#sub li").find("a").removeClass("on"), "mailbox_1" == t ? $("#sub li[fid=1]").find("a").addClass("on") : "mailsub_0" == t && (1 != i ? $("#sub li[fid=" + i + "]").find("a").addClass("on") : a && a.isVipMode() ? $("#sub li#li_vip").find("a").addClass("on") : a && a.isStarMode() ? $("#sub li#li_star").find("a").addClass("on") : a && a.isTaskMode() ? $("#sub li#li_remind").find("a").addClass("on") : a && a.isBillMode() ? $("#sub li#li_bill").find("a").addClass("on") : a && a.isSubscribeMode() && $("#sub li#li_subscribe").find("a").addClass("on"))
+        var t = e,
+            i = $App.getCurrentFid(),
+            a = $App.getMailboxView() && $App.getMailboxView().model;
+        $("#sub li").find("a").removeClass("on");
+        if ("mailbox_1" == t) {
+            $("#sub li[fid=1]").find("a").addClass("on")
+        } else {
+            if ("mailsub_0" == t) {
+                if (1 != i) { $("#sub li[fid=" + i + "]").find("a").addClass("on") } else {
+                    if (a && a.isVipMode()) {
+                        $("#sub li#li_vip").find("a").addClass("on");
+                    } else {
+                        if (a && a.isStarMode()) { $("#sub li#li_star").find("a").addClass("on") } else {
+                            if (a && a.isTaskMode()) {
+                                $("#sub li#li_remind").find("a").addClass("on");
+                            } else {
+                                if (a && a.isBillMode()) {
+                                    $("#sub li#li_bill").find("a").addClass("on");
+                                } else {
+                                    if (a && a.isSubscribeMode()) {
+                                        $("#sub li#li_subscribe").find("a").addClass("on");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     },
     christmasMan: function () {
-        "skin_christmas" == top.$User.getSkinName() && ($("#divTab li[role=tab][id!=tabsMenuIco]:visible span").unbind("hover").hover(function (e) {
-            if ($(".santaClaus").length > 0 && $(".santaClaus").remove(), !$("#accountSet.selected").length) {
-                var t = $(e.target).parents("[role=tab]").offset().left;
-                $("body").append('<i class="santaClaus" id="' + t + '" style="left:' + (t + 35) + 'px; top:50px;z-index:1000;display:none;"></i>'), $("#" + t).fadeIn(300)
-            }
-        }, function (e) {
-            var t = $(e.target).parents("[role=tab]").offset().left;
-            $("#" + t).fadeOut(300)
-        }), $(".christmasHats").remove(), setTimeout(function () {
-            $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
-        }, 100), setTimeout(function () {
-            $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last .christmasHats").length || $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
-        }, 1e3))
+        if ("skin_christmas" == top.$User.getSkinName()) {
+            $("#divTab li[role=tab][id!=tabsMenuIco]:visible span").unbind("hover").hover(
+                function (e) {
+                    if ($(".santaClaus").length > 0 && $(".santaClaus").remove(), !$("#accountSet.selected").length) {
+                        var t = $(e.target).parents("[role=tab]").offset().left;
+                        $("body").append('<i class="santaClaus" id="' + t + '" style="left:' + (t + 35) + 'px; top:50px;z-index:1000;display:none;"></i>');
+                        $("#" + t).fadeIn(300);
+                    }
+                },
+                function (e) {
+                    var t = $(e.target).parents("[role=tab]").offset().left;
+                    $("#" + t).fadeOut(300);
+                });
+            $(".christmasHats").remove();
+            setTimeout(function () {
+                $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
+            }, 100);
+            setTimeout(function () {
+                $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last .christmasHats").length || $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
+            }, 1e3)
+        }
     },
     replace: function (e, t) {
         this.tab.replace(e, t)
     },
     close: function (e) {
-        e || (e = this.model.get("currentModule")), this.tab.close(e)
+        if (!e) {
+            e = this.model.get("currentModule");
+        }
+        this.tab.close(e);
     },
     closeAllTab: function () {
-        for (elem in this.model.pages) "welcome" != elem && this.close(elem);
+        for (elem in this.model.pages) {
+            if ("welcome" != elem) {
+                this.close(elem);
+            }
+        }
         setTimeout(function () {
             M2012.History.clear()
         }, 1e3)
     },
     resize: function () {
         var e = this;
-        this.showAllTab(), this.tab.size(), setTimeout(function () {
+        this.showAllTab(),
+        this.tab.size(),
+        setTimeout(function () {
             e.hideOverTab()
         }, 100)
     },
@@ -4946,10 +5066,14 @@ TabPageView = Backbone.View.extend({
         if ($App && 83 * this.getVisibleCount() < $D.getWinWidth() - 154 && $App.getView("tabpage").prevChannel && "mail" == $App.getView("tabpage").prevChannel) {
             $("#divTab li").not("[tabid=welcome]").not("#tabsMenuIco").show();
             for (var e = $("#divTab li").not("[tabid=welcome]").not("#tabsMenuIco"), t = 0; t < e.length; t++) {
-                var i = e[t].getAttribute("tabid"), a = $App.getTabByName(i), s = a.group || a.channel;
-                "addr" != s && "disk" != s && "calendar" != s && "subscribe" != s || $(e[t]).hide()
+                var i = e[t].getAttribute("tabid"),
+                    a = $App.getTabByName(i),
+                    s = a.group || a.channel;
+                if (!("addr" != s && "disk" != s && "calendar" != s && "subscribe" != s)) {
+                    $(e[t]).hide();
+                }
             }
-            $("[tabid*=mpostOnlineService]").hide()
+            $("[tabid*=mpostOnlineService]").hide();
         }
     },
     fixFlashRemove: function (e) {
@@ -4964,12 +5088,23 @@ TabPageView = Backbone.View.extend({
             }
         }
     },
-    framePool: [], getFrame: function (e) {
+    framePool: [],
+    getFrame: function (e) {
         var t;
-        return t = this.framePool.length > 0 ? this.framePool.shift() : document.createElement("iframe"), t.src = e, t
+        if (this.framePool.length > 0) {
+            t=this.framePool.shift();
+        } else {
+            t=document.createElement("iframe");
+        }
+        t.src = e;
+        return  t;
     },
     recycleFrame: function (e) {
-        $(e).removeAttr("id"), $(e).removeAttr("name"), $(e).removeAttr("style"), this.framePool.push(e), e.parentNode.removeChild(e)
+        $(e).removeAttr("id");
+        $(e).removeAttr("name");
+        $(e).removeAttr("style");
+        this.framePool.push(e);
+        e.parentNode.removeChild(e);
     },
     onCloseTab: function (e) {
         var t = this.model.getModule(e);
@@ -4982,13 +5117,15 @@ TabPageView = Backbone.View.extend({
                 var s = a.get(0);
                 this.recycleFrame(s)
             }
-            $(i).remove()
+            $(i).remove();
         }
     },
     clearTabCache: function (e) {
         for (elem in this.model.pages) {
             var t = this.model.pages[elem];
-            t.name.indexOf(e) >= 0 && (t.isRendered = !1)
+            if (t.name.indexOf(e) >= 0) {
+                t.isRendered = !1;
+            }
         }
     },
     createOrignTabs: function (e, t, i) {
@@ -5030,14 +5167,11 @@ TabPageView = Backbone.View.extend({
             }
             i.innerHTML = "<span class='gloadbg'></span>"
         }
-        if ("welcome" == e.name && document.getElementById("div_welcome"))
-        {
+        if ("welcome" == e.name && document.getElementById("div_welcome")) {
             i = document.getElementById("div_welcome")
         }
-        else
-        {
-            if (e.name.indexOf("compose") >= 0 && !e.type && document.getElementById("div_composeContainer"))
-            {
+        else {
+            if (e.name.indexOf("compose") >= 0 && !e.type && document.getElementById("div_composeContainer")) {
                 if ($.browser.safari || $.browser.mozilla || $B.is.ie && $B.getVersion() <= 8) {
                     this.el.appendChild(i);
                     window.firstComposeLoaded = !0;
@@ -5046,8 +5180,7 @@ TabPageView = Backbone.View.extend({
                     i.id = "";
                 }
             }
-            else
-            {
+            else {
                 this.el.appendChild(i);
             }
 
@@ -5065,25 +5198,53 @@ TabPageView = Backbone.View.extend({
                         t.getAttribute("hasWatched") || (console.log("start watch........", t), M139.Timing.watchElementScroll(t), t.setAttribute("hasWatched", !0))
                     })
                 }
-            }, 1e3)
+            }, 1e3);
         }
     },
     channelOptions: {},
     showChannel: function (e) {
-        top.$App.pushMpostMsg && top.$App.trigger("updateMpostMsgStatus");
+        if (top.$App.pushMpostMsg) {
+            top.$App.trigger("updateMpostMsgStatus");
+        }
         if ("welcome" != e) {
             var t = $Cookie.get("SkinPath2");
             $("#animalFlash").hasClass("hide") && this.addFlash2AnimalSkin(t);
         } else {
             $("#animalFlash").addClass("hide");
         }
-        "subscribe" === e && (top.$App.trigger("renderMpostMailnotify"), setTimeout(function () {
-            $App.getTabByName("googSubscription") || $App.show("googSubscription")
-        }, 500));
+        if ("subscribe" === e) {
+            top.$App.trigger("renderMpostMailnotify");
+            setTimeout(function () {
+                $App.getTabByName("googSubscription") || $App.show("googSubscription")
+            }, 500);
+        }
         var i = "mail";
-        this.channelOptions[e] && (i = this.channelOptions[e].defaultTab);
+        if (this.channelOptions[e]) {
+            i = this.channelOptions[e].defaultTab;
+        }
         var a = this.model.get("channelState");
-        a[e] && a[e].current ? (i = a[e].current, this.tab.exist(i) ? ($App.activeTab(i), "welcome" != i && $(".loadingTip").remove()) : this.channelOptions[e] && this.channelOptions[e].defaultTab ? $App.show(this.channelOptions[e].defaultTab) : $App.showMailbox(1)) : (this.showLoading(i), "mail" == i ? $App.showMailbox(1) : $App.show(i))
+        if (a[e] && a[e].current) {
+            i = a[e].current;
+            if (this.tab.exist(i)) {
+                $App.activeTab(i);
+                if("welcome" != i){ 
+                    $(".loadingTip").remove();
+                }
+            } else {
+                if (this.channelOptions[e] && this.channelOptions[e].defaultTab) {
+                    $App.show(this.channelOptions[e].defaultTab)
+                } else {
+                    $App.showMailbox(1);
+                }
+            }
+        } else {
+            this.showLoading(i)
+            if ("mail" == i) {
+                $App.showMailbox(1)
+            } else {
+                $App.show(i);
+            }
+        }
     },
     showLoading: function (e) {
         var t = {
@@ -5092,14 +5253,19 @@ TabPageView = Backbone.View.extend({
             diskDev: { icon: "i-pre-loading i-loading-mail", text: "<h6>发往139邮箱的邮件，可以在发送成功后撤回邮件</h6>" },
             mailbox_1: { icon: "i-pre-loading i-loading-link", text: "<h6>重要信息@TA,快速定位与自己有关的内容</h6>" },
             mail: { icon: "i-pre-loading i-loading-readed", text: "<h6>自定义重要邮件类型，首页处理更快捷</h6>" }
-        }, i = t[e];
+        },
+        i = t[e];
         if (i) {
-            var a = ['<div id="loadingTip' + e + '" class="tipsBox loadingTip" style="z-index:400;background:#FFF">', '<div class="tipsBox-container">', '<div class="tipsBox-aside fl"><i class="' + i.icon + '"></i></div>', '<div class="tipsBox-main fl" style="width: 209px;">', i.text, '<div class="mtop_5">', '<img class="mright_5" src="../images/global/load.gif">', "<span>正在加载页面……</span>", "</div>", "</div>", "</div>", "</div>"].join("");
-            $(".loadingTip").remove(), $("body").append(a);
+            var a = ['<div id="loadingTip' + e + '" class="tipsBox loadingTip" style="z-index:400;background:#FFF">',
+                '<div class="tipsBox-container">', '<div class="tipsBox-aside fl"><i class="' + i.icon + '"></i></div>',
+                '<div class="tipsBox-main fl" style="width: 209px;">', i.text, '<div class="mtop_5">', '<img class="mright_5" src="../images/global/load.gif">',
+                "<span>正在加载页面……</span>", "</div>", "</div>", "</div>", "</div>"].join("");
+            $(".loadingTip").remove();
+            $("body").append(a);
             var s = $("#loadingTip" + e);
             setTimeout(function () {
                 s.remove()
-            }, 4e3)
+            }, 4e3);
         }
     },
     addFlash2AnimalSkin: function (e) {
@@ -5176,14 +5342,29 @@ TabPageView = Backbone.View.extend({
         }
     },
     hideOverTab: function () {
-        var e = 30, t = $D.getWinWidth() - e - 124, i = this.getVisibleTab(), a = Math.ceil(t / 83);
-        if (83 * (i.length - 1) > t && ($("#tabsMenuIco").show(), a < i.length)) for (var s = a; s < i.length; s++) $(i[s]).hide()
+        var e = 30,
+            t = $D.getWinWidth() - e - 124,
+            i = this.getVisibleTab(),
+            a = Math.ceil(t / 83);
+        if (83 * (i.length - 1) > t) {
+            $("#tabsMenuIco").show();
+            if (a < i.length) {
+                for (var s = a; s < i.length; s++) {
+                    $(i[s]).hide();
+                }
+            }
+        }
     },
     maxTabHandler: function () {
-        var e, t, i = this.model.get("maxTabsNum") || 23;
+        var e, t,
+            i = this.model.get("maxTabsNum") || 23;
         this.tabContainer = this.tabContainer || $("#divTab ul");
         var a = this.tabContainer.find("li").not("#tabsMenuIco").not("[tabid=welcome]");
-        a.length >= i && (e = this.tabContainer[0].lastChild.previousSibling, t = e.getAttribute("tabid"), t && $App.closeTab(t))
+        if (a.length >= i) {
+            e = this.tabContainer[0].lastChild.previousSibling;
+            t = e.getAttribute("tabid");
+            t && $App.closeTab(t);
+        }
     },
     createTab: function (e, t, i) {
         var a = this;
@@ -5246,14 +5427,19 @@ TabPageView = Backbone.View.extend({
         return this.model.set("currentModule", e), !0
     },
     onTabClose: function (e) {
-        var t = this, i = { cancel: !1, name: e };
+        var t = this,
+            i = { cancel: !1, name: e };
         try {
             $App.trigger("closeTab", i)
         } catch (a) {
         }
-        return this.christmasMan(), setTimeout(function () {
-            t.showAllTab(), t.tab.size(), t.hideOverTab()
-        }, 200), i.cancel ? !1 : (this.onCloseTab(e), !0)
+        this.christmasMan();
+        setTimeout(function () {
+            t.showAllTab();
+            t.tab.size();
+            t.hideOverTab();
+        }, 200);
+        return  i.cancel ? !1 : (this.onCloseTab(e), !0)
     }
 }),
 function () {
@@ -6016,18 +6202,30 @@ function () {
                 helloSendSuccessfulPage: { url: "/m2015/html/hello/helloSendSuccessful.html", site: "", title: "发送成功" },
                 clearFileTool: { url: "/m2015/html/clearFile/clearFileIndex.html", site: "", title: "文件整理工具" },
                 nothing: {}
-            }, domainList.global.billLife || (domainList.global.billLife = "http://bill.mail.10086.cn"), this.addSubscribeLinks(), this.fixlinks())
-        }, modules: [], defaults: { currentLink: null, container: null }, getLinkByKey: function (e) {
+            },
+            domainList.global.billLife || (domainList.global.billLife = "http://bill.mail.10086.cn"),
+            this.addSubscribeLinks(),
+            this.fixlinks())
+        },
+        modules: [],
+        defaults: { currentLink: null, container: null },
+        getLinkByKey: function (e) {
             var t = window.LinkConfig[e];
-            return t && t.url && (t.url = t.url.replace("http:", window.location.protocol)), t
-        }, getLink: function (e) {
+            if (t && t.url) {
+                t.url = t.url.replace("http:", window.location.protocol);
+            }
+            return t;
+        },
+        getLink: function (e) {
             var t = e.get("currentModule"), i = t, a = e.getModule(t);
             a.orignName && (i = a.orignName);
             var s = this.getLinkByKey(i);
             return a.view && a.view.inputData && a.view.inputData.categroyId && (s.categroyId = a.view.inputData.categroyId), s
-        }, addLink: function (e, t) {
+        },
+        addLink: function (e, t) {
             window.LinkConfig[e] = t
-        }, addSubscribeLinks: function () {
+        },
+        addSubscribeLinks: function () {
             var e = top.getProtocol() + top.location.host;
             getDomain("homemail");
             this.addLink("goodMag", {
@@ -6077,7 +6275,8 @@ function () {
                 group: "subscribe",
                 title: "云邮局"
             })
-        }, addAddrLinks: function () {
+        },
+        addAddrLinks: function () {
             this.addLink("addrvipgroup", {
                 group: "addr",
                 tab: "addr",
@@ -6233,7 +6432,8 @@ function () {
                 url: "addr_v3/addr_index.html?redirect=addr_team_notify",
                 site: ""
             })
-        }, fixlinks: function () {
+        },
+        fixlinks: function () {
             if (top.SiteConfig.calendarRemind) if (top.SiteConfig.isLoadingCalendarRemind) this.addLink("calendar", {
                 url: "calendar_reminder/loading.html",
                 homeUrl: "month.html",
@@ -6342,10 +6542,14 @@ function () {
                 this.addAddrLinks()
             }
         }
-    }, {
+    },
+    {
         getLinkByKey: function (e) {
             var t = window.LinkConfig[e];
-            return t && t.url && (t.url = t.url.replace("http:", window.location.protocol)), t
+            if (t && t.url) {
+                t.url = t.url.replace("http:", window.location.protocol);
+            }
+            return t;
         }
     });
     window.FrameModel = e
@@ -8623,7 +8827,9 @@ function (jQuery, Backbone, _, M139) {
                     i.model.set("isContactsMail", !1);
                     i.model.set("IamFromLaiwang", !1);
                     setTimeout(function () {
-                        "left" == $App.getLayout() && i.model.set("isReadFirst", !0)
+                        if ("left" == $App.getLayout()) {
+                            i.model.set("isReadFirst", !0);
+                        }
                     }, 100);
                     this.trigger("showMailbox", { fid: e, view: i });
                     if (1 == e) {
@@ -9169,30 +9375,72 @@ function (jQuery, Backbone, _, M139) {
             M139.RichMail.API.call(t, e)
         },
         show: function (e, t, i) {
-            var i = i || {}, t = t || {}, a = FrameModel.getLinkByKey(e), s = null, o = null;
+            var i = i || {},
+                 t = t || {},
+                 a = FrameModel.getLinkByKey(e),
+                 s = null,
+                 o = null;
             if ("compose" == e) {
-                var n = (new Date).getTime(), r = M139.Core.getCGUID(), l = ["writemail", r, "", ""];
-                top.window.sendUData("webp_writemail_click", l), t.startTime = n, t.cguid = r
+                var n = (new Date).getTime(),
+                r = M139.Core.getCGUID(),
+                l = ["writemail", r, "", ""];
+                top.window.sendUData("webp_writemail_click", l),
+                t.startTime = n,
+                t.cguid = r
             }
-            if ("sendToPhone" == e && (void 0 != window.$sendToPhoneApp ? $App.trigger("sendToPhone") : M139.core.utilCreateScriptTag({ src: top.getRootPath() + "/js/packs/sendToPhone.html.pack.js" }, function () {
-                $App.trigger("sendToPhone")
-            })), "uploadTaskList" == e && (void 0 != !window.$uploadTaskList ? M139.core.utilCreateScriptTag({ src: top.getRootPath() + "/js/packs/uploadTaskList.html.pack.js" }, function () {
-                i.fn && i.fn($uploadTaskList)
-            }) : i.fn && i.fn($uploadTaskList)), "password" == e && $App.getView("top").changepassword(), a) if ("_blank" == a.target) window.open(a.url); else if (o = new FrameView({
+            if ("sendToPhone" == e) {
+                if (void 0 != window.$sendToPhoneApp) {
+                    $App.trigger("sendToPhone");
+                } else {
+                    M139.core.utilCreateScriptTag({
+                        src: top.getRootPath() + "/js/packs/sendToPhone.html.pack.js"
+                    },
+                    function () {
+                        $App.trigger("sendToPhone")
+                    });
+                }
+            };
+            if ("uploadTaskList" == e) {
+                if (void 0 != !window.$uploadTaskList) {
+                    M139.core.utilCreateScriptTag({
+                        src: top.getRootPath() + "/js/packs/uploadTaskList.html.pack.js"
+                    }, function () {
+                        i.fn && i.fn($uploadTaskList)
+                    })
+                } else {
+                    i.fn && i.fn($uploadTaskList);
+                }
+            }
+            "password" == e && $App.getView("top").changepassword();
+            if (a) {
+                o = new FrameView({
                     parent: $App.getView("tabpage"),
                     param: t,
                     inputData: i.inputData
-            }), s = {
-                name: e,
-                view: o,
-                title: a.title,
-                group: a.group,
-                channel: a.channel,
-                mutiple: a.mutiple,
-                data: i
-            }, i && i.title && (s.title = i.title), "compose" == e && (s.type = t.type), this.showPage(s), "welcome" == e || window.isHideAnimalFlash) $("#animalFlash").addClass("hide"); else {
-                var c = $Cookie.get("SkinPath2");
-                $("#animalFlash").hasClass("hide") && this.addFlash2AnimalSkin(c)
+                });
+                s = {
+                    name: e,
+                    view: o,
+                    title: a.title,
+                    group: a.group,
+                    channel: a.channel,
+                    mutiple: a.mutiple,
+                    data: i
+                };
+                i && i.title && (s.title = i.title);
+                "compose" == e && (s.type = t.type);
+                this.showPage(s);
+                if ("_blank" == a.target) {
+                    window.open(a.url);
+                }
+                else if ("welcome" == e || window.isHideAnimalFlash) {
+                    $("#animalFlash").addClass("hide");
+                }
+                else {
+                    var c = $Cookie.get("SkinPath2");
+                    $("#animalFlash").hasClass("hide") && this.addFlash2AnimalSkin(c);
+
+                }
             }
         },
         loadSyncguide: function () {
@@ -10314,7 +10562,40 @@ M139.namespace("M2012.Folder.Model", {
             })
         },
         setFoldersData: function (e, t) {
-            this.set("unreadMessageCount", e.responseData.unreadMessageCount), this.set("unreadStarCount", e.responseData.unreadStarCount), this.set("totalStarCount", e.responseData.totalStarCount), this.set("todoTaskCount", e.responseData.todoTaskCount || 0), this.set("totalTaskCount", e.responseData.totalTaskCount || 0), this.get("isFirstLoad") ? (this.set("billNew1", e.responseData.billNew1), this.set("billNew2", e.responseData.billNew2), this.set("billNew3", e.responseData.billNew3), this.set("billNew4", e.responseData.billNew4), this.set("billNew5", e.responseData.billNew5), this.set("billNew6", e.responseData.billNew6), this.set("billNew7", e.responseData.billNew7), this.set("billNew8", e.responseData.billNew8), this.set("totalSubscriptionCount", e.responseData.totalSubscriptionCount), this.set("newSubscriptionCount", e.responseData.newSubscriptionCount)) : (this.set("billNew1", t.billNew1), this.set("billNew2", t.billNew2), this.set("billNew3", t.billNew3), this.set("billNew4", t.billNew4), this.set("billNew5", t.billNew5), this.set("billNew6", t.billNew6), this.set("billNew7", t.billNew7), this.set("billNew8", t.billNew8), this.set("totalSubscriptionCount", e.responseData.totalSubscriptionCount), this.set("newSubscriptionCount", e.responseData.newSubscriptionCount)), this.set("unreadrubbishCount", e.responseData.unreadrubbishCount), this.set("totalBillCount", e.responseData.totalBillCount), this.set("newBillCount", e.responseData.newBillCount), this.set("passFlag", e.responseData.passFlag || 0), this.allFolders = e.responseData["var"], this._resetFolders(this.allFolders)
+            this.set("unreadMessageCount", e.responseData.unreadMessageCount),
+            this.set("unreadStarCount", e.responseData.unreadStarCount),
+            this.set("totalStarCount", e.responseData.totalStarCount),
+            this.set("todoTaskCount", e.responseData.todoTaskCount || 0),
+            this.set("totalTaskCount", e.responseData.totalTaskCount || 0);
+            if (this.get("isFirstLoad")) {
+                this.set("billNew1", e.responseData.billNew1);
+                this.set("billNew2", e.responseData.billNew2);
+                this.set("billNew3", e.responseData.billNew3);
+                this.set("billNew4", e.responseData.billNew4);
+                this.set("billNew5", e.responseData.billNew5);
+                this.set("billNew6", e.responseData.billNew6);
+                this.set("billNew7", e.responseData.billNew7);
+                this.set("billNew8", e.responseData.billNew8);
+                this.set("totalSubscriptionCount", e.responseData.totalSubscriptionCount);
+                this.set("newSubscriptionCount", e.responseData.newSubscriptionCount);
+            } else {
+                this.set("billNew1", t.billNew1);
+                this.set("billNew2", t.billNew2);
+                this.set("billNew3", t.billNew3);
+                this.set("billNew4", t.billNew4);
+                this.set("billNew5", t.billNew5);
+                this.set("billNew6", t.billNew6);
+                this.set("billNew7", t.billNew7);
+                this.set("billNew8", t.billNew8);
+                this.set("totalSubscriptionCount", e.responseData.totalSubscriptionCount),
+                this.set("newSubscriptionCount", e.responseData.newSubscriptionCount);
+            }
+            this.set("unreadrubbishCount", e.responseData.unreadrubbishCount);
+            this.set("totalBillCount", e.responseData.totalBillCount);
+            this.set("newBillCount", e.responseData.newBillCount);
+            this.set("passFlag", e.responseData.passFlag || 0);
+            this.allFolders = e.responseData["var"];
+            this._resetFolders(this.allFolders);
         },
         _GetDataByType: function (e) {
             switch (e) {
@@ -10376,9 +10657,12 @@ M139.namespace("M2012.Folder.Model", {
             }), t
         },
         getFolderById: function (e) {
-            return e && !_.isNaN(e) || (e = 1), _.find(this.folders, function (t) {
+            if (!(e && !_.isNaN(e))) {
+                e = 1;
+            }
+            return _.find(this.folders, function (t) {
                 return t.fid === e
-            })
+            });
         },
         getFolderByFolderName: function (e) {
             if (!e || !_.isString(e)) throw new Error("folderName：传入string类型的参数");
@@ -10479,7 +10763,12 @@ M139.namespace("M2012.Folder.Model", {
         isLock: function (e) {
             if (!e || _.isNaN(e)) throw new Error("传入number类型的参数");
             var t = this.getFolderById(e);
-            return t ? !!t.folderPassFlag : !1
+            if (t) {
+                return !!t.folderPassFlag;
+            }
+            else {
+                return !1;
+            }
         },
         _getCurrentOpItem: function (e, t) {
             return _.find(this.allFolders, function (i) {
@@ -12133,18 +12422,40 @@ function (e, t, i, a) {
         },
         show: function () {
             var e = this;
-            top.BH("mailnotify_tip_icon_click"), s("#mailnotify").length ? e.element.is(":visible") ? (this.hideElement(), this.menusHide()) : ($App.getView("top") && $App.getView("top").resetTopFixTabsCssAndDropdown(), e.element.show()) : (s("body").append(e.element), $D.dockElement(s("#mailNotifyIcon a")[0], e.element[0], {
-                direction: "auto",
-                dx: -24,
-                dy: 12
-            })), s("#undisturbtip").remove(), $D.bindAutoHide({
+            top.BH("mailnotify_tip_icon_click");
+            if (s("#mailnotify").length) {
+                if (e.element.is(":visible")) {
+                    this.hideElement();
+                    this.menusHide();
+                } else {
+                    $App.getView("top") && $App.getView("top").resetTopFixTabsCssAndDropdown();
+                    e.element.show();
+                }
+            } else {
+                s("body").append(e.element);
+                $D.dockElement(
+                    s("#mailNotifyIcon a")[0],
+                    e.element[0], {
+                        direction: "auto",
+                        dx: -24,
+                        dy: 12
+                    });
+            }
+
+
+            s("#undisturbtip").remove();
+            $D.bindAutoHide({
                 action: "click",
                 element: e.element[0],
                 stopEvent: !0,
                 callback: function () {
                     e.hideElement(), e.element.attr("bindautohide", "0")
                 }
-            }), e.switchEnable(), e.menusHide(), e.stopPropagation(), this.bindMouseEvent()
+            });
+            e.switchEnable();
+            e.menusHide();
+            e.stopPropagation();
+            this.bindMouseEvent();
         },
         bindMouseEvent: function () {
             var e = this;
@@ -12374,7 +12685,7 @@ function (e, t, i, a) {
             })
         }
     })), M2015.Mailnotify.View.create = function (e) {
-        var t = new M2015.Mailnotify.Model(e), 
+        var t = new M2015.Mailnotify.Model(e),
             i = new M2015.Mailnotify.View({ model: t, type: e.type });
         return $App.registerConfig("mailnotifyTip", i), i
     }, M2015.Mailnotify.View.setData = function (e) {
@@ -14509,8 +14820,8 @@ M139.namespace("M2012.Mailbox.View", {
                 i = (t.model.get("fid"),
                 t.model.get("billtype"), ""),
                 a = {
-                0: "<div class='mailing-lists-content'><div id='div_maillist' class='MaillistDiv p_relative mailing-lists-inner' style='height:600px;overflow:hidden; overflow-y:auto;'></div></div>",
-                1: "<div id='div_maillist' class='MaillistDiv p_relative bgPadding' ></div>"
+                    0: "<div class='mailing-lists-content'><div id='div_maillist' class='MaillistDiv p_relative mailing-lists-inner' style='height:600px;overflow:hidden; overflow-y:auto;'></div></div>",
+                    1: "<div id='div_maillist' class='MaillistDiv p_relative bgPadding' ></div>"
                 },
             s = ['<div class="billleft" >', '<div class="billleftDiv"  style="margin:0px;" >', "{0}", "</div>", "</div>"].join("");
             return i = t.model.isBillMode() && "left" != $App.getLayout() && 0 == t.model.get("billTab") ? $T.Utils.format(s, [a[e]]) : a[e]
@@ -27446,23 +27757,37 @@ window.settingsIndexView = function () {
             this.$el && this.$el.hide()
         }
     };
-    return $(function () {
+    $(function () {
         $App.on({
             showPage: function (t) {
                 var i = FrameModel.getLinkByKey(t.name);
-                i && "setting" == i.group && e && e.switchItem(t.name)
+                if (i && "setting" == i.group && e) {
+                    e.switchItem(t.name);
+                }
             }, showTab: function (t) {
-                t && "setting" === t.group || e && e.hide()
+                if (!(t && "setting" === t.group)) {
+                    if (e) {
+                        e.hide();
+                    }
+                }
             }
         })
-    }), {
+    });
+    return {
         getSettingsNav: function () {
-            0 === $("#setNavcontainer").length && (e.render(), setTimeout(function () {
-                $(window).resize(function () {
-                    e.$el.css({ height: top.$D.getWinHeight() - e.$el.offset().top }), $("#skinBgSub").css({ top: e.$el.offset().top > 75 ? e.$el.offset().top : 105 })
-                }).resize()
-            }, 200)), e && e.show(), top.BH({ key: "setting_load" })
-        }, getNav: function () {
+            if (0 === $("#setNavcontainer").length) {
+                e.render();
+                setTimeout(function () {
+                    $(window).resize(function () {
+                        e.$el.css({ height: top.$D.getWinHeight() - e.$el.offset().top });
+                        $("#skinBgSub").css({ top: e.$el.offset().top > 75 ? e.$el.offset().top : 105 });
+                    }).resize();
+                }, 200);
+            }
+            e && e.show();
+            top.BH({ key: "setting_load" });
+        },
+        getNav: function () {
             return e
         }
     }
@@ -27940,22 +28265,41 @@ function (e, t, i) {
         },
         show: function (e, t) {
             var o = this;
-            if (this.userOptons = e, (e.email || e.serialId) && e.dockElement && !i.Dom.isRemove(a(e.dockElement)[0])) {
+            this.userOptons = e;
+            if ((e.email || e.serialId) && e.dockElement && !i.Dom.isRemove(a(e.dockElement)[0])) {
                 var n = a(e.dockElement);
-                if (n.attr("bindcard") || n.attr("bindcard", "1").mouseleave(function () {
-                    o.delayHide()
-                }), t) return clearTimeout(this.showTimer), void (this.showTimer = setTimeout(function () {
-                    n.is(":visible") && o.show(e)
-                }, 500));
+                n.attr("bindcard") || n.attr("bindcard", "1").mouseleave(
+                    function () {
+                        o.delayHide();
+                    });
+                if (t) {
+                    clearTimeout(this.showTimer);
+                    return void (this.showTimer = setTimeout(
+                        function () {
+                            n.is(":visible") && o.show(e);
+                        }, 500));
+                }
                 this.setAddrInfo(e);
                 var r = i.Dom.dockElement(e.dockElement, this.el, { margin: e.margin || 0, dx: e.dx, dy: e.dy });
-                "up" == r ? this.$el.find("div.tipsTop").addClass("tipsBottom").removeClass("tipsTop") : this.$el.find("div.tipsBottom").addClass("tipsTop").removeClass("tipsBottom");
-                var l = e.doc || document, c = a(e.dockElement).offset().left + this.$el.width() - a(l.body).width();
+                if ("up" == r) {
+                    this.$el.find("div.tipsTop").addClass("tipsBottom").removeClass("tipsTop");
+                } else {
+                    this.$el.find("div.tipsBottom").addClass("tipsTop").removeClass("tipsBottom");
+                }
+                var l = e.doc || document,
+                    c = a(e.dockElement).offset().left + this.$el.width() - a(l.body).width();
                 if (c > 0) {
                     var d = a(document.body).width() - a(l.body).width();
-                    this.$el.css("left", a(e.dockElement).offset().left - c + d), this.$el.find("div.tipsTop,div.tipsBottom").css("left", 15 + c)
-                } else this.$el.find("div.tipsTop,div.tipsBottom").css("left", 15);
-                return this.cancelHide(), this.renderFaceImage(), this.requestFaceImage(), top.BH("contactscard_show"), s.prototype.show.apply(this, arguments)
+                    this.$el.css("left", a(e.dockElement).offset().left - c + d);
+                    this.$el.find("div.tipsTop,div.tipsBottom").css("left", 15 + c);
+                } else {
+                    this.$el.find("div.tipsTop,div.tipsBottom").css("left", 15);
+                }
+                this.cancelHide();
+                this.renderFaceImage();
+                this.requestFaceImage();
+                top.BH("contactscard_show");
+                return s.prototype.show.apply(this, arguments);
             }
         },
         requestFaceImage: function () {
@@ -29863,8 +30207,13 @@ M139.core.namespace("M139.UI.BottomTip", Backbone.View.extend({
     },
     show: function () {
         function e() {
-            if (i.isClosed) i.contentElement.style.display = "none", window.clearInterval(p); else {
-                i.contentElement.style.display = "block", c = i.contentElement.offsetHeight, c + 1 >= d ? i.contentElement.style.bottom = (-c + d).toString() + "px" : (window.clearInterval(p), d = 0, i.isOver || (i.timerClose = setTimeout(i.close, i.timeOut)));
+            if (i.isClosed) {
+                i.contentElement.style.display = "none";
+                window.clearInterval(p);
+            } else {
+                i.contentElement.style.display = "block",
+                c = i.contentElement.offsetHeight,
+                c + 1 >= d ? i.contentElement.style.bottom = (-c + d).toString() + "px" : (window.clearInterval(p), d = 0, i.isOver || (i.timerClose = setTimeout(i.close, i.timeOut)));
                 var e = 30 * (c - d) / c;
                 d += 2 > e ? 2 : e
             }
