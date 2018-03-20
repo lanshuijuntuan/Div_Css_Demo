@@ -1921,13 +1921,20 @@ function (e, t) {
         },
         registerConfig: function (e, t) {
             var r = this;
-            t instanceof Array ? this._configs[e] = t : (n.each(t, function (t, n) {
-                r.setConfig(e, t, n)
-            }), this.trigger("register", {configName: e, configValue: t}))
+            if (t instanceof Array) {
+                this._configs[e] = t;
+            } else {
+                n.each(t, function (t, n) {
+                    r.setConfig(e, t, n)
+                });
+                this.trigger("register", { configName: e, configValue: t });
+            }
         },
         setConfig: function (e, t, n) {
             var r = this._configs[e];
-            r || (r = this._configs[e] = {}), r[t] = n, this.trigger("update", {configName: e, key: t, value: n})
+            r || (r = this._configs[e] = {});
+            r[t] = n;
+            this.trigger("update", { configName: e, key: t, value: n });
         },
         getConfig: function (e, t) {
         },
@@ -2562,7 +2569,11 @@ function (e, t, n) {
             return this.config.getConfig("Views", e)
         },
         registerModel: function (e, t) {
-            "object" == typeof arguments[0] ? this.config.registerConfig("Models", arguments[0]) : this.config.setConfig("Models", e, t)
+            if ("object" == typeof arguments[0]) {
+                this.config.registerConfig("Models", arguments[0]);
+            } else {
+                this.config.setConfig("Models", e, t);
+            }
         },
         getModel: function (e) {
             return this.config.getConfig("Models", e)

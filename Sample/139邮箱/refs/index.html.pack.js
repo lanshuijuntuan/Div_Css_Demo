@@ -760,24 +760,53 @@ function _letterInlineScript(e, t) {
         })
     }(M139)
 }
+
+
+//M2012.MatrixVM
 !function (e, t, i) {
-    var a, s = e;
+    var a,s = e;
     i.namespace("M2012.MatrixVM", Backbone.Model.extend({
         initialize: function (e) {
-            e = e || {}, a = e.window || window
-        }, start: function () {
-            this.createRequestByScript(), this.createFloatingFrame(), this.createPathConfig(), this.createUtils(), this.createLoadScript(), this.createUserData(), this.createGlobalVariable(), this.createLinksShow(), this.createModuleManager(), this.createMailTool(), this.createWaitPanel(), this.createValidate()
-        }, createFloatingFrame: function () {
-            return a.FF = window.FloatingFrame = o, o
-        }, createPathConfig: function () {
-            a.rmResourcePath = (top.getDomain("resource") || "") + "/rm/richmail", a.resourcePath = a.rmResourcePath.replace("richmail", "coremail"), a.SiteConfig.ucDomain = getDomain("webmail"), a.ucDomain = getDomain("webmail"), a.SiteConfig.smsMiddleware = getDomain("rebuildDomain") + "/sms/", a.SiteConfig.mmsMiddleware = getDomain("rebuildDomain") + "/mms/", a.SiteConfig.largeAttachRebuildUrl = getDomain("rebuildDomain") + "/disk/", a.SiteConfig.disk = getDomain("rebuildDomain") + "/disk/netdisk"
-        }, createUtils: function () {
+            e = e || {},
+            a = e.window || window
+        },
+        start: function () {
+            this.createRequestByScript();
+            this.createFloatingFrame();
+            this.createPathConfig();
+            this.createUtils();
+            this.createLoadScript();
+            this.createUserData();
+            this.createGlobalVariable();
+            this.createLinksShow();
+            this.createModuleManager();
+            this.createMailTool();
+            this.createWaitPanel();
+            this.createValidate();
+        },
+        createFloatingFrame: function () {
+            a.FF = window.FloatingFrame = o;
+            return o;
+        },
+        createPathConfig: function () {
+            a.rmResourcePath = (top.getDomain("resource") || "") + "/rm/richmail";
+            a.resourcePath = a.rmResourcePath.replace("richmail", "coremail");
+            a.SiteConfig.ucDomain = getDomain("webmail");
+            a.ucDomain = getDomain("webmail");
+            a.SiteConfig.smsMiddleware = getDomain("rebuildDomain") + "/sms/";
+            a.SiteConfig.mmsMiddleware = getDomain("rebuildDomain") + "/mms/";
+            a.SiteConfig.largeAttachRebuildUrl = getDomain("rebuildDomain") + "/disk/";
+            a.SiteConfig.disk = getDomain("rebuildDomain") + "/disk/netdisk";
+        },
+        createUtils: function () {
             a.Utils = {
                 PageisTimeOut: function () {
                     return !1
-                }, waitForReady: function (e, t) {
+                },
+                waitForReady: function (e, t) {
                     return i.Timing.waitForReady(e, t)
-                }, loadSkinCss: function (e, t, i, a) {
+                },
+                loadSkinCss: function (e, t, i, a) {
                     var s = "", o = "css", n = "/";
                     e = top.$User.getSkinNameMatrix && top.$User.getSkinNameMatrix() || "skin_shibo", /new_/.test(e) && (o = "theme" + n + e.match(/skin_(\w+)$/)[1], e = e.replace("new_", "")), i && (e = e.replace("skin", i + "_skin")), t || (t = document), top.SiteConfig && top.SiteConfig.skinCSSCacheVersion && (s = "?v=" + top.SiteConfig.skinCSSCacheVersion);
                     var r = top.rmResourcePath + n + o + n + e + ".css" + s;
@@ -786,9 +815,11 @@ function _letterInlineScript(e, t) {
                         var d = l[c];
                         if (!d.href) return void (d.href = r + s)
                     }
-                }, queryString: function (e, t) {
+                },
+                queryString: function (e, t) {
                     return $Url.queryString(e, t)
-                }, queryStringNon: function (e, t) {
+                },
+                queryStringNon: function (e, t) {
                     for (var t = t || location.search, t = t.split(/&|\?/), i = null, a = 0; a < t.length; a++) {
                         var s = t[a].split("=");
                         if (s[0] == e) {
@@ -797,9 +828,11 @@ function _letterInlineScript(e, t) {
                         }
                     }
                     return i
-                }, openControlDownload: function (e) {
+                },
+                openControlDownload: function (e) {
                     top.$App.show("smallTool")
-                }, UI: {
+                },
+                UI: {
                     selectSender: function (e, t, i) {
                         function a(e) {
                             e = e.trim();
@@ -829,7 +862,8 @@ function _letterInlineScript(e, t) {
                             m(e)
                         }
                     }
-                }, parseSingleEmail: function (e) {
+                },
+                parseSingleEmail: function (e) {
                     e = e.trim();
                     var t = {}, i = /^([\s\S]*?)<([^>]+)>$/;
                     if (-1 == e.indexOf("<")) t.addr = e, t.name = e.split("@")[0], t.all = e; else {
@@ -837,7 +871,8 @@ function _letterInlineScript(e, t) {
                         a ? (t.name = a[1].trim().replace(/^"|"$/g, ""), t.addr = a[2], t.name = t.name.replace(/\\["']/g, "").replace(/^["']+|["']+$/g, ""), t.all = '"' + t.name.replace(/"/g, "") + '"<' + t.addr + ">") : (t.addr = e, t.name = e, t.all = e)
                     }
                     return t.addr && (t.addr = t.addr.encode()), t
-                }, parseEmail: function (e) {
+                },
+                parseEmail: function (e) {
                     var t = /(?:[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}|(?:"[^"]*")?\s?<[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}>)\s*(?=;|,|，|；|$)/gi, i = /^"([^"]+)"|^([^<]+)</, a = /<?([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})>?/i, s = e.match(t), o = [];
                     if (s) for (var n = 0, r = s.length; r > n; n++) {
                         var l = {};
@@ -847,9 +882,11 @@ function _letterInlineScript(e, t) {
                     }
                     return o
                 }
-            }, a.getXmlDoc = function (e) {
+            },
+            a.getXmlDoc = function (e) {
                 return i.Text.Xml.parseXML(e)
-            }, a.xml2json = function (e, t) {
+            },
+            a.xml2json = function (e, t) {
                 function i(e, i) {
                     var a = {}, s = i.arrayElement;
                     if (s) var o = a[s] = [];
@@ -883,14 +920,25 @@ function _letterInlineScript(e, t) {
                 }
                 var r = t[e.tagName];
                 return r ? "simple" == r.type ? a(e) : "rich" == r.type ? i(e, r) : "array" == r.type ? s(e) : null : document.all ? e.text : e.textContent
-            }, a.json2xml = function (e) {
+            },
+            a.json2xml = function (e) {
                 var t = [];
-                for (var i in e) t.push("<"), t.push(i), t.push(">"), t.push(encodeXML(e[i])), t.push("</"), t.push(i), t.push(">");
+                for (var i in e) {
+                    t.push("<"),
+                    t.push(i),
+                    t.push(">"),
+                    t.push(encodeXML(e[i])),
+                    t.push("</"),
+                    t.push(i),
+                    t.push(">");
+                }
                 return t.join("")
-            }, String.format || (String.format = function (e, t) {
+            },
+            String.format || (String.format = function (e, t) {
                 return i.Text.Utils.format(e, t)
             })
-        }, createLoadScript: function () {
+        },
+        createLoadScript: function () {
             a.loadScriptM2011 = function (e, t, i, a) {
                 function s() {
                     return rmResourcePath.match(/^(https?:\/\/)?([^\/]+)/i)[0]
@@ -917,9 +965,11 @@ function _letterInlineScript(e, t) {
                     o = s() + l + e
                 }
                 return o.indexOf("utils_controls.js") > -1 ? top.loadScript(s() + top.getRootPath() + "/js/packs/m2011.utilscontrols.pack.js", t, i) : o.indexOf("AddressBook.js") > -1 ? top.loadScript(s() + top.getRootPath() + "/js/matrixvm/page/m2011.page.AddressBook.js", t) : o.indexOf("RichInputBox.js") > -1 ? top.loadScript(s() + top.getRootPath() + "/js/matrixvm/page/m2011.page.RichInputBox.js", t) : void (t || document).write('<script charset="' + (i || "gb2312") + '" type="text/javascript" src="' + o + '"></script>')
-            }, a.loadScripts = function (e, t) {
+            },
+            a.loadScripts = function (e, t) {
                 for (var i = 0; i < e.length; i++) a.loadScriptM2011(e[i], t)
-            }, a.loadRes = function (e) {
+            },
+            a.loadRes = function (e) {
                 function t() {
                     return rmResourcePath.match(/^(https?:\/\/)?([^\/]+)/i)[0]
                 }
@@ -939,23 +989,36 @@ function _letterInlineScript(e, t) {
                     e.RES_FILES = null
                 }
             }
-        }, createGlobalVariable: function () {
+        },
+        createGlobalVariable: function () {
             var e = this;
-            a.coremailDomain = $App.getMailDomain(), a.addrDomain = "/addrsvr", a.mailDomain = $App.getMailDomain(), a.isRichmail = !0, a.stylePath = "/m", a.wmsvrPath = "/s", a.wmsvrPath2 = window.location.protocol + "//" + location.host + "/RmWeb", a.maxTabCount = 3, a.Main = {
+            a.coremailDomain = $App.getMailDomain(),
+            a.addrDomain = "/addrsvr",
+            a.mailDomain = $App.getMailDomain(),
+            a.isRichmail = !0,
+            a.stylePath = "/m",
+            a.wmsvrPath = "/s",
+            a.wmsvrPath2 = window.location.protocol + "//" + location.host + "/RmWeb",
+            a.maxTabCount = 3,
+            a.Main = {
                 closeCurrentModule: function () {
                     $App.closeTab()
                 }
-            }, a.Main.setReplyMMSData = function (e) {
+            },
+            a.Main.setReplyMMSData = function (e) {
                 e && (top.replyMMSData = {
                     content: "string" == typeof e.content && e.content || "",
                     receivers: t.isArray(e.receivers) && e.receivers || [],
                     subject: "string" == typeof e.subject && e.subject || ""
                 })
-            }, a.behaviorClick = function (e, t) {
+            },
+            a.behaviorClick = function (e, t) {
                 top.M139.Logger.behaviorClick(e, t)
-            }, a.addBehavior = function (e, t) {
+            },
+            a.addBehavior = function (e, t) {
                 top.M139.Logger.logBehavior({ key: e, thingId: t })
-            }, a.addBehaviorExt = function (e) {
+            },
+            a.addBehaviorExt = function (e) {
                 e && e.actionId && top.M139.Logger.logBehavior({
                     thingId: e.thingId || 0,
                     actionId: e.actionId,
@@ -963,23 +1026,30 @@ function _letterInlineScript(e, t) {
                     actionType: e.actionType,
                     pageId: 24
                 })
-            }, a.ScriptErrorLog = function () {
-            }, a.MailTool = {
+            },
+            a.ScriptErrorLog = function () {
+            },
+            a.MailTool = {
                 getAccount: function (e) {
                     return $Email.getAccount(e)
-                }, getAddr: function (e) {
+                },
+                getAddr: function (e) {
                     return $Email.getEmail(e)
                 }
-            }, a.encodeXML = function (e) {
+            },
+            a.encodeXML = function (e) {
                 return $Xml.encode(e)
-            }, a.FilePreview = {
+            },
+            a.FilePreview = {
                 isRelease: function () {
                     return !0
-                }, checkFile: function (e, t) {
+                },
+                checkFile: function (e, t) {
                     if (t && t > 20971520) return -1;
                     var i = /\.(?:doc|docx|xls|xlsx|ppt|pptx|pdf|txt|jpg|jpeg|jpe|jfif|gif|png|bmp|ico|eml|)$/i, a = /\.(?:rar|zip|7z)$/i;
                     return i.test(e) ? 1 : a.test(e) ? 2 : -1
-                }, getUrl: function (e) {
+                },
+                getUrl: function (e) {
                     var t = top.getRootPath() + "/html/onlinepreview/online_preview.html?fi={fileName}&mo={uid}&dl={downloadUrl}&sid={sid}&id={contextId}&rnd={rnd}&src={type}";
                     t += "&skin={skin}", t += "&resourcePath={resourcePath}", t += "&diskservice={diskService}", t += "&filesize={fileSize}", t += "&disk={disk}", t += "&callback={callback}";
                     var i = "";
@@ -999,9 +1069,11 @@ function _letterInlineScript(e, t) {
                         callback: i
                     })
                 }
-            }, a.GetDiskArgs = function () {
+            },
+            a.GetDiskArgs = function () {
                 return top.diskSelectorArgs
-            }, a.OpenDisk = function (e) {
+            },
+            a.OpenDisk = function (e) {
                 e || (e = {}), top.diskSelectorArgs = e;
                 var t = SiteConfig.disk + "/html/selectdisk.html?sid=" + $App.getSid() + "&restype=" + (e.restype ? e.restype : 1);
                 top.FF.open("彩云", t, 484, 405, !0)
@@ -1010,17 +1082,22 @@ function _letterInlineScript(e, t) {
             a.GlobalEvent = {
                 add: function (e, t) {
                     s.on(e, t)
-                }, broadcast: function (e, t) {
+                },
+                broadcast: function (e, t) {
                     s.trigger(e, t)
                 }
-            }, a.ReadMailInfo = {
+            },
+            a.ReadMailInfo = {
                 getDownloadAttachUrl: function (e) {
                     var t = "/view.do?func=attach:download&mid={0}&offset={1}&size={2}&name={3}&encoding={6}&sid={4}&type={5}";
                     return top.wmsvrPath2 + t.format(e.mid, e.fileOffSet, e.fileSize, encodeURIComponent(e.fileName), e.sid, e.type, e.encoding)
                 }
-            }, e.createContacts && e.createContacts(), a.reloadAddr = function () {
+            },
+            e.createContacts && e.createContacts(),
+            a.reloadAddr = function () {
                 $App.trigger("change:contact_maindata")
-            }, a.namedVarToXML = function (e, t, a) {
+            },
+            a.namedVarToXML = function (e, t, a) {
                 function s(e) {
                     return Object.prototype.toString.call(e).replace(/^\[object (\w+)\]$/, "$1")
                 }
@@ -1077,7 +1154,8 @@ function _letterInlineScript(e, t) {
                     return (t.getHours() > 0 || t.getMinutes() > 0 || t.getSeconds() > 0) && (p += " " + t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds()), a + n(o(t, p), e, p)
                 }
                 return top.FloatingFrame.alert(UtilsMessage.UtilsInvalidError.format(Object.inspect(t))), ""
-            }, a.UtilsMessage = {
+            },
+            a.UtilsMessage = {
                 AddcontactEmptyError: "分组名称不能为空。",
                 AddcontactSpecialError: "组名中不能包含特殊字符。",
                 AddcontactSuccess: "添加成功!",
@@ -1108,7 +1186,8 @@ function _letterInlineScript(e, t) {
                 UtilsUpgradeConfirm: "当前的截屏控件需要升级才可继续使用",
                 UtilsUploadConfirm: "上传文件必须安装139邮箱控件,是否安装?",
                 vipNoPermissionNotice: "VIP{0}{2}为{0}元版{1}邮箱专属{2}。<br/>立即升级，重新登录后即可使用。"
-            }, a.frameworkMessage = {
+            },
+            a.frameworkMessage = {
                 AddsendcontactsTeamError: "请输入新分组名称",
                 EditorFaceError: "纯文本模式无法使用表情!",
                 EditorImgError: "纯文本模式无法插入图片!",
@@ -1260,7 +1339,8 @@ function _letterInlineScript(e, t) {
                 warn_contactNamenotfound: "请输入联系人姓名",
                 zw: ""
             }
-        }, createUserData: function () {
+        },
+        createUserData: function () {
             a.UserData = {};
             try {
                 return userdata = s.extend({}, top.$App.getConfig("UserData")), $App.on("userAttrsLoad", function (e) {
@@ -1279,7 +1359,8 @@ function _letterInlineScript(e, t) {
             } catch (e) {
             }
             return top.UserData && (userdata = top.UserData), a.UserData = userdata, a.UserData
-        }, createRequestByScript: function () {
+        },
+        createRequestByScript: function () {
             var e = {
                 requestByScript: function (e, t) {
                     try {
@@ -1291,7 +1372,8 @@ function _letterInlineScript(e, t) {
                 }
             };
             return e
-        }, createLinksShow: function () {
+        },
+        createLinksShow: function () {
             a.LinksConfig = a.LinkConfig, a.Links = {
                 old: {
                     migrate: "migrate",
@@ -1383,7 +1465,8 @@ function _letterInlineScript(e, t) {
                     $App.jumpTo("15", a)
                 }
             }
-        }, createMailTool: function () {
+        },
+        createMailTool: function () {
             $App.on("userAttrsLoad", function () {
                 a.FM = { folderList: $App.getConfig("FolderList") }
             }), a.MB = {
@@ -1475,7 +1558,8 @@ function _letterInlineScript(e, t) {
                     })
                 }
             }
-        }, createModuleManager: function () {
+        },
+        createModuleManager: function () {
             return a.MM = {
                 show: function (e, t) {
                 }, activeModule: function (e) {
@@ -1491,7 +1575,8 @@ function _letterInlineScript(e, t) {
                     "back" == a.exec ? top.MM.goBack() : "closeAll" == a.exec ? top.MM.closeAll() : top.MM.close(e)
                 }
             }, a.MM
-        }, createWaitPanel: function () {
+        },
+        createWaitPanel: function () {
             return a.WaitPannel = {
                 show: function (e, t) {
                     try {
@@ -1516,7 +1601,8 @@ function _letterInlineScript(e, t) {
                     top.WaitPannel && top.WaitPannel.hide()
                 }
             }, a.WaitPannel
-        }, createValidate: function () {
+        },
+        createValidate: function () {
             a.Validate = {
                 config: {
                     mobile: { message: "手机格式不正确，请输入3-20位数字", regex: /^[\(\)\-\d]{3,20}$/ },
@@ -1601,6 +1687,9 @@ function _letterInlineScript(e, t) {
         }
     }
 }(jQuery, _, M139),
+
+
+//M2012.Contacts.Business.Constant
 function (e, t, i, a) {
     i.namespace("M2012.Contacts.Business.Constant", {
         MAX_VIP: 20,
@@ -1615,6 +1704,8 @@ function (e, t, i, a) {
         COLUMN: ["SerialId", "UserType", "SourceType", "AddrFirstName", "AddrSecondName", "AddrNickName", "UserSex", "CountryCode", "ProvCode", "AreaCode", "CityCode", "StreetCode", "ZipCode", "HomeAddress", "MobilePhoneType", "BirDay", "MobilePhone", "BusinessMobile", "BusinessPhone", "FamilyPhone", "BusinessFax", "FamilyFax", "OtherPhone", "OtherMobilePhone", "OtherFax", "FamilyEmail", "BusinessEmail", "OtherEmail", "PersonalWeb", "CompanyWeb", "OtherWeb", "OICQ", "MSN", "OtherIm", "CPCountryCode", "CPProvCode", "CPAreaCode", "CPCityCode", "CPStreetCode", "CPZipCode", "CPAddress", "CPName", "CPDepartName", "Memo", "StartCode", "BloodCode", "StateCode", "ImageUrl", "SchoolName", "BokeUrl", "UserJob", "GroupId", "AddGroupId", "AddGroupName", "AddNewGroup", "OverWrite", "FavoWord"]
     })
 }(jQuery, _, M139, window._top || window.top),
+
+//M2012.Contacts.Business.Msg
 function (e, t, i, a) {
     i.namespace("M2012.Contacts.Business.Msg", {
         CODE: {
@@ -1649,36 +1740,54 @@ function (e, t, i, a) {
         }
     })
 }(jQuery, _, M139, window._top || window.top),
+
+//M2012.MatrixVM扩展
 function (e, t, i) {
-    var a = {}, s = M2012.Contacts.Business.Msg, o = M2012.Contacts.Business.Constant, n = new i.Logger;
+    var a = {},
+        s = M2012.Contacts.Business.Msg,
+        o = M2012.Contacts.Business.Constant,
+        n = new i.Logger;
     a.init = function () {
         n.info("top.Contacts.init", !0)
-    }, a.getMaxContactLimit = function () {
+    },
+    a.getMaxContactLimit = function () {
         return $User.getMaxContactLimit()
-    }, a.getModel = function () {
+    },
+    a.getModel = function () {
         return M2012.Contacts.getModel()
-    }, a.getData = function () {
+    },
+    a.getData = function () {
         var e = a.getModel();
         return e.get("data")
-    }, a.getMsgByCode = function (e) {
+    },
+    a.getMsgByCode = function (e) {
         return e && e.code && (e.msg = e.msg || "", e.msg = s.CODE[e.code] || e.msg), e.ResultMsg = e.msg || "", e.ResultCode = e.code || "", e
-    }, a.runWaiting = function () {
+    },
+    a.runWaiting = function () {
         n.info("top.Contacts.runWaiting", !0)
-    }, a.ready = function () {
+    },
+    a.ready = function () {
         n.info("top.Contacts.ready", !0)
-    }, a.createAddressPage = function () {
+    },
+    a.createAddressPage = function () {
         n.info("top.Contacts.createAddressPage", !0)
-    }, a.ajax = function () {
+    },
+    a.ajax = function () {
         n.info("top.Contacts.ajax", !0)
-    }, a.scriptReady = function () {
+    },
+    a.scriptReady = function () {
         n.info("top.Contacts.scriptReady", !0)
-    }, a.change = function () {
+    },
+    a.change = function () {
         n.info("top.Contacts.change", !0)
-    }, a.onchange = function () {
+    },
+    a.onchange = function () {
         n.info("top.Contacts.onchange", !0)
-    }, a.updateCache = function () {
+    },
+    a.updateCache = function () {
         n.info("top.Contacts.updateCache", !0)
-    }, a.addSinglVipContact = function (e) {
+    },
+    a.addSinglVipContact = function (e) {
         if (!e.serialId) return !1;
         if (a.IsPersonalEmail(e.serialId)) return top.M139.UI.TipMessage.show(s.TIP.ADD_NOT_THIS, o.MSG_CONFIG.WARNING), !1;
         var t = a.getData().vip, i = top.Contacts.getModel().getVIPContacts().length;
@@ -1689,11 +1798,13 @@ function (e, t, i) {
         }, n.fail = function (e) {
             top.M139.UI.TipMessage.hide(), e && "258" == e.code ? top.$Msg.alert(s.TIP.VIP_TO_MAX.format(o.MAX_VIP), { isHtml: !0 }) : top.$Msg.alert(a.getMsgByCode(e), { isHtml: !0 })
         }, top.M139.UI.TipMessage.show(s.TIP.SAVEING), M2012.Contacts.API.addGroupList(n)
-    }, a.delSinglVipContact = function (e) {
+    },
+    a.delSinglVipContact = function (e) {
         top.$Msg.confirm(s.TIP.CANCEL_VIP_CONFIRM, function () {
             a.delSinglVipContact2(e)
         }, { isHtml: !0 })
-    }, a.delSinglVipContact2 = function (e) {
+    },
+    a.delSinglVipContact2 = function (e) {
         if (!e.serialId) return !1;
         if (!a.IsExitVipGroup()) return !1;
         var t = a.getData().vip, i = { data: { groupId: t.groupId, serialId: e.serialId } };
@@ -1701,7 +1812,8 @@ function (e, t, i) {
             top.M139.UI.TipMessage.hide(), top.M139.UI.TipMessage.show(s.TIP.CANCEL_SUCCESS, o.MSG_CONFIG.SUCCESS), e.success && e.success(a.getMsgByCode(t))
         }, i.error = function (e) {
         }, top.M139.UI.TipMessage.show(s.TIP.SAVEING), M2012.Contacts.API.delGroupList(i)
-    }, a.addVIPContact = function (e) {
+    },
+    a.addVIPContact = function (e) {
         var i = a.getModel(), n = a.getData().vip.contacts, r = [];
         t.isArray(n) && (r = n.concat());
         for (var l = 0; l < r.length; l++) {
@@ -1732,7 +1844,8 @@ function (e, t, i) {
         }), d.on("additemmax", function () {
             $Msg.alert(s.TIP.ADD_VIP_MAX.format(o.MAX_VIP), { icon: "warn" }), top.BH("addr_vipGroup_exceed")
         })
-    }, a.submitVipContact = function (e, i, o) {
+    },
+    a.submitVipContact = function (e, i, o) {
         var n = (a.getModel(), a.getData().vip), r = n.groupId;
         if (!(e.length <= 0 && n.contacts.length <= 0)) {
             o && "add" == o.type && (e = t.union(e, n.contacts));
@@ -1750,7 +1863,8 @@ function (e, t, i) {
                 $Msg.alert(a.getMsgByCode(e), { isHtml: !0 })
             }, M2012.Contacts.API.editGroupList(l)
         }
-    }, a.ConvertFrom = function (e) {
+    },
+    a.ConvertFrom = function (e) {
         var t = o.FROM_TYPE, i = 15 & e, a = 240 & e, s = "E", n = i == t.MMS ? "2" : "1";
         switch (a) {
             case t.FAX:
@@ -1763,40 +1877,52 @@ function (e, t, i) {
                 s = "M"
         }
         return { from: i, type: a, key: s, last: n }
-    }, a.isAutoSaveContact = function () {
+    },
+    a.isAutoSaveContact = function () {
         var e = top.$App.getUserCustomInfo(9);
         return !e || "1" === e
-    }, a.getContactsByMobile = function (e) {
+    },
+    a.getContactsByMobile = function (e) {
         var t = a.getModel();
         return t.getContactsByMobile(e)
-    }, a.getSingleContactsByMobile = function (e) {
+    },
+    a.getSingleContactsByMobile = function (e) {
         var t = a.getContactsByMobile(e) || [];
         return t[0]
-    }, a.getNameByAddr = function (e, t) {
+    },
+    a.getNameByAddr = function (e, t) {
         arguments.callee.exists = !1;
         var i = a.getModel(), s = i.getAddrNameByEmail(e);
         return s = top.M139.Text.Html.encode(s), s == top.M139.Text.Email.getAccount(e) ? top.M139.Text.Email.getEmail(e) : s
-    }, a.getGroupByName = function (e) {
+    },
+    a.getGroupByName = function (e) {
         var t = a.getModel();
         return t.getGroupByName(e)
-    }, a.getGroupById = function (e) {
+    },
+    a.getGroupById = function (e) {
         var t = a.getModel();
         return t.getGroupById(e)
-    }, a.isExistsGroupName = function (e) {
+    },
+    a.isExistsGroupName = function (e) {
         return !!a.getGroupByName(e)
-    }, a.validateAddContacts = function (e) {
+    },
+    a.validateAddContacts = function (e) {
         var t = M2012.Contacts.API.validateAddContacts(e);
         return t.error <= 0
-    }, a.getContactsByGroupId = function (e, t) {
+    },
+    a.getContactsByGroupId = function (e, t) {
         var i = a.getModel();
         return t ? i.getGroupMembersId(e) : i.getGroupMembers(e)
-    }, a.getContactsById = function (e) {
+    },
+    a.getContactsById = function (e) {
         var t = a.getModel();
         return t.getContactsById(e)
-    }, a.getContactsGroupById = function (e) {
+    },
+    a.getContactsGroupById = function (e) {
         var t = a.getModel();
         return t.getContactsGroupById(e)
-    }, a.getVipInfo = function () {
+    },
+    a.getVipInfo = function () {
         var e = a.getData(), t = a.getModel(), i = {
             hasContact: !1,
             isExist: !1,
@@ -1814,49 +1940,63 @@ function (e, t, i) {
             }
         }
         return i
-    }, a.setVipInfo = function () {
-    }, a.getContactsByEmail = function (e) {
+    },
+    a.setVipInfo = function () {
+    },
+    a.getContactsByEmail = function (e) {
         var t = a.getModel();
         return t.getContactsByEmail(e)
-    }, a.getAddrNameByEmail = function (e) {
+    },
+    a.getAddrNameByEmail = function (e) {
         var t = a.getModel();
         return t.getAddrNameByEmail(e)
-    }, a.getChinaMobileByEmail = function (e) {
+    },
+    a.getChinaMobileByEmail = function (e) {
         var t = a.getModel();
         return t.getChinaMobileByEmail(e)
-    }, a.getSingleContactsByEmail = function (e) {
+    },
+    a.getSingleContactsByEmail = function (e) {
         var t = a.getContactsByEmail(e) || [];
         return t[0]
-    }, a.isExistMobile = function (e) {
+    },
+    a.isExistMobile = function (e) {
         var t = a.getModel();
         return t.isExistMobile(e)
-    }, a.isExistEmail = function (e) {
+    },
+    a.isExistEmail = function (e) {
         var t = a.getModel();
         return t.isExistEmail(e)
-    }, a.getContactsCount = function () {
+    },
+    a.getContactsCount = function () {
         var e = a.getData();
         return e.TotalRecord
-    }, a.IsVipUser = function (e) {
+    },
+    a.IsVipUser = function (e) {
         var t = a.getData(), i = t.vip.contacts;
         return i.join(",").indexOf(e) > -1
-    }, a.FilterVip = function (e) {
+    },
+    a.FilterVip = function (e) {
         var t = [];
         e = e || [];
         for (var i = 0; i < e.length; i++) a.IsVipUser(e[i]) && t.push(e[i]);
         return t
-    }, a.IsExitVipGroup = function () {
+    },
+    a.IsExitVipGroup = function () {
         var e = a.getData().vip;
         return e.groupId.length > 0
-    }, a.IsPersonalEmail = function (e) {
+    },
+    a.IsPersonalEmail = function (e) {
         for (var t = a.getContactsById(e) || {}, i = t.emails || [], s = $User.getAccountListArray().join(","), o = 0; o < i.length; o++) if (s.indexOf(i[o]) > -1) return !0;
         return !1
-    }, a.addContacts = function (e, t) {
+    },
+    a.addContacts = function (e, t) {
         for (var i = e.sort ? e : [e], s = 0; s < i.length; s++) {
             var o = M2012.Contacts.API.validateAddContacts(i[s]);
             if (o.error.length > 0) return void (t && t({ success: !1, errorIndex: s, msg: o.error }))
         }
         a.addContactsMuti(e, t)
-    }, a.QueryUserInfo = function (e) {
+    },
+    a.QueryUserInfo = function (e) {
         var t = {
             success: function (t) {
                 t.info = new M2012.Contacts.ContactsInfo(t.data), e && e(t)
@@ -1865,14 +2005,16 @@ function (e, t, i) {
             }
         };
         M2012.Contacts.API.queryUserInfo(t)
-    }, a.addContactsMobile = function (e, t, i) {
+    },
+    a.addContactsMobile = function (e, t, i) {
         var s = { data: { serialId: e, mobile: t } };
         s.success = function (e) {
             i && i(a.getMsgByCode(e))
         }, s.error = function (e) {
             i && i(a.getMsgByCode(e))
         }, M2012.Contacts.API.addContactsField(s)
-    }, a.ModContactsField = function (e, t, i, o, n) {
+    },
+    a.ModContactsField = function (e, t, i, o, n) {
         var r = a.getContactsById(e);
         r = $.extend(r, t);
         var l = {
@@ -1905,7 +2047,8 @@ function (e, t, i) {
         }, o.error = function (e) {
             t && t(a.getMsgByCode(e))
         }, M2012.Contacts.API.delGroup(o)
-    }, a.deleteContacts = function (e, i) {
+    },
+    a.deleteContacts = function (e, i) {
         e = t.isArray(e) ? e.join(",") : e, M2012.Contacts.API.deleteContacts({ serialId: e }, i)
     }, a.deleteContactsFromGroup = function (e, t, i) {
         var o = { data: { groupId: e, serialId: t } };
@@ -1921,7 +2064,8 @@ function (e, t, i) {
         }, o.error = function (e) {
             i && i(a.getMsgByCode(e))
         }, M2012.Contacts.API.addGroupList(o)
-    }, a.moveContactsToGroup = function (e, t, i, o) {
+    },
+    a.moveContactsToGroup = function (e, t, i, o) {
         var n = { data: { serialId: e, fromGroupId: t, toGroupId: i } };
         n.success = function (e) {
             e.msg = s.TIP.OPERATE_SUCCESS, o && o(a.getMsgByCode(e))
@@ -1930,7 +2074,8 @@ function (e, t, i) {
         }, M2012.Contacts.API.moveGroupList(n)
     }, a.getContactsInfoById = function (e, t) {
         M2012.Contacts.API.getContactsDetail(e, t)
-    }, a.addContactsMuti = function (e, t) {
+    },
+    a.addContactsMuti = function (e, t) {
         var i = { data: { contacts: e } };
         i.success = function (i) {
             i.msg = s.TIP.GET_SUCCESS, t && t(a.getMsgByCode(i)), top.postJiFen && top.postJiFen(72, e.length)
@@ -1965,7 +2110,8 @@ function (e, t, i) {
         }, d.error = function (e) {
             t && t(a.getMsgByCode(e))
         }, M2012.Contacts.API.modContacts(d)
-    }, a.execContactDetails = function (e, t, i) {
+    },
+    a.execContactDetails = function (e, t, i) {
         i ? a.addContactDetails(e, t) : a.editContactDetails(e, t)
     }, a.EmptyLastContactsInfo = function (e, t) {
         var i = { data: { type: e.type } };
@@ -1981,7 +2127,8 @@ function (e, t, i) {
         }, t.error = function (t) {
             e && e(a.getMsgByCode(t))
         }, M2012.Contacts.API.getUpdatedContactsNum(t)
-    }, a.execIsAllContactsSameGroup = function (e, t) {
+    },
+    a.execIsAllContactsSameGroup = function (e, t) {
         var i = { data: { serialId: e.SerialId } };
         i.success = function (e) {
             t && t(a.getMsgByCode(e))
@@ -2016,7 +2163,8 @@ function (e, t, i) {
         }, i.error = function (e) {
             t && t(a.getMsgByCode(e))
         }, M2012.Contacts.API.delGroupList(i)
-    }, a.modDealStatus = function (e, t) {
+    },
+    a.modDealStatus = function (e, t) {
         M2012.Contacts.API.modDealStatus(e, t)
     }, a.getFinishImportList = function (e, t, i) {
         var s = { data: { importId: e } };
@@ -2070,7 +2218,8 @@ function (e, t, i) {
             }, s.error = function (e) {
             }, M2012.Contacts.API.addLastContacts(s)
         }
-    }, a.createAddContactsPage = function (e) {
+    },
+    a.createAddContactsPage = function (e) {
         if ("email" == e.type) {
             var t = e.emails;
             "string" == typeof t && (t = Utils.parseEmail(t)), e.container.emails = t;
@@ -2096,7 +2245,8 @@ function (e, t, i) {
             })
         })
     }, a.ModSavedContact = function () {
-    }, a.QuickAddGroup = function () {
+    },
+    a.QuickAddGroup = function () {
     }, a.getFinishImportResult = function (e, t, i) {
         var s = { data: { importId: e } };
         s.success = function (e) {
@@ -2104,14 +2254,18 @@ function (e, t, i) {
         }, s.error = function (e) {
             i && i(a.getMsgByCode(e))
         }, M2012.Contacts.API.getFinshImportResult(s)
-    }, $.extend(M2012.MatrixVM.prototype, {
+    },
+    $.extend(M2012.MatrixVM.prototype, {
         createContacts: function () {
-            window.Contacts = $.extend(window.Contacts, a), window.ContactsInfo = M2012.Contacts.ContactsInfo, window.ContactsInfo.prototype.search = function (e) {
+            window.Contacts = $.extend(window.Contacts, a),
+            window.ContactsInfo = M2012.Contacts.ContactsInfo,
+            window.ContactsInfo.prototype.search = function (e) {
                 var t = [];
                 t.push(this.name), t.push(this.emails), t.push(this.mobiles), t.push(this.faxes), (this.Quanpin || this.Jianpin) && (t.push(this.Quanpin), t.push(this.Jianpin));
                 var i = e.toLowerCase(), a = t.join(",").toLowerCase();
                 return a.indexOf(i) > -1
-            }, window.ContactsInfo.prototype.validateDetails = function (e) {
+            },
+            window.ContactsInfo.prototype.validateDetails = function (e) {
                 function i(e, t) {
                     return { success: !1, msg: e, errorProperty: t || "" }
                 }
@@ -2135,6 +2289,8 @@ function (e, t, i) {
         }
     })
 }($, _, M139),
+
+//M2012.Contacts.Cache
 function (e, t, i) {
     i.namespace("M2012.Contacts.Cache", function (e) {
         var i = this, a = e.data, s = e.model || M2012.Contacts.getModel(), o = new M2012.Contacts.CacheGroup, n = new M2012.Contacts.CacheContacts, r = function (e) {
@@ -2155,7 +2311,8 @@ function (e, t, i) {
             e && s && s.set({ data: e })
         }, this.reload = function (e) {
             s.loadMainData({}, e), this.dataRefresh()
-        }, this.dataRefresh = function () {
+        },
+        this.dataRefresh = function () {
             this.timer && clearTimeout(this.timer), this.timer = setTimeout(function () {
                 s.trigger("update", {}), top.$App.trigger("ADDR_DATA_REFRESH")
             }, 1e3)
@@ -2388,7 +2545,8 @@ function (e, t, i) {
             }, e.error = function () {
             }, M2012.Contacts.API.queryUserInfo(e)
         }, this.init()
-    }), i.namespace("M2012.Contacts.CacheContacts", function () {
+    }),
+    i.namespace("M2012.Contacts.CacheContacts", function () {
         this.addContacts = function (e) {
             for (var t = e.data, i = e.contacts, a = t.contacts, s = t.contactsMap, o = t.contactsIndexMap, n = 0; n < i.length; n++) {
                 var r = this.parseData(i[n]), l = a.length;
@@ -2410,7 +2568,8 @@ function (e, t, i) {
         }, this.parseData = function (e) {
             return e.extEmail = e.extEmail || [], e.extMobile = e.extMobile || [], e.extFax = e.extFax || [], e.extEmail.length > 0 && (e.FamilyEmail = e.extEmail.shift()), e.extEmail.length > 0 && (e.BusinessEmail = e.extEmail.shift()), e.extEmail.length > 0 && (e.OtherEmail = e.extEmail.shift()), e.extMobile.length > 0 && (e.MobilePhone = e.extMobile.shift()), e.extMobile.length > 0 && (e.BusinessMobile = e.extMobile.shift()), e.extMobile.length > 0 && (e.OtherMobilePhone = e.extMobile.shift()), e.extFax.length > 0 && (e.FamilyFax = e.extFax.shift()), e.extFax.length > 0 && (e.BusinessFax = e.extFax.shift()), e.extFax.length > 0 && (e.OtherFax = e.extFax.shift()), delete e.Fax, delete e.Email, delete e.Mobile, e
         }
-    }), i.namespace("M2012.Contacts.CacheGroup", function (e) {
+    }),
+    i.namespace("M2012.Contacts.CacheGroup", function (e) {
         this.addContacts = function (e) {
             var i = e.serialId || "", a = e.groupId || "", s = e.data;
             if (0 == i.length) return s;
@@ -2438,6 +2597,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//M2012.Contacts.Model
 function (e, t, i) {
     var a = e, s = !1;
     i.namespace("M2012.Contacts.Model", Backbone.Model.extend({
@@ -2450,9 +2611,12 @@ function (e, t, i) {
         loadMainData: function (e, t) {
             e = e || {};
             var s = this;
-            if (this.isLoading = !0, e.testUrl) a.get(e.testUrl, function (e) {
-                s.onMainDataLoad(i.JSON.tryEval(e), t)
-            }); else {
+            this.isLoading = !0;
+            if (e.testUrl) {
+                a.get(e.testUrl, function (e) {
+                    s.onMainDataLoad(i.JSON.tryEval(e), t)
+                });
+            } else {
                 $App.once("userAddrJsonData_load", function (e) {
                     s.isLoading = !1, clearTimeout(o);
                     var a = i.JSON.tryEval(e.response);
@@ -2461,7 +2625,25 @@ function (e, t, i) {
                 var o = setTimeout(function () {
                     var e = { GetUserAddrJsonData: {} };
                     M2012.Contacts.API.call("GetUserAddrJsonData", e, function (e) {
-                        s.isLoading = !1, e ? e.responseData ? "0" == e.responseData.ResultCode ? s.onMainDataLoad(e.responseData, t) : "216" == e.responseData.ResultCode ? $App.trigger("change:sessionOut", {}, !0) : i.Logger.getDefaultLogger().error("addrsvr response error", e.responseData) : i.Logger.getDefaultLogger().error("addrsvr response invalid", e.responseText) : i.Logger.getDefaultLogger().error("addrsvr response empty")
+                        s.isLoading = !1;
+                        if (e) {
+                            if (e.responseData) {
+                                if ("0" == e.responseData.ResultCode) {
+                                    s.onMainDataLoad(e.responseData, t)
+                                } else {
+                                    if ("216" == e.responseData.ResultCode) {
+                                        $App.trigger("change:sessionOut", {}, !0);
+                                    } else {
+                                        i.Logger.getDefaultLogger().error("addrsvr response error", e.responseData);
+                                    }
+                                }
+                            } else {
+                                i.Logger.getDefaultLogger().error("addrsvr response invalid", e.responseText);
+                            }
+                        }
+                        else {
+                            i.Logger.getDefaultLogger().error("addrsvr response empty");
+                        }
                     })
                 }, 7e3)
             }
@@ -2503,7 +2685,8 @@ function (e, t, i) {
                 }, e)
             }
             s = !1
-        }, getUserInfo: function (e, t) {
+        },
+        getUserInfo: function (e, t) {
             var i = this;
             if (top.$User) {
                 if (e = e || {}, i.UserInfoData && !e.refresh && t && "function" == typeof t) try {
@@ -2528,7 +2711,8 @@ function (e, t, i) {
                     i.getUserInfoWaiting = !1
                 })
             }
-        }, contactRequest: function (e, t, a) {
+        },
+        contactRequest: function (e, t, a) {
             var s = new i.ExchangeHttpClient({
                 name: "ContactsLoadMainDataHttpClient",
                 requestDataType: "ObjectToXML2",
@@ -2549,11 +2733,13 @@ function (e, t, i) {
             this.contactRequest("ModUserInfo", e, function (e) {
                 i.UserInfoData = null, e && e.responseData && t && t(e.responseData)
             })
-        }, modifyGroup: function (e, t) {
+        },
+        modifyGroup: function (e, t) {
             this.contactRequest("EditGroupList", e, function (e) {
                 e && e.responseData && t && t(e.responseData)
             })
-        }, userInfoTranslate: function (e) {
+        },
+        userInfoTranslate: function (e) {
             var t = {
                 a: "UserType",
                 b: "SourceType",
@@ -2711,7 +2897,8 @@ function (e, t, i) {
                     }
                 })
             }
-        }, updatePrivateSettings: function (e, t) {
+        },
+        updatePrivateSettings: function (e, t) {
             var s = new i.ExchangeHttpClient({
                 name: "ContactsLoadMainDataHttpClient",
                 requestDataType: "ObjectToXML2",
@@ -2730,7 +2917,8 @@ function (e, t, i) {
                     t && t(a)
                 }
             })
-        }, requireData: function (e) {
+        },
+        requireData: function (e) {
             var t = this.get("data");
             t ? e && e(t) : (this.isLoading || this.loadMainData(), this.on("maindataload", function (t) {
                 this.off("maindataload", arguments.callee), e && setTimeout(function () {
@@ -2740,38 +2928,64 @@ function (e, t, i) {
         },
         isLoaded: function () {
             return !!this.get("data")
-        }, onMainDataLoad: function (e, t) {
-            e.Groups = e.Group || e.Groups, e.LastContacts || (e.LastContacts = []), e.CloseContacts || (e.CloseContacts = []), e.BirthdayContacts || (e.BirthdayContacts = []), e.Contacts || (e.Contacts = []), e.Groups || (e.Groups = []), e.GroupMember || (e.GroupMember = {}), e.NoGroup || (e.NoGroup = []), e.TotalRecord = parseInt(e.TotalRecord), e.TotalRecordGroup = parseInt(e.TotalRecordGroup), e.TotalRecordRelation = parseInt(e.TotalRecordRelation), e.userSerialId = e.UserSerialId;
+        },
+        onMainDataLoad: function (e, t) {
+            e.Groups = e.Group || e.Groups;
+            e.LastContacts || (e.LastContacts = []);
+            e.CloseContacts || (e.CloseContacts = []);
+            e.BirthdayContacts || (e.BirthdayContacts = []);
+            e.Contacts || (e.Contacts = []);
+            e.Groups || (e.Groups = []);
+            e.GroupMember || (e.GroupMember = {});
+            e.NoGroup || (e.NoGroup = []),
+            e.TotalRecord = parseInt(e.TotalRecord);
+            e.TotalRecordGroup = parseInt(e.TotalRecordGroup);
+            e.TotalRecordRelation = parseInt(e.TotalRecordRelation);
+            e.userSerialId = e.UserSerialId;
             var i = {
                 TotalRecord: e.TotalRecord,
                 TotalRecordGroup: e.TotalRecordGroup,
                 TotalRecordRelation: e.TotalRecordRelation,
                 noGroup: e.NoGroup
             };
-            this.createGroupData({ data: e, exports: i }), this.createContactsData({
+            this.createGroupData({ data: e, exports: i });
+            this.createContactsData({
                 data: e,
                 exports: i
-            }), this.createGroupMemberData({ data: e, exports: i }), this.createLastAndCloseContactsData({
+            });
+            this.createGroupMemberData({ data: e, exports: i });
+            this.createLastAndCloseContactsData({
                 data: e,
                 exports: i
-            }), this.createBirthdayContactsData({ data: e, exports: i }), this.createVIPContactsData({
+            });
+            this.createBirthdayContactsData({ data: e, exports: i }),
+            this.createVIPContactsData({
                 data: e,
                 exports: i
-            }), e.UserInfo && e.UserInfo[0] && (this.UserInfoData = {
+            });
+            e.UserInfo && e.UserInfo[0] && (this.UserInfoData = {
                 code: "S_OK",
                 "var": this.userInfoTranslate(e.UserInfo[0])
-            }), this.set("data", i), e.Welcome && this.set("invalidEmails", e.Welcome[0].ie || ""), this.trigger("maindataload", i), t && t(i)
-        }, createGroupData: function (e) {
+            });
+            this.set("data", i);
+            e.Welcome && this.set("invalidEmails", e.Welcome[0].ie || "");
+            this.trigger("maindataload", i);
+            t && t(i);
+        },
+        createGroupData: function (e) {
             for (var t = e.exports, i = e.data, a = i.Groups, s = new Array(a.length), o = {}, n = 0, r = a.length; r > n; n++) {
                 var l = a[n];
                 o[l.gd] = s[n] = { GroupId: l.gd, id: l.gd, GroupName: l.gn, name: l.gn, CntNum: l.cn, count: l.cn }
             }
-            t.groups = s, t.groupsMap = o
+            t.groups = s;
+            t.groupsMap = o;
         },
         createContactsData: function (e) {
             for (var t = e.exports, i = e.data, a = i.Contacts, s = new Array(a.length), o = {}, n = {}, r = M2012.Contacts.ContactsInfo, l = 0, c = a.length; c > l; l++) {
                 var d = a[l];
-                d.ee = d.ee ? d.ee.split(",") : [], d.em = d.em ? d.em.split(",") : [], d.ef = d.ef ? d.ef.split(",") : [];
+                d.ee = d.ee ? d.ee.split(",") : [];
+                d.em = d.em ? d.em.split(",") : [];
+                d.ef = d.ef ? d.ef.split(",") : [];
                 var p = new r({
                     SerialId: d.sd,
                     AddrFirstName: d.c,
@@ -2795,20 +3009,34 @@ function (e, t, i) {
                     extMobile: d.em,
                     extFax: d.ef
                 });
-                s[l] = p, o[d.sd] = p, n[d.sd] = l
+                s[l] = p,
+                o[d.sd] = p,
+                n[d.sd] = l
             }
-            t.contacts = s, t.contactsMap = o, t.contactsIndexMap = n;
+            t.contacts = s;
+            t.contactsMap = o;
+            t.contactsIndexMap = n;
             var m = $App.getTabByName("addr");
-            m && (m.isRendered = !1)
-        }, updateContactsData: function (e) {
-        }, createGroupMemberData: function (e) {
-            var t = e.data, i = e.exports, a = i.contactsMap, s = i.groupsMap, o = t.GroupMember;
+            m && (m.isRendered = !1);
+        },
+        updateContactsData: function (e) {
+        },
+        createGroupMemberData: function (e) {
+            var t = e.data,
+                i = e.exports,
+                a = i.contactsMap,
+                s = i.groupsMap,
+                o = t.GroupMember;
             for (var n in o) {
                 var r = s[n];
                 if (r) {
-                    for (var l = o[n], c = 0; c < l.length; c++) a[l[c]] || (l.splice(c, 1), c--);
+                    for (var l = o[n], c = 0; c < l.length; c++) {
+                        a[l[c]] || (l.splice(c, 1), c--);
+                    }
                     r.CntNum = l.length
-                } else /^\d+$/.test(n) && delete s[n]
+                } else {
+                    /^\d+$/.test(n) && delete s[n];
+                }
             }
             i.groupMember = o
         },
@@ -2821,8 +3049,10 @@ function (e, t, i) {
                 var c = s[r];
                 "object" != typeof c.ac && n.push({ SerialId: c.sd, AddrName: c.an, AddrType: c.at, AddrContent: c.ac })
             }
-            t.lastestContacts = o, t.closeContacts = n
-        }, createBirthdayContactsData: function (e) {
+            t.lastestContacts = o;
+            t.closeContacts = n;
+        },
+        createBirthdayContactsData: function (e) {
             for (var t = e.exports, i = e.data, a = i.BirthdayContacts, s = new Array(a.length), o = a.length - 1; o >= 0; o--) {
                 var n = a[o];
                 s[o] = {
@@ -2833,24 +3063,32 @@ function (e, t, i) {
                     BusinessEmail: n.z,
                     OtherEmail: n.c2,
                     BirDay: n.o
-                }
+                };
             }
-            t.birthdayContacts = s
-        }, createVIPContactsData: function (e) {
-            var t = e.data, i = e.exports, a = t.Vip && t.Vip[0], s = { groupId: "", contacts: [] };
+            t.birthdayContacts = s;
+        },
+        createVIPContactsData: function (e) {
+            var t = e.data,
+                i = e.exports,
+                a = t.Vip && t.Vip[0],
+                s = { groupId: "", contacts: [] };
             if (a) try {
-                s.groupId = a.vipg, s.contacts = a.vipc ? a.vipc.split(",") : []
+                s.groupId = a.vipg,
+                s.contacts = a.vipc ? a.vipc.split(",") : []
             } catch (o) {
             }
             i.vip = s
         },
         getContactsById: function (e) {
             return this.get("data") && this.get("data").contactsMap[e] || null
-        }, getContactsGroupById: function (e) {
+        },
+        getContactsGroupById: function (e) {
             return this.getContactsGroupId(e)
-        }, getGroupById: function (e) {
+        },
+        getGroupById: function (e) {
             return this.get("data") && this.get("data").groupsMap[e] || null
-        }, getGroupByName: function (e) {
+        },
+        getGroupByName: function (e) {
             for (var t = this.getGroupList(), i = 0, a = t.length; a > i; i++) {
                 var s = t[i];
                 if (s.name === e) return s
@@ -2860,17 +3098,20 @@ function (e, t, i) {
         getReadGroupCount: function () {
             var e = this.getGroupByName("读信联系人");
             return e ? e.CntNum : null
-        }, getContactsGroupId: function (e) {
+        },
+        getContactsGroupId: function (e) {
             var t = this.get("data") && this.get("data").groupMember, i = [];
             if (t) for (var a in t) for (var s = t[a], o = 0, n = s.length; n > o; o++) if (s[o] === e) {
                 i.push(a);
                 break
             }
             return i
-        }, getGroupList: function () {
+        },
+        getGroupList: function () {
             var e = this.get("data");
             return e && (e = e.groups), e = e && t.isFunction(e.concat) ? e.concat() : []
-        }, getGroupMembersLength: function (e) {
+        },
+        getGroupMembersLength: function (e) {
             var t = this.getGroupById(e);
             if (!t) throw "M2012.Contacts.Model.getGroupContactsLength:不存在联系人分组gid=" + e;
             return t.CntNum
@@ -2878,7 +3119,8 @@ function (e, t, i) {
         getGroupMembersId: function (e, t) {
             for (var i = this.getGroupMembers(e, t), a = 0, s = i.length; s > a; a++) i[a] = i[a].SerialId;
             return i
-        }, getGroupMembers: function (e, t) {
+        },
+        getGroupMembers: function (e, t) {
             t = t || {};
             var i = (t.filter, this.get("data")), a = i && i.contactsMap, s = i && i.groupMember, o = [];
             if (e == this.getVIPGroupId()) o = this.getVIPContacts(); else {
@@ -2889,14 +3131,16 @@ function (e, t, i) {
                 }
             }
             return t && t.filter && (o = this.filterContacts(o, { filter: t.filter, colate: t.colate })), o
-        }, getVIPContacts: function () {
+        },
+        getVIPContacts: function () {
             var e = this.get("data"), t = [], i = e && e.vip, a = e && e.contactsMap;
             if (i && i.contacts) for (var s = i.contacts, o = 0; o < s.length; o++) {
                 var n = s[o], r = a[n];
                 r && t.push(r)
             }
             return t
-        }, getVIPGroupId: function () {
+        },
+        getVIPGroupId: function () {
             var e = "", t = this.get("data");
             return t && t.vip && (e = t.vip.groupId), e
         },
@@ -2905,20 +3149,23 @@ function (e, t, i) {
             return t && t.vip && a.each(t.vip.contacts, function (t, a) {
                 return a == e ? (i = !0, !1) : void 0
             }), i
-        }, filterContacts: function (e, t) {
+        },
+        filterContacts: function (e, t) {
             for (var i = t.filter, a = [], s = 0, o = e.length; o > s; s++) {
                 var n = e[s];
                 "email" == i && n.getFirstEmail() ? a.push(n) : "mobile" == i && n.getFirstMobile() ? a.push(n) : "fax" == i && n.getFirstFax() ? a.push(n) : t.colate && n.getFirstEmail().indexOf(i) > -1 && a.push(n)
             }
             return a
-        }, initEvents: function () {
+        },
+        initEvents: function () {
             var e = this, t = "dataForMatch_email", i = "dataForMatch_mobile", a = "dataForMatch_fax";
             e.on("update", function (s) {
                 e.has(t) && e.unset(t), e.has(i) && e.unset(i), e.has(a) && e.unset(a)
             }), e.on("maindataload", function () {
                 e.has(t) && e.unset(t), e.has(i) && e.unset(i), e.has(a) && e.unset(a)
             })
-        }, getDataForMatch: function (e) {
+        },
+        getDataForMatch: function (e) {
             function t(e, t) {
                 var i;
                 "email" == t ? i = "emails" : "fax" == t ? i = "faxes" : "mobile" == t && (i = "mobiles");
@@ -2995,7 +3242,8 @@ function (e, t, i) {
                 if (r.push({ info: s[$], matchAttr: M, matchIndex: C }), r.length >= y) break
             }
             return r
-        }, search: function (e, i) {
+        },
+        search: function (e, i) {
             var i = i || {}, a = [], s = [];
             i.contacts ? a = i.contacts : t.isEmpty(this.get("data")) || (a = this.get("data").contacts, i.filter && this.isLoaded() && (a = this.filterContacts(a, { filter: i.filter })));
             for (var o = 0, n = a.length; n > o; o++) {
@@ -3003,25 +3251,30 @@ function (e, t, i) {
                 i.quickMatch && (l = r.quickMatch), l.call(r, e) && s.push(r)
             }
             return s
-        }, getAddr: function (e, t) {
+        },
+        getAddr: function (e, t) {
             return "email" == t ? i.Text.Email.getEmail(e) : "mobile" == t ? i.Text.Mobile.getNumber(e) : ""
-        }, getName: function (e, t) {
+        },
+        getName: function (e, t) {
             return "email" == t ? i.Text.Email.getName(e) : "mobile" == t ? i.Text.Mobile.getName(e) : ""
         },
         getSendText: function (e, t) {
             return e = (e || "") && e.replace(/["\r\n]/g, " "), '"' + e + '"<' + t + ">"
-        }, getContactsByEmail: function (e) {
+        },
+        getContactsByEmail: function (e) {
             e = $Email.getEmailQuick(e);
             var t = this.getHashContacts()[e];
             return t ? t.hashArray ? t.hashArray : [t] : []
-        }, getContactsByEmailV2: function (e) {
+        },
+        getContactsByEmailV2: function (e) {
             e = $Email.getEmailQuick(e);
             var t = this.get("data");
             if (!t) return [];
             var i = t.contacts, a = [];
             if (i) for (var s = 0, o = i.length; o > s; s++) for (var n = i[s], r = 0; r < n.emails.length; r++) n.emails[r] == e && a.push(n);
             return a
-        }, getHashContacts: function () {
+        },
+        getHashContacts: function () {
             var e = this.get("data");
             if (!e) return {};
             if (!e.emailHash) {
@@ -3039,7 +3292,8 @@ function (e, t, i) {
             if (!t || !t.contacts) return i;
             for (var a = 0, s = t.contacts, o = s.length; o > a; a++) for (var n = s[a], r = 0; r < n.mobiles.length; r++) n.mobiles[r] == e && i.push(n);
             return i
-        }, getAddrNameByEmail: function (e) {
+        },
+        getAddrNameByEmail: function (e) {
             e = e || "", e = e.trim();
             var t = this.getContactsByEmail(e), i = $Email.getAccount(e);
             if (t && t.length > 0) {
@@ -3048,10 +3302,12 @@ function (e, t, i) {
             }
             var s = $Email.getNameQuick(e);
             return s && "" != s.replace(/['"\s]/g, "") ? s : (s = e.replace(/<[^>]+>$/, ""), s && "" != s.replace(/['"\s]/g, "") ? s : e)
-        }, getChinaMobileByEmail: function (e) {
+        },
+        getChinaMobileByEmail: function (e) {
             var t = "", i = this.getContactsByEmail(e);
             return i && i.length > 0 && (t = i[0].MobilePhone), t = t || ("139.com" == $Email.getDomain(e) ? $Email.getName(e) : ""), $Mobile.isChinaMobile(t) ? t : ""
-        }, getFieldByType: function (e) {
+        },
+        getFieldByType: function (e) {
             var i = [], a = e.serialId;
             if (t.isArray(a)) {
                 for (var s = 0; s < a.length; s++) i = i.concat(arguments.callee.call(this, {
@@ -3077,17 +3333,21 @@ function (e, t, i) {
         isExistMobile: function (e) {
             var t = this.getContactsByMobile(e) || [];
             return t.length > 0
-        }, isExistEmail: function (e) {
+        },
+        isExistEmail: function (e) {
             var t = this.getContactsByEmail(e) || [];
             return t.length > 0
-        }, updateCache: function (e) {
+        },
+        updateCache: function (e) {
             this.trigger("update", e)
-        }, getContactsCount: function (e) {
+        },
+        getContactsCount: function (e) {
             return e && i.Timing.waitForReady('"undefined" !== typeof top.$App.getModel("contacts").get("data").contacts.length', function () {
                 e(this.get("data").contacts.length)
             }), this.isLoaded() ? this.get("data").contacts.length : -1
         }
-    })), e.extend(M2012.Contacts, {
+    })),
+    e.extend(M2012.Contacts, {
         getModel: function () {
             var e = this;
             return window != window.top ? top.M2012.Contacts.getModel() : (this.current || (this.current = new M2012.Contacts.Model), this.cache && this.cache.setModelData(), this.cache || (this.cache = new M2012.Contacts.Cache({ model: e.current })), this.current)
@@ -3096,6 +3356,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//M2012.Contacts.ContactsInfo
 function (e, t, i) {
     function a(e) {
         for (var t in e) this[t] = e[t] || "";
@@ -3154,6 +3416,9 @@ function (e, t, i) {
         }
     }, i.namespace("M2012.Contacts.ContactsInfo", a)
 }(jQuery, _, M139);
+
+
+//M2012.Main.View 顶端导航条
 var top_model = Backbone.Model.extend({
     defaults: {},
     tips: {
@@ -3422,7 +3687,15 @@ M139.namespace("M2012.Main.View", {
                     setTimeout(function () {
                         t.renderUmcBox(e)
                     }, 1e3)
-                }), t.handlerEnterpriseArea(), t.phoneNoticeEvent(), t.renderHelpMenu(), t.renderUpdateServer(), t.specialInfo(), t.bindSkinEvent(), $User.isChinaMobileUser() ? i = $User.getProvCode() : $("#mailLog").attr("href", "javascript:$App.showMailbox(1)"), $("#help").attr("href", getDomain("help") + "/" + i + "/index.html?sid=" + $App.getSid());
+                }),
+                t.handlerEnterpriseArea(),
+                t.phoneNoticeEvent(),
+                t.renderHelpMenu(),
+                t.renderUpdateServer(),
+                t.specialInfo(),
+                t.bindSkinEvent(),
+                $User.isChinaMobileUser() ? i = $User.getProvCode() : $("#mailLog").attr("href", "javascript:$App.showMailbox(1)"),
+                $("#help").attr("href", getDomain("help") + "/" + i + "/index.html?sid=" + $App.getSid());
                 var a = getDomain("uec");
                 $User.isGrayUser() && (a = "http://smsrebuild0.mail.10086.cn/uec"), $("#btn_feedback").attr("href", a + "/jumpFeedbackRedirect.do?isdirect=1&nav=3&isfirst=1&sid=" + $App.getSid()), t.showTopAd(), M139.Logger.getDefaultLogger().debug("userdataload topviewrender"), $App.requireUserData(function () {
                     M139.UI.HelloFriend.initialize(), M139.UI.fileClear.initialize(), new M139.UI.TipSubscribeCalendar, t.getMailExeIntall()
@@ -4562,11 +4835,16 @@ M139.namespace("M2012.Main.View", {
             }))
         },
         render: function () {
-            $User.isChinaMobileUser() || ($App.on("folderLoaded", function () {
-                $App.off("folderLoaded", arguments.callee), $App.showMailbox(1), setTimeout(function () {
-                    $("[tabid=mailbox_1] .i_close").remove()
-                }, 200)
-            }), $(".mailLogo_new").attr("href", "javascript:$App.showMailbox(1)"))
+            if (!$User.isChinaMobileUser()) {
+                $App.on("folderLoaded", function () {
+                    $App.off("folderLoaded", arguments.callee),
+                    $App.showMailbox(1),
+                    setTimeout(function () {
+                        $("[tabid=mailbox_1] .i_close").remove()
+                    }, 200)
+                });
+                $(".mailLogo_new").attr("href", "javascript:$App.showMailbox(1)");
+            }
         },
         initTopFixedTabs: function () {
             var e = this, t = $App.getView("tabpage").model, i = t.getInitTabsData(), a = this.getDefaultEntrytab();
@@ -4692,6 +4970,10 @@ M139.namespace("M2012.Main.View", {
         }
     })
 });
+
+
+
+//TabPageView TabControl
 var TabPageModel = Backbone.Model.extend({
     initialize: function (e) {
     },
@@ -4941,8 +5223,8 @@ TabPageView = Backbone.View.extend({
     getVisibleTab: function () {
         var e = $("#divTab ul").children(),
             t = $.grep(e, function (e, t) {
-            return "none" != e.style.display && "tabsMenuIco" != e.id
-        });
+                return "none" != e.style.display && "tabsMenuIco" != e.id
+            });
         return t;
     },
     getVisibleCount: function () {
@@ -5092,12 +5374,12 @@ TabPageView = Backbone.View.extend({
     getFrame: function (e) {
         var t;
         if (this.framePool.length > 0) {
-            t=this.framePool.shift();
+            t = this.framePool.shift();
         } else {
-            t=document.createElement("iframe");
+            t = document.createElement("iframe");
         }
         t.src = e;
-        return  t;
+        return t;
     },
     recycleFrame: function (e) {
         $(e).removeAttr("id");
@@ -5227,7 +5509,7 @@ TabPageView = Backbone.View.extend({
             i = a[e].current;
             if (this.tab.exist(i)) {
                 $App.activeTab(i);
-                if("welcome" != i){ 
+                if ("welcome" != i) {
                     $(".loadingTip").remove();
                 }
             } else {
@@ -5439,9 +5721,13 @@ TabPageView = Backbone.View.extend({
             t.tab.size();
             t.hideOverTab();
         }, 200);
-        return  i.cancel ? !1 : (this.onCloseTab(e), !0)
+        return i.cancel ? !1 : (this.onCloseTab(e), !0)
     }
 }),
+
+
+
+//FrameControl 
 function () {
     var e = Backbone.Model.extend({
         initialize: function (e) {
@@ -6569,23 +6855,48 @@ var FrameView = Backbone.View.extend({
         })
     },
     render: function (e) {
-        var t = this, i = this.parentView.model, a = i.get("currentModule"), s = this.model.getLink(i), o = ['<div class="bodyerror ErrorTips" style="display:none">', '<img id="img_smile" _src="../images/global/smile.png" width="73" height="72">', "<p>没加载出来，再试一次吧</p>", '<a class="btnTb" href="javascript:"><span class="p_relative">重新加载</span></a>', '</div><div class="gtips NoCompleteTips" style="display:none">', '<span class="ml_5">由于网络原因，当前页面未完全加载，是否<a class="Retry" style="text-decoration: underline;" href="javascript:">重新加载</a>？</span>', '<a href="javascript:" class="i_u_close Close"></a>', "</div>"].join("");
+        var t = this,
+            i = this.parentView.model,
+            a = i.get("currentModule"),
+            s = this.model.getLink(i),
+            o = ['<div class="bodyerror ErrorTips" style="display:none">',
+                '<img id="img_smile" _src="../images/global/smile.png" width="73" height="72">',
+                "<p>没加载出来，再试一次吧</p>",
+                '<a class="btnTb" href="javascript:"><span class="p_relative">重新加载</span></a>',
+                '</div><div class="gtips NoCompleteTips" style="display:none">',
+                '<span class="ml_5">由于网络原因，当前页面未完全加载，是否<a class="Retry" style="text-decoration: underline;" href="javascript:">重新加载</a>？</span>',
+                '<a href="javascript:" class="i_u_close Close"></a>', "</div>"].join("");
         if (s) {
-            if (this.parentView.setTitle(i.getModule(a).title || s.title), "" == $(this.el).html() || !e || s.refresh) {
+            this.parentView.setTitle(i.getModule(a).title || s.title);
+            if ("" == $(this.el).html() || !e || s.refresh) {
                 var n = s.url.indexOf("?") >= 0 ? "&" : "?";
-                s.tab && $App.getView("tabpage").showLoading(s.tab);
+                if (s.tab) {
+                    $App.getView("tabpage").showLoading(s.tab);
+                }
                 var r = s.url;
-                if (s.clearSid || (r = r + n + "sid=" + sid), s.categroyId && (r += "&categroyId=" + s.categroyId), s.site && (r = getDomain(s.site) + "/" + r), this.param) if ("string" == typeof this.param) if (this.param.indexOf("urlReplace") >= 0) {
-                    r = this.param.match("urlReplace=(.+)")[1];
-                    var l = s.url.match(/https?:\/\/.+?\//);
-                    l && (r = l + r)
-                } else r += this.param; else r = M139.Text.Url.makeUrl(r, this.param);
+                s.clearSid || (r = r + n + "sid=" + sid);
+                s.categroyId && (r += "&categroyId=" + s.categroyId);
+                s.site && (r = getDomain(s.site) + "/" + r);
+                if (this.param) {
+                    if ("string" == typeof this.param) {
+                        if (this.param.indexOf("urlReplace") >= 0) {
+                            r = this.param.match("urlReplace=(.+)")[1];
+                            var l = s.url.match(/https?:\/\/.+?\//);
+                            l && (r = l + r)
+                        } else {
+                            r += this.param;
+                        }
+                    } else {
+                        r = M139.Text.Url.makeUrl(r, this.param);
+                    }
+                }
                 this.inputData && (r = $App.inputDataToUrl(r, this.inputData));
                 var c = a;
                 if (s.tab && (c = s.tab), "welcome" == c && document.getElementById("welcome_preload")) {
                     var d = document.getElementById("welcome_preload");
                     d.id = "welcome"
-                } else if (c.indexOf("compose") >= 0 && !window.firstComposeLoaded && -1 == r.indexOf("mid") && -1 == r.indexOf("type") && -1 == r.indexOf("inputData") && document.getElementById("compose_preload")) {
+                } else if (c.indexOf("compose") >= 0 && !window.firstComposeLoaded && -1 == r.indexOf("mid")
+                    && -1 == r.indexOf("type") && -1 == r.indexOf("inputData") && document.getElementById("compose_preload")) {
                     var d = document.getElementById("compose_preload");
                     $(d).closest("div").show(), window.firstComposeLoaded = !0, setTimeout(function () {
                         var e = $(d).contents().height() - $(d).contents().find("#htmlEdiorContainer").offset().top;
@@ -6602,25 +6913,49 @@ var FrameView = Backbone.View.extend({
                     }
                 }
             }
-        } else this.url ? (this.parentView.setTitle(this.title), d = this.createIframe(this.url), $(this.el).empty().append(d).append($(o))) : this.html && (this.parentView.setTitle(this.title), $(this.el).html(this.html));
+        } else {
+            if (this.url) {
+                this.parentView.setTitle(this.title);
+                d = this.createIframe(this.url);
+                $(this.el).empty().append(d).append($(o));
+            } else {
+                if (this.html) {
+                    this.parentView.setTitle(this.title), $(this.el).html(this.html);
+                }
+            }
+        }
         setTimeout(function () {
             t.onResize()
-        }, 50), e || setTimeout(function () {
-            t.watchIframeStatus(i.getModule(a))
-        }, 0)
+        }, 50);
+        if (!e) {
+            setTimeout(function () {
+                t.watchIframeStatus(i.getModule(a))
+            }, 0);
+        }
     },
     createIframe: function (e, t) {
-        var i, a, s = $App.getView("tabpage").getFrame(e);
-        return $(s).attr({
+        var i, a,
+            s = $App.getView("tabpage").getFrame(e);
+        $(s).attr({
             scrolling: "auto",
             "class": "main-iframe",
             name: "ifbg",
             frameborder: "no",
             width: "100%",
             allowtransparency: "true"
-        }), t && ($(s).attr({ id: t }), $(s).on("load", function () {
-            $(".loadingTip").remove()
-        })), e.match(/^set.*|uec\/.*\.html/) && (i = $('<div class="skin_mainWrapper"></div>'), a = $('<div class="skin_main"></div>').append(s), s = i.append(a)), s
+        });
+        if (t) {
+            $(s).attr({ id: t });
+            $(s).on("load", function () {
+                $(".loadingTip").remove()
+            });
+        }
+        if (e.match(/^set.*|uec\/.*\.html/)) {
+            i = $('<div class="skin_mainWrapper"></div>'),
+            a = $('<div class="skin_main"></div>').append(s),
+            s = i.append(a);
+        }
+        return s;
     },
     onResize: function () {
         if (this.el) try {
@@ -6738,6 +7073,9 @@ var FrameView = Backbone.View.extend({
         }(), i
     }
 });
+
+
+
 _.extend(TabLabel.prototype, {
     init: function (e) {
         this.context = e;
@@ -6911,6 +7249,8 @@ _.extend(TabLabel.prototype, {
         }), a.style.display = ""))
     }
 }),
+
+
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.TabMenu.View", s.extend({
@@ -6921,7 +7261,10 @@ function (e, t, i) {
             nothing: ""
         },
         initialize: function () {
-            return this.model = appView.getView("tabpage").model, this.isChinaMobileUser = $User.isChinaMobileUser(), this.initEvents(), s.prototype.initialize.apply(this, arguments)
+            this.model = appView.getView("tabpage").model;
+            this.isChinaMobileUser = $User.isChinaMobileUser();
+            this.initEvents();
+            return s.prototype.initialize.apply(this, arguments);
         },
         initContainer: function () {
             this.mainTab = this.mainTab || a("#divTab"), this.tabsMenuList = this.tabsMenuList || a("#tabsMenuList"), this.fixedTabsUl = this.fixedTabsUl || a("#fixedTabsUl"), this.otherTabsMenu = this.otherTabsMenu || a("#otherTabsMenu")
@@ -7020,6 +7363,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139);
+
+
 var Package = {
     config: function () {
         var e = this;
@@ -7122,19 +7467,38 @@ M139.namespace("M2012.History", {
             var e = $App.getCurrentTab() || $App.getTabByName("welcome");
             t.add(e)
         }
-
         var t = this;
-        if (this.historyIndex = 0, this.historyList = [], this.referUrl = top.location.href, this.funcList = [], window.history.pushState ? this.createHtml5History(e) : this.createIframeHistory(e), $App.on("showTab", function (e) {
-            try {
-                t.addBehavior(e)
-        } catch (i) {
+        this.historyIndex = 0;
+        this.historyList = [];
+        this.referUrl = top.location.href;
+        this.funcList = [];
+        if (window.history.pushState) {
+            this.createHtml5History(e);
+        } else {
+            this.createIframeHistory(e);
         }
-            e.fromHistory || t.fromHistory ? (delete e.fromHistory, t.fromHistory = !1) : 0 != t.historyList.length && t.historyList[t.historyList.length - 1] == e.name || t.add(e), t.updatePage(e.name)
-        }), window.sessionStorage && window.sessionStorage.getItem("currentPage")) {
+        $App.on("showTab", function (e) {
+            try {
+                t.addBehavior(e);
+            } catch (i) {
+            }
+            if (e.fromHistory || t.fromHistory) {
+                delete e.fromHistory;
+                t.fromHistory = !1;
+            } else {
+                if (!(0 != t.historyList.length && t.historyList[t.historyList.length - 1] == e.name)) {
+                    t.add(e);
+                }
+            }
+            t.updatePage(e.name);
+        });
+        if (window.sessionStorage && window.sessionStorage.getItem("currentPage")) {
             var i = document.getElementById("welcome");
-            i && (i.style.visibility = "hidden"), M139.Timing.waitForReady('$App.getConfig("InitData")', function () {
-                i && (i.style.visibility = ""), t.restorePage()
-            })
+            i && (i.style.visibility = "hidden");
+            M139.Timing.waitForReady('$App.getConfig("InitData")', function () {
+                i && (i.style.visibility = "");
+                t.restorePage();
+            });
         }
     },
     updatePage: function (e, t) {
@@ -7165,12 +7529,52 @@ M139.namespace("M2012.History", {
     },
     addBehavior: function (e) {
         function t(e, t) {
-            return window.LinkConfig[e] ? window.LinkConfig[e].url : "mailbox_1" == e || "mailsub_0" == e ? "VIP邮件" == t.title ? "mail_vip" : "星标邮件" == t.title ? "mail_star" : "待办任务" == t.title ? "mail_task" : "服务邮件" == t.title ? "mail_service" : "s?func=mbox:listMessages&fid=" + $App.getCurrentFid() : e.indexOf("readmail") >= 0 ? "s?func=view:readMessage&mid=" + e.replace("readmail_", "") : e.indexOf("compose") >= 0 ? "compose.html" : e
+            return window.LinkConfig[e] ? window.LinkConfig[e].url :
+                "mailbox_1" == e || "mailsub_0" == e ? "VIP邮件" == t.title ? "mail_vip" :
+                "星标邮件" == t.title ? "mail_star" : "待办任务" == t.title ? "mail_task" :
+                "服务邮件" == t.title ? "mail_service" :
+                "s?func=mbox:listMessages&fid=" + $App.getCurrentFid() : e.indexOf("readmail") >= 0 ? "s?func=view:readMessage&mid=" + e.replace("readmail_", "") :
+                e.indexOf("compose") >= 0 ? "compose.html" : e
+            if (window.LinkConfig[e]) {
+                return window.LinkConfig[e].url;
+            }
+            else {
+                if ("mailbox_1" == e || "mailsub_0" == e) {
+                    if ("VIP邮件" == t.title) {
+                        return "mail_vip";
+                    } else {
+                        if ("星标邮件" == t.title) {
+                            return "mail_star";
+                        } else {
+                            if ("待办任务" == t.title) {
+                                return "mail_task";
+                            } else {
+                                if ("服务邮件" == t.title) {
+                                    return "mail_service";
+                                } else {
+                                    return "s?func=mbox:listMessages&fid=" + $App.getCurrentFid();
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if (e.indexOf("readmail") >= 0) {
+                        return "s?func=view:readMessage&mid=" + e.replace("readmail_", "");
+                    } else {
+                        if (e.indexOf("compose") >= 0) {
+                            return "compose.html";
+                        } else {
+                            return e;
+                        }
+                    }
+                }
+            }
         }
 
         if ((!window.simpleMode || !window.simpleMode()) && window._udata && window._udata.sendPageInfo) {
             var i = t(e.name, e);
-            this.referUrl && i && window._udata.sendPageInfo({ fp: this.referUrl, cp: i }), this.referUrl = i
+            this.referUrl && i && window._udata.sendPageInfo({ fp: this.referUrl, cp: i });
+            this.referUrl = i;
         }
     },
     clear: function () {
@@ -8068,11 +8472,15 @@ function (jQuery, Backbone, _, M139) {
                 $App.prodFuns = top.ProductFuns;
                 var e = top.$App.prodFuns;
                 top.M139.Timing.waitForReady('top.$App.getConfig("UserData")', function () {
-                    top.SiteConfig.onlineTips && !top.$User.isNotChinaMobileUser() && e.showOnlineTips(), top.SiteConfig.billLight && !top.$User.isNotChinaMobileUser() && e.showBillLight(), setTimeout(function () {
+                    top.SiteConfig.onlineTips && !top.$User.isNotChinaMobileUser() && e.showOnlineTips(),
+                    top.SiteConfig.billLight && !top.$User.isNotChinaMobileUser() && e.showBillLight(),
+                    setTimeout(function () {
                         top.SiteConfig.isShowLazyCard && e.loadLazyCard()
                     }, 1e3)
-                }), e.loadOperateTips()
-            }, 100), $App.on("infoSetLoad", function (e) {
+                }),
+                e.loadOperateTips();
+            }, 100);
+            $App.on("infoSetLoad", function (e) {
                 var t = e.userMainData.mainUserConfig.shownewuserguide && e.userMainData.mainUserConfig.shownewuserguide[0];
                 "1" == t && Package.require("main_ext", function () {
                     (new M2012.Settings.Initset.View_New).render()
@@ -8086,46 +8494,97 @@ function (jQuery, Backbone, _, M139) {
             this.completeCallbackList || (this.completeCallbackList = []), this.completeCallbackList.push(e), this.checkUserDataComplete()
         },
         checkUserDataComplete: function () {
-            if (this.loadLevel >= 2 && this.completeCallbackList) for (; this.completeCallbackList.length > 0;) {
-                var e = this.completeCallbackList.shift();
-                e()
+            if (this.loadLevel >= 2 && this.completeCallbackList) {
+                for (; this.completeCallbackList.length > 0;) {
+                    var e = this.completeCallbackList.shift();
+                    e()
+                }
             }
         },
         initConfigData: function () {
             var e = this;
-            this.initContactData(),
+            this.initContactData();
             this.reloadUserAttrs({
                 callback: function () {
-                    e.loadLevel++, e.checkUserDataComplete()
+                    e.loadLevel++;
+                    e.checkUserDataComplete();
                 }
-            }),
-            window.MessageInfo && this.registerConfig("MessageInfo", MessageInfo), $App.on("userAttrChange", function (t) {
+            });
+            if (window.MessageInfo) {
+                this.registerConfig("MessageInfo", MessageInfo);
+            }
+            $App.on("userAttrChange", function (t) {
                 var i = t && t.callback;
                 t = $.extend(t, {
                     callback: function () {
-                        $App.getView("top").renderAccountList(e.getConfig("UserData")), i && i()
+                        $App.getView("top").renderAccountList(e.getConfig("UserData"));
+                        i && i();
                     }
-                }), $App.clearTabCache("welcome"), e.reloadUserAttrs(t)
-            }), "20" == $User.getAreaCode() && this.getAdLinkData(), this.getNewUserInfo()
+                });
+                $App.clearTabCache("welcome");
+                e.reloadUserAttrs(t);
+            });
+            if ("20" == $User.getAreaCode()) {
+                this.getAdLinkData();
+            }
+            this.getNewUserInfo();
         },
         initContactData: function (e) {
-            var t = this, i = M2012.Contacts.getModel();
-            this.registerModel("contacts", i), i.loadMainData({}, function (e) {
-                t.registerConfig("ContactData", e), t.trigger("contactLoad", e)
-            }), i.on("update", function (e) {
+            var t = this,
+                i = M2012.Contacts.getModel();
+            this.registerModel("contacts", i);
+            i.loadMainData({}, function (e) {
+                t.registerConfig("ContactData", e);
+                t.trigger("contactLoad", e);
+            });
+            i.on("update", function (e) {
                 t.trigger("contactUpdate", e)
-            })
+            });
         },
         initUserMainData: function (e, t) {
-            e && ("8613632599010" == e.UID && (e.UID = "8680000000000"), this.registerConfig("UserData", e), this.trigger("userDataLoad", e), t && t(e))
+            e && (
+            "8613632599010" == e.UID && (e.UID = "8680000000000"),
+            this.registerConfig("UserData", e),
+            this.trigger("userDataLoad", e), t && t(e))
         },
         initMainInfoData: function (e) {
             var t = this;
             this.loadMWGetInfoSet(function (i) {
                 if (i.responseData && "S_OK" == i.responseData.code) {
                     var a = i.responseData["var"];
-                    a.healthyHistory ? t.registerConfig("healthyHistory", a.healthyHistory) : t.logger.error("healthyHistory data error", "[info:getInfoSet]", i), a.userMainData ? t.initUserMainData(a.userMainData, e) : t.logger.error("userMainData data error", "[info:getInfoSet]", i), a.mealInfo ? t.registerConfig("mealInfo", a.mealInfo) : t.logger.error("mealInfo data error", "[info:getInfoSet]", i), a.userMobileSetting ? (t.registerConfig("PersonalData", a.userMobileSetting), t.trigger("personalDataLoad", a.userMobileSetting)) : t.logger.error("userMobileSetting data error", "[info:getInfoSet]", i), a.birthdayRemind ? t.registerConfig("birthdayRemind", a.birthdayRemind) : t.logger.error("birthdayRemind data error", "[info:getInfoSet]", i), t.loadLevel++, t.isInfoSetLoad = !0, t.trigger("infoSetLoad", a), t.checkUserDataComplete()
-                } else t.logger.error("info:getInfoSet", "[info:getInfoSet]", i)
+                    if (a.healthyHistory) {
+                        t.registerConfig("healthyHistory", a.healthyHistory);
+                    } else {
+                        t.logger.error("healthyHistory data error", "[info:getInfoSet]", i);
+                    }
+                    if (a.userMainData) {
+                        t.initUserMainData(a.userMainData, e);
+                    } else {
+                        t.logger.error("userMainData data error", "[info:getInfoSet]", i);
+                    }
+                    if (a.mealInfo) {
+                        t.registerConfig("mealInfo", a.mealInfo);
+                    } else {
+                        t.logger.error("mealInfo data error", "[info:getInfoSet]", i);
+                    }
+                    if (a.userMobileSetting) {
+                        t.registerConfig("PersonalData", a.userMobileSetting)
+                        t.trigger("personalDataLoad", a.userMobileSetting);
+                    } else {
+                        t.logger.error("userMobileSetting data error", "[info:getInfoSet]", i)
+                    }
+                    if (a.birthdayRemind) {
+                        t.registerConfig("birthdayRemind", a.birthdayRemind);
+                    } else {
+                        t.logger.error("birthdayRemind data error", "[info:getInfoSet]", i);
+                    }
+                    t.loadLevel++;
+                    t.isInfoSetLoad = !0;
+                    t.trigger("infoSetLoad", a);
+                    t.checkUserDataComplete();
+                } else {
+                    t.logger.error("info:getInfoSet", "[info:getInfoSet]", i);
+                }
             })
         },
         deepCloneJSON: function (e) {
@@ -8164,12 +8623,18 @@ function (jQuery, Backbone, _, M139) {
                 }, 0) : this.on("welcome_getInfoSet_load", function (e) {
                     t(e, !0)
                 })
-            } else M139.RichMail.API.call("info:getInfoSet", null, e);
+            } else {
+                M139.RichMail.API.call("info:getInfoSet", null, e);
+            }
             isFirstLoadGetInfoSet = !1
         },
         loadRMInitDataConfig: function (e) {
             function t(i, a) {
-                a && (i = $App.deepCloneJSON(i)), e({ responseData: i }), t = new Function
+                if (a) {
+                    i = $App.deepCloneJSON(i);
+                }
+                e({ responseData: i });
+                t = new Function
             }
 
             function i() {
@@ -8183,33 +8648,43 @@ function (jQuery, Backbone, _, M139) {
 
             if (SiteConfig.m2012NodeServerRelease && this.isShowWelcomePage() && isFirstLoadInitConfigData) {
                 var a = i();
-                if (a) setTimeout(function () {
-                    t(a, !0)
-                }, 0); else {
+                if (a) {
+                    setTimeout(function () {
+                        t(a, !0)
+                    }, 0);
+                } else {
                     this.on("welcome_getInitDataConfig_load", function (e) {
                         clearInterval(s), t(e, !0)
                     });
                     var s = setTimeout(function () {
-                        window.simpleMode && window.simpleMode() || M139.RichMail.API.call("user:getInitDataConfig", { visiblePurgeBoxFlag: 1 }, function (e) {
-                            t(e.responseData)
-                        })
+                        if (!(window.simpleMode && window.simpleMode())) {
+                            M139.RichMail.API.call("user:getInitDataConfig", { visiblePurgeBoxFlag: 1 }, function (e) {
+                                t(e.responseData)
+                            });
+                        }
                     }, 7e3)
                 }
-            } else M139.RichMail.API.call("user:getInitDataConfig", { visiblePurgeBoxFlag: 1 }, e);
-            isFirstLoadInitConfigData = !1
+            } else {
+                M139.RichMail.API.call("user:getInitDataConfig", { visiblePurgeBoxFlag: 1 }, e);
+            }
+            isFirstLoadInitConfigData = !1;
         },
         getMainData: function (e) {
             var t = this;
-            $App.getConfig("UserData") ? M139.RichMail.API.call("user:getMainData", null, function (i) {
-                if (i.responseData && "S_OK" == i.responseData.code) {
-                    var a = i.responseData["var"];
-                    t.initUserMainData(a, function () {
-                        t.getUserAccountList(), e && e()
-                    })
-                } else t.logger.error("getMainData data error", "[user:getMainData]", i)
-            }) : t.initMainInfoData(function () {
-                t.getUserAccountList(), e && e()
-            })
+            if ($App.getConfig("UserData")) {
+                M139.RichMail.API.call("user:getMainData", null, function (i) {
+                    if (i.responseData && "S_OK" == i.responseData.code) {
+                        var a = i.responseData["var"];
+                        t.initUserMainData(a, function () {
+                            t.getUserAccountList(), e && e()
+                        })
+                    } else t.logger.error("getMainData data error", "[user:getMainData]", i)
+                })
+            } else {
+                t.initMainInfoData(function () {
+                    t.getUserAccountList(), e && e()
+                })
+            }
         },
         getUserAccountList: function () {
             var e = $App.getConfig("UserData");
@@ -8279,13 +8754,40 @@ function (jQuery, Backbone, _, M139) {
             this.loadRMInitDataConfig(function (a) {
                 if ("S_OK" == a.responseData.code) {
                     var s = a.responseData["var"];
-                    s.userAttrs && i.registerConfig("UserAttrs", s.userAttrs), s.messageInfo && i.registerConfig("MessageInfo", s.messageInfo), s.PopList && (i.registerConfig("PopList", s.PopList), window.PopList = s.PopList), s.SignList && i.registerConfig("configSignList", top.Array.prototype.slice.call(s.SignList)), M139.Logger.getDefaultLogger().timeStart("user:getSignatures"), $RM.getSignatures(function (e) {
+                    if (s.userAttrs) {
+                        i.registerConfig("UserAttrs", s.userAttrs);
+                    }
+                    if (s.messageInfo) {
+                        i.registerConfig("MessageInfo", s.messageInfo);
+                    }
+                    if (s.PopList) {
+                        i.registerConfig("PopList", s.PopList);
+                        window.PopList = s.PopList;
+                    }
+                    if (s.SignList) {
+                        i.registerConfig("configSignList", top.Array.prototype.slice.call(s.SignList));
+                    }
+                    M139.Logger.getDefaultLogger().timeStart("user:getSignatures");
+                    $RM.getSignatures(function (e) {
                         M139.Logger.getDefaultLogger().timeEnd("user:getSignatures");
                         var t = top.Array.prototype.slice.call(e["var"]);
-                        i.registerConfig("SignList", t)
-                    }), s.folderList && i.registerConfig("FolderList", s.folderList), s.userConfig && i.registerConfig("UserAttrsAll", s.userConfig), $App.trigger("userAttrsAllLoaded", { data: s.userConfig }), $.isFunction(t) && t(i.getConfig("UserAttrs")), i.registerConfig("InitData", a.responseData), i.getView("folder").render(!0, function () {
-                        $App.trigger("folderLoaded", {})
-                    }), e && e(i.getConfig("UserAttrs"))
+                        i.registerConfig("SignList", t);
+                    });
+                    if (s.folderList) {
+                        i.registerConfig("FolderList", s.folderList);
+                    }
+                    if (s.userConfig) {
+                        i.registerConfig("UserAttrsAll", s.userConfig);
+                    }
+                    $App.trigger("userAttrsAllLoaded", { data: s.userConfig });
+                    if ($.isFunction(t)) {
+                        t(i.getConfig("UserAttrs"));
+                    }
+                    i.registerConfig("InitData", a.responseData);
+                    i.getView("folder").render(!0, function () {
+                        $App.trigger("folderLoaded", {});
+                    }),
+                    e && e(i.getConfig("UserAttrs"))
                 }
             })
         },
@@ -8299,21 +8801,35 @@ function (jQuery, Backbone, _, M139) {
             var t = this;
             M2012.Contacts.API.queryNewUserInfo({
                 success: function (i) {
-                    i.code && "S_OK" == i.code && i.data ? (t.registerConfig("NewUserInfo", i.data), e && e(i.data)) : e && e(null)
-                }, error: function (t) {
-                    e && e(null)
+                    if (i.code && "S_OK" == i.code && i.data) {
+                        t.registerConfig("NewUserInfo", i.data),
+                        e && e(i.data);
+                    } else {
+                        e && e(null);
+                    }
+                },
+                error: function (t) {
+                    e && e(null);
                 }
             })
         },
         reloadUserAttrs: function (e) {
             function t() {
-                a++, 2 == a && "function" == typeof e.callback && e.callback()
+                a++;
+                if (2 == a && "function" == typeof e.callback) {
+                    e.callback();
+                }
             }
 
-            var i = this, a = 0;
-            e || (e = {}), this.loadAttrs1(t, function (t) {
-                "undefined" != typeof e.trueName && (t.trueName = e.trueName), i.isUserAttrsLoad = !0, $App.trigger("userAttrsLoad", i.getConfig("UserAttrsAll"))
-            }), this.getMainData(t)
+            var i = this,
+                a = 0;
+            e || (e = {});
+            this.loadAttrs1(t, function (t) {
+                "undefined" != typeof e.trueName && (t.trueName = e.trueName);
+                i.isUserAttrsLoad = !0;
+                $App.trigger("userAttrsLoad", i.getConfig("UserAttrsAll"));
+            });
+            this.getMainData(t);
         },
         drawLimitSkin: function (e) {
             return $App.getUserConfigInfo("skintrialtag") && $App.getUserConfigInfo("skintrialtag").match(/isDrew=(0|1)/).length && $App.getUserConfigInfo("skintrialtag").match(/isDrew=(0|1)/)[1] ? void $App.getCommConfig({ configId: 62 }, function (t) {
@@ -8504,11 +9020,17 @@ function (jQuery, Backbone, _, M139) {
             this.registerView("contextmenu", new M2012.Mailbox.View.ContextMenu);
             var t = this.getView("mailbox").model;
             ($B.is.webkit || $B.is.firefox) && setTimeout(function () {
-            }, 2e3),
-            this.registerView("command", new M2012.Mailbox.View.Command({ model: t })),
+            }, 2e3);
+            this.registerView("command", new M2012.Mailbox.View.Command({ model: t }));
             $(window).load(function () {
                 setTimeout(function () {
-                    $.browser.safari || $.browser.mozilla || $B.is.ie && $B.getVersion() <= 8 || "http:" == window.location.protocol && $("#div_main").append('<div class="gload" id="div_composeContainer" style="display:none"><iframe src="compose_v3.html?sid=' + top.sid + '" scrolling="auto" class="main-iframe" frameborder="no" width="100%" allowtransparency="true" name="ifbg" id="compose_preload" "></iframe></div>')
+                    if (!($.browser.safari || $.browser.mozilla || $B.is.ie && $B.getVersion() <= 8)) {
+                        if ("http:" == window.location.protocol) {
+                            $("#div_main").append('<div class="gload" id="div_composeContainer" style="display:none"><iframe src="compose_v3.html?sid=' +
+                                top.sid +
+                                '" scrolling="auto" class="main-iframe" frameborder="no" width="100%" allowtransparency="true" name="ifbg" id="compose_preload" "></iframe></div>');
+                        }
+                    }
                 }, 500)
             })
         },
@@ -8571,7 +9093,7 @@ function (jQuery, Backbone, _, M139) {
         initApi: function () {
             this.on("beforeRequireLoad", function (e) {
                 e && "main_ext" == e.key && (delete M2012.UI.Dialog.ContactsEditor, delete M2012.UI.Dialog.AddressBook)
-            }),
+            });
             M139.namespace("M2012.UI.Dialog.ContactsEditor", function (e) {
                 var t = {
                     _callback: {}, on: function (e, t) {
@@ -8586,7 +9108,7 @@ function (jQuery, Backbone, _, M139) {
                         for (elem in t._callback) i.on(elem, t._callback[elem])
                     }, 100)
                 }), t
-            }),
+            });
             M139.namespace("M2012.UI.Dialog.AddressBook", {
                 create: function (e) {
                     this.render = function () {
@@ -8596,14 +9118,15 @@ function (jQuery, Backbone, _, M139) {
                             this._callback[e] = t
                         }
                     };
-                    return Package.require("main_ext", function () {
+                    Package.require("main_ext", function () {
                         setTimeout(function () {
                             var i = new M2012.UI.Dialog.AddressBook(e).render();
                             for (elem in t._callback) i.on(elem, t._callback[elem])
                         }, 100)
-                    }), t
+                    });
+                    return t;
                 }
-            }),
+            });
             jQuery.extend(this, {
                 getSid: function () {
                     return $T.Html.encode(this.query.sid)
@@ -9025,44 +9548,56 @@ function (jQuery, Backbone, _, M139) {
                 },
                 closeTab: function (e) {
                     return this.getView("tabpage").close(e)
-                }, activeTab: function (e) {
+                },
+                activeTab: function (e) {
                     return this.getView("tabpage").activeTab(e)
-                }, clearTabCache: function (e) {
+                },
+                clearTabCache: function (e) {
                     return this.getView("tabpage").clearTabCache(e)
                 },
                 closeAllTab: function () {
                     return this.getView("tabpage").closeAllTab()
-                }, getCurrentFid: function () {
+                },
+                getCurrentFid: function () {
                     return this.getCurrentView().model.get("fid")
-                }, getFolderById: function (e) {
+                },
+                getFolderById: function (e) {
                     return this.getView("folder").model.getFolderById(e)
                 },
                 getFolders: function (e) {
                     return this.getView("folder").model.getFolders(e)
-                }, getFolderType: function (e) {
+                },
+                getFolderType: function (e) {
                     return this.getView("folder").model.getFolderType(e)
-                }, getFolderByFolderName: function (e) {
+                },
+                getFolderByFolderName: function (e) {
                     return this.getView("folder").model.getFolderByFolderName(e)
                 },
                 addFolder: function (e, t, i, a) {
                     return this.getView("folder").model.addFolder(e, t, i, a)
-                }, addFolders: function (e, t) {
+                },
+                addFolders: function (e, t) {
                     return this.getView("folder").model.addFolders(e, t)
-                }, addTag: function (e, t, i, a) {
+                },
+                addTag: function (e, t, i, a) {
                     return this.getView("folder").model.addTag(e, t, i, a)
                 },
                 checkFolderName: function (e, t) {
                     return this.getView("folder").model.checkFolderName(e, t)
-                }, checkTagName: function (e, t) {
+                },
+                checkTagName: function (e, t) {
                     return this.getView("folder").model.checkTagName(e, t)
-                }, isPopFolder: function (e) {
+                },
+                isPopFolder: function (e) {
                     return this.getView("folder").model.isPopFolder(e)
                 },
                 isTagFolder: function (e) {
                     return this.getView("folder").model.isTagFolder(e)
-                }, getAddrNameByEmail: function (e) {
+                },
+                getAddrNameByEmail: function (e) {
                     return $App.getModel("contacts").getAddrNameByEmail(e)
-                }, isSessionMode: function () {
+                },
+                isSessionMode: function () {
                     var e = $App.getConfig("UserAttrs");
                     return e ? 1 == e.sessionMode : !1
                 },
@@ -9075,14 +9610,16 @@ function (jQuery, Backbone, _, M139) {
                         })
                     }
                     return i
-                }, isSessionMid: function (e) {
+                },
+                isSessionMid: function (e) {
                     var t = !1;
                     if (e) {
                         var i = $App.getMailDataByMid(e) || null;
                         i && i.mailNum && i.mailNum > 1 && (t = !0)
                     }
                     return t
-                }, openNewWin: function (e) {
+                },
+                openNewWin: function (e) {
                     var t = top.getProtocol() + location.host + top.getRootPath() + "/html/newwinreadmail.html?t=newwin&mid=" + e, i = (document.documentElement, document.createElement("form"));
                     i.target = "_blank", i.method = "get", $(i).append('<input type="hidden" name="t" value="newwin" />'), $(i).append('<input type="hidden" name="mid" value="' + e + '" />'), $(i).append('<input type="hidden" name="sid" value="' + $App.getSid() + '" />'), document.body.appendChild(i), i.action = t, i.submit(), setTimeout(function () {
                         document.body.removeChild(i)
@@ -9097,12 +9634,14 @@ function (jQuery, Backbone, _, M139) {
                             s.sessionMode = e, t && t(e)
                         } else i && a.responseData && i(a.responseData.code)
                     })
-                }, reply: function (e, t, i) {
+                },
+                reply: function (e, t, i) {
                     var a = {}, s = "reply";
                     1 === e && (s = "replyAll"), a.type = s, a.mid = t, a.withAttach = i, a.lastTabName = $App.getCurrentTab().name, a.userAccount = top.$User.getDefaultSender();
                     var o = $App.getCurrentTab().name;
                     this.show("compose", a), $App.getCurrentTab().name.indexOf("readmail") >= 0 && this.getView("tabpage").replace(o, $App.getCurrentTab().name)
-                }, forward: function (e) {
+                },
+                forward: function (e) {
                     var t = {};
                     t.type = "forward", t.mid = e, t.lastTabName = $App.getCurrentTab().name, t.asAttch = arguments[2].asAttch, arguments[1] && arguments[1].userAccount && (t.userAccount = arguments[1].userAccount);
                     var i = $App.getCurrentTab().name, a = this.isReadMail(), s = this.isReadSessionMail();
@@ -9111,10 +9650,12 @@ function (jQuery, Backbone, _, M139) {
                 isReadMail: function () {
                     var e = $App.getCurrentTab();
                     return e.name.indexOf("readmail") > -1
-                }, isReadSessionMail: function () {
+                },
+                isReadSessionMail: function () {
                     var e = $App.getCurrentTab(), t = $App.getCurrentTab().view, i = t && t.$el && t.$el.find("#covMailSummaryList")[0], a = e.name.indexOf("readmail") > -1 && i, s = $("#readWrap").find("#covMailSummaryList")[0], o = e.name.indexOf("readmail") > -1 && t.model.get("total") > 1, n = e.name.indexOf("viewDiscussInfo") > -1;
                     return !!(a || s || o || n)
-                }, forwardAsAttach: function (e, t) {
+                },
+                forwardAsAttach: function (e, t) {
                     var i = {};
                     i.type = "forwardAsAttach", i.ids = e, i.subject = t, i.lastTabName = $App.getCurrentTab().name, arguments[2] && arguments[2].userAccount && (i.userAccount = arguments[2].userAccount);
                     var a = $App.getCurrentTab().name, s = this.isReadMail(), o = this.isReadSessionMail();
@@ -9130,20 +9671,24 @@ function (jQuery, Backbone, _, M139) {
                         var t = $(this).attr("mid");
                         return t == e && -1 != $(this).attr("tabid").indexOf("compose_") ? (console.warn("The draft has opened, mid: " + e), i = !0, top.$App.activeTab($(this).attr("tabid")), !1) : void 0
                     }), !i && this.show("compose", t)
-                }, editMessage: function (e) {
+                },
+                editMessage: function (e) {
                     var t = {};
                     t.type = "resend", t.mid = e, this.show("compose", t)
-                }, rewriteMessage: function (e) {
+                },
+                rewriteMessage: function (e) {
                     var t = {};
                     t.type = "rewrite", this.show("compose", t, { inputData: { rewrite: e } })
                 },
                 sendVcard: function (e) {
                     var t = {};
                     t.type = "vCard", t.sd = e, this.show("compose", t)
-                }, uploadLargeAttach: function () {
+                },
+                uploadLargeAttach: function () {
                     var e = {};
                     e.type = "uploadLargeAttach", this.show("compose", e)
-                }, getAttrs: function (e) {
+                },
+                getAttrs: function (e) {
                     var t = $App.getConfig("UserAttrs"), i = $App.getConfig("UserAttrsAll");
                     return t && t[e] ? t[e] : i && i[e] ? i[e] : ""
                 },
@@ -9156,14 +9701,17 @@ function (jQuery, Backbone, _, M139) {
                             t && t(i)
                         } else t && t(i)
                     })
-                }, getCustomAttrs: function (e) {
+                },
+                getCustomAttrs: function (e) {
                     var t = this.getAttrs("_custom_" + e);
                     return t ? "string" == typeof t ? t.trim() : t : ""
-                }, setCustomAttrs: function (e, t, i) {
+                },
+                setCustomAttrs: function (e, t, i) {
                     var a = "_custom_" + e, s = {};
                     "" == t && (t = " "), s[a] = t, this.setAttrs(s, i)
                 },
-                showOnceCallbackList: [], showOnce: function (e, t, i) {
+                showOnceCallbackList: [],
+                showOnce: function (e, t, i) {
                     var a = this;
                     this.requireUserData(function () {
                         if (!a.isOnceShowed(e) && $App.getConfig("UserAttrsAll")) {
@@ -9177,7 +9725,8 @@ function (jQuery, Backbone, _, M139) {
                             })
                         }
                     })
-                }, showOnceOld: function (e, t, i) {
+                },
+                showOnceOld: function (e, t, i) {
                     var a = this, s = SiteConfig.showOnceKey || {}, o = s[e];
                     void 0 == o && console.warn(e + "该key未定义，请修改showOnce函数");
                     var n = this.getConfig("UserAttrs");
@@ -9199,11 +9748,13 @@ function (jQuery, Backbone, _, M139) {
                 isOnceShowed: function (e) {
                     var t = Number($App.getCustomAttrs("showOnce")).toString(2), i = Number(SiteConfig.showOnceKey[e]);
                     return i < t.length ? t.substr(i, 1) > 0 : !1
-                }, showOrderinfo: function () {
+                },
+                showOrderinfo: function () {
                     BH("show_orderinfo");
                     var e = "http://" + location.host + top.getRootPath() + "/html/set/feature_meal_guide/index.html?sid=" + $App.getSid();
                     window.open(e)
-                }, showReceiveRights: function (e) {
+                },
+                showReceiveRights: function (e) {
                     function t(e) {
                         top.$Msg.showHTML(['<div class="norTips"><span class="norTipsIco"><i class="i_ok"></i></span>', '<dl class="norTipsContent">', '<dt class="norTipsTitle fz-weight">升级成功！</dt>', '<dd class="norTipsLine fz_14 c_666">有效使用期为31天，请留意使用。</dd>', '<dd class="norTipsLine fz_14 c_666">您还可以<a href="javascript:top.$App.show(\'mobile\');top.$Msg.getCurrent().close();top.$Msg.getCurrent().close();">升级邮箱套餐</a>，', e, "</dd>", "</dl>", "</div>"].join(""), function () {
                             ("diskDev" == $App.getCurrentTab().name || $App.getCurrentTab().name.indexOf("compose") >= 0) && $App.getCurrentTab().view.render()
@@ -10318,6 +10869,13 @@ function (e, t, i, a) {
         }
     }))
 }(jQuery, Backbone, _, M139),
+
+
+/* 
+ 
+ 右侧收件箱文件夹
+
+*/
 M139.namespace("M2012.Folder.Model", {
     FolderModel: Backbone.Model.extend({
         setorderObj: {
@@ -10498,9 +11056,16 @@ M139.namespace("M2012.Folder.Model", {
             }), this.setPopFolders(), this.trigger("change:folders")
         },
         fetchFolderList: function (e, t, i) {
-            if (this.trigger("Process"), !t || !_.isFunction(t)) throw new Error("fetchFolderList 第2个参数必须是函数");
-            if (!e || _.isNaN(e)) throw new Error("fetchFolderList 第1个参数必须是number 类型的数字");
-            if (!i && this.folders && 0 !== this.folders.length) return void t(this._GetDataByType(e));
+            this.trigger("Process");
+            if (!t || !_.isFunction(t)) {
+                throw new Error("fetchFolderList 第2个参数必须是函数");
+            }
+            if (!e || _.isNaN(e)) {
+                throw new Error("fetchFolderList 第1个参数必须是number 类型的数字");
+            }
+            if (!i && this.folders && 0 !== this.folders.length) {
+                return void t(this._GetDataByType(e));
+            }
             var a = this;
             if (this.get("isFirstLoad")) {
                 var s = $App.getConfig("InitData");
@@ -10529,37 +11094,45 @@ M139.namespace("M2012.Folder.Model", {
                         "var": s["var"].folderList
                     }
                 };
-                a.setFoldersData(o), a.trigger("ProcessCompleted"), t(a._GetDataByType(e)), $App.trigger("InitDataConfig", s)
-            } else this.callApi("user:getInitDataConfig", {}, function (i) {
-                var s = i.responseData;
-                setTimeout(function () {
-                    var i = s, o = {
-                        responseData: {
-                            code: "S_OK",
-                            unreadMessageCount: s["var"].messageInfo.unreadMessageCount,
-                            unreadStarCount: s.unreadStarCount,
-                            totalStarCount: s.totalStarCount,
-                            todoTaskCount: s.todoTaskCount,
-                            totalTaskCount: s.totalTaskCount,
-                            newBillCount: i.newBillCount,
-                            totalSubscriptionCount: s.totalSubscriptionCount,
-                            newSubscriptionCount: s.newSubscriptionCount,
-                            totalBillCount: s.totalBillCount,
-                            billNew1: i.billNew1,
-                            billNew2: i.billNew2,
-                            billNew3: i.billNew3,
-                            billNew4: i.billNew4,
-                            billNew5: i.billNew5,
-                            billNew6: i.billNew6,
-                            billNew7: s.billNew7,
-                            billNew8: s.billNew8,
-                            unreadrubbishCount: s["var"].folderList[4].stats.unreadMessageCount,
-                            "var": s["var"].folderList
-                        }
-                    };
-                    a.setFoldersData(o, i), a.trigger("ProcessCompleted"), t(a._GetDataByType(e)), $App.trigger("InitDataConfig", s)
-                }, 100)
-            })
+                a.setFoldersData(o);
+                a.trigger("ProcessCompleted");
+                t(a._GetDataByType(e));
+                $App.trigger("InitDataConfig", s);
+            } else {
+                this.callApi("user:getInitDataConfig", {}, function (i) {
+                    var s = i.responseData;
+                    setTimeout(function () {
+                        var i = s, o = {
+                            responseData: {
+                                code: "S_OK",
+                                unreadMessageCount: s["var"].messageInfo.unreadMessageCount,
+                                unreadStarCount: s.unreadStarCount,
+                                totalStarCount: s.totalStarCount,
+                                todoTaskCount: s.todoTaskCount,
+                                totalTaskCount: s.totalTaskCount,
+                                newBillCount: i.newBillCount,
+                                totalSubscriptionCount: s.totalSubscriptionCount,
+                                newSubscriptionCount: s.newSubscriptionCount,
+                                totalBillCount: s.totalBillCount,
+                                billNew1: i.billNew1,
+                                billNew2: i.billNew2,
+                                billNew3: i.billNew3,
+                                billNew4: i.billNew4,
+                                billNew5: i.billNew5,
+                                billNew6: i.billNew6,
+                                billNew7: s.billNew7,
+                                billNew8: s.billNew8,
+                                unreadrubbishCount: s["var"].folderList[4].stats.unreadMessageCount,
+                                "var": s["var"].folderList
+                            }
+                        };
+                        a.setFoldersData(o, i);
+                        a.trigger("ProcessCompleted");
+                        t(a._GetDataByType(e));
+                        $App.trigger("InitDataConfig", s);
+                    }, 100)
+                })
+            }
         },
         setFoldersData: function (e, t) {
             this.set("unreadMessageCount", e.responseData.unreadMessageCount),
@@ -10757,7 +11330,7 @@ M139.namespace("M2012.Folder.Model", {
             var a = { fid: e, order: "date", desc: 1, start: 1, total: 1, folderPass: t };
             this.callApi("mbox:listMessages", a, function (e) {
                 var t = "S_OK" == e.responseData.code;
-                i(t)
+                i(t);
             })
         },
         isLock: function (e) {
@@ -11215,7 +11788,8 @@ M139.namespace("M2012.Folder.View", {
         },
         setmoreTpl: ['<div class="boxIframeText MB_Content wTipCont personal-set-box" style="height:275px; overflow:auto">', '<div class="norTips">', '<dl class="norTipsContent" id="swtichList">', '<dt class="norTipsLine personal-set-title"><span class="c_999 fz_12">在左侧导航栏始终显示邮件入口</span></dt>', '<dd class="norTipsLine mt_3"><p>稍后处理</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>VIP邮件</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>星标邮件</p><a href="javascript:" class="fr" ><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>订阅邮件</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>移动账单</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>生活服务</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>通知动态</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>注册激活</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>广告邮件</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>我的邀请</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>垃圾邮件</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>潮州移动</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>行程邮件</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>银行账单</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>电子发票</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', '<dd class="norTipsLine mt_3"><p>企业服务号</p><a href="javascript:" class="fr"><label class="" style=""></label></a></dd>', "</dl>", "</div>", "</div>"].join(""),
         initialize: function (e) {
-            this.model = e.model, this.view = e.view
+            this.model = e.model;
+            this.view = e.view;
         },
         renderEach: function (e) {
             var t = this;
@@ -11285,11 +11859,26 @@ M139.namespace("M2012.Folder.View", {
             var e = this;
             top.M139.RichMail.API.call("user:getMailNotify", {}, function (t) {
                 var i = t.responseData;
-                if (!i || "S_OK" != i.code) return top.M139.UI.TipMessage.error("获取邮件到达短信提醒失败", { delay: 1500 }), !1;
-                var a = i["var"][0], s = a.enable, o = a.syncDy, n = a.notifystyle, r = n.split(","), l = r.length;
+                if (!i || "S_OK" != i.code) {
+                    top.M139.UI.TipMessage.error("获取邮件到达短信提醒失败", { delay: 1500 });
+                    return !1;
+                }
+                var a = i["var"][0],
+                    s = a.enable,
+                    o = a.syncDy,
+                    n = a.notifystyle,
+                    r = n.split(","),
+                    l = r.length;
                 e.timerange = "";
-                for (var c = 0; c < a.timerange.length; c++) e.timerange += '<object><int name="begin">' + a.timerange[c].begin + '</int><int name="end">' + a.timerange[c].end + '</int><string name="weekday">' + a.timerange[c].weekday + "</string></object>";
-                if (e.mailnotifyopions = { msgConverge: a.msgConverge }, e.model.set("enable", a.enable), e.model.set("notifystyle", a.notifystyle), e.model.set("syncDy", a.syncDy), s) {
+                for (var c = 0; c < a.timerange.length; c++) {
+                    e.timerange += '<object><int name="begin">' + a.timerange[c].begin + '</int><int name="end">'
+                        + a.timerange[c].end + '</int><string name="weekday">' + a.timerange[c].weekday + "</string></object>";
+                }
+                e.mailnotifyopions = { msgConverge: a.msgConverge };
+                e.model.set("enable", a.enable);
+                e.model.set("notifystyle", a.notifystyle);
+                e.model.set("syncDy", a.syncDy);
+                if (s) {
                     o ? e.setEachDiag.$el.find("label[syncDy]").removeClass("closingbtn").addClass("openingbtn").attr("syncDy", !0) : e.setEachDiag.$el.find("label[syncDy]").removeClass("openingbtn").addClass("closingbtn").attr("syncDy", !1);
                     for (var c = 0; l > c; c++) {
                         var d = e.setEachDiag.$el.find("label[smstip_" + r[c] + "]").length;
@@ -11387,12 +11976,34 @@ M139.namespace("M2012.Folder.View", {
             }))
         },
         saveMailNotifyDate: function (e) {
-            var t = this, i = t.model.get("enable"), a = $(e.event.currentTarget).parents(".boxIframe"), s = $(a.find("label[order]")).attr("order"), o = $(a.find("label[order]")).attr("smstip_" + s), n = 0 !== o.length;
-            !i && n && (t.model.set("enable", !0), t.model.set("notifystyle", o), t.model.set("syncDy", !1));
+            var t = this, i = t.model.get("enable"),
+                a = $(e.event.currentTarget).parents(".boxIframe"),
+                s = $(a.find("label[order]")).attr("order"),
+                o = $(a.find("label[order]")).attr("smstip_" + s),
+                n = 0 !== o.length;
+            if (!i && n) {
+                t.model.set("enable", !0);
+                t.model.set("notifystyle", o);
+                t.model.set("syncDy", !1);
+            }
             for (var r = o.split(","), l = t.model.get("notifystyle"), c = l.split(","), d = c.concat(r), p = _.uniq(d), m = p.join(","), u = c.length, h = 0; u > h; h++) {
                 var f = c[h] == s;
                 if (f) {
-                    n ? (r = o.split(","), l = t.model.get("notifystyle"), c = l.split(","), d = c.concat(r), p = _.uniq(d), m = p.join(",")) : (r = o.split(","), l = t.model.get("notifystyle"), c = l.split(","), d = c.concat(r), p = _.without(d, s, ""), m = p.join(","));
+                    if (n) {
+                        r = o.split(",");
+                        l = t.model.get("notifystyle");
+                        c = l.split(",");
+                        d = c.concat(r);
+                        p = _.uniq(d);
+                        m = p.join(",");
+                    } else {
+                        r = o.split(",");
+                        l = t.model.get("notifystyle");
+                        c = l.split(",");
+                        d = c.concat(r);
+                        p = _.without(d, s, "");
+                        m = p.join(",");
+                    }
                     break
                 }
                 f || (n ? (r = o.split(","), l = t.model.get("notifystyle"), c = l.split(","), d = c.concat(r), p = _.uniq(d), m = p.join(",")) : (r = o.split(","), l = t.model.get("notifystyle"), m = l))
@@ -11406,7 +12017,18 @@ M139.namespace("M2012.Folder.View", {
             });
             top.M139.RichMail.API.call("user:updateMailNotify", g, function (e) {
                 var i = e.responseData;
-                i && "S_OK" == i.code ? (top.$App.trigger("notifySettingChange"), top.$App.initMainInfoData(), 0 == m.length && 0 == t.model.get("syncDy") && 1 == t.model.get("enable") ? (m = t.model.get("notifystyle"), top.M139.UI.TipMessage.show("至少选择一种邮件到达短信通知 , 左侧显示入口设置成功", { delay: 3e3 })) : top.M139.UI.TipMessage.show("设置成功", { delay: 1500 })) : top.M139.UI.TipMessage.error("设置失败", { delay: 1500 })
+                if (i && "S_OK" == i.code) {
+                    top.$App.trigger("notifySettingChange");
+                    top.$App.initMainInfoData();
+                    if (0 == m.length && 0 == t.model.get("syncDy") && 1 == t.model.get("enable")) {
+                        m = t.model.get("notifystyle");
+                        top.M139.UI.TipMessage.show("至少选择一种邮件到达短信通知 , 左侧显示入口设置成功", { delay: 3e3 });
+                    } else {
+                        top.M139.UI.TipMessage.show("设置成功", { delay: 1500 });
+                    }
+                } else {
+                    top.M139.UI.TipMessage.error("设置失败", { delay: 1500 });
+                }
             })
         },
         finalLeftBarsetting: function () {
@@ -11752,10 +12374,7 @@ M139.namespace("M2012.Folder.View", {
         initialize: function () {
             var e = this;
             this.model = new M2012.Folder.Model.FolderModel;
-            this.setmoreView = new M2012.Folder.View.SetMore({
-                model: this.model,
-                view: this
-            });
+            this.setmoreView = new M2012.Folder.View.SetMore({ model: this.model, view: this });
             var t = new M2012.Folder.View.FolderCustom({ model: this.model }),
                 i = new M2012.Folder.View.FolderPop({ model: this.model }),
                 a = new M2012.Folder.View.FolderTag({ model: this.model });
@@ -12194,6 +12813,10 @@ M139.namespace("M2012.Folder.View", {
         }
     })
 }),
+/*
+  右侧收件箱文件夹
+*/
+
 function (e, t, i, a) {
     a.namespace("M2015.Mailnotify.Model", i.Model.extend({
         defaults: {
@@ -12412,7 +13035,13 @@ function (e, t, i, a) {
         },
         render: function () {
             var e = this;
-            e.html = e.template, e.element = s(e.html), e.showAllowStyle(), e.showTimers(), e.showContacts(), e.showUndisturb(), e.initEvents()
+            e.html = e.template,
+            e.element = s(e.html),
+            e.showAllowStyle(),
+            e.showTimers(),
+            e.showContacts(),
+            e.showUndisturb(),
+            e.initEvents()
         },
         renderIcon: function () {
             var e = this;
@@ -12935,11 +13564,13 @@ function (e, t, i) {
             /mailbox_|mailsub_/i.test($App.getCurrentTab().name) && ("left" != $App.getLayout() && "top" != $App.getLayout() || ($App.trigger("showMailbox"), $App.trigger("refreshSplitView")))
         },
         render: function () {
-            var e = this, t = e.model.get("mid");
+            var e = this,
+                t = e.model.get("mid");
             e.model.remarkDataSource(function (i) {
                 if (null != i.memo) {
                     var s = $T.Utils.format(e.showtemp, [$T.Utils.htmlEncode(i.memo)]);
-                    a(e.el).find("#readremark_" + t).html(s).show(), location.search.indexOf("t=newwin") > -1 && a(".remarkTips-title .fr").v
+                    a(e.el).find("#readremark_" + t).html(s).show(),
+                    location.search.indexOf("t=newwin") > -1 && a(".remarkTips-title .fr").v
                 }
             })
         }
@@ -13008,7 +13639,13 @@ M139.namespace("M2012.Model.Pns", {
                     var t = e.responseData["var"];
                     1 == window.PreloadMailState && "list" == $App.getLayout() && !$App.isSessionMode() && t.length > 0 && setTimeout(function () {
                         $App.readMail(t[0].mid, !1, t[0].fid, { silence: !0 }), window.PreloadMailState = 2
-                    }, 0), $App.getView("folder").model.set("vipMailStats", null), $App.getView("mailbox").model.set("freshMailList", t), $App.trigger("reloadFolder"), $App.getCurrentTab().name.indexOf("mailbox") >= 0 && $App.trigger("mailboxDataChange", { render: !0 }), $App.trigger("newMailArrival", t), $App.trigger("msgBoxMailArrival", t)
+                    }, 0);
+                    $App.getView("folder").model.set("vipMailStats", null);
+                    $App.getView("mailbox").model.set("freshMailList", t);
+                    $App.trigger("reloadFolder");
+                    $App.getCurrentTab().name.indexOf("mailbox") >= 0 && $App.trigger("mailboxDataChange", { render: !0 });
+                    $App.trigger("newMailArrival", t);
+                    $App.trigger("msgBoxMailArrival", t);
                 }
             })
         },
@@ -13462,7 +14099,31 @@ M139.namespace("M2012.Mailbox.Model", {
         },
         callApi: M139.RichMail.API.call,
         getDataSource: function (e) {
-            0 == this.get("showSize") && "size" == this.get("order") && (this.set("order", "receiveDate"), this.set("desc", 1)), 3 == this.get("fid") && "from" == this.get("order") && this.set("order", "to"), this.get("isSearchMode") && this.get("isContactsMail") ? this.searchContactsMail(e) : this.get("isSearchMode") ? this.searchMail(e) : this.isFirstLoad && 1 == this.get("fid") && this.get("preloadData") ? (this.isFirstLoad = !1, e(this.get("preloadData"))) : 7 == this.get("fid") ? this.searchDelBackMail(e) : this.getMailList(e)
+            if (0 == this.get("showSize") && "size" == this.get("order")) {
+                this.set("order", "receiveDate");
+                this.set("desc", 1);
+            }
+            if (3 == this.get("fid") && "from" == this.get("order")) {
+                this.set("order", "to");
+            }
+            if (this.get("isSearchMode") && this.get("isContactsMail")) {
+                this.searchContactsMail(e)
+            } else {
+                if (this.get("isSearchMode")) {
+                    this.searchMail(e)
+                } else {
+                    if (this.isFirstLoad && 1 == this.get("fid") && this.get("preloadData")) {
+                        this.isFirstLoad = !1;
+                        e(this.get("preloadData"));
+                    } else {
+                        if (7 == this.get("fid")) {
+                            this.searchDelBackMail(e);
+                        } else {
+                            this.getMailList(e);
+                        }
+                    }
+                }
+            }
         },
         clearPreloadData: function () {
             this.set("preloadData", null)
@@ -13532,21 +14193,33 @@ M139.namespace("M2012.Mailbox.Model", {
                         var a = (new Date).getTime() - n, s = ["maillist", o, "S_OK", a];
                         top.window.sendUData("webp_maillist_loaded", s)
                     }
-                } else M139.UI.TipMessage.hide(), i && "2351011" == i.errorCode ? ($App.showUnlock(t.get("fid")), $App.close()) : M139.UI.TipMessage.showRetry(l.callee, t, l)
+                } else {
+                    M139.UI.TipMessage.hide();
+                    if (i && "2351011" == i.errorCode) {
+                        $App.showUnlock(t.get("fid"));
+                        $App.close();
+                    } else {
+                        M139.UI.TipMessage.showRetry(l.callee, t, l);
+                    }
+                }
             })
         },
         getUnreadBillCounts: function (e) {
             var t = this;
             t.callApi("user:getInitDataConfig", { type: 0, dataType: 1 }, function (i) {
-                top.$App.registerConfig("InitData", i.responseData), i.responseData && "S_OK" == i.responseData.code && (t.set({
-                    UnreadMobilebillCounts: i.responseData.billNew1 || 0,
-                    UnreadLifeserviceCounts: i.responseData.billNew2 || 0,
-                    UnreadNoticeCounts: i.responseData.billNew3 || 0,
-                    UnreadRegisteCounts: i.responseData.billNew4 || 0,
-                    UnreadExtensionCounts: i.responseData.billNew5 || 0,
-                    UnreadInvoiceCounts: i.responseData.billNew6 || 0,
-                    UnreadChaoMessageCounts: i.responseData.billNew7 || 0
-                }), e && e())
+                top.$App.registerConfig("InitData", i.responseData);
+                if (i.responseData && "S_OK" == i.responseData.code) {
+                    t.set({
+                        UnreadMobilebillCounts: i.responseData.billNew1 || 0,
+                        UnreadLifeserviceCounts: i.responseData.billNew2 || 0,
+                        UnreadNoticeCounts: i.responseData.billNew3 || 0,
+                        UnreadRegisteCounts: i.responseData.billNew4 || 0,
+                        UnreadExtensionCounts: i.responseData.billNew5 || 0,
+                        UnreadInvoiceCounts: i.responseData.billNew6 || 0,
+                        UnreadChaoMessageCounts: i.responseData.billNew7 || 0
+                    });
+                    e && e();
+                }
             })
         },
         clusterSubscription: function (e) {
@@ -14949,32 +15622,56 @@ M139.namespace("M2012.Mailbox.View", {
             })
         },
         render: function (e, t, i) {
-            var a = this, s = $D.getHTMLElement(this.el), o = $(this.el);
+            var a = this,
+                s = $D.getHTMLElement(this.el),
+                o = $(this.el);
             if (this.model.get("isSearchMode")) {
-                var n = $App.getView("mailbox_other"), r = n.model.get("isVipMode"), l = n.model.get("isTaskMode"), c = n.model.get("isTaskbacklogMode"), d = n.model.get("isTaskdoneMode"), p = n.model.get("isContactsMail"), m = !!this.model.get("searchOptions").flags, u = a.model.isOnemailMode(), h = a.model.isBillMode(), f = a.model.isUseNewMode(), g = r || l || c || d || p || m || u || h || f;
+                var n = $App.getView("mailbox_other"),
+                    r = n.model.get("isVipMode"),
+                    l = n.model.get("isTaskMode"),
+                    c = n.model.get("isTaskbacklogMode"),
+                    d = n.model.get("isTaskdoneMode"),
+                    p = n.model.get("isContactsMail"),
+                    m = !!this.model.get("searchOptions").flags,
+                    u = a.model.isOnemailMode(),
+                    h = a.model.isBillMode(),
+                    f = a.model.isUseNewMode(),
+                    g = r || l || c || d || p || m || u || h || f;
                 if (!g) {
                     var v = $App.getView("mailbox_other").model.get("userLayout") || $App.getLayout();
-                    this.model.setAll("userLayout", v), this.model.setAll("layout", "list")
+                    this.model.setAll("userLayout", v),
+                    this.model.setAll("layout", "list")
                 }
             } else {
                 var b = $App.getView("mailbox_other").model.get("userLayout");
-                b && (this.model.setAll("layout", b), this.model.setAll("userLayout", ""))
+                if (b) {
+                    this.model.setAll("layout", b);
+                    this.model.setAll("userLayout", "");
+                }
             }
             if (!e || this.model.get("needReload")) {
-                if (this.model.set("needReload", !1), "left" == $App.getLayout() && a.isUseNew3list()) s.innerHTML = $T.format(this.template.new3ListStr, [Math.random()]), a.createNew3ListType(); else if (!this.model.isApproachMode() || this.model.isBillMode() || this.model.isOnemailMode()) s.innerHTML = "<div class='p_absolute new-main-right two-column-structure' style='left:0;height:1000px;'><div class='p_relative horizon_full'><div id='toolbar_div' class='width_full'></div><div class='new-main-inner' style=''><div class='p_relative new-main-data horizon_full'><div class='mailing-lists-wrap'><div class='p_relative mailing-lists-inner'>" + this.getListHeader() + a.getMailListWrap(0) + "</div></div></div></div></div></div>"; else {
+                this.model.set("needReload", !1)
+                if ("left" == $App.getLayout() && a.isUseNew3list()) {
+                    s.innerHTML = $T.format(this.template.new3ListStr, [Math.random()]), a.createNew3ListType();
+                } else if (!this.model.isApproachMode() || this.model.isBillMode() || this.model.isOnemailMode()) {
+                    s.innerHTML = "<div class='p_absolute new-main-right two-column-structure' style='left:0;height:1000px;'><div class='p_relative horizon_full'><div id='toolbar_div' class='width_full'></div><div class='new-main-inner' style=''><div class='p_relative new-main-data horizon_full'><div class='mailing-lists-wrap'><div class='p_relative mailing-lists-inner'>" + this.getListHeader() + a.getMailListWrap(0) + "</div></div></div></div></div></div>";
+                } else {
                     var y = " searchFilter-off";
-                    "1" == top.$App.getCustomAttrs("openSearchclassify") && (y = ""), s.innerHTML = "<div class='p_absolute new-main-right two-column-structure' style='left:0;height:1000px;'><div class='p_relative horizon_full'><div id='toolbar_div' class='width_full'></div><div class=' new-main-inner' style='top:80px;'><div id='div_mail' class='p_relative new-main-data horizon_full' style=''><div class='mailing-lists-wrap'><div class='p_relative mailing-lists-inner'><div class='p_relative' style=''><!--[if lt ie 8]><div class='p_relative' style='+zoom:1;'><![endif]-->" + this.getListHeader() + "<div class='mailing-lists-content'><div id='div_maillist' class='MaillistDiv p_relative mailing-lists-inner'></div></div></div><div id='div_searchclassify' style='display:none;' class='searchFilter searchFlanking" + y + "'></div><!--[if lt ie 8]></div><![endif]--></div></div></div>"
+                    "1" == top.$App.getCustomAttrs("openSearchclassify") && (y = ""),
+                    s.innerHTML = "<div class='p_absolute new-main-right two-column-structure' style='left:0;height:1000px;'><div class='p_relative horizon_full'><div id='toolbar_div' class='width_full'></div><div class=' new-main-inner' style='top:80px;'><div id='div_mail' class='p_relative new-main-data horizon_full' style=''><div class='mailing-lists-wrap'><div class='p_relative mailing-lists-inner'><div class='p_relative' style=''><!--[if lt ie 8]><div class='p_relative' style='+zoom:1;'><![endif]-->" + this.getListHeader() + "<div class='mailing-lists-content'><div id='div_maillist' class='MaillistDiv p_relative mailing-lists-inner'></div></div></div><div id='div_searchclassify' style='display:none;' class='searchFilter searchFlanking" + y + "'></div><!--[if lt ie 8]></div><![endif]--></div></div></div>"
                 }
                 setTimeout(function () {
                     if ($B.is.ie || $B.is.ie11 || $B.is.firefox) var e = "mr_16"; else var e = "mr_8";
                     o.find("#div_maillist")[0].scrollHeight > o.find("#div_maillist").height() ? o.find("#list_header").parent().addClass(e) : o.find("#list_header").parent().removeClass(e)
-                }, 500), this.initSplitView();
+                }, 500),
+                this.initSplitView();
                 var w = o.find("#toolbar_div");
                 o.find("#div_maillist");
                 this.toolbarView ? this.toolbarView.setElement(w) : this.toolbarView = new M2012.Mailbox.View.Toolbar({
                     model: this.model,
                     el: w
-                }), this.options.multiInstance ? (this.listView && $(this.listView.el).off(), this.listView = new M2012.Mailbox.View.ListView({
+                }),
+                this.options.multiInstance ? (this.listView && $(this.listView.el).off(), this.listView = new M2012.Mailbox.View.ListView({
                     model: this.model,
                     el: this.el
                 })) : this.listView = new M2012.Mailbox.View.ListView.prototype.createInstance({
@@ -14991,7 +15688,14 @@ M139.namespace("M2012.Mailbox.View", {
                     }
                 } catch (M) {
                 }
-                top.$App.getView("mailbox").model.get("IamFromLaiwang") && ($("#div_searchclassify").hide(), $("#div_mail").addClass("searchListoff")), top.$App.getView("mailbox_other").model.get("showSearchclassify") || ($("#div_searchclassify").hide(), $("#div_mail").addClass("searchListoff")), this.toolbarView.parentView = this, this.toolbarView.render(), this.listView.toolbarView = this.toolbarView, this.listView.render(!1, t, i), $("input:checkbox").m139Check && $("input:checkbox").m139Check(), this.initEvent();
+                top.$App.getView("mailbox").model.get("IamFromLaiwang") && ($("#div_searchclassify").hide(), $("#div_mail").addClass("searchListoff"));
+                top.$App.getView("mailbox_other").model.get("showSearchclassify") || ($("#div_searchclassify").hide(), $("#div_mail").addClass("searchListoff"));
+                this.toolbarView.parentView = this;
+                this.toolbarView.render();
+                this.listView.toolbarView = this.toolbarView;
+                this.listView.render(!1, t, i);
+                $("input:checkbox").m139Check && $("input:checkbox").m139Check();
+                this.initEvent();
             }
         },
         showMailIntroduce: function () {
@@ -15278,8 +15982,12 @@ function () {
                 return ""
             },
             render: function () {
-                var e = this, t = this.model.get("fid"), i = (this.model.getFolderInfo(this.model.get("fid")), $App.getMailboxView().model.get("list_layout_old")), a = "";
-                this.setTitle(), "1" != $App.getCustomAttrs("userIsLayout") && $(document).width() >= 1440 && i && (a = ['<div id="popLayoutLeft" class="tips delmailTips adapterTips" style="top:37px;left:-20px;z-index:5001;width:375px;display:block">', '<a href="javascript:" class="delmailTipsClose" style="display:none;"><i class="i_u_close"></i></a>', '<div class="tips-text">', '<div class="norTips-news" style="padding:20px;font-size:14px;">', '<span class="norTipsIco"><i class="i_ok"></i></span>', '<div class="norTipsContent" style="padding:5px 0 0;"><p>根据你浏览器的分辨率，系统已经自动适配<br/>左右分栏视图，帮助你更高效率的浏览邮件。</p><p style="padding:10px 0 0;">你可以在这里调整视图设置。</p></div>', "</div>", '<div name="buttons" class="delmailTipsBtn"><a href="javascript:void(0)" class="btnSure icoG icoG-s"><span>我知道了</span></a><a href="javascript:void(0)" class="btnNormal icoTb icoTb-s"><span>恢复原状</span></a></div>', "</div>", '<div class="diamond tipsTop" name="popup_arrow" style="left:26px;"></div>', "</div>"].join(""), $App.showOnce("layout_left", function () {
+                var e = this,
+                    t = this.model.get("fid"),
+                    i = (this.model.getFolderInfo(this.model.get("fid")), $App.getMailboxView().model.get("list_layout_old")),
+                    a = "";
+                this.setTitle(),
+                "1" != $App.getCustomAttrs("userIsLayout") && $(document).width() >= 1440 && i && (a = ['<div id="popLayoutLeft" class="tips delmailTips adapterTips" style="top:37px;left:-20px;z-index:5001;width:375px;display:block">', '<a href="javascript:" class="delmailTipsClose" style="display:none;"><i class="i_u_close"></i></a>', '<div class="tips-text">', '<div class="norTips-news" style="padding:20px;font-size:14px;">', '<span class="norTipsIco"><i class="i_ok"></i></span>', '<div class="norTipsContent" style="padding:5px 0 0;"><p>根据你浏览器的分辨率，系统已经自动适配<br/>左右分栏视图，帮助你更高效率的浏览邮件。</p><p style="padding:10px 0 0;">你可以在这里调整视图设置。</p></div>', "</div>", '<div name="buttons" class="delmailTipsBtn"><a href="javascript:void(0)" class="btnSure icoG icoG-s"><span>我知道了</span></a><a href="javascript:void(0)" class="btnNormal icoTb icoTb-s"><span>恢复原状</span></a></div>', "</div>", '<div class="diamond tipsTop" name="popup_arrow" style="left:26px;"></div>', "</div>"].join(""), $App.showOnce("layout_left", function () {
                     function e(e) {
                         $App.setCustomAttrs("userIsLayout", e.userIsLayout), $App.setAttrs({ list_layout: e.list_layout }), e.list_layout_old && ($App.getMailboxView().model.setAll("layout", e.list_layout_old), $App.showMailbox(1)), $(".tips.delmailTips.adapterTips").remove(), $(document).off("click.layout_left")
                     }
@@ -16059,7 +16767,8 @@ function () {
 }(),
 M139.namespace("M2012.Mailbox.View", {
     MailMenu: Backbone.View.extend({
-        el: "", template: "", events: {}, initialize: function (e) {
+        el: "",
+        template: "", events: {}, initialize: function (e) {
             function t(e) {
                 i.setButtonVisible(e.count)
             }
@@ -16087,7 +16796,8 @@ M139.namespace("M2012.Mailbox.View", {
                     l.addClass("calendarMod_on"), l.after("<i></i>")
                 }
             }
-        }, getCalendarParam: function (e) {
+        },
+        getCalendarParam: function (e) {
             var t = function (e) {
                 return e = e >= 10 ? e : "0" + e
             }, i = e.getFullYear(), a = t(e.getMonth() + 1), s = $Date.getDaysOfMonth(e), o = i + "-" + a + "-01", n = i + "-" + a + "-" + s, r = Math.round(top.M139.Date.parse(o + " 00:00:00").getTime() / 1e3), l = Math.round(top.M139.Date.parse(n + " 23:59:59").getTime() / 1e3);
@@ -16123,7 +16833,8 @@ M139.namespace("M2012.Mailbox.View", {
                 break
             }
             return a ? t = !1 : i && (t = !0), t
-        }, setButtonVisible: function (e) {
+        },
+        setButtonVisible: function (e) {
             var t = this;
             if ("left" == $App.getLayout() || "top" == $App.getLayout()) {
                 var i = $(this.el).find("#btn_reply,#btn_replyAll"), a = $(this.el).find("#btn_reply_2,#btn_replyAll_2"), s = $(".attachmentNum").length, o = $("#headAttach").length;
@@ -16252,7 +16963,8 @@ M139.namespace("M2012.Mailbox.View", {
                     }
                 }), $(i.el).append(a)
             }
-        }, showForwardBtn: function (e, t, i) {
+        },
+        showForwardBtn: function (e, t, i) {
             var a = this, s = document.createElement("li");
             s.id = "btn_forward";
             var o = "none";
@@ -16332,7 +17044,8 @@ M139.namespace("M2012.Mailbox.View", {
                     }
                 }), $(a.el).find("#MarkTo").after(n)
             }
-        }, showSaveBtn: function (e, t) {
+        },
+        showSaveBtn: function (e, t) {
             if (!$App.isSessionMode() && 1 == e) {
                 var i = this, a = document.createElement("li");
                 a.className = "", M2012.UI.MenuButton.create({
@@ -16423,7 +17136,8 @@ M139.namespace("M2012.Mailbox.View", {
                 }
             });
             $(t.el).append(i)
-        }, showDelResumeBtn: function () {
+        },
+        showDelResumeBtn: function () {
             var e = this, t = document.createElement("li");
             M2012.UI.MenuButton.create({
                 text: "误删除恢复",
@@ -16457,7 +17171,8 @@ M139.namespace("M2012.Mailbox.View", {
             M2012.UI.MenuButton.create(a), $(e.el).append(t)
         }, showNotAdBtn: function (e, t) {
             return
-        }, addCalBtn: function () {
+        },
+        addCalBtn: function () {
             var e = this.el.parent().find("a#btn_more"), t = '<a id="btn_cal" style="float: left; padding-right: 1px; display: inline; margin-right: 6px;"><i class="iconCreateV3 c-pointer" id="task_icreate" style="vertical-align: -4px;"></i></a>';
             $(t).insertAfter(e)
         }, showCancelTaskBtn: function () {
@@ -16561,7 +17276,8 @@ M139.namespace("M2012.Mailbox.View", {
                 var a = $App.getMailboxView().model.get("searchOptions");
                 (2 === e || a && 2 === a.fid) && menuItems.splice(0, 2), $(t.el).append(i)
             }
-        }, showConversationToggleBtn: function (e, t) {
+        },
+        showConversationToggleBtn: function (e, t) {
             var i = this, a = t.total;
             if (t && t.isSessionMail && a && 51 > a) {
                 var s = document.createElement("li"), o = "全部展开", n = "covtoggle";
@@ -16664,7 +17380,8 @@ M139.namespace("M2012.Mailbox.View", {
                 var t = e.getSelectMailBillCount();
                 t.unBillLength && (n = !0), 0 === t.length ? (o = "all", $("#billBackup span").text(i), $("#billBackup").removeClass("hide")) : t.unBillLength === t.length ? $("#billBackup").addClass("hide") : t.billLength ? (o = "increment", $("#billBackup span").text(a), $("#billBackup").removeClass("hide")) : $("#billBackup").removeClass("hide")
             })
-        }, getSelectMailBillCount: function () {
+        },
+        getSelectMailBillCount: function () {
             var e = this.model.getSelectedRow().mids || [], t = { length: e.length, billLength: 0, unBillLength: 0 };
             if (!e.length) return t;
             for (var i = 0; i < t.length; i++) {
@@ -16702,7 +17419,8 @@ M139.namespace("M2012.Mailbox.View", {
             $(e.el).append(t), $(e.el).find("#myVoiceitem a").addClass("btnTbColor")
         }, showBillCategoryBtn: function () {
             return
-        }, showTaskBtn: function () {
+        },
+        showTaskBtn: function () {
             var e = this, t = document.createElement("li");
             t.className = "mr_10", $(e.el).prepend(t), M2012.UI.MenuButton.create({
                 text: "标为处理完毕",
@@ -16738,7 +17456,8 @@ M139.namespace("M2012.Mailbox.View", {
                     }))
                 }
             }), $(t).find("a:eq(0)").addClass("btnSetG").removeClass("btnTb ml_6").prepend('<i class="i_t_right" style="vertical-align:baseline;*vertical-align:4px;margin-right:3px;"></i>'), $(t).find("span:eq(0)").removeClass("p_relative")
-        }, render: function () {
+        },
+        render: function () {
             this.$el.hide();
             var e = this, t = this.model.get("fid"), i = e.readmail, a = $App.getLayout() || "list", s = this.model.get("billTab");
             if (top.mailboxComplaintView.model.set({ dataSource: i && i.mail }), this.model.isTaskMode() && (this.showTaskBtn(), this.addCalBtn()), $App.getCurrentTab().name.indexOf("mailsub") >= 0 && "mailsub_0" != $App.getCurrentTab().name && this.showReturnBtn(t, {}), "list" == a && !i) if (this.showForwardBtn(t, i), this.showDeleteMenuBtn(t, i), this.showNotAdBtn(t, i), this.showMarkAllReadBtn(t, i), this.showMarkBtn(t, i), this.model.isTaskMode() || setTimeout(function () {
@@ -17356,7 +18075,8 @@ M139.namespace("M2012.Mailbox.View", {
             var a = this;
             this.renderContainer(), e || (a.model.get("isSearchMode") ? (a.model.set("isNewSearch", !0), BH("searchResult_load")) : BH("mailbox_load"), this.model.addLoadBehavior());
             var s = M2012.Mailbox.View.MailTag.prototype.createInstance();
-            M139.UI.TipMessage.show("正在加载...", { after: 2e3 }), this.model.getDataSource(function (o, n) {
+            M139.UI.TipMessage.show("正在加载...", { after: 2e3 });
+            this.model.getDataSource(function (o, n) {
                 if (M139.UI.TipMessage.hide(), !e || e && "common" == a.model.get("flipType")) {
                     var r;
                     if (r = "left" == $App.getLayout() ? $("#template_maillist_left_new").val() : $("#template_maillist").val(), (0 == a.model.get("showSize") || a.model.isTaskMode()) && (r = r.replace(/<td class="td4"><a id="th_size".+?<\/td>/gi, "").replace(/<td class="td4" name="size">.*td>/gi, ""), a.$el.find("#th_size").parents("td").addClass("maillist-tdhide")), 7 == a.model.get("fid") && (r = $("#template_deresume_maillist").val()), a.model.isOnemailMode() || a.model.isBillMode()) {
@@ -17446,9 +18166,11 @@ M139.namespace("M2012.Mailbox.View", {
                 k.addClass("have"), setTimeout(function () {
                     "left" == $App.getLayout() && 1 == a.model.get("pageIndex") && window.isReadFirstMailInLeft && (a.model.set("isReadFirst", !1), a.model.trigger("readFirstMail"), window.isReadFirstMailInLeft = !1)
                 }, 50), t && t.isScrollTop && (a.$el.find("#div_maillist")[0].scrollTop = 0, a.model.set("listViewScollTop", 0)), a.showRemindOnce()
-            }), t && t.comefrom && "commandCallback" == t.comefrom && setTimeout(function () {
+            });
+            t && t.comefrom && "commandCallback" == t.comefrom && setTimeout(function () {
                 a.model.trigger("mailboxReady")
-            }, 700), $App.getCurrentTab().element.className = $User.getPageStyleByKey(a.model.get("pageStyle"))
+            }, 700);
+            $App.getCurrentTab().element.className = $User.getPageStyleByKey(a.model.get("pageStyle"));
         },
         showRemindOnce: function () {
             var e = this, t = ['<div id="remindGuide" class="boxIframe" style="position: absolute;top: 220px; width:310px;z-index:9001;display:block;"><div class="icons TriangleBottom" style="left:14px;"></div><a href="javascript:;" class="icons tips-upload-close newPop-close"></a><div class="boxIframeMain newPopIframe"><div class="boxIframeText"><div class="norTips"><span class="norTipsIco"><i class="i-newPop i-newPop-hover"></i></span><dl class="norTipsContent pt_10"><dt class="norTipsLine"></dt><dd class="norTipsLine">hover这里，快速标记待处理事项！</dd></dl></div></div></div></div>'].join("");
@@ -24224,7 +24946,8 @@ function (e, t, i) {
             menu: ['<div id="starOrRemindPopMenu" class="menuPop shadow setstarlayer" style="position:absolute">', '<div class="setstarlist">', '<ul id="setstarlist">', '<li order="11" type="star" class="setstartool"><a href="javascript:;"><span class="text"><span class="i-iconwidth">', '<i class="i-starClick"></i></span><span class="dib">标记星标</span></span></a></li>', '<li order="11" type="star" class="setstartool"><a href="javascript:;"><span class="text"><span class="i-iconwidth">', '<i class="i-starMo"></i></span><span class="dib">取消星标</span></span></a></li>', '<li order="21" type="default" id="setMarked"><a href="javascript:;"><span class="text"><span class="i-iconwidth">', '<i class="i-seticon i-setmarked"></i></span><span class="dib">标为处理完毕</span></span></a></li>', '<li order="22" type="default" ><a href="javascript:;"><span class="text"><span class="i-iconwidth">', '<i class="i-seticon i-settodo"></i></span><span class="dib">稍后处理</span></span></a></li>', '<li order="23" type="default"><a href="javascript:;"><span class="text"><span class="i-iconwidth">', '<i class="i-seticon i-setlater"></i></span><span class="i-texttips">下午6:00</span><span class="dib">今天晚点处理</span></span></a></li>', '<li order="24" type="default"><a href="javascript:;"><span class="text"><span class="i-iconwidth">', '<i class="i-seticon i-settomorrow"></i></span><span class="i-texttips">周三 上午9:00</span><span class="dib">明天处理</span></span></a></li>', '<li order="25" type="default"><a href="javascript:;"><span class="text"><span class="i-iconwidth">', '<i class="i-seticon i-setonedays"></i></span><span class="i-texttips">10月18日 上午9:00</span><span class="dib">指定一天</span></span></a></li>', '<li order="31" type="bankbill"><a href="javascript:;"><span class="text">', '<span class="i-texttips"></span><span class="dib">还款日当天提醒</span></span></a></li>', '<li order="32" type="bankbill"><a href="javascript:;"><span class="text">', '<span class="i-texttips"></span><span class="dib">提前一天提醒</span></span></a></li>', '<li order="33" type="bankbill"><a href="javascript:;"><span class="text">', '<span class="i-texttips"></span><span class="dib">提前两天提醒</span></span></a></li>', "</ul>", '<div id="timeSelectPopMenu" class="tips delmailTips setstarlayermore" style="position:static;display:none;width: 225px;border:none;box-shadow: none;">', '<a href="javascript:" class="delmailTipsClose" style="display:none;"><i class="i_u_close"></i></a>', '<div class="mailFlag"><a id="backToList" href="javascript:void(0)" class="mail-flag">返回</a>请选择日期和时间</div>', '<div class="tips-text">', '<div class="norTips-news" style="padding:10px 6px;">', '<ul class="setstarlayermorelist mail_flag_text">', '<li><span class="i-iconwidth"><i class="icons i-mail-flag"></i></span><span class="dib mailSapn" style="margin-left: 5px;"><input type="text" class="ipt-text" id="remindDate" readonly="readonly"></span></li>', '<li><span class="i-iconwidth"><i class="i-seticon i-settiming"></i></span><span class="dib"><div id="remindTime"></div></span></li>', "</ul>", "</div>", '<div name="buttons" class="delmailTipsBtn"><span class="mail_flag_left">同步至日历</span><a id="remindSave" href="javascript:void(0)" class="btnSure icoG icoG-s"><span>保存</span></a><a href="javascript:void(0)" class="btnNormal icoTb icoTb-s" style="display:none;"><span>取消</span></a></div>', "</div>", '<div class="diamond tipsTop" style="left:26px;display:none;"></div>', "</div>", "</div>", "</div>"].join(""),
             tipTemp: ['<div style="top: -35px; left: 22px;padding: 0 6px;" id="starOrRemindPopTip" class="tips">', '<div class="tips-text" style="font-size: 12px;">', "{text}", "</div>", '<div class="tipsBottom2 diamond"></div>', "</div>"].join("")
         }
-    })), a(function () {
+    })),
+    a(function () {
         $App.registerView("starOrRemindPopMenu", new m2012.starOrRemindPopMenu.view({}))
     })
 }(jQuery, _, M139),
@@ -26104,7 +26827,10 @@ function (e) {
     var a = "M2012.Contacts.HttpClient";
     e.namespace(a, e.ExchangeHttpClient.extend({
         initialize: function (t) {
-            e.ExchangeHttpClient.prototype.initialize.apply(this, arguments), this.router = e.HttpRouter, this.router.addRouter("addr", ["GetUserAddrJsonData", "AddLastContacts", "QueryUserInfo", "ModUserInfo", "QueryContactsImageUrl", "GetLastContactsDetail", "AddUserInfo", "WhoAddMe", "AddGroupList", "DelGroup", "DelGroupList", "AddCAndGToGroup", "EditGroupList", "DelContacts", "AddGroup", "AddBatchContacts", "GetDealList", "DelDealList", "ModDealStatus", "AgreeOrRefuseAll", "QueryContactsInGroup", "GetRepeatContacts", "AddContacts", "ModContacts", "DelLastContacts", "ModGroup", "MoveGroupList", "MergeContacts", "QueryMergeResult", "DelLCContacts", "ModContactsField", "GetNumWaitForCleaning", "QueryInfoWaitForCleaning", "OneKeyClean", "BatchQuery", "GetUncompletedContacts", "GetPrivacySettings", "SavePrivacySettings", "GetRepeatContactsNew", "AutoMergeContacts", "QueryContactsAndGroup", "GetBatchImageUrl", "WhoAddMeByPage", "GetHeComboGroupInfo", "GetHeComboGroupContacts", "GetHeComboContactDetailInfo", "GetGroupList", "GetContactsList", "AddNewContacts", "ModNewContacts", "QueryNewContacts", "DelNewContacts", "ModNewUserInfo", "QueryNewUserInfo", "ModMayKnowStatus", "GetMayKnowStatus", "MergeNewContacts", "WamBatchReq", "GetFinshImportList", "GetFinshImportResult", "GetRemindBirdays", "SetRemindBirdays", "AddContactsField", "GetUpdateContactsCount", "GetUpdatedContactsList", "NoPromptUpdated", "AutoUpdateContacts", "UpdatedContactsInfo", "UpdateHecomboFlag", "ResetUserImgURL", "GetInvalidContactsNum", "GetInvalidContacts", "SetEmailValid", "DelInvalidEmail", "GetOperList", "GetbackupInfo", "UndoOperation", "ModBatchContacts", "GetMergeContactsList", "ModNamesAndGroups", "GetRepeatContactsList", "OrderGroup", "AutoSaveReceivers"]), this.router.addRouter("addr2", []), this.router.addRouter("addr3", ["MergeFuzzyQuery", "GetHeSubOrgMemberList", "GetHeMemberInfo", "CheckUserNumber", "WritePageGetAllSubList", "GetOrgTopNMerber", "FuzzyQuery"]), this.router.addRouter("addr_p3_gw", ["andAddr:readGroups", "andAddr:readGroupContacts", "andAddr:readContactDetail"]), this.router.addRouter("webdav", ["wangyisync", "googlesync", "qqsync", "sinasync", "139sync", "tomsync"]), this.router.addRouter("groupmail", ["gom:queryGroupList", "gom:getGroupInfo", "gom:getGomUser", "gom:createGroup", "gom:updateGroup", "gom:getUserList", "gom:exitGroup", "gom:invitationHandle", "gom:queryInvitedRecord", "gom:getGroupDynamicInfo"])
+            e.ExchangeHttpClient.prototype.initialize.apply(this, arguments), this.router = e.HttpRouter, this.router.addRouter("addr", ["GetUserAddrJsonData", "AddLastContacts", "QueryUserInfo", "ModUserInfo", "QueryContactsImageUrl", "GetLastContactsDetail", "AddUserInfo", "WhoAddMe", "AddGroupList", "DelGroup", "DelGroupList", "AddCAndGToGroup", "EditGroupList", "DelContacts", "AddGroup", "AddBatchContacts", "GetDealList", "DelDealList", "ModDealStatus", "AgreeOrRefuseAll", "QueryContactsInGroup", "GetRepeatContacts", "AddContacts", "ModContacts", "DelLastContacts", "ModGroup", "MoveGroupList", "MergeContacts",
+                "QueryMergeResult", "DelLCContacts", "ModContactsField", "GetNumWaitForCleaning", "QueryInfoWaitForCleaning", "OneKeyClean", "BatchQuery", "GetUncompletedContacts", "GetPrivacySettings", "SavePrivacySettings", "GetRepeatContactsNew", "AutoMergeContacts", "QueryContactsAndGroup", "GetBatchImageUrl", "WhoAddMeByPage", "GetHeComboGroupInfo", "GetHeComboGroupContacts", "GetHeComboContactDetailInfo", "GetGroupList", "GetContactsList", "AddNewContacts", "ModNewContacts", "QueryNewContacts", "DelNewContacts", "ModNewUserInfo", "QueryNewUserInfo", "ModMayKnowStatus", "GetMayKnowStatus", "MergeNewContacts",
+                "WamBatchReq", "GetFinshImportList", "GetFinshImportResult", "GetRemindBirdays", "SetRemindBirdays", "AddContactsField", "GetUpdateContactsCount", "GetUpdatedContactsList", "NoPromptUpdated", "AutoUpdateContacts", "UpdatedContactsInfo", "UpdateHecomboFlag", "ResetUserImgURL", "GetInvalidContactsNum", "GetInvalidContacts", "SetEmailValid", "DelInvalidEmail", "GetOperList", "GetbackupInfo", "UndoOperation", "ModBatchContacts", "GetMergeContactsList", "ModNamesAndGroups", "GetRepeatContactsList", "OrderGroup", "AutoSaveReceivers"]), this.router.addRouter("addr2", []), this.router.addRouter("addr3", ["MergeFuzzyQuery", "GetHeSubOrgMemberList",
+                    "GetHeMemberInfo", "CheckUserNumber", "WritePageGetAllSubList", "GetOrgTopNMerber", "FuzzyQuery"]), this.router.addRouter("addr_p3_gw", ["andAddr:readGroups", "andAddr:readGroupContacts", "andAddr:readContactDetail"]), this.router.addRouter("webdav", ["wangyisync", "googlesync", "qqsync", "sinasync", "139sync", "tomsync"]), this.router.addRouter("groupmail", ["gom:queryGroupList", "gom:getGroupInfo", "gom:getGomUser", "gom:createGroup", "gom:updateGroup", "gom:getUserList", "gom:exitGroup", "gom:invitationHandle", "gom:queryInvitedRecord", "gom:getGroupDynamicInfo"])
         },
         defaults: { name: a, requestDataType: "ObjectToXML2", responseDataType: "JSON2Object" },
         request: function (t, i) {
@@ -26727,7 +27453,8 @@ function (e, t) {
         e.parseData = function (t) {
             t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
         }, this.request(a, s, e, t)
-    }, i.getContactsListAll = function (e, t) {
+    },
+    i.getContactsListAll = function (e, t) {
         var i = e.data || {}, a = "GetContactsList", s = {
             GroupId: i.groupId || "",
             Keyword: i.keyword || "",
@@ -26751,7 +27478,8 @@ function (e, t) {
         e.parseData = function (t) {
             t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
         }, this.request(a, s, e, t)
-    }, i.setEmailValid = function (e, t) {
+    },
+    i.setEmailValid = function (e, t) {
         var i = e.data || {}, s = "SetEmailValid", o = { InvalidEmail: i.setValid || "" };
         e.parseData = function (t) {
             t.setData(t.data["var"]), a.removeInvalidEmails({ data: i.setValid || "" }), e.success.call(t.context, t.toJSON())
@@ -26768,7 +27496,8 @@ function (e, t) {
         e.parseData = function (t) {
             t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
         }, this.request(a, s, e, t)
-    }, i.getbackupInfo = function (e, t) {
+    },
+    i.getbackupInfo = function (e, t) {
         var i = e.data || {}, a = "GetbackupInfo", s = { OperationId: i.operationId || "" };
         e.parseData = function (t) {
             t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
@@ -26842,7 +27571,8 @@ function (e, t) {
                 })
             }), e.success.call(t.context, t.toJSON())
         }, this.request(s, o, e, t)
-    }, i.modBatchContacts = function (e, t) {
+    },
+    i.modBatchContacts = function (e, t) {
         var i = e.data || {}, s = "ModBatchContacts", o = {
             GroupId: i.GroupId || "",
             CmdType: i.CmdType || "",
@@ -26869,7 +27599,8 @@ function (e, t) {
         e.parseData = function (t) {
             t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
         }, this.request(a, s, e, t)
-    }, i.queryBatchContacts = function (e, t) {
+    },
+    i.queryBatchContacts = function (e, t) {
         var i = e.data || {}, a = "QueryNewContacts", s = { SerialId: i.SerialId };
         e.parseData = function (t) {
             t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
@@ -26920,7 +27651,8 @@ function (e, t) {
         e.parseData = function (t) {
             t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
         }, this.request(a, s, e, t)
-    }, i.resetUserImgURL = function (e, t) {
+    },
+    i.resetUserImgURL = function (e, t) {
         var i = (e.data || {}, "ResetUserImgURL"), a = {};
         e.parseData = function (t) {
             t.setData(t.data), e.success.call(t.context, t.toJSON())
@@ -26976,7 +27708,8 @@ function (e, t) {
                 t.setData({ updatelist: t.data.updatelist, count: t.data.count }), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.noPromptUpdated = function (e, t) {
+    },
+    i.noPromptUpdated = function (e, t) {
         var i = e.data || {}, a = "NoPromptUpdated", s = { SerialId: i.SerialId };
         this.request(a, s, $.extend(e, {
             parseData: function (t) {
@@ -27020,7 +27753,8 @@ function (e, t) {
                 }), e.success.call(t.context, t.toJSON(), i.serialId)
             }
         }), t)
-    }, i.addVipContacts = function (e) {
+    },
+    i.addVipContacts = function (e) {
         var t = M2012.Contacts.getModel(), i = t.get("data");
         e = e || {}, e.data = e.data || {}, e.data.groupType = "1", e.data.groupId = i.vip.groupId, this.addGroupList(e)
     }, i.removeVipContacts = function (e) {
@@ -27063,7 +27797,8 @@ function (e, t) {
                 }), e.success.call(i.context, i.toJSON())
             }
         }), i)
-    }, i.addContactsMuti = function (e, t) {
+    },
+    i.addContactsMuti = function (e, t) {
         var i = e.data || {}, s = "AddBatchContacts", o = {
             AddBatchContacts: {
                 SourceType: "2",
@@ -27133,7 +27868,8 @@ function (e, t) {
                 a.updateGroupName({ groupId: i.groupId, groupName: i.groupName }), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.delGroup = function (e, t) {
+    },
+    i.delGroup = function (e, t) {
         var i = e.data || {}, s = "DelGroup", o = { DelGroup: { GroupId: i.groupId, DelContact: !!i.isDeleteContacts } };
         this.request(s, o, $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27174,7 +27910,8 @@ function (e, t) {
                 t.setData(t.data.ContactsInfo), a.addContacts({ data: $.extend(i.contacts, t.data[0]) }), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.modContacts = function (e, t) {
+    },
+    i.modContacts = function (e, t) {
         var i = e.data || {}, s = "ModContacts", o = { ModContacts: this.contactsCheck(i.contacts) };
         this.request(s, c(o), $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27212,7 +27949,8 @@ function (e, t) {
                 t.setData(t.data.LastContactsInfo), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.queryUserInfo = function (e, t) {
+    },
+    i.queryUserInfo = function (e, t) {
         var i = (e.data || {}, "QueryUserInfo"), a = { QueryUserInfo: {} };
         this.request(i, a, $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27254,7 +27992,8 @@ function (e, t) {
                 e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.modMayKnowStatus = function (e, t) {
+    },
+    i.modMayKnowStatus = function (e, t) {
         var i = "ModMayKnowStatus", a = e.data || {};
         this.request(i, a, $.extend(e, {
             parseData: function (t) {
@@ -27280,7 +28019,8 @@ function (e, t) {
                 t.setData(t.data.MergeInfo), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.getMergeContactsList = function (e, t) {
+    },
+    i.getMergeContactsList = function (e, t) {
         var i = e.data || {}, a = "GetMergeContactsList", s = { Type: i.Type || "0" };
         e.parseData = function (t) {
             t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
@@ -27304,7 +28044,8 @@ function (e, t) {
                 t.setData(t["var"]), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.getRepeatContactsResult = function (e, t) {
+    },
+    i.getRepeatContactsResult = function (e, t) {
         var i = "GetRepeatContactsNew", a = { GetRepeatContactsNew: {} };
         this.request(i, a, $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27358,7 +28099,8 @@ function (e, t) {
                 "last" == i.type ? a.emptyLastContacts() : a.emptyCloseContacts(), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.whoAddMe = function (e, t) {
+    },
+    i.whoAddMe = function (e, t) {
         var i = (e.data || {}, "WhoAddMe"), a = { WhoAddMe: {} };
         this.request(i, a, $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27382,7 +28124,8 @@ function (e, t) {
                 t.setData(t.data.UpdatedContactsNum), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.noPromptUpdate = function (e, t) {
+    },
+    i.noPromptUpdate = function (e, t) {
         var i = e.data || {}, a = "NoPromptUpdate", s = { NoPromptUpdate: { SerialId: i.SerialId } };
         this.request(a, s, $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27403,7 +28146,8 @@ function (e, t) {
                 a.updatedContacts({ data: o.SaveIncrementalUpdatedInfo }), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.saveAllUpdatedInfo = function (e, t) {
+    },
+    i.saveAllUpdatedInfo = function (e, t) {
         var i = (e.data || {}, "SaveAllUpdatedInfo"), a = { SaveAllUpdatedInfo: {} };
         this.request(i, a, $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27424,7 +28168,8 @@ function (e, t) {
                 e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.addCAndGToGroup = function (e, t) {
+    },
+    i.addCAndGToGroup = function (e, t) {
         var i = e.data || {}, s = "AddCAndGToGroup", o = {
             AddCAndGToGroup: {
                 AddrType: i.addrType,
@@ -27472,7 +28217,8 @@ function (e, t) {
                 e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.getColorCloudInfo = function (e, t) {
+    },
+    i.getColorCloudInfo = function (e, t) {
         var i = (e.data || {}, "GetColorCloudInfo"), a = { GetColorCloudInfo: {} };
         this.request(i, a, $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27500,7 +28246,8 @@ function (e, t) {
                 e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.getRemindBirdays = function (e, t) {
+    },
+    i.getRemindBirdays = function (e, t) {
         var i = (e.data || {}, "GetRemindBirdays"), a = { GetRemindBirdays: {} };
         this.request(i, a, $.extend(e, {
             isXML2: !0, parseData: function (t) {
@@ -27531,7 +28278,8 @@ function (e, t) {
                 t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.mergeFuzzyQuery = function (e, t) {
+    },
+    i.mergeFuzzyQuery = function (e, t) {
         var i = e.data || {}, a = "MergeFuzzyQuery", s = {
             heswitch: i.heswitch || "",
             GroupId: i.groupId || "",
@@ -27575,7 +28323,8 @@ function (e, t) {
                 t.setData(t.data["var"]), e.success.call(t.context, t.toJSON())
             }
         }), t)
-    }, i.contactsCheck = function (e) {
+    },
+    i.contactsCheck = function (e) {
         for (var i = ["SerialId", "UserType", "SourceType", "AddrFirstName", "AddrSecondName", "AddrNickName", "UserSex", "CountryCode", "ProvCode", "AreaCode", "CityCode", "StreetCode", "ZipCode", "HomeAddress", "MobilePhoneType", "BirDay", "MobilePhone", "BusinessMobile", "BusinessPhone", "FamilyPhone", "BusinessFax", "FamilyFax", "OtherPhone", "OtherMobilePhone", "OtherFax", "FamilyEmail", "BusinessEmail", "OtherEmail", "PersonalWeb", "CompanyWeb", "OtherWeb", "OICQ", "MSN", "OtherIm", "CPCountryCode", "CPProvCode", "CPAreaCode", "CPCityCode", "CPStreetCode", "CPZipCode", "CPAddress", "CPName", "CPDepartName", "Memo", "StartCode", "BloodCode", "StateCode", "ImageUrl", "SchoolName", "BokeUrl", "UserJob", "GroupId", "AddGroupId", "AddGroupName", "AddNewGroup", "OverWrite", "FavoWord"], a = {}, s = 0; s < i.length; s++) {
             var o = i[s], n = e[o];
             t.isEmpty(n) || (a[o] = n)
@@ -28643,26 +29392,34 @@ function (e, t, i) {
     i.namespace(s, a.extend({
         initialize: function (e) {
             return this.options = e || {}, top.$App ? this.contactsModel = window.top.$App.getModel("contacts") : this.contactsModel = M2012.Contacts.getModel(), this.filter = e.filter, this.colate = e.colate, e.selectMode && (this.selectedList = []), a.prototype.initialize.apply(this, arguments)
-        }, defaults: function () {
+        },
+        defaults: function () {
             return { currentGroup: "", currentCompanyGroup: [] }
-        }, name: s, dataReady: function (e) {
+        },
+        name: s,
+        dataReady: function (e) {
             var t = this;
             this.contactsModel.requireData(function () {
                 t.contactsData = t.contactsModel.get("data"), e()
             })
-        }, addSelectedItem: function (e) {
+        },
+        addSelectedItem: function (e) {
             var i = t.isUndefined(this.filter) ? e.serialId : e.addr;
             return this.isSelectedItem(i) ? !1 : (this.selectedList.push(e), !0)
-        }, getGroupList: function () {
+        },
+        getGroupList: function () {
             return this.contactsModel.getGroupList()
-        }, getReadGroupId: function () {
+        },
+        getReadGroupId: function () {
             for (var e = this.getGroupList(), t = 0; t < e.length; t++) if ("读信联系人" == e[t].name) return e[t].id
-        }, getGroupMembers: function (e, t) {
+        },
+        getGroupMembers: function (e, t) {
             t = t || {};
             var i = this.contactsModel.getGroupMembers(e, { filter: this.filter || this.colate, colate: this.colate });
             if (t.getSendText) for (var a = 0, s = i.length; s > a; a++) "email" == this.filter ? i[a] = i[a].getEmailSendText() : "mobile" == this.filter ? i[a] = i[a].getMobileSendText() : "fax" == this.filter && (i[a] = i[a].getFaxSendText());
             return i
-        }, getLastestContacts: function (e) {
+        },
+        getLastestContacts: function (e) {
             var t, i = e || this.contactsData.lastestContacts, a = [];
             if ("fax" == this.filter) return a;
             for (var s = "email" == this.filter ? "E" : "M", o = 0, n = i.length; n > o; o++) {
@@ -28681,22 +29438,28 @@ function (e, t, i) {
                 }
             }
             return a
-        }, createLastContactsId: function () {
+        },
+        createLastContactsId: function () {
             var e = parseInt(1e8 * Math.random());
             return -e
-        }, lastContactsMap: {}, getCloseContacts: function () {
+        },
+        lastContactsMap: {},
+        getCloseContacts: function () {
             var e = this.contactsData.closeContacts;
             return this.getLastestContacts(e)
-        }, getUngroupContacts: function (e) {
+        },
+        getUngroupContacts: function (e) {
             for (var t = this.contactsData.contactsMap, i = this.contactsData.noGroup, a = [], s = 0, o = i.length; o > s; s++) {
                 var n = t[i[s]];
                 this.colate && n && n.getFirstEmail().indexOf(this.colate) > -1 ? a.push(n) : !this.colate && n && a.push(n)
             }
             return a
-        }, getSearchContacts: function () {
+        },
+        getSearchContacts: function () {
             var e = this.contactsModel.search(this.get("keyword"), { contacts: this.getContacts() });
             return e
-        }, getContacts: function () {
+        },
+        getContacts: function () {
             var e = this.get("contacts");
             if (!e) {
                 var e = this.contactsData.contacts;
@@ -28706,11 +29469,14 @@ function (e, t, i) {
                 })), this.set("contacts", e)
             }
             return e
-        }, getVIPContacts: function () {
+        },
+        getVIPContacts: function () {
             return this.contactsModel.getGroupMembers(this.contactsModel.getVIPGroupId(), { filter: this.filter })
-        }, getVIPGroupId: function () {
+        },
+        getVIPGroupId: function () {
             return this.contactsModel.getVIPGroupId()
-        }, getContactsById: function (e, t) {
+        },
+        getContactsById: function (e, t) {
             if (t = t || {}, e > 0) {
                 var i = this.contactsModel.getContactsById(e);
                 if (i) {
@@ -28731,19 +29497,23 @@ function (e, t, i) {
                 return null
             }
             return this.lastContactsMap[e]
-        }, isSelectedItem: function (e) {
+        },
+        isSelectedItem: function (e) {
             for (var t = this.selectedList, i = 0, a = t.length; a > i; i++) if (t[i].addr == e || t[i].SerialId == e) return !0;
             return !1
-        }, isSelectedNew: function (e) {
+        },
+        isSelectedNew: function (e) {
             e = e || {};
             var i = this.selectedList;
             return t.some(i, function (i) {
                 var a = t.isUndefined(e.serialId) || t.isUndefined(i.serialId) ? !0 : i.serialId == e.serialId, s = t.isUndefined(e.addr) || t.isUndefined(i.addr) ? !0 : i.addr == e.addr;
                 return a && s
             })
-        }, getSendText: function (e, t) {
+        },
+        getSendText: function (e, t) {
             return this.contactsModel.getSendText(e, t)
-        }, clearLastContacts: function (e) {
+        },
+        clearLastContacts: function (e) {
             var t = this, i = { type: e ? "close" : "last" }, a = {
                 warn_delclose: "确认清空所有紧密联系人记录？",
                 warn_dellast: "确认清空所有最近联系人记录？"
@@ -28753,11 +29523,14 @@ function (e, t, i) {
                     e.success ? t.trigger("contactshistoryupdate") : top.$Msg.alert(e.msg)
                 })
             }, { icon: "warn" })
-        }, clearCloseContacts: function () {
+        },
+        clearCloseContacts: function () {
             this.clearLastContacts(!0)
-        }, reloadContactsData: function () {
+        },
+        reloadContactsData: function () {
             this.contactsModel.loadMainData()
-        }, getCompanyList: function (e) {
+        },
+        getCompanyList: function (e) {
             e = e || {}, top.M2012.Contacts.API.checkUserNumber({
                 data: { orgID: "" }, success: function (t) {
                     if (t && "S_OK" === t.code) {
@@ -28766,13 +29539,15 @@ function (e, t, i) {
                     }
                 }
             })
-        }, writePageGetAllSubList: function (e) {
+        },
+        writePageGetAllSubList: function (e) {
             e = e || {}, top.M2012.Contacts.API.writePageGetAllSubList({
                 data: e.data || {}, success: function (t) {
                     e.success && e.success(t)
                 }
             })
-        }, getOrgTopNMerber: function (e) {
+        },
+        getOrgTopNMerber: function (e) {
             top.M2012.Contacts.API.getOrgTopNMerber({
                 data: e.data || {}, success: function (t) {
                     e.success && e.success(t)
