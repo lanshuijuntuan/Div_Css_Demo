@@ -4971,8 +4971,6 @@ M139.namespace("M2012.Main.View", {
     })
 });
 
-
-
 //TabPageView TabControl
 var TabPageModel = Backbone.Model.extend({
     initialize: function (e) {
@@ -5724,8 +5722,6 @@ TabPageView = Backbone.View.extend({
         return i.cancel ? !1 : (this.onCloseTab(e), !0)
     }
 }),
-
-
 
 //FrameControl 
 function () {
@@ -7075,7 +7071,7 @@ var FrameView = Backbone.View.extend({
 });
 
 
-
+//拓展tablabel
 _.extend(TabLabel.prototype, {
     init: function (e) {
         this.context = e;
@@ -7250,7 +7246,7 @@ _.extend(TabLabel.prototype, {
     }
 }),
 
-
+//M2012.TabMenu.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.TabMenu.View", s.extend({
@@ -7364,7 +7360,7 @@ function (e, t, i) {
     }))
 }(jQuery, _, M139);
 
-
+//好像是加载js包使用的
 var Package = {
     config: function () {
         var e = this;
@@ -7461,6 +7457,9 @@ var Package = {
         }) : i(a)
     }
 };
+
+
+//M2012.History
 M139.namespace("M2012.History", {
     initialize: function () {
         function e() {
@@ -7640,6 +7639,8 @@ M139.namespace("M2012.History", {
         })
     }
 }),
+
+//M2012.UserModel
 function (e, t, i) {
     var a = e, s = i.Model.ModelBase, o = "M2012.UserModel";
     i.namespace(o, s.extend({
@@ -8178,6 +8179,8 @@ function (e, t, i) {
         }
     })), window.$User = new M2012.UserModel
 }(jQuery, _, M139),
+
+//M2012.MainApplication
 function (jQuery, Backbone, _, M139) {
     function enqueueMailInfo(e) {
         M139.core.utilCreateScriptTag({
@@ -10504,6 +10507,8 @@ function (jQuery, Backbone, _, M139) {
         }
     }))
 }(jQuery, Backbone, _, M139),
+
+//M2012.SsoRedirect
 function (e, t, i, a) {
     var s = e, o = a.View.ViewBase;
     a.namespace("M2012.SsoRedirect", o.extend({
@@ -10871,11 +10876,7 @@ function (e, t, i, a) {
 }(jQuery, Backbone, _, M139),
 
 
-/* 
- 
- 右侧收件箱文件夹
-
-*/
+//M2012.Folder.Model.FolderModel
 M139.namespace("M2012.Folder.Model", {
     FolderModel: Backbone.Model.extend({
         setorderObj: {
@@ -11761,6 +11762,8 @@ M139.namespace("M2012.Folder.Model", {
         }
     })
 }),
+
+//M2012.Folder.View.SetMore
 M139.namespace("M2012.Folder.View", {
     SetMore: M139.View.ViewBase.extend({
         el: "body",
@@ -12037,6 +12040,8 @@ M139.namespace("M2012.Folder.View", {
         }
     })
 }),
+
+//M2012.Folder.View.FolderCustom
 M139.namespace("M2012.Folder.View", {
     FolderCustom: Backbone.View.extend({
         el: "#customfolder_list",
@@ -12175,6 +12180,8 @@ M139.namespace("M2012.Folder.View", {
         }
     })
 }),
+
+//M2012.Folder.View.FolderPop
 M139.namespace("M2012.Folder.View", {
     FolderPop: Backbone.View.extend({
         el: "#pop_list",
@@ -12270,6 +12277,8 @@ M139.namespace("M2012.Folder.View", {
         }
     })
 }),
+
+//M2012.Folder.View.FolderTag
 M139.namespace("M2012.Folder.View", {
     FolderTag: Backbone.View.extend({
         el: "#tag_list",
@@ -12355,6 +12364,8 @@ M139.namespace("M2012.Folder.View", {
         }
     })
 }),
+
+//M2012.Folder.View.FolderMain
 M139.namespace("M2012.Folder.View", {
     FolderMain: Backbone.View.extend({
         el: "#sb_h",
@@ -12813,10 +12824,9 @@ M139.namespace("M2012.Folder.View", {
         }
     })
 }),
-/*
-  右侧收件箱文件夹
-*/
 
+
+//M2015.Mailnotify.Model
 function (e, t, i, a) {
     a.namespace("M2015.Mailnotify.Model", i.Model.extend({
         defaults: {
@@ -12933,6 +12943,8 @@ function (e, t, i, a) {
         }
     }))
 }(jQuery, _, Backbone, M139),
+
+//M2015.Mailnotify.View
 function (e, t, i, a) {
     var s = e, o = a.View.ViewBase;
     a.namespace("M2015.Mailnotify.View", o.extend({
@@ -13322,6 +13334,8 @@ function (e, t, i, a) {
         t.model.setData(e)
     }
 }(jQuery, _, Backbone, M139),
+
+//M2012.Remark.Model
 function (e, t, i) {
     i.namespace("M2012.Remark.Model", Backbone.Model.extend({
         defaults: {
@@ -13361,6 +13375,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Remark.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Remark.View", s.extend({
@@ -13578,6 +13594,8 @@ function (e, t, i) {
     var o = new M2012.Remark.View({ el: "#remarkContainer", showtype: "list" });
     o.model.set({ mid: null, showtype: "list" }), o.initEvents()
 }(jQuery, _, M139),
+
+//M2012.Model.Pns.PnsModel
 M139.namespace("M2012.Model.Pns", {
     PnsModel: Backbone.Model.extend({
         callApi: M139.RichMail.API.call,
@@ -13775,6 +13793,8 @@ M139.namespace("M2012.Model.Pns", {
         }
     })
 }),
+
+//M2012.Mailbox.Model.Mailbox
 M139.namespace("M2012.Mailbox.Model", {
     Mailbox: Backbone.Model.extend({
         defaults: {
@@ -15261,6 +15281,8 @@ M139.namespace("M2012.Mailbox.Model", {
         }
     })
 }),
+
+//M2012.Mailbox.Model.Eofficial
 M139.namespace("M2012.Mailbox.Model", {
     Eofficial: Backbone.Model.extend({
         initialize: function (e) {
@@ -15376,6 +15398,8 @@ M139.namespace("M2012.Mailbox.Model", {
         }
     })
 }),
+
+//M2012.Mailbox.View.Main
 M139.namespace("M2012.Mailbox.View", {
     Main: Backbone.View.extend({
         template: {
@@ -15833,6 +15857,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.View.Toolbar
 function () {
     function e() {
         var e = new Date, t = e.getFullYear(), i = e.getMonth() + 1, a = e.getDate(), s = [], o = [];
@@ -16765,10 +16791,14 @@ function () {
         })
     })
 }(),
+
+//M2012.Mailbox.View.MailMenu
 M139.namespace("M2012.Mailbox.View", {
     MailMenu: Backbone.View.extend({
         el: "",
-        template: "", events: {}, initialize: function (e) {
+        template: "",
+        events: {},
+        initialize: function (e) {
             function t(e) {
                 i.setButtonVisible(e.count)
             }
@@ -16783,12 +16813,14 @@ M139.namespace("M2012.Mailbox.View", {
                     }
                 }), top.BH("toolbar_task_calendar")
             })
-        }, reqGetTaskView: function (e) {
+        },
+        reqGetTaskView: function (e) {
             var t = this, i = this.getCalendarParam(e);
             M139.RichMail.API.call("mbox:searchMessages", i, function (e) {
                 e.responseData && "S_OK" == e.responseData.code ? t.calendarViewSuccess(e.responseData) : console.log("calendar getTask returndata error")
             })
-        }, calendarViewSuccess: function (e) {
+        },
+        calendarViewSuccess: function (e) {
             for (var t = this, i = e["var"], a = t.calendarPicker.calArea, s = 0; s < i.length; s++) {
                 var o = new Date(1e3 * i[s].taskDate), n = o.getMonth() + 1, r = o.getFullYear();
                 if (parseInt(a.find("em.calendarMonth").text()) == n && a.find("em.calendarYear").text() == r) {
@@ -17498,6 +17530,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.View.ListView
 M139.namespace("M2012.Mailbox.View", {
     ListView: Backbone.View.extend({
         template: "",
@@ -18545,6 +18579,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//.M2012.Mailbox.View.SearchClassify
 M139.namespace("M2012.Mailbox.View", {
     SearchClassify: Backbone.View.extend({
         el: "",
@@ -18675,6 +18711,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.View.SearchClassifyItem
 M139.namespace("M2012.Mailbox.View", {
     SearchClassifyItem: Backbone.View.extend({
         el: "",
@@ -18874,6 +18912,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.View.SearchClassifyChoosed
 M139.namespace("M2012.Mailbox.View", {
     SearchClassifyChoosed: Backbone.View.extend({
         el: "", template: "", events: {}, initialize: function (e) {
@@ -18924,6 +18964,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.View.Command
 M139.namespace("M2012.Mailbox.View", {
     Command: Backbone.View.extend({
         el: "", initialize: function (e) {
@@ -19802,6 +19844,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.View.MailTag
 M139.namespace("M2012.Mailbox.View", {
     MailTag: Backbone.View.extend({
         el: "#div_main",
@@ -19870,6 +19914,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.Model.ContextMenu
 M139.namespace("M2012.Mailbox.Model", {
     ContextMenu: Backbone.Model.extend({
         defaults: { isShield: !0 },
@@ -20110,6 +20156,8 @@ M139.namespace("M2012.Mailbox.Model", {
         }
     })
 }),
+
+//M2012.Mailbox.View.ContextMenu
 M139.namespace("M2012.Mailbox.View", {
     ContextMenu: Backbone.View.extend({
         el: "body",
@@ -20336,6 +20384,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.View.Drag
 M139.namespace("M2012.Mailbox.View", {
     Drag: Backbone.View.extend({
         initialize: function () {
@@ -20391,6 +20441,9 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.Model.Sublist
+//M2012.Mailbox.View.Sublist
 function () {
     M139.namespace("M2012.Mailbox.Model", {
         Sublist: Backbone.Model.extend({
@@ -20403,7 +20456,8 @@ function () {
                         e(i)
                     }
                 }, { requestDataType: "Object2JSON" })
-            }, delSub: function (e, t) {
+            },
+            delSub: function (e, t) {
                 var i = top.getDomain("subscribeUrl") + "delSubscribe?sid=" + top.sid;
                 top.M139.RichMail.API.call(i, e, function (e) {
                     var i = e.responseData;
@@ -20414,7 +20468,8 @@ function () {
                 }, { requestDataType: "Object2JSON" })
             }
         })
-    }), M139.namespace("M2012.Mailbox.View", {
+    }),
+    M139.namespace("M2012.Mailbox.View", {
         Sublist: Backbone.View.extend({
             template: {
                 content: ['<div class="rssMailCardColumnLayerOutside z-index100" style="top:230px">', '<div class="rssMailCardColumnLayer" id="columnLayer" style="height:650px;">', '<div class="rssMailCardColumnLayerMain" style=""><!--TODO STYLE-->', "<h2>我的订阅</h2>", '<ul id="columnList" style="width:235px;height: 410px;overflow-x:hidden;overflow-y:scroll;"><!--TODO STYLE-->', '<li class="column"><a href="javascript:;"><img src="/mpost2014/images/module/cloudMail2.0/allMazgin.png" width="50" height="50" alt=""><span>全部栏目</span></a><a href="javascript:;" class="closeColumn"><i></i></a></li>', "<li style=\"margin-top:4px;\"><a href=\"javascript:top.BH('sublist_more');top.$App.show('googSubscription', {'mtype' : 20});\" class=\"rmcMoreBtn\">+</a><span>订阅更多</span></li>", "</ul>", "</div>", '<a id="rmcSwitch" herf="javascript:;" class="p_absolute switch-shrink" style="left: -21px;top:0px"></a>', "</div>", "</div>"].join(""),
@@ -20423,7 +20478,8 @@ function () {
             },
             initialize: function () {
                 this.model = new M2012.Mailbox.Model.Sublist
-            }, render: function (e) {
+            },
+            render: function (e) {
                 if ("undefined" == typeof this.lock || 0 == this.lock) {
                     if (this.lock = 1, 0 != $("#rmcSwitch").length) return void (this.lock = 0);
                     if (e && e.oneStandsublist) {
@@ -20441,7 +20497,8 @@ function () {
                     var c = $App.getView("mailbox").model.get("layout");
                     "list" != c && void 0 != c && $("#rmcSwitch").click()
                 }
-            }, bindDomEvent: function () {
+            },
+            bindDomEvent: function () {
                 var e = this, t = ($(".rssMailCardColumnLayerMain"), $("#div_main>div:visible").find("#div_maillist"));
                 t.find("#rmcSwitch").unbind("click").bind("click", function () {
                     var e, i, a, s = $(this);
@@ -20477,7 +20534,8 @@ function () {
                         }
                     }), !1
                 })
-            }, showUnSubscribeConfirm: function (e) {
+            },
+            showUnSubscribeConfirm: function (e) {
                 var t = (e.column.columnId, 2 != e.column.contentType ? "杂志" : "服务"), i = '<span class="norTipsIco"><i class="i_warn"></i></span>\n<dl class="norTipsContent">\n<dt class="norTipsTitle">您要退订&nbsp;<a href=\'javascript:;\' id="popup_details">' + e.columnName + "</a>&nbsp;" + t + "？</dt>\n</dl>\n", a = '<span class="norTipsIco"><i class="i_warn"></i></span>\n<dl class="norTipsContent">\n<dt class="norTipsTitle">您要退订&nbsp;<a href=\'javascript:;\' id="popup_details">' + e.columnName + "</a>&nbsp;" + t + '？</dt>\n<dd class="formLine c_666" style="color:#f00;">退订后不能再阅读更新的期刊</dd>\n</dl>\n';
                 if (3 == e.column.contentType) var s = top.$Msg.confirm(a, function () {
                     e.callback && e.callback()
@@ -20497,6 +20555,8 @@ function () {
         })
     })
 }(),
+
+//M2012.Readmail.Stroke.Templatehtml
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Readmail.Stroke.Templatehtml", s.extend({
@@ -20665,6 +20725,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Mailbox.Model.Strokenavbar
 M139.namespace("M2012.Mailbox.Model", {
     Strokenavbar: Backbone.Model.extend({
         navTree: ['<div class="new-main-topbar">', '<div class="p_relative ptblr_s2 clearfix">', '<ul class="toolBarUl_v3">', '<li><a class="icoTb mr_6" href="javascript:" id="Official_back">', '<span class="p_relative">返回</span></a>', "</li>", "</ul>", "</div>", "</div>"].join(""),
@@ -20918,6 +20980,8 @@ M139.namespace("M2012.Mailbox.Model", {
         }
     })
 }),
+
+//M2012.Mailbox.View.Strokenavbar
 M139.namespace("M2012.Mailbox.View", {
     Strokenavbar: Backbone.View.extend({
         initVal: "——", initialize: function (e) {
@@ -21036,6 +21100,8 @@ M139.namespace("M2012.Mailbox.View", {
         }
     })
 }),
+
+//M2012.Mailbox.View.Bankbill
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Mailbox.View.Bankbill", s.extend({
@@ -21214,6 +21280,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Mailbox.View.Utilitybill
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Mailbox.View.Utilitybill", s.extend({
@@ -21349,6 +21417,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Mailbox.View.Eofficial
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Mailbox.View.Eofficial", s.extend({
@@ -21447,6 +21517,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Mailbox.View.telbillcard
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Mailbox.View.telbillcard", s.extend({
@@ -21543,6 +21615,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139);
+
+//启动主程序
 var appView = null;
 $(function () {
     appView = $App = new M2012.MainApplication,
@@ -21560,6 +21634,10 @@ $(function () {
         }
     }, 50)
 }),
+
+
+
+//M2012.ReadMail.CalendarWord.View
 function (e, t, i) {
     var a = i.View.ViewBase;
     i.namespace("M2012.ReadMail.CalendarWord.View", a.extend({
@@ -21671,6 +21749,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.Image.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.Image.View", s.extend({
@@ -21850,6 +21930,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.HotWord.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.HotWord.View", s.extend({
@@ -22049,6 +22131,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//Zan_View
 function (e, t, i) {
     var a = i.View.ViewBase, s = "Zan_View";
     i.namespace(s, a.extend({
@@ -22336,6 +22420,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.Normal.Model
 function (e, t, i) {
     i.namespace("M2012.ReadMail.Normal.Model", Backbone.Model.extend({
         defaults: {
@@ -22404,6 +22490,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.Normal.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.Normal.View", s.extend({
@@ -23710,6 +23798,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.Model
 function (e, t, i) {
     i.namespace("M2012.ReadMail.Model", Backbone.Model.extend({
         defaults: {
@@ -23721,6 +23811,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.View", s.extend({
@@ -23823,6 +23915,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//设置部分事件
 $(function () {
     function e(e) {
         $.each(e, function (t) {
@@ -23924,6 +24018,8 @@ $(function () {
     } catch (t) {
     }
 }),
+
+//M2012.ReadMail.View.ReadMailContent
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.View.ReadMailContent", s.extend({
@@ -24241,6 +24337,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.View.FilePreview
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.View.FilePreview", s.extend({
@@ -24571,6 +24669,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//m2012.starOrRemindPopMenu.view
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("m2012.starOrRemindPopMenu.view", s.extend({
@@ -24951,6 +25051,8 @@ function (e, t, i) {
         $App.registerView("starOrRemindPopMenu", new m2012.starOrRemindPopMenu.view({}))
     })
 }(jQuery, _, M139),
+
+//M2012.ChangeStar.Model
 function (e, t, i) {
     i.namespace("M2012.ChangeStar.Model", Backbone.Model.extend({
         defaults: { ids: [], type: "starFlag", value: 0 },
@@ -24967,6 +25069,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ChangeStar.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ChangeStar.View", s.extend({
@@ -25161,6 +25265,8 @@ function (e, t, i) {
         $App.registerView("starView", new M2012.ChangeStar.View)
     })
 }(jQuery, _, M139),
+
+//M2012.ReadMail.Model.QuickReply
 function (e, t, i) {
     i.namespace("M2012.ReadMail.Model.QuickReply", Backbone.Model.extend({
         tips: {
@@ -25221,6 +25327,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.View.QuickReply
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.View.QuickReply", s.extend({
@@ -25290,6 +25398,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Receipt.Model
 function (e, t, i) {
     i.namespace("M2012.Receipt.Model", Backbone.Model.extend({
         defaults: {
@@ -25322,6 +25432,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Receipt.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Receipt.View", s.extend({
@@ -25359,9 +25471,13 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.ToolBar.Model
 function (e, t, i) {
     i.namespace("M2012.ReadMail.ToolBar.Model", Backbone.Model.extend({ defaults: { dataSource: null } }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.ToolBar.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.ToolBar.View", s.extend({
@@ -25486,6 +25602,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.VCard.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.VCard.View", s.extend({
@@ -25668,6 +25786,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Readmail.Iframe.Event.Model
 function (e, t, i) {
     var a = e;
     i.View.ViewBase;
@@ -25690,6 +25810,8 @@ function (e, t, i) {
         callApi: i.RichMail.API.call
     }))
 }(jQuery, _, M139),
+
+//M2012.Readmail.Iframe.Event.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Readmail.Iframe.Event.View", s.extend({
@@ -25870,6 +25992,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.RiskTips.Model
 function (e, t, i) {
     i.namespace("M2012.ReadMail.RiskTips.Model", Backbone.Model.extend({
         defaults: {
@@ -25971,6 +26095,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.RiskTips.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.ReadMail.RiskTips.View", s.extend({
@@ -26099,6 +26225,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.ReadMail.ScrollBar.View
 function (e, t, i) {
     var a = i.View.ViewBase, s = !1;
     i.namespace("M2012.ReadMail.ScrollBar.View", a.extend({
@@ -26163,6 +26291,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Myapp.Model
 function (e, t, i) {
     i.namespace("M2012.Myapp.Model", Backbone.Model.extend({
         defaults: {
@@ -26309,6 +26439,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Myapp.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Myapp.View", s.extend({
@@ -26440,6 +26572,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2015.Myapp.Model
 function (e, t, i) {
     i.namespace("M2015.Myapp.Model", Backbone.Model.extend({
         defaults: {
@@ -26681,6 +26815,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2015.Myapp.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2015.Myapp.View", s.extend({
@@ -26810,11 +26946,16 @@ function (e, t, i) {
         }
     })), a(function () {
         var e = new M2015.Myapp.View({ model: new M2015.Myapp.Model });
-        top.$App.registerView("myApp", e), top.$App.on("userAttrsAllLoaded", function (t) {
-            e.renderIcon(), e.model.getMyapp(!0), e.model.getMySettingApp(!0)
-        })
+        top.$App.registerView("myApp", e);
+        top.$App.on("userAttrsAllLoaded", function (t) {
+            e.renderIcon();
+            e.model.getMyapp(!0);
+            e.model.getMySettingApp(!0);
+        });
     })
 }(jQuery, _, M139),
+
+//M2012.Contacts.HttpClient
 function (e) {
     function t(e, t) {
         return "/sharpapi/addr/apiserver/" + e + "?sid=" + $App.getSid() + (t ? "&APIType=" + t : "") + "&r=" + Math.random()
@@ -27320,6 +27461,8 @@ function (e) {
         }
     })
 }(M139),
+
+//todo
 function (e, t) {
     var i = M2012.Contacts.API, a = (M2012.Contacts.Model, M2012.Contacts.getCache()), s = {
         S_OK: "S_OK",
@@ -28332,6 +28475,8 @@ function (e, t) {
         return $.extend(a, { SourceType: "2", AddrSecondName: "", AddrFirstName: e.name || e.AddrFirstName })
     }
 }(M139, _),
+
+//settingsIndexView信息
 window.settingsIndexView = function () {
     var e = {
         $el: null,
@@ -28541,6 +28686,8 @@ window.settingsIndexView = function () {
         }
     }
 }(),
+
+//M2012.MailComplaint.Model
 function (e, t, i) {
     i.namespace("M2012.MailComplaint.Model", Backbone.Model.extend({
         defaults: {
@@ -28672,6 +28819,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.MailComplaint.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.MailComplaint.View", s.extend({
@@ -28781,6 +28930,8 @@ function (e, t, i) {
         mailboxComplaintView = new M2012.MailComplaint.View
     })
 }(jQuery, _, M139),
+
+//M2012.UI.Dialog.ContactsEditor
 function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Dialog.ContactsEditor";
     i.namespace(o, s.extend({
@@ -28985,6 +29136,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.UI.Widget.ContactsCard
 function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Widget.ContactsCard";
     i.namespace(o, s.extend({
@@ -29387,6 +29540,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//M2012.UI.Widget.Contacts.Model
 function (e, t, i) {
     var a = i.Model.ModelBase, s = "M2012.UI.Widget.Contacts.Model";
     i.namespace(s, a.extend({
@@ -29556,6 +29711,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.UI.Widget.Contacts.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Widget.Contacts.View", n = {
         All: -1,
@@ -30225,6 +30382,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.UI.Dialog.AddressBook
 function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Dialog.AddressBook";
     i.namespace(o, s.extend({
@@ -30340,6 +30499,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//M2012.UI.TreeView.MainView
 function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.TreeView.MainView";
     i.namespace(o, s.extend({
@@ -30412,6 +30573,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//M2012.UI.TreeView.NodeView
 function (e, t, i) {
     var a = i.View.ViewBase, s = "M2012.UI.TreeView.NodeView";
     i.namespace(s, a.extend({
@@ -30482,6 +30645,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.UI.Dialog.SaveToDisk
 function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M2012.UI.Dialog.SaveToDisk", n = {
         PHOTO: 20,
@@ -30796,6 +30961,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.UI.Scroll
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.UI.Scroll", s.extend({
@@ -30855,6 +31022,8 @@ function (e, t, i) {
         _template: '<ul class="nessageReminding" id="{id}" style="overflow:hidden;">{lis}</ul>'
     }))
 }(jQuery, _, M139),
+
+//M2012.UI.MutiScroll
 function (e, t, a) {
     var s = a.View.ViewBase;
     a.namespace("M2012.UI.MutiScroll", s.extend({
@@ -30914,6 +31083,8 @@ function (e, t, a) {
         _templateLi: '<li style="overflow:hidden;">{info}</li>'
     }))
 }(jQuery, _, M139),
+
+//M2012.UI.HoriScroll
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.UI.HoriScroll", s.extend({
@@ -30970,6 +31141,8 @@ function (e, t, i) {
         _template: ['<div class="slide-item" id="hs_{id}">', '<div class="slide-item-con">', '<ul class="slide-item-ul m_clearfix" id="UL_{id}">{lis}</ul>', "</div>", '<a href="javascript:void(0);" title="上一页" class="slideBtn-prev"><i></i></a>', '<a href="javascript:void(0);" title="下一页" class="slideBtn-next"><i></i></a>', "</div>"].join("")
     }))
 }(jQuery, _, M139),
+
+//M139.UI.BottomTip
 M139.core.namespace("M139.UI.BottomTip", Backbone.View.extend({
     initialize: function (e) {
         this.isClosed = !0, this.isOver = !1, this.timerClose = 0, this.taskList = [], this.createContainer(), this.initEvents()
@@ -31039,24 +31212,35 @@ M139.core.namespace("M139.UI.BottomTip", Backbone.View.extend({
         })
     }
 })),
+
+//UI.BottomTip
 function (e, t, i) {
     e.extend(i.UI.BottomTip, {
-        timer: !1, interval: 333, show: function (e) {
+        timer: !1,
+        interval: 333,
+        show: function (e) {
             $BTips.instance.show(e)
-        }, hide: function () {
+        },
+        hide: function () {
             $BTips.instance && $BTips.instance.close()
-        }, updateContent: function (e, t) {
+        },
+        updateContent: function (e, t) {
             $BTips.instance && $BTips.instance.updateContent(e, t)
-        }, addTask: function (e) {
+        },
+        addTask: function (e) {
             var t = this;
             $BTips.instance.taskList.push(e), t.timer || (t.timer = setInterval(function () {
                 $BTips.instance.isClosed && $BTips.instance.show(), $BTips.instance.taskList.length || (clearInterval(t.timer), t.timer = !1)
             }, t.interval))
-        }, removeTask: function () {
+        },
+        removeTask: function () {
             $BTips.instance.taskList.splice(0, 1)
-        }, instance: new i.UI.BottomTip
+        },
+        instance: new i.UI.BottomTip
     }), window.$BTips = i.UI.BottomTip
 }(jQuery, _, M139),
+
+//M2012.UI.Tip.UmcUpgradeTip.View
 function (e, t, i) {
     var a = i.View.ViewBase;
     i.namespace("M2012.UI.Tip.UmcUpgradeTip.View", a.extend({
@@ -31083,6 +31267,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.UI.Tip.ZoomTip.Model
 function () {
     if (!($B.is.ie && $B.getVersion() < 8)) {
         var e = function () {
@@ -31092,7 +31278,8 @@ function () {
         }, i = function () {
             var t = Math.round(screen.deviceXDPI / screen.logicalXDPI * 100) / 100;
             return { zoom: t, devicePxPerCssPx: t * e() }
-        }, a = function () {
+        },
+        a = function () {
             var t = 90 == Math.abs(window.orientation) ? screen.height : screen.width, i = t / window.innerWidth;
             return { zoom: i, devicePxPerCssPx: i * e() }
         }, s = function () {
@@ -31107,7 +31294,8 @@ function () {
         }, o = function () {
             var e = l("min--moz-device-pixel-ratio", "", 0, 10, 20, 1e-4);
             return e = Math.round(100 * e) / 100, { zoom: e, devicePxPerCssPx: e }
-        }, n = function () {
+        },
+        n = function () {
             return { zoom: o().zoom, devicePxPerCssPx: e() }
         }, r = function () {
             var t = window.outerWidth / window.innerWidth;
@@ -31131,7 +31319,8 @@ function () {
         }, c = function () {
             var e = t;
             return navigator.userAgent.indexOf("MSIE 6.") > -1 || (isNaN(screen.logicalXDPI) || isNaN(screen.systemXDPI) ? "ontouchstart" in window && "string" == typeof document.body.style.webkitTextSizeAdjust ? e = a : "string" == typeof document.body.style.webkitTextSizeAdjust ? e = s : navigator.userAgent.indexOf("Opera") >= 0 ? e = r : window.devicePixelRatio ? e = n : o().zoom > .001 && (e = o) : e = i), e
-        }(), d = {
+        }(),
+        d = {
             zoom: function () {
                 return c().zoom
             }, device: function () {
@@ -31141,6 +31330,8 @@ function () {
         M139.core.namespace("M2012.UI.Tip.ZoomTip.Model", d)
     }
 }(M139),
+
+//M2012.UI.Tip.ZoomTip.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = "M139_ZoomTip_Not_Show_Again";
     i.namespace("M2012.UI.Tip.ZoomTip.View", s.extend({
@@ -31198,6 +31389,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//扩展window对象
 function (e) {
     function t() {
         if (0 != p.length) {
@@ -31240,6 +31433,8 @@ function (e) {
         }
     }
 }(window),
+
+//M2012.UI.Tip.NetHealthCheck
 function (e) {
     e.namespace("M2012.UI.Tip.NetHealthCheck", {
         check: function () {
@@ -31249,6 +31444,8 @@ function (e) {
         }
     })
 }(M139),
+
+//M2012.UI.Picker.TaskCalendar
 function (e, t, i) {
     var a = e, s = i.View.ViewBase, o = {
         Date: {
@@ -31430,6 +31627,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//扩展M139.PUtils
 function (e, t, i) {
     i.PUtils = {
         mobileMail: "", getImageSrc: function (e) {
@@ -31712,6 +31911,8 @@ function (e, t, i) {
         })
     })
 }($, _, M139);
+
+//$Evocation
 var $Evocation = {
     tagInMsgIcon: !1,
     tagInMsgBox: !1,
@@ -31784,6 +31985,8 @@ var $Evocation = {
         }
     }
 },
+
+//$RechargeRemind
 $RechargeRemind = {
     create: function (e) {
         if ("string" == typeof e) {
@@ -31799,6 +32002,8 @@ $RechargeRemind = {
         })
     }
 },
+
+//ProductFuns
 ProductFuns = {
     isNeedDisplay: function () {
         var e = !1, t = top.SiteConfig.lazyCard || [], i = top.$App && top.$App.query && top.$App.query.testServerTime ? top.$App.query.testServerTime : !1, a = new Date(M139.Date.getServerTime());
@@ -31895,10 +32100,14 @@ ProductFuns = {
         }, options)
     }
 };
+
+//M139.UI.RemindTipModel
 M139.core.namespace("M139.UI.RemindTipModel", Backbone.Model.extend({
     initialize: function (e) {
     }
 })),
+
+//M139.UI.RemindTipModel
 function (e, t, i) {
     e.extend(i.UI.RemindTipModel, {
         materialIds: [10679, 10680, 10678, 10621, 10620, 10564, 178, 173, 192, 10561],
@@ -32047,10 +32256,14 @@ function (e, t, i) {
         }
     }), window.$BMTips = i.UI.RemindTipModel
 }(jQuery, _, M139),
+
+//M139.UI.TipMailView
 M139.core.namespace("M139.UI.TipMailView", Backbone.View.extend({
     initialize: function (e) {
     }
 })),
+
+//M139.UI.TipMailView
 function (e, t, i) {
     e.extend(i.UI.TipMailView, {
         title: "您有 {count} 封新邮件",
@@ -32118,7 +32331,11 @@ function (e, t, i) {
         _template: ['<div class="imgInfo imgInfo-rb">', '<a class="imgLink" href="javascript:void(0);" title="图片"><i class="i_mail_b"></i></a>', "<dl>", '<dt><strong id="fromMan">{email}</strong></dt>', '<dd class="maila"><a bh="邮件tips查邮件" href="javascript:{hander};void(0);">{subject}</a></dd>', "</dl>", '<p style="display:{display};" class="imgInfo-rb-page"><a  bh="邮件tips左右导航" href="javascript:top.M139.UI.TipMailView.nextMail(\'L\');void(0);" class="pre"></a><span >{cur}/{total}</span><a bh="邮件tips左右导航" href="javascript:top.M139.UI.TipMailView.nextMail(\'R\');void(0);" class="next"></a></p>', "</div>"].join("")
     })
 }(jQuery, _, M139),
+
+//M139.UI.HelloFriend
 M139.core.namespace("M139.UI.HelloFriend", Backbone.View.extend({})),
+
+//M139.UI.HelloFriend
 function (e, t, i) {
     var a;
     e.extend(i.UI.HelloFriend, {
@@ -32157,10 +32374,14 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//M139.UI.TipLoginRemind
 M139.core.namespace("M139.UI.TipLoginRemind", Backbone.View.extend({
     initialize: function (e) {
     }
 })),
+
+//M139.UI.TipLoginRemind
 function (e, t, i) {
     e.extend(i.UI.TipLoginRemind, {
         requestTime: "",
@@ -32347,6 +32568,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//M139.Ui.Tip.View.Calendar
 function (e, t, i, a) {
     var s = i.View.ViewBase, o = "M139.Ui.Tip.View.Calendar";
     i.namespace(o, s.extend({
@@ -32506,6 +32729,8 @@ function (e, t, i, a) {
         }
     }))
 }(jQuery, _, M139, window._top || window.top),
+
+//M139.UI.cordlamp
 M139.core.namespace("M139.UI.cordlamp", Backbone.View.extend({
     autoClose: !0,
     contentId: "",
@@ -32630,12 +32855,17 @@ M139.core.namespace("M139.UI.cordlamp", Backbone.View.extend({
         }
     }
 })),
+
+
 $(function () {
     try {
         new M139.UI.cordlamp
     } catch (e) {
     }
 }),
+
+
+//M139.UI.WGuide
 M139.core.namespace("M139.UI.WGuide", Backbone.View.extend({
     template: ['<div class="norTips" id="wGuideBox">', '<a class="i_t_close DL_CloseBut CloseButton" style="top:11px;right:11px;" title="关闭" href="javascript:;"></a>', '<div class="assistant-guide">', '<div class="guide-head"></div>', '<div class="guide-list clearfix">', "<% if (isChinaMobileUser) { %>", "<ul>", '<li class="clearfix">', '<span class="class-name">邮箱短信提醒：</span>', '<div class="class-check">', '<span class="mr_15"><input type="checkbox" class="chk-m139check" checked="checked"><label id="chkOpen" style="background-image:url(/refs/global_v3_24.png)" for="chkUrgent" class="i-chooseMo i-chooseYet">&nbsp;&nbsp;&nbsp;&nbsp;</label>开启</span>', '<span class="mr_15"><input type="checkbox" class="chk-m139check" checked="checked"><label id="chkClose" style="background-image:url(/refs/global_v3_24.png)" for="chkUrgent" class="i-chooseMo">&nbsp;&nbsp;&nbsp;&nbsp;</label>关闭</span>', "</div>", '<p id="wgCloseExp" class="class-check-tips" style="display:none">温馨提示：开启短信提醒后，接收邮件到达提醒</p>', "</li>", "</ul>", "<% } %>", "</div>", '<div class="guide-maylike clearfix">', '<h3 class="headtop clearfix">猜您喜欢：</h3>', '<div class="innercon clearfix">', '<ul id="commend_List">', "</ul>", "</div>", "</div>", "</div>", "</div>"].join(""),
     initialize: function (e) {
@@ -32721,7 +32951,11 @@ M139.core.namespace("M139.UI.WGuide", Backbone.View.extend({
         })
     }
 })),
+
+//M139.UI.fileClear
 M139.core.namespace("M139.UI.fileClear", Backbone.View.extend({})),
+
+//M139.UI.fileClear
 function (e, t, i) {
     e.extend(i.UI.fileClear, {
         initialize: function (e) {
@@ -32763,6 +32997,8 @@ function (e, t, i) {
         }
     })
 }(jQuery, _, M139),
+
+//M139.UI.DataflowLottery
 M139.core.namespace("M139.UI.DataflowLottery", Backbone.View.extend({
     template: ['<div id="bottomBigBanner" style="position:fixed;left:0;bottom:0;right: 0;background: transparent;text-align: center;height:80px;z-index: 10000;">', "</div>"].join(""),
     initialize: function () {
@@ -32771,19 +33007,24 @@ M139.core.namespace("M139.UI.DataflowLottery", Backbone.View.extend({
     stopPopCon: function () {
         function e() {
             t.getData(function (e, i) {
-                $("#bottomBigBanner").remove(), $("body").append(t.template), $("#bottomBigBanner").prepend(e), t.unifiedLogRepot(1, i), $($("#bottomBigBanner").find("a")[0]).on("click", function () {
+                $("#bottomBigBanner").remove(),
+                $("body").append(t.template),
+                $("#bottomBigBanner").prepend(e),
+                t.unifiedLogRepot(1, i),
+                $($("#bottomBigBanner").find("a")[0]).on("click", function () {
                     t.unifiedLogRepot(2, i), $("#bottomBigBanner").remove()
-                }), $("#bottomBigBanner_close").on("click", function () {
+                }),
+                $("#bottomBigBanner_close").on("click", function () {
                     $("#bottomBigBanner").remove()
                 })
             })
         }
-
         var t = this, i = $(window).height() || 0;
-        return 560 > i ? !1 : void M139.Timing.waitForReady('top.$App.getConfig("UserData").orderInfoList', function () {
-            "CleanMailbox" == top.$App.isclearSkinUser() ? top.$App.getCommConfig({ configId: 610 }, function (t) {
-                var i = { configId: 610, configValue1: 0, configValue2: "" };
-                "S_OK" == t.code && (0 == t["var"].length && (t["var"][0] = i), 0 == t["var"][0].configValue1 ? $("#bottomBigBanner").remove() : e())
+        return 560 > i ? !1 : void M139.Timing.waitForReady('top.$App.getConfig("UserData").orderInfoList',
+            function () {
+                "CleanMailbox" == top.$App.isclearSkinUser() ? top.$App.getCommConfig({ configId: 610 }, function (t) {
+                    var i = { configId: 610, configValue1: 0, configValue2: "" };
+                    "S_OK" == t.code && (0 == t["var"].length && (t["var"][0] = i), 0 == t["var"][0].configValue1 ? $("#bottomBigBanner").remove() : e())
             }) : e()
         })
     },
@@ -32823,6 +33064,8 @@ M139.core.namespace("M139.UI.DataflowLottery", Backbone.View.extend({
         }
     }
 })),
+
+//初始化M139.UI.DataflowLottery
 $(function () {
     try {
         setTimeout(function () {
@@ -32831,6 +33074,8 @@ $(function () {
     } catch (e) {
     }
 }),
+
+//M2012.OperateTips.Model
 function (e, t, i) {
     i.namespace("M2012.OperateTips.Model", Backbone.Model.extend({
         logger: new top.M139.Logger({ name: "OperateTips" }),
@@ -32858,6 +33103,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.OperateTips.View
 function (e, t, i, a) {
     var s = e, o = a.View.ViewBase;
     a.namespace("M2012.OperateTips.View", o.extend({
@@ -33043,6 +33290,8 @@ function (e, t, i, a) {
         }
     }))
 }(jQuery, Backbone, _, M139);
+
+//生日提醒
 var BirthRemind = {
     birdthMan: [],
     cardIdsxx: [10677, 10655, 10646, 10637, 10559, 10556, 158, 156, 154, 151, 149, 155],
@@ -33178,6 +33427,8 @@ var BirthRemind = {
         }
     }
 };
+
+//M2012.Remind.Model
 !function (e, t, i) {
     i.namespace("M2012.Remind.Model", Backbone.Model.extend({
         callApi: i.RichMail.API.call, setTask: function (e) {
@@ -33245,6 +33496,8 @@ var BirthRemind = {
         }
     }))
 }(jQuery, _, M139),
+
+//M2012.Remind.View
 function (e, t, i) {
     var a = e, s = i.View.ViewBase;
     i.namespace("M2012.Remind.View", s.extend({
@@ -33683,6 +33936,8 @@ function (e, t, i) {
         }
     }))
 }(jQuery, _, M139),
+
+//M139.UI.TipSubscribeCalendar
 M139.core.namespace("M139.UI.TipSubscribeCalendar", Backbone.View.extend({
     initialize: function (e) {
         var t = this;
