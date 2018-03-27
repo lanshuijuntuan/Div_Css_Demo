@@ -8,7 +8,8 @@
 }();
 var M139;
 !function (jQuery, Backbone) {
-    M139 = {}, M139.Core = Backbone.Model.extend({
+    M139 = {},
+    M139.Core = Backbone.Model.extend({
         initialize: function (e) {
             this.jsPath = e.jsPath
         },
@@ -23,7 +24,8 @@ var M139;
             return this.trigger("namespace", e), i
         },
         getJSPathByNS: function (e) {
-            var t = this.get("definedJSNSPath"), n = t[e];
+            var t = this.get("definedJSNSPath"),
+                n = t[e];
             return n || (n = e.toLowerCase() + ".js"), this.jsPath + "/" + n
         },
         registerJS: function (e, t) {
@@ -2083,8 +2085,29 @@ M139.HttpRouter = {
         n || e.indexOf("&") > 0 && (n = this.apiList[e.split("&")[0]]);
         var r = this.serverList[n].domain;
         r = r.replace("http:", window.location.protocol);
-        var i = r + this.serverList[n].path, o = $T.format(i, {sid: top.sid || $T.Url.queryString("sid"), api: e});
-        return "global:sequential2" == e && (o = o.replace("global:sequential2", "global:sequential")), o && t && (o = $Url.makeUrl(o, t)), top.COMEFROM || (top.COMEFROM = $T.Url.queryString("comefrom")), top.COMEFROM && (o += window == top ? "&comefrom=" + top.COMEFROM : $T.Url.queryString("comefrom") ? "&comefrom=" + $T.Url.queryString("comefrom") : "&comefrom=" + top.COMEFROM), o
+        var i = r + this.serverList[n].path,
+            o = $T.format(i, { sid: top.sid || $T.Url.queryString("sid"), api: e });
+        if("global:sequential2" == e ){
+            o = o.replace("global:sequential2", "global:sequential");
+        }
+        if(o && t){
+            o = $Url.makeUrl(o, t);
+        }
+        if(!top.COMEFROM ){
+            top.COMEFROM = $T.Url.queryString("comefrom");
+        }
+        if(top.COMEFROM){
+            if (o += window == top) {
+                "&comefrom=" + top.COMEFROM;
+            } else {
+                if ($T.Url.queryString("comefrom")) {
+                    "&comefrom=" + $T.Url.queryString("comefrom");
+                } else {
+                    "&comefrom=" + top.COMEFROM;
+                }
+            }
+        }
+        return o;
     },
     hostConfig_12: {
         login: {host: "mail.10086.cn", proxy: "/proxy.html"},
@@ -2448,16 +2471,19 @@ function (e) {
             })
         },
         call: function (t, n, r, i) {
-            var o = function () {
-            }, a = new e.RichMail.RichMailHttpClient(i || {});
+            var o = function () { };
+            a = new e.RichMail.RichMailHttpClient(i || {});
             if (!i || !i.mock) {
                 a.on("error", function (e) {
                     o.call(a, e)
                 }), i && ($.isFunction(i) ? (o = i, i = !1) : $.isFunction(i.error) && (o = i.error), $.isFunction(i.ontimeout) && a.on("timeout", function (e) {
                     i.ontimeout.call(a, e)
                 }));
-                var s = t.indexOf("/") > -1 ? t : a.router.getUrl(t), l = "post";
-                return i && i.method && (l = i.method), i && i.urlParam && (s += i.urlParam), a.request({
+                var s = t.indexOf("/") > -1 ? t : a.router.getUrl(t),
+                    l = "post";
+                i && i.method && (l = i.method);
+                i && i.urlParam && (s += i.urlParam);
+                return a.request({
                     url: s,
                     method: l,
                     data: n,
@@ -2466,11 +2492,15 @@ function (e) {
                     timeout: i && i.timeout,
                     isSendClientLog: i && i.isSendClientLog
                 }, function (e) {
-                    top.$App && top.$App.onHttpClientResponse && top.$App.onHttpClientResponse(a, e), r && r(e)
-                })
+                    top.$App && top.$App.onHttpClientResponse && top.$App.onHttpClientResponse(a, e);
+                    r && r(e);
+                });
             }
             var a = e.API.Mock.call({
-                api: t, data: n, success: r, error: function (e, t) {
+                api: t,
+                data: n,
+                success: r,
+                error: function (e, t) {
                     r(e, t)
                 }
             })
@@ -2605,16 +2635,32 @@ function () {
             function checkReady() {
                 tryTimes++;
                 try {
-                    if ($.isFunction(query))var result = query(); else var result = eval(query);
-                    result && (done = !0, intervalId && self.clearInterval(intervalId))
+                    if ($.isFunction(query)) {
+                        var result = query();
+                    } else {
+                        var result = eval(query);
+                    }
+                    if (result) {
+                        done = !0;
+                        if(intervalId){
+                            self.clearInterval(intervalId);
+                        }
+                    }
                 } catch (e) {
                 }
-                (done || tryTimes > 100) && (intervalId && self.clearInterval(intervalId), callback && callback())
+                if (done || tryTimes > 100) {
+                    intervalId && self.clearInterval(intervalId);
+                    callback && callback();
+                }
             }
 
-            var tryTimes = 0, done = !1;
-            if (checkReady(), !done)var intervalId = this.setInterval("M139.Timing.waitForReady", checkReady, 300);
-            var self = this
+            var tryTimes = 0,
+                done = !1;
+            checkReady();
+            if (!done) {
+                var intervalId = this.setInterval("M139.Timing.waitForReady", checkReady, 300);
+            }
+            var self = this;
         },
         makeSureIframeReady: function (e) {
             return M139.Iframe.checkIframeHealth(e)
@@ -2710,12 +2756,15 @@ function () {
 }(),
 function (e, t) {
     var n = e;
-    t.View = {}, t.View.ViewBase = Backbone.View.extend({
+    t.View = {},
+    t.View.ViewBase = Backbone.View.extend({
         initialize: function (n) {
             if (n || (n = {}), n.events)for (var r in n.events)this.on(r, n.events[r]);
             var i = n.style || this.style;
             i && this.el && (e.browser.msie ? this.el.style.cssText = i : this.$el.attr("style", i)), n.width && this.$el.width(n.width), n.height && this.$el.height(n.height), this.logger = new t.Logger({name: n.name || this.name}), this.id || this.el && this.el.id || (this.id = this.getRandomId(), this.el && (this.el.id = this.id)), this.options = n || {}, t.View.registerView(this.id, this)
-        }, name: "M139.View.ViewBase", render: function () {
+        },
+        name: "M139.View.ViewBase",
+        render: function () {
             var e = this;
             if (this.rendered)return this;
             this.rendered = !0;
@@ -2727,47 +2776,67 @@ function (e, t) {
             }), t.hides && this.$(t.hides).hide(), t.shows && this.$(t.shows).css("display", ""), this.trigger("render"), t.noDelayPrint ? e.trigger("print") : setTimeout(function () {
                 e.trigger("print")
             }, 0), this
-        }, remove: function () {
+        },
+        remove: function () {
             return this.$el.remove(), this.isRemoved = !0, this.trigger("remove"), this
-        }, show: function () {
+        },
+        show: function () {
             return this.$el.show(), this.trigger("show"), this
-        }, hide: function () {
+        },
+        hide: function () {
             return this.$el.hide(), this.trigger("hide"), this
-        }, isHide: function (e) {
+        },
+        isHide: function (e) {
             return $D.isHide(this.el, e)
-        }, getHeight: function () {
+        },
+        getHeight: function () {
             return this.$el ? this.$el.height() : 0
-        }, getWidth: function () {
+        },
+        getWidth: function () {
             return this.$el ? this.$el.width() : 0
-        }, setWidth: function (e) {
+        },
+        setWidth: function (e) {
             return this.setSize(e, null)
-        }, setHeight: function (e) {
+        },
+        setHeight: function (e) {
             return this.setSize(null, e)
-        }, setPosition: function (e, t) {
+        },
+        setPosition: function (e, t) {
             return this.$el && (this.$el.css({left: e, top: t}), this.trigger("move")), this
-        }, setSize: function (e, t) {
+        },
+        setSize: function (e, t) {
             return this.$el && ((e || 0 === e) && this.$el.width(e), (t || 0 === t) && this.$el.height(t), this.trigger("resize")), this
-        }, onUpdate: function () {
+        },
+        onUpdate: function () {
             this.trigger("update")
-        }, getEl: function () {
+        },
+        getEl: function () {
             return this.el
-        }, get$El: function () {
+        },
+        get$El: function () {
             return this.$el
-        }, getCidEl: function (e) {
+        },
+        getCidEl: function (e) {
             return e ? n("#" + this.cid + "_" + e) : null
-        }, getCidElStr: function (e) {
+        },
+        getCidElStr: function (e) {
             return e ? "#" + this.cid + "_" + e : null
-        }, getId: function () {
+        },
+        getId: function () {
             return this.el.id
-        }, getRandomId: function () {
+        },
+        getRandomId: function () {
             return "view_" + Math.random()
-        }, setHtml: function (e) {
+        },
+        setHtml: function (e) {
             this.el && (this.el.innerHTML = e, this.onUpdate())
         }
     }), n.extend(t.View, {
         getView: function (e) {
             return this.AllViews[e] || null
-        }, AllViews: {}, registerView: function (e, t) {
+        },
+        AllViews: {},
+        registerView: function (e, t) {
             this.AllViews[e] = t
         }
     })

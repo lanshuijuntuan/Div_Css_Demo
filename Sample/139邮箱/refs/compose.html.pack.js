@@ -658,7 +658,8 @@ var Package = {
             this.initEvents()
         }, getUserNumber: function () {
             return top.$User.getUid()
-        }, loadMainData: function (e, t) {
+        },
+        loadMainData: function (e, t) {
             e = e || {};
             var a = this;
             if (this.isLoading = !0, e.testUrl)o.get(e.testUrl, function (e) {
@@ -676,7 +677,8 @@ var Package = {
                     })
                 }, 7e3)
             }
-        }, loadQueryUserInfo: function (e) {
+        },
+        loadQueryUserInfo: function (e) {
             function o(t, i) {
                 i && (t = $App.deepCloneJSON(t)), e({responseData: t}), o = new Function
             }
@@ -8713,6 +8715,7 @@ UploadManager.prototype = {
                     mailContent: mainView.model.mailInfo.content
                 });
                 var r = e.responseData;
+                debugger;
                 r["var"] && r["var"].tid && (s += "&tid=" + r["var"].tid), r && r.attachs && r.attachs.length > 0 && (s += "&attachs=1"), mainView.model.get("hasLargeAttach"), mainView.sendMailSdk("webp_sendmail_loaded", "S_OK"), location.href = s
             } else {
                 var l = e.responseData.summary || mainView.model.getErrorMessageByCode("sendMail", e.responseData.code, mainView.model.mailInfo);

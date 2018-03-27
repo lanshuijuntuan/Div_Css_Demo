@@ -764,7 +764,7 @@ function _letterInlineScript(e, t) {
 
 //M2012.MatrixVM
 !function (e, t, i) {
-    var a,s = e;
+    var a, s = e;
     i.namespace("M2012.MatrixVM", Backbone.Model.extend({
         initialize: function (e) {
             e = e || {},
@@ -3158,10 +3158,14 @@ function (e, t, i) {
             return a
         },
         initEvents: function () {
-            var e = this, t = "dataForMatch_email", i = "dataForMatch_mobile", a = "dataForMatch_fax";
+            var e = this,
+                t = "dataForMatch_email",
+                i = "dataForMatch_mobile",
+                a = "dataForMatch_fax";
             e.on("update", function (s) {
                 e.has(t) && e.unset(t), e.has(i) && e.unset(i), e.has(a) && e.unset(a)
-            }), e.on("maindataload", function () {
+            });
+            e.on("maindataload", function () {
                 e.has(t) && e.unset(t), e.has(i) && e.unset(i), e.has(a) && e.unset(a)
             })
         },
@@ -3570,7 +3574,8 @@ M139.namespace("M2012.Main.View", {
                 t.Screenadvertising();
                 var i = e.userMainData.mainUserConfig.shownewuserguide && e.userMainData.mainUserConfig.shownewuserguide[0],
                     a = $App.getCurrentTab();
-                if ("1" != i && a && "setting" != a.group && "83" != UserData.provCode && ($App.isOnceShowed("UserOpenNotify") || (top.mailNotifyData ? t.showNotifyOpen(top.mailNotifyData) : $App.once("notify_load", function (e) {
+                if ("1" != i && a && "setting" != a.group && "83" != UserData.provCode &&
+                    ($App.isOnceShowed("UserOpenNotify") || (top.mailNotifyData ? t.showNotifyOpen(top.mailNotifyData) : $App.once("notify_load", function (e) {
                     t.showNotifyOpen(e)
                 }))), "13902220729" !== $User.getShortUid() && "13922201256" !== $User.getShortUid()) {
                     var s = new Date,
@@ -3664,7 +3669,9 @@ M139.namespace("M2012.Main.View", {
         },
         initEvents: function () {
             var e, t = this;
-            e = "https:" == window.location.protocol ? getDomain("mail") + "/login/Logout.aspx?sid=" + sid + "&redirect=http://mail.10086.cn/logout.htm" : getDomain("mail") + "/login/Logout.aspx?sid=" + sid + "&redirect=" + encodeURIComponent(getDomain("mail") + "/logout.htm"), $("#logout").click(function (t) {
+            e = "https:" == window.location.protocol ? getDomain("mail") + "/login/Logout.aspx?sid=" + sid + "&redirect=http://mail.10086.cn/logout.htm" :
+                getDomain("mail") + "/login/Logout.aspx?sid=" + sid + "&redirect=" + encodeURIComponent(getDomain("mail") + "/logout.htm"),
+            $("#logout").click(function (t) {
                 t.cancel = !1, window.sessionStorage && (window.sessionStorage.removeItem("currentPage"), window.sessionStorage.removeItem("currentOptions"));
                 try {
                     var i = $(top.$App.getCurrentTab().view.el).find("iframe")[0].contentWindow.$composeApp;
@@ -3677,13 +3684,18 @@ M139.namespace("M2012.Main.View", {
                     t.cancel = !1
                 }
                 return !t.cancel && window.location.replace(e), !1
-            }), $(document.getElementById("btn_compose")).click(function (e) {
+            }),
+            $(document.getElementById("btn_compose")).click(function (e) {
                 t.onComposeClick(e, arguments[1])
-            }), $(document.getElementById("btn_receive")).click(function (e) {
+            }),
+            $(document.getElementById("btn_receive")).click(function (e) {
                 t.onReceiveLetterClick(e)
-            }), $App.once("userDataLoad", function (e) {
+            }),
+            $App.once("userDataLoad", function (e) {
                 var i = 0;
-                t.renderAccountList(e), t.checkAvaibleForMobile(), $.browser.msie || document.documentMode || "complete" == document.readyState ? t.renderUmcBox(e) : $(window).load(function () {
+                t.renderAccountList(e),
+                t.checkAvaibleForMobile(),
+                $.browser.msie || document.documentMode || "complete" == document.readyState ? t.renderUmcBox(e) : $(window).load(function () {
                     setTimeout(function () {
                         t.renderUmcBox(e)
                     }, 1e3)
@@ -3697,25 +3709,34 @@ M139.namespace("M2012.Main.View", {
                 $User.isChinaMobileUser() ? i = $User.getProvCode() : $("#mailLog").attr("href", "javascript:$App.showMailbox(1)"),
                 $("#help").attr("href", getDomain("help") + "/" + i + "/index.html?sid=" + $App.getSid());
                 var a = getDomain("uec");
-                $User.isGrayUser() && (a = "http://smsrebuild0.mail.10086.cn/uec"), $("#btn_feedback").attr("href", a + "/jumpFeedbackRedirect.do?isdirect=1&nav=3&isfirst=1&sid=" + $App.getSid()), t.showTopAd(), M139.Logger.getDefaultLogger().debug("userdataload topviewrender"), $App.requireUserData(function () {
+                $User.isGrayUser() && (a = "http://smsrebuild0.mail.10086.cn/uec"),
+                $("#btn_feedback").attr("href", a + "/jumpFeedbackRedirect.do?isdirect=1&nav=3&isfirst=1&sid=" + $App.getSid()),
+                t.showTopAd(),
+                M139.Logger.getDefaultLogger().debug("userdataload topviewrender"),
+                $App.requireUserData(function () {
                     M139.UI.HelloFriend.initialize(), M139.UI.fileClear.initialize(), new M139.UI.TipSubscribeCalendar, t.getMailExeIntall()
                 })
-            }), t.initTopFixedTabs(), $("#recommend").hover(function () {
+            }),
+            t.initTopFixedTabs(),
+            $("#recommend").hover(function () {
                 $(this).offset().left > 0 && $(this).addClass("selectOn")
             }, function () {
                 $(this).removeClass("selectOn")
-            }), VoiceInput.create({
+            }),
+            VoiceInput.create({
                 button: "#btn_foiceSearch", onComplete: function (e) {
                     var i = $("#newTb_mailSearch");
                     i.val() == t.seachBoxtip ? i.val(e) : i.val(i.val() + e), setTimeout(function () {
                         i.focus()
                     }, 500)
                 }
-            }), $("ul.newLogoInfo").on("mouseenter", "li.newLogoInfo_li", function () {
+            }),
+            $("ul.newLogoInfo").on("mouseenter", "li.newLogoInfo_li", function () {
                 $(this).addClass("on")
             }).on("mouseleave", "li.newLogoInfo_li", function () {
                 $(this).removeClass("on")
-            }), $("#iMobile").click(function () {
+            }),
+            $("#iMobile").click(function () {
             }).hover(function () {
                 "6" == top.$User.getProvCode() || "22" == top.$User.getAreaCode();
                 $("#qrc_title").html("139邮箱手机APP"), $("#iMobile img").each(function () {
@@ -3727,24 +3748,30 @@ M139.namespace("M2012.Main.View", {
                 setTimeout(function () {
                     0 == $("#iMobile").hasClass("on") && $("#i_qrcode").hide()
                 }, 500)
-            }), $("#i_qrcode").click(function (e) {
+            }),
+            $("#i_qrcode").click(function (e) {
                 e.stopPropagation()
-            }), top.$("#i_qrcode").find("#epDownBtn").on("click", function () {
+            }),
+            top.$("#i_qrcode").find("#epDownBtn").on("click", function () {
                 $(this).attr({
                     href: "http://mail.10086.cn/advertise/index.html",
                     target: "_blank"
                 }), top.BH("mob_client_top_sendEp")
-            }), $App.on("notify_load", function (e) {
+            }),
+            $App.on("notify_load", function (e) {
                 top.mailNotifyData = e, t.Mailnotify ? M2015.Mailnotify.View.setData({ notifydata: e }) : (t.Mailnotify = M2015.Mailnotify.View.create({
                     notifydata: e,
                     type: "notify"
                 }), $App.registerView("mailnotifyTip", t.Mailnotify))
-            }), $App.on("Undisturb_load", function (e) {
+            }),
+            $App.on("Undisturb_load", function (e) {
                 t.Mailnotify ? M2015.Mailnotify.View.setData({ Undisturbdata: e }) : (t.Mailnotify = M2015.Mailnotify.View.create({
                     Undisturbdata: e,
                     type: "Undisturb"
                 }), $App.registerView("mailnotifyTip", t.Mailnotify))
-            }), window.isReadFirstMailInLeft = !0, "skin_christmas" == top.$User.getSkinName() && $App.christmasMan("skin_christmas")
+            }),
+            window.isReadFirstMailInLeft = !0;
+            
         },
         bindguild: {
             cancelled: ['<div class="norTips" style="padding:30px;">', '<span class="norTipsIco"><i class="MB_Icon i-redWarnBig" style="vertical-align:top;"></i></span>', '<dl class="norTipsContent layouttipsAccount">', '<dt class="norTipsTitle MB_MessageBox_Title"><p class="orange">该手机号码与邮箱已解除绑定</p></dt>', '<dd class="norTipsLine"><p class="gray fz_12">如需继续使用139邮箱，请您设置别名或绑定手机号，否则手机号被他人使用，您将不能登录邮箱。</p></dd>', '<dd class="norTipsLine mt_5">', '<p class="fw_b">设置邮箱别名帐号</p>', '<p class="gray fz_12" id="">可以用来登录邮箱，更有效保护个人隐私。</p>', '<div class="mt_5"><input type="text" class="ipt-text" id="bieNameText" style="width:140px;margin-right:5px;" value="" placeholder="" /><span class="">@139.com</span></div>', '<div class="gray fz_12 id="checkTip">以字母开头，5-15个字符。</div>', '<div class="red fz_12" id= "tip" ></div>', "</dd>", "</dl>", "</div>"].join(""),
@@ -4684,7 +4711,11 @@ M139.namespace("M2012.Main.View", {
             }
         },
         handlerEnterpriseArea: function () {
-            var e = this, t = 0, i = $("#toEnterpriseEml").find("a"), a = "https://qiye.mail.10086.cn/webmail/login/userssologin.do", s = "https://qiye.mail.10086.cn/webmail/login/openuserssoauth.do";
+            var e = this,
+                t = 0,
+                i = $("#toEnterpriseEml").find("a"),
+                a = "https://qiye.mail.10086.cn/webmail/login/userssologin.do",
+                s = "https://qiye.mail.10086.cn/webmail/login/openuserssoauth.do";
             M139.RichMail.API.call("together:getTokenInfo", {}, function (o) {
                 var n = o.responseData;
                 if (i.find("#msgBoxComing").remove(), n && "S_OK" == n.code) {
@@ -4878,23 +4909,26 @@ M139.namespace("M2012.Main.View", {
         resetTopFixTabsCssAndDropdown: function (e) {
             e = e || {};
             var t = e.event ? e.event.target : $(e)[0];
-            $App.trigger("documentClick", t), $("#setDefaultTab, #chooseVipMail, #mailSetLi, #helpLi, #accountSet, #audioBox").each(function () {
-                var t = $(this), i = t.attr("id"), a = "on";
-                if ("accountSet" == i) a = "selected"; else if ("setDefaultTab" == i) a = "focus"; else if ("audioBox" == i && e && e != this) return void (top.MusicBox && top.MusicBox.hide(!0));
-                e && $(e).attr("id") == i ? ($App.getView("mailnotifyTip") && $App.getView("mailnotifyTip").hideElement(), t.find(".J-dropdown,.menuPop").toggleClass("hide"), t.find(".J-dropdown,.menuPop").hasClass("hide") ? t.removeClass(a) : t.addClass(a)) : t.removeClass(a).find(".J-dropdown,.menuPop").addClass("hide")
+            $App.trigger("documentClick", t),
+            $("#setDefaultTab, #chooseVipMail, #mailSetLi, #helpLi, #accountSet, #audioBox").each(function () {
+                var t = $(this),
+                    i = t.attr("id"),
+                    a = "on";
+                if ("accountSet" == i) {
+                    a = "selected";
+                } else if ("setDefaultTab" == i) {
+                    a = "focus";
+                } else if ("audioBox" == i && e && e != this) {
+                    return void (top.MusicBox && top.MusicBox.hide(!0));
+                }
+                if (e && $(e).attr("id") == i) {
+                    $App.getView("mailnotifyTip") && $App.getView("mailnotifyTip").hideElement();
+                    t.find(".J-dropdown,.menuPop").toggleClass("hide");
+                    t.find(".J-dropdown,.menuPop").hasClass("hide") ? t.removeClass(a) : t.addClass(a)
+                } else {
+                    t.removeClass(a).find(".J-dropdown,.menuPop").addClass("hide");
+                }
             })
-        },
-        reSetLastSkin: function () {
-            var e = $App.getUserConfigInfo("skintrialtag"), t = e.match(/drawTime=([0-9]*)/)[1], i = new Date(parseInt(t)), a = new Date, s = parseInt(e.match(/isDrew=(0|1)/)[1]), o = "0016" == $User.getServiceItem() || "0017" == $User.getServiceItem();
-            a - i > top.SiteConfig.limitSkinTime && s && !o && (!o && $User.getSkinName().indexOf("animal") > -1 ? $App.getLastSkin(function (e) {
-                $App.setSkin(e), $App.setCommConfig({
-                    configId: 62,
-                    configValue2: "isDrew=0"
-                }), $App.getConfig("UserData").mainUserConfig.skintrialtag[1] = "isDrew=0"
-            }) : ($App.setCommConfig({
-                configId: 62,
-                configValue2: "isDrew=0"
-            }), $App.getConfig("UserData").mainUserConfig.skintrialtag[1] = "isDrew=0", top.SiteConfig.drawLimitSkin = !1))
         },
         getDefaultEntrytab: function () {
             var e = $Cookie.get("defaultTab" + $App.getSid()) || $Url.queryString("tab"), t = $App.getView("tabpage").model.getInitTabsData();
@@ -4936,15 +4970,28 @@ M139.namespace("M2012.Main.View", {
         },
         renderAccountList: function (e) {
             if (e) {
-                var t = this, i = $("#accountSet"), a = ($User.getAccountListArray(), this.changeMinMobile($User.getDefaultSender()));
+                var t = this,
+                    i = $("#accountSet"),
+                    a = ($User.getAccountListArray(),
+                    this.changeMinMobile($User.getDefaultSender()));
                 "@139.com" == a && M139.Timing.waitForReady('top.$App.getConfig("UserAttrs")', function () {
                     var e = (top.$App.getConfig("UserAttrs") || {}).uid;
                     e && (a = t.changeMinMobile(e), i.find("a:eq(0)").html('<i class=""></i>' + a + '<i class="triangle t_blackDown"></i>'))
-                }), i.find("a:eq(0)").html('<i class=""></i>' + a + '<i class="triangle t_blackDown"></i>'), i.off("click").on("click", function (e) {
-                    return $App.trigger("documentClick", e.target), $("#skinTips").length && $("#head_changeSkin").trigger("click"), $(e.target).closest("#accountInfo").length ? void $Event.stopEvent(e) : (Package.require("account_info", function () {
-                        t.accountInfo = new M2012.Main.View.AccountInfo({ $el: $("#accountSet") })
-                    }), top.BH("click_top_account"), void e.stopPropagation())
-                })
+                }),
+                i.find("a:eq(0)").html('<i class=""></i>' + a + '<i class="triangle t_blackDown"></i>'),
+                i.off("click").on("click", function (e) {
+                    $App.trigger("documentClick", e.target);
+                    $("#skinTips").length && $("#head_changeSkin").trigger("click");
+                    if ($(e.target).closest("#accountInfo").length) {
+                        return void $Event.stopEvent(e)
+                    } else {
+                        Package.require("account_info", function () {
+                            t.accountInfo = new M2012.Main.View.AccountInfo({ $el: $("#accountSet") })
+                        });
+                        top.BH("click_top_account");
+                        return void e.stopPropagation();
+                    }
+                });
             }
         },
         changeMinMobile: function (e) {
@@ -5249,7 +5296,7 @@ TabPageView = Backbone.View.extend({
             $App.trigger("showTab", this.model.getModule(e))
         } catch (i) {
         }
-        this.christmasMan();
+        
         if ("skin_sheepyear" == top.$User.getSkinName()) {
             $(".christmasHats").remove();
             setTimeout(function () {
@@ -5292,29 +5339,7 @@ TabPageView = Backbone.View.extend({
             }
         }
     },
-    christmasMan: function () {
-        if ("skin_christmas" == top.$User.getSkinName()) {
-            $("#divTab li[role=tab][id!=tabsMenuIco]:visible span").unbind("hover").hover(
-                function (e) {
-                    if ($(".santaClaus").length > 0 && $(".santaClaus").remove(), !$("#accountSet.selected").length) {
-                        var t = $(e.target).parents("[role=tab]").offset().left;
-                        $("body").append('<i class="santaClaus" id="' + t + '" style="left:' + (t + 35) + 'px; top:50px;z-index:1000;display:none;"></i>');
-                        $("#" + t).fadeIn(300);
-                    }
-                },
-                function (e) {
-                    var t = $(e.target).parents("[role=tab]").offset().left;
-                    $("#" + t).fadeOut(300);
-                });
-            $(".christmasHats").remove();
-            setTimeout(function () {
-                $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
-            }, 100);
-            setTimeout(function () {
-                $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last .christmasHats").length || $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
-            }, 1e3)
-        }
-    },
+   
     replace: function (e, t) {
         this.tab.replace(e, t)
     },
@@ -5713,7 +5738,7 @@ TabPageView = Backbone.View.extend({
             $App.trigger("closeTab", i)
         } catch (a) {
         }
-        this.christmasMan();
+      
         setTimeout(function () {
             t.showAllTab();
             t.tab.size();
@@ -8194,14 +8219,13 @@ function (jQuery, Backbone, _, M139) {
         })
     }
     var $ = jQuery,
-        superClass = M139.PageApplication,
-        isFirstLoadGetInfoSet = !0,
-        isFirstLoadInitConfigData = !0;
+        superClass = M139.PageApplication;
     M139.namespace("M2012.MainApplication", superClass.extend({
         initialize: function (e) {
             superClass.prototype.initialize.apply(this, arguments)
         },
         defaults: { name: "M2012.MainApplication" },
+        //程序启动
         run: function () {
             window.sid = $T.Html.encode($App.query.sid);
             if (window.name && "string" == typeof window.name && window.name.indexOf("sid") >= 0) {
@@ -8235,8 +8259,6 @@ function (jQuery, Backbone, _, M139) {
             this.initApi();
             this.initSubViews();
             this.initOldTimesAdapter();
-            this.initProductView();
-            this.initSsoRedirect();
             M2012.History.initialize();
             this.registerChannel("welcome", {
                 leftNav: "none",
@@ -8282,9 +8304,11 @@ function (jQuery, Backbone, _, M139) {
                     settingsIndexView.getSettingsNav()
                 }, hideTab: !1, withinMail: !0
             });
-            this.registerChannel("usercenter",
-                { leftNav: "none", hideTab: !1, withinMail: !0 });
+            this.registerChannel("usercenter", {
+                leftNav: "none", hideTab: !1, withinMail: !0
+            });
         },
+
         initEvents: function () {
             function e() {
                 var e = i.getBodyHeight();
@@ -8430,71 +8454,10 @@ function (jQuery, Backbone, _, M139) {
         },
         initModels: function () {
         },
-        initSsoRedirect: function () {
-            var e = (new M2012.SsoRedirect, this);
-            this.on("folderLoaded", function () {
-                if (!e.isDefaultEntryInvoke && (e.isDefaultEntryInvoke = !0, !window.sessionStorage || !window.sessionStorage.getItem("currentPage"))) {
-                    var t = $Url.queryString("id"), i = e.getView("top").getDefaultEntrytab();
-                    if (i && (setTimeout(function () {
-                        document.getElementById("welcome").style.visibility = ""
-                    }, 100), "mailbox_1" == i && $App.requireUserData(function () {
-                        var e = $Date.parse($User.getLastLoginDate()), t = $Date.getDaysPass(e, new Date);
-                        t >= 60 && ($App.setUserConfigInfo("defaultentrytab", "welcome", function () {
-                            $Cookie.set({
-                        name: "defaultTab" + $App.getSid(),
-                        value: "welcome"
-                    }), $App.show("welcome")
-                    }), M139.Logger.sendClientLog({
-                        Level: "INFO",
-                        Name: "Logger-Main",
-                        Summary: "2 month not login,last defaultEntry is " + i
-                    }))
-                    }), BH("defaultentry_" + i)), !t && i) {
-                        var a = {
-                            addr: function () {
-                                $App.show("addr")
-                            }, calendar: function () {
-                                $App.show("calendar")
-                            }, googSubscription: function () {
-                                $App.show("googSubscription")
-                            }, mailbox_1: function () {
-                                e.isUserAttrsLoad ? $App.showMailbox(1) : $App.once("userAttrsLoad", function () {
-                                    $App.showMailbox(1)
-                                })
-                            }, diskDev: function () {
-                                $App.show("diskDev")
-                            }
-                        };
-                        a[i] && a[i]()
-                    }
-                }
-            })
-        },
-        initProductView: function () {
-            setTimeout(function () {
-                $App.prodFuns = top.ProductFuns;
-                var e = top.$App.prodFuns;
-                top.M139.Timing.waitForReady('top.$App.getConfig("UserData")', function () {
-                    top.SiteConfig.onlineTips && !top.$User.isNotChinaMobileUser() && e.showOnlineTips(),
-                    top.SiteConfig.billLight && !top.$User.isNotChinaMobileUser() && e.showBillLight(),
-                    setTimeout(function () {
-                        top.SiteConfig.isShowLazyCard && e.loadLazyCard()
-                    }, 1e3)
-                }),
-                e.loadOperateTips();
-            }, 100);
-            $App.on("infoSetLoad", function (e) {
-                var t = e.userMainData.mainUserConfig.shownewuserguide && e.userMainData.mainUserConfig.shownewuserguide[0];
-                "1" == t && Package.require("main_ext", function () {
-                    (new M2012.Settings.Initset.View_New).render()
-                })
-            })
-        },
-        initGuide: function () {
-            new M139.UI.Ticket
-        },
         onUserDataComplete: function (e) {
-            this.completeCallbackList || (this.completeCallbackList = []), this.completeCallbackList.push(e), this.checkUserDataComplete()
+            this.completeCallbackList || (this.completeCallbackList = []),
+            this.completeCallbackList.push(e),
+            this.checkUserDataComplete()
         },
         checkUserDataComplete: function () {
             if (this.loadLevel >= 2 && this.completeCallbackList) {
@@ -8527,9 +8490,7 @@ function (jQuery, Backbone, _, M139) {
                 $App.clearTabCache("welcome");
                 e.reloadUserAttrs(t);
             });
-            if ("20" == $User.getAreaCode()) {
-                this.getAdLinkData();
-            }
+            
             this.getNewUserInfo();
         },
         initContactData: function (e) {
@@ -8545,10 +8506,12 @@ function (jQuery, Backbone, _, M139) {
             });
         },
         initUserMainData: function (e, t) {
-            e && (
-            "8613632599010" == e.UID && (e.UID = "8680000000000"),
-            this.registerConfig("UserData", e),
-            this.trigger("userDataLoad", e), t && t(e))
+            if(e){
+                "8613632599010" == e.UID && (e.UID = "8680000000000");
+                this.registerConfig("UserData", e);
+                this.trigger("userDataLoad", e);
+                t && t(e);
+            }
         },
         initMainInfoData: function (e) {
             var t = this;
@@ -8606,71 +8569,10 @@ function (jQuery, Backbone, _, M139) {
             return e && "IFRAME" === e.tagName ? !0 : $User.isChinaMobileUser()
         },
         loadMWGetInfoSet: function (e) {
-            function t(i, a) {
-                a && (i = $App.deepCloneJSON(i)), e({ responseData: i }), t = new Function
-            }
-
-            function i() {
-                var e = null;
-                try {
-                    e = document.getElementById("welcome").contentWindow.inlinedGetInfoSetJSON
-                } catch (t) {
-                }
-                return e
-            }
-
-            if (SiteConfig.m2012NodeServerRelease && this.isShowWelcomePage() && isFirstLoadGetInfoSet) {
-                var a = i();
-                a ? setTimeout(function () {
-                    t(a, !0)
-                }, 0) : this.on("welcome_getInfoSet_load", function (e) {
-                    t(e, !0)
-                })
-            } else {
-                M139.RichMail.API.call("info:getInfoSet", null, e);
-            }
-            isFirstLoadGetInfoSet = !1
+            M139.RichMail.API.call("info:getInfoSet", null, e);
         },
         loadRMInitDataConfig: function (e) {
-            function t(i, a) {
-                if (a) {
-                    i = $App.deepCloneJSON(i);
-                }
-                e({ responseData: i });
-                t = new Function
-            }
-
-            function i() {
-                var e = null;
-                try {
-                    e = document.getElementById("welcome").contentWindow.inlinedInitDataConfigJSON
-                } catch (t) {
-                }
-                return e
-            }
-
-            if (SiteConfig.m2012NodeServerRelease && this.isShowWelcomePage() && isFirstLoadInitConfigData) {
-                var a = i();
-                if (a) {
-                    setTimeout(function () {
-                        t(a, !0)
-                    }, 0);
-                } else {
-                    this.on("welcome_getInitDataConfig_load", function (e) {
-                        clearInterval(s), t(e, !0)
-                    });
-                    var s = setTimeout(function () {
-                        if (!(window.simpleMode && window.simpleMode())) {
-                            M139.RichMail.API.call("user:getInitDataConfig", { visiblePurgeBoxFlag: 1 }, function (e) {
-                                t(e.responseData)
-                            });
-                        }
-                    }, 7e3)
-                }
-            } else {
-                M139.RichMail.API.call("user:getInitDataConfig", { visiblePurgeBoxFlag: 1 }, e);
-            }
-            isFirstLoadInitConfigData = !1;
+            M139.RichMail.API.call("user:getInitDataConfig", { visiblePurgeBoxFlag: 1 }, e);
         },
         getMainData: function (e) {
             var t = this;
@@ -8681,11 +8583,14 @@ function (jQuery, Backbone, _, M139) {
                         t.initUserMainData(a, function () {
                             t.getUserAccountList(), e && e()
                         })
-                    } else t.logger.error("getMainData data error", "[user:getMainData]", i)
+                    } else{
+                        t.logger.error("getMainData data error", "[user:getMainData]", i);
+                    }
                 })
             } else {
                 t.initMainInfoData(function () {
-                    t.getUserAccountList(), e && e()
+                    t.getUserAccountList();
+                    e && e();
                 })
             }
         },
@@ -8693,33 +8598,24 @@ function (jQuery, Backbone, _, M139) {
             var e = $App.getConfig("UserData");
             if (e && e.uidList) {
                 var t = e.uidList;
-                (1 == t.length && "@139.com" == t[0].name || !t.length) && M139.RichMail.API.call("user:queryUserAliasInfo", null, function (t) {
-                    if (t.responseData && "S_OK" == t.responseData.code) {
-                        var i = t.responseData["var"], a = i.aliasList || [];
-                        a.length && (e.uidList = a), M139.Logger.sendClientLog({
-                            level: "ERROR",
-                            name: "getUserAccountList",
-                            errorMsg: "getUidList Exception",
-                            responseText: "queryUserAliasInfo resultList: " + a.length
-                        })
-                    }
-                })
+                if(1 == t.length && "@139.com" == t[0].name || !t.length) { 
+                    M139.RichMail.API.call("user:queryUserAliasInfo", null, function (t) {
+                        if (t.responseData && "S_OK" == t.responseData.code) {
+                            var i = t.responseData["var"], a = i.aliasList || [];
+                            a.length && (e.uidList = a), M139.Logger.sendClientLog({
+                                level: "ERROR",
+                                name: "getUserAccountList",
+                                errorMsg: "getUidList Exception",
+                                responseText: "queryUserAliasInfo resultList: " + a.length
+                            })
+                        }
+                    })
+                }
+                
             }
         },
-        getDiskAttConf: function (e) {
-            var t = this;
-            "function" != typeof e && (e = $.noop), M139.RichMail.API.call("disk:getDiskAttConf", null, function (i) {
-                var a = i.responseData || {};
-                "S_OK" == a.code ? $App.setConfig("DiskAttConf", "autoSaveToDisk", a["var"].largerAttSave) : t.logger.error("getDiskAttConf data error", "[disk:getDiskAttConf]", i), e(a)
-            })
-        },
-        setDiskAttConf: function (e, t) {
-            var i = this;
-            "function" != typeof t && (t = $.noop), M139.RichMail.API.call("disk:updateDiskAttConf", { enable: String(Boolean(e)) }, function (a) {
-                var s = a.responseData || {};
-                "S_OK" == s.code ? $App.setConfig("DiskAttConf", "autoSaveToDisk", Boolean(e) ? "0" : "1") : i.logger.error("updateDiskAttConf failed", "[disk:updateDiskAttConf]", a), t(s)
-            })
-        },
+       
+       
         getCommConfig: function (e, t) {
             var i = this;
             "function" != typeof t && (t = $.noop), M139.RichMail.API.call("user:getCommConfig", e, function (e) {
@@ -8734,24 +8630,12 @@ function (jQuery, Backbone, _, M139) {
                 "S_OK" == a.code ? $App.registerConfig("CommConfig", a) : i.logger.error("updateCommConfig failed", "[user:updateCommConfig]", e), t(a)
             })
         },
-        setUserConfigItem: function (e, t) {
-            var i = this;
-            "function" != typeof t && (t = $.noop), M139.RichMail.API.call("user:setUserConfigItem", e, function (e) {
-                var a = e.responseData || {};
-                "S_OK" == a.code ? $App.registerConfig("CommConfig", a) : i.logger.error("updateCommConfig failed", "[user:updateCommConfig]", e), t(a)
-            })
-        },
         requireUserData: function (e) {
             $App.getConfig("UserData") ? e($App.getConfig("UserData")) : $App.once("userDataLoad", function (t) {
                 e(t)
             })
         },
-        getAdLinkData: function (e) {
-            var t = this, i = "/sharpapi/userconfig/service/ajaxhandler.ashx?func=user:adlink&sid=" + sid, a = M139.HttpRouter.getNoProxyUrl(i);
-            $.getScript(a, function () {
-                AdLink ? (t.registerConfig("AdLink", AdLink), e && e(AdLink)) : e && e(null)
-            })
-        },
+
         loadAttrs1: function (e, t) {
             var i = this;
             this.loadRMInitDataConfig(function (a) {
@@ -8834,35 +8718,9 @@ function (jQuery, Backbone, _, M139) {
             });
             this.getMainData(t);
         },
-        drawLimitSkin: function (e) {
-            return $App.getUserConfigInfo("skintrialtag") && $App.getUserConfigInfo("skintrialtag").match(/isDrew=(0|1)/).length && $App.getUserConfigInfo("skintrialtag").match(/isDrew=(0|1)/)[1] ? void $App.getCommConfig({ configId: 62 }, function (t) {
-                if (t = t["var"], 62 == t[0].configId && t[0].configValue2) {
-                    var i = parseInt(t[0].configValue2.match(/isDrew=(0|1)/)[1]);
-                    e && e(i), i || (top.SiteConfig.drawLimitSkin = !1)
-                }
-            }) : (e && e(!1), void (top.SiteConfig.drawLimitSkin = !1))
-        },
-        setLastSkin: function (e) {
-            var t = this;
-            e.indexOf("animal") > -1 || $App.getCommConfig({ configId: 62 }, function (i) {
-                if (i = i["var"], i.length > 0 && 62 == i[0].configId && i[0].configValue2) {
-                    if (!i[0].configValue2.match(/\&isDrew=(0|1)/)[1]) return;
-                    i[0].configValue2.indexOf("lastSkin") > -1 && (i[0].configValue2 = i[0].configValue2.replace(/&lastSkin=[A-Za-z_]*/, "")), i[0].configValue2 = i[0].configValue2 + "&lastSkin=" + e, t.setCommConfig({
-                        configId: 62,
-                        configValue2: i[0].configValue2
-                    })
-                }
-            })
-        },
-        getLastSkin: function (e) {
-            $App.getCommConfig({ configId: 62 }, function (t) {
-                if (t = t["var"], 62 == t[0].configId && t[0].configValue2) {
-                    if (!t[0].configValue2.match(/\&isDrew=(0|1)/)[1]) return;
-                    if (t[0].configValue2.indexOf("lastSkin") > -1) var i = t[0].configValue2.match(/&lastSkin=([A-Za-z_]*)/)[1]; else var i = "skin_lightblue";
-                    e && e(i)
-                }
-            })
-        },
+
+
+
         setSkin: function (e, t) {
             $Cookie.set({
                 name: "SkinPath2" + $Url.queryString("k"),
@@ -8874,7 +8732,9 @@ function (jQuery, Backbone, _, M139) {
             }), top.MusicBox.changeSkin()
         },
         changeSkin: function (e) {
-            var t = e || $User.getSkinName(), i = $("#skinLink"), a = i.attr("href");
+            var t = e || $User.getSkinName(),
+                i = $("#skinLink"),
+                a = i.attr("href");
             isAlternateSkin(t) && (t = chooseAlternateSkin(t)), a = a.replace(/skin_[^_^\.]+/, t), $B.is.firefox ? $('<img src="' + a + '"/>').bind("error", function () {
                 setTimeout(function () {
                     i.attr("href", a)
@@ -8907,7 +8767,8 @@ function (jQuery, Backbone, _, M139) {
                         console.log(s)
                     }
                 }
-            }, 100), this.christmasMan(t), this.addFlash2AnimalSkin(t)
+            }, 100),
+            this.addFlash2AnimalSkin(t)
         },
         addFlash2AnimalSkin: function (e) {
             if (M139.Dom.flashChecker().hasFlash) if (e.indexOf("animal") > -1) {
@@ -8916,19 +8777,7 @@ function (jQuery, Backbone, _, M139) {
                 $("#animalFlash").html(t)
             } else $("#animalFlash").addClass("hide"), $("#animalFlash embed").attr("src", "")
         },
-        christmasMan: function (e) {
-            return "skin_christmas" != e ? ($("#divTab li[role=tab][id!=tabsMenuIco]:visible span").unbind("hover"), $("#christmasCanvas") && $("#christmasCanvas").remove(), void (window.intervral4Christmas && clearInterval(window.intervral4Christmas))) : ($("#divTab li[role=tab][id!=tabsMenuIco]:visible span").unbind("hover").hover(function (e) {
-                if ($(".santaClaus").length > 0 && $(".santaClaus").remove(), !$("#accountSet.selected").length) {
-                    var t = $(e.target).parents("[role=tab]").offset().left;
-                    $("body").append('<i class="santaClaus" id="' + t + '" style="left:' + (t + 35) + 'px; top:50px;z-index:1000;display:none;"></i>'), $("#" + t).fadeIn(300)
-                }
-            }, function (e) {
-                var t = $(e.target).parents("[role=tab]").offset().left;
-                $("#" + t).fadeOut(300)
-            }), $(".christmasHats").remove(), setTimeout(function () {
-                $("#divTab li[role=tab][id!=tabsMenuIco]:visible span:last").append('<i class="christmasHats"></i>')
-            }, 100), void this.snow())
-        },
+        
         snow: function () {
             function e() {
                 a.clearRect(0, 0, s, o), a.fillStyle = "rgba(255, 255, 255, 0.6)", a.shadowBlur = 5, a.shadowColor = "rgba(255, 255, 255, 0.9)", a.beginPath();
@@ -9042,33 +8891,16 @@ function (jQuery, Backbone, _, M139) {
                 t = this.getView("tabpage");
             new FrameView({ parent: t });
             t.createOrignTabs(["mailbox_1"], e.getView("mailbox"));
-            if ($User.isChinaMobileUser()) {
-                e.show("welcome");
-                var i = $Url.queryString("tab");
-                if (i && "welcome" != i && document.getElementById("welcome")) {
-                    document.getElementById("welcome").style.visibility = "hidden";
-                }
-            }
             top.$App.onUserDataComplete(function () {
                 $App.getView("top").preInitSearch();
                 t.model.getFixedTabsData();
-                setTimeout(function () {
-                    $App.trigger("initSsoRedirect", {})
-                }, 100)
             })
         },
         initOldTimesAdapter: function () {
             var e = new M2012.MatrixVM;
             e.start()
         },
-        switchVersion: function (e) {
-            var t = "new" == e ? "25" : "10", i = function (e) {
-                return e = e.replace(/[\&]?h=\d+/gi, ""), e.toLowerCase().indexOf("v=") > 0 && (e = e.replace(/[\&]?v=\d+/gi, "")), e = e + "&v=" + t
-            }, a = { configId: 54, configValue1: t };
-            M139.RichMail.API.call("user:updateCommConfig", a, function () {
-                top.location.href = i(top.location.href)
-            })
-        },
+       
         _defResource: "http://images.139cm.com",
         getResourceHost: function () {
             var e = top.m2012ResourceDomain;
@@ -10508,373 +10340,6 @@ function (jQuery, Backbone, _, M139) {
     }))
 }(jQuery, Backbone, _, M139),
 
-//M2012.SsoRedirect
-function (e, t, i, a) {
-    var s = e, o = a.View.ViewBase;
-    a.namespace("M2012.SsoRedirect", o.extend({
-        initialize: function (e) {
-            o.prototype.initialize.apply(this, arguments);
-            var t = this;
-            $App.on("initSsoRedirect", function () {
-                t.ssoRedirect()
-            })
-        },
-        defaults: { name: "M2012.SsoRedirect" },
-        initEvents: function () {
-        },
-        SsoConfig: {
-            compose: function () {
-                $App.show("compose")
-            },
-            "Send.aspx": function () {
-                Links.show("sms")
-            },
-            "MMSSend.aspx": function () {
-                Links.show("mms")
-            },
-            "SendFax.aspx": function () {
-                Links.show("fax")
-            },
-            "contactlist.aspx": function () {
-                Links.show("addr")
-            },
-            "Clone/default.aspx": function () {
-                Links.show("migrate")
-            },
-            pushmail: function () {
-                Links.show("pushemail")
-            },
-            timeset: function () {
-                Links.show("timeset")
-            },
-            mails: function () {
-                a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
-                    $App.showMailbox(1)
-                })
-            },
-            "/mailnotify.aspx": function () {
-                $App.show("notice")
-            },
-            "/LoginSMS.aspx": function () {
-                $App.show("notice")
-            }
-        },
-        ssoComposeAction: function (e, t, i) {
-            if (e && "string" == typeof e) {
-                var a = {
-                    music: {
-                        exe: function (e, t) {
-                            var i = "http://mdll.10086.cn/newweb/jsp/music_service/music_info_4_139.jsp?id={0}", a = "好友{0}向您推荐了歌曲《{1}》，快来试听吧";
-                            contentTemplate = '<table style="margin:0;font-family:Arial, Helvetica, sans-serif; width:100%;background:#F4F9FF;" align="center" cellpadding="0" cellspacing="0"><tbody><tr>									<td style="background:url({3}/images/myRings_mail_top_x.png)" width="235"><img src="{3}/images/myRings_mail_logo.png" alt="logoImg" height="53" width="235"></td>									<td style="background:url({3}/images/myRings_mail_top_x.png)">&nbsp;</td>									<td width="5"><img src="{3}/images/myRings_mail_top_r.png" alt="bgImg" height="53" width="5"></td></tr></tbody></table><table style="margin:0;font-family:Arial, Helvetica, sans-serif; width:100%;background:#F4F9FF;" align="center" cellpadding="0" cellspacing="0"><tbody><tr><td width="20"></td><td><table style="border-bottom:1px #efefef solid;" cellpadding="0" width="100%"><tbody><tr><td style="padding-bottom: 48px; font-size: 14px; font-family: Arial,Helvetica,sans-serif;" valign="top"><table style="margin:16px auto;width:100%;color:#333;"><tbody><tr><td style="font-size: 12px;">									<h2 style="color:#FF6600;font-size:12px;">{0}</h2>									<p style="margin:8px 0;">歌手：<span>{1}</span></p>									<p style="margin:8px 0;">试听地址：<a style="color:#666" href="{2}" target="_blank">{2}</a></p></td></tr><tr><td style="font-size: 12px;"></td></tr></tbody></table></td></tr></tbody></table><table cellpadding="0" style="border-top:1px #fff solid" width="100%"><tr><td style="width:190px;text-align:right;font-size:14px;font-family:Arial, Helvetica, sans-serif;color:#0739ac;line-height:2.5;"><strong>139邮箱</strong><a href="http://mail.10086.cn/" style="margin-left:.5em;color:#0739ac" target="_blank">mail.10086.cn</a></td><td style="text-align:right;font-size:12px;font-family:Arial, Helvetica, sans-serif;line-height:2.5;color:#555555;">感谢您一直以来的支持，我们将不断创新，为您带来更好的邮箱体验!</td><td width="10"></td></tr></table></td><td width="20"></td></tr></tbody></table></td></tr></tbody></table>', singerId = "", singerName = "", songName = "", songId = "", userNumber = $User.getUid() || "", "undefined" != typeof searchResult && (searchResult = "");
-                            try {
-                                s.getScript(i.format(e), function () {
-                                    searchResult && "object" == typeof searchResult && searchResult.songList && (singerId = searchResult.songList.singerId || "", singerName = searchResult.songList.singerName || "", songName = searchResult.songList.songName || "", songId = searchResult.songList.songId || "", userNumber = userNumber.replace(/^86/, ""), top.$App.show("compose", null, {
-                                        inputData: {
-                                            subject: a.format(userNumber, songName),
-                                            content: content.format(songName, singerName, "http://music.10086.cn/newweb/qk/qkshow/" + songId + "/t/139mail.html", "http://images.139cm.com/rm/coremail")
-                                        }
-                                    })), t && t()
-                                }, "utf-8", null)
-                            } catch (o) {
-                            }
-                        }
-                    }, feixin: {}, mm: {}, shequ: {}, cmpay: {}, game: {}, jiathis: {
-                        exe: function (e, t) {
-                            function i(e) {
-                                return e && e.responseData && (e = e.responseData, "S_OK" === e.code) ? (e = e["var"] || {}, top.$App.show("compose", null, {
-                                    inputData: {
-                                        subject: e.title || "",
-                                        content: e.content + "<br>" + e.title
-                                    }
-                                }), t && t(), !0) : !1
-                            }
-
-                            var a = "user:getShareData", s = { id: e }, o = {
-                                onrouter: function (e) {
-                                    e.addRouter("setting", [a])
-                                }
-                            };
-                            $RM.call(a, s, i, o)
-                        }
-                    }
-                }, o = null, n = "", e = "", r = t && "string" == typeof t && t.toLowerCase().trim() || "";
-                o = r.match(/(\S+)\_(\S+)/i), n = o && o[1] || "", e = o && o[2] || "", a[n] && a[n].exe ? a[n].exe(e, i) : CM.show(), a = o = null
-            }
-        },
-        ssoRedirect: function () {
-            var e = this, t = $T.Url.queryString("id"), i = $T.Url.queryString("to"), o = $T.Url.queryString("draftId"), n = ($T.Url.queryString("t"), $T.Url.queryString("c_composeitem")), r = $T.Url.queryString("goto"), l = $T.Url.queryString("ShareSmsId"), c = location.search, d = "", p = /id=\d+/gi, m = /c_composeitem=\S+_\d+/gi, u = /user=\S+/gi, h = null, f = null, g = null, v = ".mail." + document.domain, b = "", y = null;
-            $T.Url.queryString("c_fileid");
-            if ($App.isNewWinCompose()) return s("#main").show(), void (o && "null" != o && "undefined" != o && -1 == location.hash.indexOf("newwin_") ? (location.hash = "#newwin_", $App.show("compose", {
-                type: "draft",
-                mid: o
-            })) : CM.show());
-            if (t && n && "string" == typeof t && "string" == n || (b = $T.Cookie.get("mailshare") || "", b && "string" == typeof b && b.indexOf("|") > -1 && (h = b.match(p), t = h && h[0] || "", t = t && t.replace("id=", ""), f = b.match(m), n = f && f[0] || "", n = n && n.replace("c_composeitem=", ""), n.indexOf("music") > -1 && (g = b.match(u), d = g && g[0] || "", d = d && d.replace("user=", ""), d.replace(/^86/gi, "") != top.UserData.userNumber.replace(/^86/gi, "") && (t = n = d = "")), n.indexOf("message") > -1 && (y = new Date, y.setMinutes(y.getMinutes() + 1), $T.Cookie.set("shareMsgId", n.replace("message_", ""), y, v)), $T.Cookie.set({
-                domain: v,
-                name: "mailshare",
-                value: ""
-            }), p = m = h = f = null)), c = c.replace("?", "&"), c = c.replace(/&style=[^&]+|&uid=[^&]+|&sid=[^&]+|&funcid=[^&]+|&reload=[^&]+|&id=[^&]+/gi, ""), t) {
-                if (/\D/.test(t)) {
-                    if (LinkConfig[t]) return setTimeout(function () {
-                        "welcome" != t && top.$App.show(t, c)
-                    }, 200), !0;
-                    if (t && -1 != t.indexOf("dingyuezhongxin")) {
-                        var w = t.split("_");
-                        if (1 === w.length) return void $App.show("googSubscription");
-                        if (2 === w.length) return void $App.show("googSubscription", { cid: w[1], comeFrom: "1003" });
-                        if (w.length > 2) {
-                            var _ = w[1], M = w[2], C = "";
-                            if (4 === w.length) {
-                                var x = w[3].replace(/\s+/, "");
-                                C = x ? x : "云邮局"
-                            }
-                            if (1 == M) $App.show("googSubscription", { cid: _, mtype: 0 }); else if (2 == M) {
-                                $App.show("googSubscription");
-                                var $ = { title: C, key: _, inputData: { columnId: _, columnName: C } };
-                                w[3] && w[4] && ($.inputData.urlParams = {
-                                    oct: w[3],
-                                    oac: w[4]
-                                }), $App.show("mpostOnlineService", null, $)
-                            } else if (3 == M) C && (C = C.replace(/\-/g, "_")), $App.show("googSubscription", {
-                                topicid: _,
-                                mtype: 3,
-                                templatename: C
-                            }); else if (4 == M) {
-                                var $ = { cid: w[1], comeFrom: 1003, needSubscribe: !0 };
-                                w[3] && ($.oct = w[3]), w[4] && ($.oac = w[4]), $App.show("googSubscription", $)
-                            }
-                        }
-                        return !0
-                    }
-                    return Links.show(t, c), !0
-                }
-                if (t.match(/\d+/gi)) switch (t) {
-                    case "0":
-                        a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
-                            $App.getView("mailbox").model.getFreshUnread(function (e) {
-                                function t() {
-                                    $App.trigger("reloadFolder", { reload: !0 }), $App.off(t)
-                                }
-
-                                $App.readMail(e), $App.once("letterInfoReady_global", t)
-                            })
-                        });
-                        break;
-                    case "1":
-                        Links.show("searchadvance", c);
-                        break;
-                    case "2":
-                        var k = {};
-                        "setCompose" == n && (k = {
-                            subject: "新版邮箱第一印象",
-                            content: ["电脑登录标准版2.3，惊觉信息架构升级，真真高大上。<br/>", "手机登录酷版，体验html5技术与贴心交互，快就一个字。<br/>", "为新版邮箱点139个赞！"].join("")
-                        }), i && (k.receiver = i), s.isEmptyObject(k) ? e.ssoComposeAction(t, n) : $App.show("compose", null, { inputData: k });
-                        break;
-                    case "4":
-                        $App.show("mobile", c);
-                        break;
-                    case "5":
-                        Links.show("weblink", c);
-                        break;
-                    case "6":
-                        Links.show("invite", c);
-                        break;
-                    case "8":
-                        Links.show("sms", c);
-                        break;
-                    case "9":
-                        Links.show("mms", c);
-                        break;
-                    case "10":
-                        Links.show("password", c);
-                        break;
-                    case "11":
-                        Links.show("calendar", c);
-                        break;
-                    case "12":
-                        Links.show("rss", c);
-                        break;
-                    case "13":
-                        $App.show("account");
-                        break;
-                    case "14":
-                        Links.show("fax", c.replace(/style=\d+/gi, ""));
-                        break;
-                    case "15":
-                        a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
-                            function e() {
-                                $App.trigger("reloadFolder", { reload: !0 }), $App.off(e)
-                            }
-
-                            var t = "interface", i = $T.Url.queryString("mid") || $T.Url.queryString("box_mid"), a = $T.Url.queryString("fid") || "1";
-                            if (i) {
-                                var s = $App.readMail(i, !1, a, { source: t });
-                                s && ($App.showPage({
-                                    name: s.name,
-                                    view: s.view
-                                }), $App.once("letterInfoReady_global", e))
-                            }
-                        });
-                        break;
-                    case "16":
-                        Links.show("homemail", c);
-                        break;
-                    case "17":
-                        Links.show("diskDev", c);
-                        break;
-                    case "18":
-                        Links.show("postcard", c);
-                        break;
-                    case "9":
-                        Links.show("postcard", c);
-                        break;
-                    case "8":
-                        Links.show("greetingcard", c);
-                        break;
-                    case "20":
-                        $App.show("compose");
-                        break;
-                    case "21":
-                        Links.show("quicklyShare", c);
-                        break;
-                    case "22":
-                        a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
-                            $App.showMailbox(8)
-                        });
-                        break;
-                    case "23":
-                        Links.show("diskDev", c + "&goid=12");
-                        break;
-                    case "24":
-                        Links.show("diskDev", c.replace("c_fileid", "fileid") + "&goid=13");
-                        break;
-                    case "25":
-                        $App.show("account", { anchor: "lock" });
-                        break;
-                    case "28":
-                        $App.show("account");
-                        break;
-                    case "29":
-                        $App.show("account", { anchor: "sign" });
-                        break;
-                    case "30":
-                        $Msg.alert("活动已经结束");
-                        break;
-                    case "31":
-                        $Msg.alert("活动已经结束");
-                        break;
-                    case "32":
-                        $App.show("welcome");
-                        break;
-                    case "33":
-                        a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
-                            $App.showMailbox(9)
-                        });
-                        break;
-                    case "34":
-                    case "35":
-                        a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
-                            appView.searchTaskmail()
-                        });
-                        break;
-                    case "36":
-                        a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
-                            $App.showMailbox(1);
-                            var e = location.search;
-                            e = e.slice(1), e = e.split("&");
-                            for (var t = 0; t < e.length; t++) if ("string" == typeof e[t]) {
-                                var i = e[t].split("=");
-                                if ("params" == i[0]) {
-                                    e = i[1];
-                                    break
-                                }
-                            }
-                            e = decodeURIComponent(e), $Evocation.create(e)
-                        });
-                        break;
-                    case "37":
-                        $App.show("myrings");
-                        break;
-                    case "38":
-                        top.$App.show("googSubscription");
-                        break;
-                    case "39":
-                        top.Links.show("calendar_search", "&search=日历服务");
-                        break;
-                    case "40":
-                        $App.showMailbox(3);
-                        break;
-                    case "41":
-                        $App.show("calendar_square", c);
-                        break;
-                    case "42":
-                        $App.show("calendar_addAct", c);
-                        break;
-                    case "43":
-                        $App.show("calendar_search", c);
-                        break;
-                    case "44":
-                        $App.show("calendar_addCal", c);
-                        break;
-                    case "45":
-                        $App.show("calendar_msg");
-                        break;
-                    case "46":
-                        $App.show("calendar_calManager");
-                        break;
-                    case "47":
-                        $App.show("billLifeNew", c);
-                        break;
-                    case "48":
-                        $App.show("billLifeNew", "&lc=pay.waterselect&provcode=0&areacode=0&from=1&fromtype=1");
-                        break;
-                    case "49":
-                        $App.show("billLifeNew", "&lc=pay.electricselect&provcode=0&areacode=0&from=1&fromtype=1");
-                        break;
-                    case "50":
-                        $App.show("billLifeNew", "&lc=pay.gasselect&provcode=0&areacode=0&from=1&fromtype=1");
-                        break;
-                    case "51":
-                        $App.show("lottery", { originID: 3 });
-                        break;
-                    case "52":
-                        Links.show("greetingcard", c);
-                        break;
-                    case "54":
-                        $App.show("myTask");
-                        break;
-                    case "60":
-                        $App.show("smartLife");
-                        break;
-                    case "61":
-                        Links.show("health");
-                        break;
-                    case "62":
-                        $App.jumpTo("voiceMail");
-                        break;
-                    default:
-                        return a.Timing.waitForReady('top.$App.getView("folder").model.folders', function () {
-                            $App.showMailbox(1)
-                        }), !0
-                } else Links.show(t, c);
-                return !0
-            }
-            if (!r) return l ? (Links.show("smsShare", "&ShareSmsId=" + l), !0) : !1;
-            r = r.toLowerCase();
-            for (elem in this.SsoConfig) {
-                var T = elem.toLowerCase();
-                if (r.indexOf(T) >= 0) {
-                    var A = this.SsoConfig[elem];
-                    return A(), !0
-                }
-            }
-            for (elem in LinkConfig) {
-                var I = LinkConfig[elem].url.replace(/{stylePath}/gi, "").toLowerCase();
-                if (r.indexOf(I) >= 0) return Links.show(elem, c), !0
-            }
-        }
-    }))
-}(jQuery, Backbone, _, M139),
-
 
 //M2012.Folder.Model.FolderModel
 M139.namespace("M2012.Folder.Model", {
@@ -11048,13 +10513,18 @@ M139.namespace("M2012.Folder.Model", {
             var t = this;
             this.customFolders = _.filter(e, function (e) {
                 return e.type === t.foldertype.custom && !t.isPopFolder(e.fid)
-            }), this.customFolders.sort(function (e, t) {
+            });
+            this.customFolders.sort(function (e, t) {
                 return e.location - t.location
-            }), this.systemFolders = _.filter(e, function (e) {
+            });
+            this.systemFolders = _.filter(e, function (e) {
                 return 7 == e.fid ? !1 : 8 == e.fid ? !1 : 9 == e.fid ? !1 : (12 == e.fid && (e.name = "商讯生活"), e.type === t.foldertype.system || 2 === e.type)
-            }), this.tags = _.filter(e, function (e) {
+            });
+            this.tags = _.filter(e, function (e) {
                 return e.type === t.foldertype.tag
-            }), this.setPopFolders(), this.trigger("change:folders")
+            });
+            this.setPopFolders();
+            this.trigger("change:folders");
         },
         fetchFolderList: function (e, t, i) {
             this.trigger("Process");
@@ -11103,30 +10573,31 @@ M139.namespace("M2012.Folder.Model", {
                 this.callApi("user:getInitDataConfig", {}, function (i) {
                     var s = i.responseData;
                     setTimeout(function () {
-                        var i = s, o = {
-                            responseData: {
-                                code: "S_OK",
-                                unreadMessageCount: s["var"].messageInfo.unreadMessageCount,
-                                unreadStarCount: s.unreadStarCount,
-                                totalStarCount: s.totalStarCount,
-                                todoTaskCount: s.todoTaskCount,
-                                totalTaskCount: s.totalTaskCount,
-                                newBillCount: i.newBillCount,
-                                totalSubscriptionCount: s.totalSubscriptionCount,
-                                newSubscriptionCount: s.newSubscriptionCount,
-                                totalBillCount: s.totalBillCount,
-                                billNew1: i.billNew1,
-                                billNew2: i.billNew2,
-                                billNew3: i.billNew3,
-                                billNew4: i.billNew4,
-                                billNew5: i.billNew5,
-                                billNew6: i.billNew6,
-                                billNew7: s.billNew7,
-                                billNew8: s.billNew8,
-                                unreadrubbishCount: s["var"].folderList[4].stats.unreadMessageCount,
-                                "var": s["var"].folderList
-                            }
-                        };
+                        var i = s,
+                            o = {
+                                responseData: {
+                                    code: "S_OK",
+                                    unreadMessageCount: s["var"].messageInfo.unreadMessageCount,
+                                    unreadStarCount: s.unreadStarCount,
+                                    totalStarCount: s.totalStarCount,
+                                    todoTaskCount: s.todoTaskCount,
+                                    totalTaskCount: s.totalTaskCount,
+                                    newBillCount: i.newBillCount,
+                                    totalSubscriptionCount: s.totalSubscriptionCount,
+                                    newSubscriptionCount: s.newSubscriptionCount,
+                                    totalBillCount: s.totalBillCount,
+                                    billNew1: i.billNew1,
+                                    billNew2: i.billNew2,
+                                    billNew3: i.billNew3,
+                                    billNew4: i.billNew4,
+                                    billNew5: i.billNew5,
+                                    billNew6: i.billNew6,
+                                    billNew7: s.billNew7,
+                                    billNew8: s.billNew8,
+                                    unreadrubbishCount: s["var"].folderList[4].stats.unreadMessageCount,
+                                    "var": s["var"].folderList
+                                }
+                            };
                         a.setFoldersData(o, i);
                         a.trigger("ProcessCompleted");
                         t(a._GetDataByType(e));
@@ -11435,7 +10906,9 @@ M139.namespace("M2012.Folder.Model", {
                 s.allFolders = a.responseData["var"];
                 var o = a.responseData.code;
                 if ("S_OK" != o) return void s.alertWindow(s.messages.folderCreateFail);
-                s._resetFolders(s.allFolders), top.appView.trigger("reloadFolder", { reload: !0 }), setTimeout(function () {
+                s._resetFolders(s.allFolders),
+                top.appView.trigger("reloadFolder", { reload: !0 }),
+                setTimeout(function () {
                     var t = top.$App.checkCustomFolderPopFlag();
                     t = t ? 1 : 0;
                     var i = { pop3Flag: t, type: 4, fid: top.$App.getFolderByFolderName(e).fid };
@@ -11491,7 +10964,10 @@ M139.namespace("M2012.Folder.Model", {
                 func: "mbox:getAllFolders",
                 "var": { stats: 1, type: 0 }
             }), this.callApi("global:sequential", { items: a }, function (e) {
-                i.allFolders = e.responseData["var"], i._resetFolders(i.allFolders), i.getTop().appView.trigger("reloadFolder", { reload: !0 }), t && t(e.responseData["var"])
+                i.allFolders = e.responseData["var"],
+                i._resetFolders(i.allFolders),
+                i.getTop().appView.trigger("reloadFolder", { reload: !0 }),
+                t && t(e.responseData["var"])
             })
         },
         renameFolder: function (e, t) {
@@ -11738,25 +11214,32 @@ M139.namespace("M2012.Folder.Model", {
             getMailCount: function () {
                 var e = this.DataRow.stats.unreadMessageCount;
                 return e > 0 ? "<var class='fw_b'>(" + e + ")</var>" : ""
-            }, getTitle: function () {
+            },
+            getTitle: function () {
                 var e = this.DataRow;
                 return e.stats.unreadMessageCount > 0 ? $T.Utils.format("{0}封未读邮件", [e.stats.unreadMessageCount]) : $T.Utils.format("{0}", [$T.Html.encode(e.name)])
-            }, getStyle: function () {
+            },
+            getStyle: function () {
                 return this.DataRow.stats.unreadMessageCount > 0, ""
-            }, getSpecialTag: function (e) {
+            },
+            getSpecialTag: function (e) {
                 var t = "重要任务" == this.DataRow.name;
                 return t ? 1 == e ? " tagJJ" : '<i class="i_jj"></i>' : ""
-            }, getEmail: function () {
+            },
+            getEmail: function () {
                 var e = this.DataRow, t = e.fid, i = $App.getPopList(), a = $.grep(i, function (i, a) {
                     return i.fid == t ? (e.email = i.email, !0) : !1
                 });
                 return a && a.length > 0 ? a[0].email : e.name
-            }, getLock: function () {
+            },
+            getLock: function () {
                 return this.DataRow.folderPassFlag ? '<i class="i_lock mr_5"></i>' : ""
-            }, getColor: function () {
+            },
+            getColor: function () {
                 var e = Number(this.DataRow.folderColor);
                 return this.model.getColor(e)
-            }, maxLength: function (e, t) {
+            },
+            maxLength: function (e, t) {
                 return $T.Html.encode($T.Utils.getTextOverFlow2(e, Number(t), !0))
             }
         }
@@ -12056,10 +11539,12 @@ M139.namespace("M2012.Folder.View", {
         },
         initialize: function (e) {
             var t = this;
-            this.model = e.model, this.model.on("folderDataChange", function () {
+            this.model = e.model,
+            this.model.on("folderDataChange", function () {
                 M139.Timing.waitForReady('$App.getConfig("PopList")', function () {
                     setTimeout(function () {
-                        t.el = "#customfolder_list", t.render()
+                        t.el = "#customfolder_list";
+                        t.render()
                     }, 10)
                 })
             })
@@ -12457,38 +11942,63 @@ M139.namespace("M2012.Folder.View", {
             function i(i) {
                 var s = new Repeater($("#template_folderMain").val()),
                     o = s.DataBind(i);
-                $("#folder_main").html(o),
-                a.renderBillSub(),
-                a.setAttrOrder(),
-                a.showbarSet(),
-                a.showMaillTip(),
-                a.renderByFolderSet(),
-                e && a.model.trigger("folderDataChange"),
-                appView.trigger("folderRendered"),
-                t && t(),
-                a.setButtonVisible(),
-                a.model.get("isFirstLoad") && a.loadUnfoldStatus(),
+                $("#folder_main").html(o);
+                a.renderBillSub();
+                a.setAttrOrder();
+                a.showbarSet();
+                a.showMaillTip();
+                a.renderByFolderSet();
+                if (e) {
+                    a.model.trigger("folderDataChange");
+                }
+                appView.trigger("folderRendered");
+                if (t) {
+                    t();
+                }
+                a.setButtonVisible();
+                if (a.model.get("isFirstLoad")) {
+                    a.loadUnfoldStatus();
+                }
                 a.model.set("isFirstLoad", !1)
             }
-
             var a = this;
             this.getDataSource(i, e)
         },
         getDataSource: function (e, t) {
             function i(t) {
-                var i = t, s = a.model.SysFolderId, t = {
-                    star: a.model.getStarObj(),
-                    task: a.model.getTaskObj(),
-                    vip: { title: "VIP邮件" }
-                };
-                for (elem in s) if (elem) {
-                    var o = $.grep(i, function (e, t) {
-                        return e.fid == s[elem]
-                    });
-                    o && o.length > 0 ? (t[elem] = {}, o[0].stats.unreadMessageCount > 0 ? t[elem].count = "<var class='fw_b'>(" + o[0].stats.unreadMessageCount + ")</var>" : 2 == o[0].fid && o[0].stats.messageCount ? t[elem].count = "<var>[" + o[0].stats.messageCount + "]</var>" : (t[elem].count = "", t[elem].style = ""), t[elem].style = t[elem].style + a.getDisplay(o[0]), t[elem].title = o[0].stats.unreadMessageCount > 0 ? $T.Utils.format("{0}封未读邮件", [o[0].stats.unreadMessageCount]) : $T.Utils.format("{0}", [o[0].name]), o[0].fid && 2 == o[0].fid && (t[elem].title = o[0].stats.messageCount ? $T.Utils.format("{0}封草稿邮件", [o[0].stats.messageCount]) : $T.Utils.format("{0}", [o[0].name]))) : (t[elem] = {}, t[elem].style = a.getDisplay({
-                        fid: s[elem],
-                        stats: { messageCount: 0 }
-                    }))
+                var i = t,
+                    s = a.model.SysFolderId,
+                    t = {
+                        star: a.model.getStarObj(),
+                        task: a.model.getTaskObj(),
+                        vip: { title: "VIP邮件" }
+                    };
+                for (elem in s) {
+                    if (elem) {
+                        var o = $.grep(i, function (e, t) {
+                            return e.fid == s[elem]
+                        });
+                        if (o && o.length > 0) {
+                            t[elem] = {};
+                            if (o[0].stats.unreadMessageCount > 0) {
+                                t[elem].count = "<var class='fw_b'>(" + o[0].stats.unreadMessageCount + ")</var>"
+                            } else {
+                                2 == o[0].fid && o[0].stats.messageCount ? t[elem].count = "<var>[" + o[0].stats.messageCount + "]</var>" :
+                                (t[elem].count = "", t[elem].style = "")
+                            }
+                            t[elem].style = t[elem].style + a.getDisplay(o[0]);
+                            t[elem].title = (o[0].stats.unreadMessageCount > 0 ? $T.Utils.format("{0}封未读邮件", [o[0].stats.unreadMessageCount]) : $T.Utils.format("{0}", [o[0].name]));
+                            if (o[0].fid && 2 == o[0].fid) {
+                                t[elem].title = o[0].stats.messageCount ? $T.Utils.format("{0}封草稿邮件", [o[0].stats.messageCount]) : $T.Utils.format("{0}", [o[0].name]);
+                            }
+                        } else {
+                            t[elem] = {};
+                            t[elem].style = a.getDisplay({
+                                fid: s[elem],
+                                stats: { messageCount: 0 }
+                            });
+                        }
+                    }
                 }
                 $App.getModel("contacts").requireData(function () {
                     var e = a.model.get("isFirstLoad") ? 2e3 : 0;
@@ -12497,11 +12007,16 @@ M139.namespace("M2012.Folder.View", {
                             a.renderVipMailCount()
                         })
                     }, e)
-                }), e(t)
+                });
+                e(t);
             }
 
             var a = this;
-            t ? this.model.fetchFolderList(this.model.foldertype.system, i, !0) : i(this.model.systemFolders)
+            if (t) {
+                this.model.fetchFolderList(this.model.foldertype.system, i, !0);
+            } else {
+                i(this.model.systemFolders);
+            }
         },
         Initdisplay: function () {
             $App.on("infoSetLoad", function (e) {
@@ -12682,15 +12197,22 @@ M139.namespace("M2012.Folder.View", {
             M139.Timing.waitForReady('$App.getConfig("PopList")', function (t) {
                 setTimeout(function () {
                     function t(t) {
-                        var i = e.model.getUnfoldStatus(t), a = !1;
-                        if (2 == i) a = !0; else if (1 == i) {
+                        var i = e.model.getUnfoldStatus(t),
+                            a = !1;
+                        if (2 == i) {
+                            a = !0;
+                        } else if (1 == i) {
                             var s = e.model.getMailCount(t);
-                            s.unreadMessageCount > 0 && (a = !0)
+                            if (s.unreadMessageCount > 0) {
+                                a = !0;
+                            }
                         }
-                        $App.trigger("unfoldCommand", { type: t, flag: a })
+                        $App.trigger("unfoldCommand", { type: t, flag: a });
                     }
 
-                    t("custom"), t("pop"), t("tag")
+                    t("custom");
+                    t("pop");
+                    t("tag");
                 }, 500)
             })
         },
@@ -13039,9 +12561,14 @@ function (e, t, i, a) {
         }, { begin: 10, end: 20, weekday: "6,7" }],
         initialize: function (e) {
             var t = this;
-            this.model = e.model, this.onReLoad();
+            this.model = e.model,
+            this.onReLoad();
             var i = a.Timing.setInterval("notifyTipRender", function () {
-                void 0 != t.model.get("enable") && void 0 != t.model.get("nodisturbEnable") && (t.renderIcon(), t.render(), a.Timing.clearInterval(i))
+                if(void 0 != t.model.get("enable") && void 0 != t.model.get("nodisturbEnable")){
+                    t.renderIcon();
+                    t.render();
+                    a.Timing.clearInterval(i);
+                }
             }, 100);
             return o.prototype.initialize.apply(this, arguments)
         },
@@ -13058,8 +12585,29 @@ function (e, t, i, a) {
         renderIcon: function () {
             var e = this;
             e.icon = s("#mailNotifyIcon i");
-            var t = e.model.get("enable"), i = e.model.get("nodisturbEnable"), a = e.model.get("nodisturbtimeObj"), o = e.model.get("nodisturbType"), n = !1, r = (new Date).getHours();
-            i && 2 == o && r >= a.begin && r < a.end ? n = !0 : i && 1 == o && (n = !0), t ? t && !n ? e.icon[0].className = "closing opening" : t && n && (e.icon[0].className = "closing night") : e.icon[0].className = "closing", e.icon.parents("li").show()
+            var t = e.model.get("enable"),
+                i = e.model.get("nodisturbEnable"),
+                a = e.model.get("nodisturbtimeObj"),
+                o = e.model.get("nodisturbType"),
+                n = !1,
+                r = (new Date).getHours();
+            if (i && 2 == o && r >= a.begin) {
+                if (r < a.end) {
+                    n = !0
+                } else {
+                    i && 1 == o && (n = !0);
+                }
+            }
+            if (t) {
+                if (t && !n) {
+                    e.icon[0].className = "closing opening"
+                } else {
+                    t && n && (e.icon[0].className = "closing night")
+                }
+            } else {
+                e.icon[0].className = "closing";
+            }
+            e.icon.parents("li").show();
         },
         show: function () {
             var e = this;
@@ -13320,12 +12868,17 @@ function (e, t, i, a) {
         onReLoad: function () {
             var e = this;
             e.model.on("reRender", function () {
-                e.menusHide(), e.element.remove(), e.element = {}, e.render()
-            }), e.model.on("dataChange", function () {
+                e.menusHide();
+                e.element.remove();
+                e.element = {};
+                e.render();
+            }),
+            e.model.on("dataChange", function () {
                 e.renderIcon()
             })
         }
-    })), M2015.Mailnotify.View.create = function (e) {
+    })),
+    M2015.Mailnotify.View.create = function (e) {
         var t = new M2015.Mailnotify.Model(e),
             i = new M2015.Mailnotify.View({ model: t, type: e.type });
         return $App.registerConfig("mailnotifyTip", i), i
@@ -18968,15 +18521,18 @@ M139.namespace("M2012.Mailbox.View", {
 //M2012.Mailbox.View.Command
 M139.namespace("M2012.Mailbox.View", {
     Command: Backbone.View.extend({
-        el: "", initialize: function (e) {
+        el: "",
+        initialize: function (e) {
             this.model = e.model;
             var t = this;
             $App.on("mailCommand", function (e) {
                 t.doCommand(e.command, e)
             })
-        }, createInstance: function (e) {
+        },
+        createInstance: function (e) {
             return $App.getView("mailCommand") || $App.registerView("mailCommand", new M2012.Mailbox.View.Command(e)), $App.getView("mailCommand")
-        }, mailValidate: function (e, t) {
+        },
+        mailValidate: function (e, t) {
             var i = this;
             if ($App.isMailbox() && t.mids) {
                 var a = $($App.getMailboxView().el);
@@ -19007,7 +18563,8 @@ M139.namespace("M2012.Mailbox.View", {
                         }), !0
                 }
             }
-        }, switchReadOrUnreadIcon: function (e, t) {
+        },
+        switchReadOrUnreadIcon: function (e, t) {
             var i = {
                 i_service_pink: "i_service_pinked",
                 i_money_blue: "i_money_blueed",
@@ -19044,7 +18601,8 @@ M139.namespace("M2012.Mailbox.View", {
                 "i-grayinvoicing": "i-blueinvoicing"
             }, s = e.find("i:first"), o = s[0].className;
             1 == t ? a[o] && s.removeClass().addClass(a[o]) : i[o] && s.removeClass().addClass(i[o])
-        }, doCommand: function (e, t) {
+        },
+        doCommand: function (e, t) {
             function i() {
                 var i = {
                     markAll: "mailbox_markUnread_ok",
@@ -19921,7 +19479,8 @@ M139.namespace("M2012.Mailbox.Model", {
         defaults: { isShield: !0 },
         initialize: function (e) {
             var t = this;
-            this.mailboxModel = e.mailboxModel, this.getMailNotifyEmaillist(function (e) {
+            this.mailboxModel = e.mailboxModel,
+            this.getMailNotifyEmaillist(function (e) {
                 t.getMailNotifyEmaillistCallback(e)
             })
         },
@@ -23049,7 +22608,8 @@ function (e, t, i) {
             })
         },
         keywordLinkToCalendarTips: function (e, t) {
-            var i = new M2012.ReadMail.CalendarWord.View, a = this.model.get("mid");
+            var i = new M2012.ReadMail.CalendarWord.View,
+                a = this.model.get("mid");
             return i.matchWord(e, t, a)
         },
         showCalendarNotify: function (e, t) {
@@ -23927,6 +23487,7 @@ $(function () {
     window.readMailReady = function (e) {
         var t, i = arguments, a = /&guid=([0-9]*)/, s = /readTime=([0-9]*)/, o = e.location.href.match(a) ? e.location.href.match(a)[1] : "blank", n = e.location.href.match(s) ? e.location.href.match(s)[1] : new Date;
         if (3 === i.length && "json" === i[1]) {
+            debugger;
             if (i[2].code && -1 == i[0].location.href.indexOf("isReload=true")) return i[0].location.href = i[0].location.href + "&isReload=true", void top.M139.Logger.sendClientLog({
                 level: "ERROR",
                 name: "ReadMessagesLoadError",
@@ -33025,8 +32586,8 @@ M139.core.namespace("M139.UI.DataflowLottery", Backbone.View.extend({
                 "CleanMailbox" == top.$App.isclearSkinUser() ? top.$App.getCommConfig({ configId: 610 }, function (t) {
                     var i = { configId: 610, configValue1: 0, configValue2: "" };
                     "S_OK" == t.code && (0 == t["var"].length && (t["var"][0] = i), 0 == t["var"][0].configValue1 ? $("#bottomBigBanner").remove() : e())
-            }) : e()
-        })
+                }) : e()
+            })
     },
     getData: function (e, t) {
         top.M139.RichMail.API.call("unified:getUnifiedPositionContent", {
